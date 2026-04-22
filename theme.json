@@ -1,0 +1,225 @@
+{
+  "version": 2,
+  "settings": {
+    "layout": {
+      "contentSize": "1360px",
+      "wideSize": "1600px"
+    },
+    "spacing": {
+      "blockGap": true,
+      "margin": true,
+      "padding": true,
+      "units": [
+        "px",
+        "em",
+        "rem",
+        "vh",
+        "vw",
+        "%"
+      ]
+    },
+    "color": {
+      "palette": [
+        {
+          "name": "white",
+          "slug": "white",
+          "color": "#ffffff",
+          "origin": "theme"
+        },
+        {
+          "name": "white-020",
+          "slug": "white-020",
+          "color": "hsla(0 0% 100% / 0.2)",
+          "origin": "theme"
+        },
+        {
+          "name": "black",
+          "slug": "black",
+          "color": "#020202",
+          "origin": "theme"
+        },
+        {
+          "name": "black-010",
+          "slug": "black-010",
+          "color": "hsla(0 0% 1% / 0.05)",
+          "origin": "theme"
+        },
+        {
+          "name": "black-020",
+          "slug": "black-020",
+          "color": "hsla(0 0% 1% / 0.2)",
+          "origin": "theme"
+        },
+        {
+          "name": "blue-400",
+          "slug": "blue-400",
+          "color": "#2a5fac",
+          "origin": "theme"
+        },
+        {
+          "name": "blue-500",
+          "slug": "blue-500",
+          "color": "#0055a5",
+          "origin": "theme"
+        },
+        {
+          "name": "blue-600",
+          "slug": "blue-600",
+          "color": "#224d92",
+          "origin": "theme"
+        },
+        {
+          "name": "blue-700",
+          "slug": "blue-700",
+          "color": "#183975",
+          "origin": "theme"
+        },
+        {
+          "name": "blue-900",
+          "slug": "blue-900",
+          "color": "#0f2142",
+          "origin": "theme"
+        },
+        {
+          "name": "brand-blue",
+          "slug": "brand-blue",
+          "color": "var(--col-blue-500)",
+          "origin": "theme"
+        },
+        {
+          "name": "brand-dark",
+          "slug": "brand-dark",
+          "color": "#1f2a37",
+          "origin": "theme"
+        },
+        {
+          "name": "brand-darkest",
+          "slug": "brand-darkest",
+          "color": "hsl(var(--hsl-brand-darkest))",
+          "origin": "theme"
+        },
+        {
+          "name": "orange-400",
+          "slug": "orange-400",
+          "color": "hsl(var(--hsl-orange-400))",
+          "origin": "theme"
+        },
+        {
+          "name": "green-400",
+          "slug": "green-400",
+          "color": "hsl(var(--hsl-green-400))",
+          "origin": "theme"
+        },
+        {
+          "name": "violet-400",
+          "slug": "violet-400",
+          "color": "hsl(var(--hsl-violet-400))",
+          "origin": "theme"
+        },
+        {
+          "name": "purple-400",
+          "slug": "purple-400",
+          "color": "hsl( var(--hsl-purple-400) )",
+          "origin": "theme"
+        },
+        {
+          "name": "brown-400",
+          "slug": "brown-400",
+          "color": "hsl( var(--hsl-brown-400) )",
+          "origin": "theme"
+        },
+        {
+          "name": "secondary-dark",
+          "slug": "secondary-dark",
+          "color": "#4b5563",
+          "origin": "theme"
+        },
+        {
+          "name": "secondary-light",
+          "slug": "secondary-light",
+          "color": "#6b7280",
+          "origin": "theme"
+        }
+      ]
+    },
+    "typography": {
+      "fontSizes": [
+        {
+          "name": "body",
+          "slug": "body",
+          "size": "var(--fs-400)"
+        },
+        {
+          "name": "100",
+          "slug": "100",
+          "size": "0.666rem"
+        },
+        {
+          "name": "200",
+          "slug": "200",
+          "size": "0.875rem"
+        },
+        {
+          "name": "300",
+          "slug": "300",
+          "size": "1rem"
+        },
+        {
+          "name": "400",
+          "slug": "400",
+          "size": "1.05rem"
+        },
+        {
+          "name": "500",
+          "slug": "500",
+          "size": "clamp(1.05rem, 0.29vw + 0.99rem, 1.25rem)"
+        },
+        {
+          "name": "600",
+          "slug": "600",
+          "size": "clamp(1.25rem, 0.54vw + 1.14rem, 1.625rem)"
+        },
+        {
+          "name": "700",
+          "slug": "700",
+          "size": "clamp(1.5rem, 0.71vw + 1.36rem, 2rem)"
+        },
+        {
+          "name": "800",
+          "slug": "800",
+          "size": "clamp(1.5rem, 1.07vw + 1.29rem, 2.25rem)"
+        },
+        {
+          "name": "900",
+          "slug": "900",
+          "size": "clamp(2rem, 2.21vw + 1.48rem, 3.25rem)"
+        },
+        {
+          "name": "1000",
+          "slug": "1000",
+          "size": "clamp(2.75rem, 4vw, 3.75rem)"
+        },
+        {
+          "name": "50",
+          "slug": "50",
+          "size": "var(--fs-100)"
+        },
+        {
+          "name": "850",
+          "slug": "850",
+          "size": "var(--fs-800)"
+        },
+        {
+          "name": "875",
+          "slug": "875",
+          "size": "var(--fs-900)"
+        }
+      ]
+    }
+  },
+  "styles": {
+    "spacing": {
+      "blockGap": "28px"
+    }
+  }
+}
