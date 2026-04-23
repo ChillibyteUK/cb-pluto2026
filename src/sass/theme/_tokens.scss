@@ -9,37 +9,41 @@ $col-light: #f2f2f2;
      ======== */
 
   --col-white: #ffffff;
-
-  --col-white-020: hsla(0 0% 100% / 0.2);
-  --col-white-070 : hsla(0 0% 100% / 0.7);
-
   --col-black: #020202;
-  --col-black-010: hsla(0 0% 1% / 0.05);
-  --col-black-020: hsla(0 0% 1% / 0.2);
 
-  --col-blue-400: #2a5fac;
-  --col-blue-500: #0055a5;
-  --col-blue-600: #224d92;
-  --col-blue-700: #183975;
-  --col-blue-900: #0f2142;
-  --col-brand-blue: var(--col-blue-500);
-  --col-brand-dark: #1f2a37;
-  --hsl-brand-darkest: 240 48% 5%; // #070714;
-  --col-brand-darkest: hsl(var(--hsl-brand-darkest));
 
-  --hsl-orange-400: 28 71% 61%; // #e29857;
-  --col-orange-400: hsl(var(--hsl-orange-400));
-  --hsl-green-400: 93 31% 54%; // #85ad64;
-  --col-green-400: hsl(var(--hsl-green-400));
-  --hsl-violet-400: 231 33% 57%; // #6c77b5;
-  --col-violet-400: hsl(var(--hsl-violet-400));
-  --hsl-purple-400: 293 29% 62%; // #b382ba;
-  --col-purple-400: hsl( var(--hsl-purple-400) );
-  --hsl-brown-400: 32 36% 48%; // #a67d4f;
-  --col-brown-400: hsl( var(--hsl-brown-400) );
+  /* Dark Green #215732 */
+  --col-green-dark-1000: hsl(139, 45%, 24%);
+  --col-green-dark-900:  hsl(139, 31%, 31%);
+  --col-green-dark-800:  hsl(139, 22%, 39%);
+  --col-green-dark-700:  hsl(139, 16%, 46%);
+  --col-green-dark-600:  hsl(139, 14%, 54%);
+  --col-green-dark-500:  hsl(138, 14%, 62%);
+  --col-green-dark-400:  hsl(139, 14%, 69%);
+  --col-green-dark-300:  hsl(141, 15%, 77%);
+  --col-green-dark-200:  hsl(138, 13%, 85%);
+  --col-green-dark-100:  hsl(144, 13%, 92%);
 
-  --col-secondary-dark: #4b5563;
-  --col-secondary-light: #6b7280;
+  /* Teal Green #007B5F */
+  --col-green-teal-1000: hsl(166, 100%, 24%);
+  --col-green-teal-900:  hsl(167, 68%,  32%);
+  --col-green-teal-800:  hsl(167, 49%,  39%);
+  --col-green-teal-700:  hsl(167, 36%,  47%);
+  --col-green-teal-600:  hsl(167, 32%,  55%);
+  --col-green-teal-500:  hsl(166, 32%,  62%);
+  --col-green-teal-400:  hsl(166, 33%,  70%);
+  --col-green-teal-300:  hsl(166, 32%,  77%);
+  --col-green-teal-200:  hsl(166, 33%,  85%);
+  --col-green-teal-100:  hsl(165, 32%,  93%);
+
+  /* Orange #DE7C00 */
+  --col-orange-1000:     hsl(34, 100%, 44%);
+
+  /* Mid Green #1DA97F */
+  --col-green-mid-1000:  hsl(162, 71%,  39%);
+
+  /* Light Green #7ECCC2 */
+  --col-green-light-1000:hsl(172, 43%,  65%);
 
   /* =========================
      TYPOGRAPHY (families/weights)
