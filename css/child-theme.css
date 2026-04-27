@@ -22057,7 +22057,7 @@ header.navbar-pf .navbar-bottom .container > ul, header.navbar-pf .navbar-bottom
   border-bottom: 1px solid var(--col-orange-1000);
 }
 header.navbar-inv .navbar-bottom .container > ul, header.navbar-inv .navbar-bottom .wp-block-group:not(.alignfull) > ul {
-  border-bottom: 1px solid var(--col-green-teal-1000);
+  border-bottom: 1px solid var(--col-green-teal-400);
 }
 header .navbar-nav {
   margin-block-start: 0;
