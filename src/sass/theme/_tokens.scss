@@ -11,29 +11,40 @@ $col-light: #f2f2f2;
   --col-white: #ffffff;
   --col-black: #020202;
 
+  --col-grey-400: #ececec;
+  --col-grey-500: #c9c9c9;
+  --col-grey-600: #a6a6a6;
+  --col-grey-700: #838383;
+  --col-grey-800: #606060;
+  --col-grey-900: #1a1a1a;
+
   /* Dark Green #215732 */
-  --col-green-dark-1000: hsl(139, 45%, 24%);
-  --col-green-dark-900: hsl(139, 31%, 31%);
-  --col-green-dark-800: hsl(139, 22%, 39%);
-  --col-green-dark-700: hsl(139, 16%, 46%);
-  --col-green-dark-600: hsl(139, 14%, 54%);
-  --col-green-dark-500: hsl(138, 14%, 62%);
-  --col-green-dark-400: hsl(139, 14%, 69%);
-  --col-green-dark-300: hsl(141, 15%, 77%);
-  --col-green-dark-200: hsl(138, 13%, 85%);
-  --col-green-dark-100: hsl(144, 13%, 92%);
+  --col-green-dark-1300: hsl(139, 45%, 10%); // #0f261c;
+  --col-green-dark-1200: hsl(139, 45%, 14%); // #143320;
+  --col-green-dark-1100: hsl(139, 45%, 19%); // #1b4628;
+  --hsl-green-dark-1000: 139 45% 24%; // #225933;
+  --col-green-dark-1000: hsl( var(--hsl-green-dark-1000)); // #225933;
+  --col-green-dark-900: hsl(139, 31%, 31%); // #376846;
+  --col-green-dark-800: hsl(139, 22%, 39%); // #4e795b;
+  --col-green-dark-700: hsl(139, 16%, 46%); // #63886e;
+  --col-green-dark-600: hsl(139, 14%, 54%); // #799a84;
+  --col-green-dark-500: hsl(138, 14%, 62%); // #91ac99;
+  --col-green-dark-400: hsl(139, 14%, 69%); // #a5bbac;
+  --col-green-dark-300: hsl(141, 15%, 77%); // #bccdc2;
+  --col-green-dark-200: hsl(138, 13%, 85%); // #d4ded7;
+  --col-green-dark-100: hsl(144, 13%, 92%); // #e8edea;
 
   /* Teal Green #007B5F */
-  --col-green-teal-1000: hsl(166, 100%, 24%);
-  --col-green-teal-900: hsl(167, 68%, 32%);
-  --col-green-teal-800: hsl(167, 49%, 39%);
-  --col-green-teal-700: hsl(167, 36%, 47%);
-  --col-green-teal-600: hsl(167, 32%, 55%);
-  --col-green-teal-500: hsl(166, 32%, 62%);
-  --col-green-teal-400: hsl(166, 33%, 70%);
-  --col-green-teal-300: hsl(166, 32%, 77%);
-  --col-green-teal-200: hsl(166, 33%, 85%);
-  --col-green-teal-100: hsl(165, 32%, 93%);
+  --col-green-teal-1000: hsl(166, 100%, 24%); // #007a5e;
+  --col-green-teal-900: hsl(167, 68%, 32%); // #1a8971;
+  --col-green-teal-800: hsl(167, 49%, 39%); // #33947f;
+  --col-green-teal-700: hsl(167, 36%, 47%); // #4da390;
+  --col-green-teal-600: hsl(167, 32%, 55%); // #68b1a1;
+  --col-green-teal-500: hsl(166, 32%, 62%); // #7fbdaf;
+  --col-green-teal-400: hsl(166, 33%, 70%); // #99ccc0;
+  --col-green-teal-300: hsl(166, 32%, 77%); // #b2d7ce;
+  --col-green-teal-200: hsl(166, 33%, 85%); // #cce5df;
+  --col-green-teal-100: hsl(165, 32%, 93%); // #e7f3f0;
 
   /* Orange #DE7C00 */
   --col-orange-1000: hsl(34, 100%, 44%);
@@ -122,5 +133,5 @@ $col-light: #f2f2f2;
   --shadow-active: 0 0 0 3px var(--col-accent-400);
 
   --h-top: 62px;
-  --h-top-desktop: 62px;
+  --h-top-desktop: 90px;
 }

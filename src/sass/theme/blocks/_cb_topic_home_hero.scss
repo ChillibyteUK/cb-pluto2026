@@ -1,0 +1,120 @@
+.topic-home-hero {
+  position: relative;
+  min-height: 600px;
+  background-color: var(--col-grey-800);
+  color: var(--col-white);
+  isolation: isolate;
+  overflow: hidden; // clips the intro's connector lines to the section edge
+
+  &--has-background-image {
+    overflow: hidden;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: -3rem 0;
+      z-index: 0;
+      background-image: var(--topic-home-hero-bg);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      transform: translateY(var(--topic-home-hero-parallax-y, 0));
+      will-change: transform;
+    }
+  }
+
+  > .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.5;
+    overflow: hidden;
+    container-type: size;
+    container-name: topic-home-hero-overlay;
+    background-color: rgba(0 0 0 / 0.5);
+
+    // Flat rectangular portion: x = 0 → (50% width − height/2).
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: max(0px, calc(50cqw - 50cqh));
+      background-color: var(--col-green-teal-800);
+    }
+
+    // Circular cap of diameter = hero height; right edge sits at 50%.
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      height: 100cqh;
+      aspect-ratio: 1 / 1;
+      left: calc(50cqw - 100cqh);
+      border-radius: 50%;
+      background-color: var(--col-green-teal-800);
+    }
+  }
+
+  h1 {
+    font-weight: var(--fw-medium);
+    margin-bottom: 1.5rem;
+  }
+  &__intro {
+    font-size: var(--fs-500);
+    line-height: var(--lh-500);
+    font-weight: var(--fw-medium);
+    margin-bottom: 2rem;
+    list-style: none;
+    padding-inline-start: 0;
+
+    // Each USP is decorated with a dot marker (the orange ring + green/white
+    // bullseye from img/dot-line-orange.svg) and a 1px orange line that
+    // extends from the dot all the way to the left edge of the viewport.
+    // The hero has overflow: hidden, so the leftward extent of the line is
+    // clipped at the section's left edge — which sits flush with the
+    // viewport in our layout.
+    li {
+      position: relative;
+      padding-inline-start: 2.5rem;
+      margin-bottom: 0.75rem;
+      min-height: 1.5rem;
+
+      // Connector line — runs from off-screen left to the top of the dot
+      // (matching the line position baked into dot-line-orange.svg, where
+      // the rect sits at y=0 of the viewBox).
+      &::before {
+        content: "";
+        position: absolute;
+        top: calc(
+          0.75em - 0.75rem
+        ); // top of dot (dot is 1.5rem tall, centred on text)
+        left: -100vw;
+        right: calc(100% - 0.75rem); // line ends at dot centre
+        height: 1px;
+        background-color: var(--col-orange-1000);
+      }
+
+      // Dot marker — uses the dot-line-orange SVG, scaled to 1.5rem tall;
+      // background is anchored right/center so only the rightmost square
+      // (the dot itself) is visible inside the 1.5rem-wide pseudo.
+      &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: calc(0.75em - 0.75rem); // centre dot on the first text line
+        width: 1.5rem;
+        height: 1.5rem;
+        background: url("../img/dot-line-orange.svg") right center / auto 100%
+          no-repeat;
+      }
+    }
+  }
+}

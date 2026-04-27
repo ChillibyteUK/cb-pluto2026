@@ -5,16 +5,38 @@
 header {
   z-index: 9999;
   background-color: transparent;
-  transition: background-color 0.3s ease;
 
-  &.scrolled {
-    background-color: hsl(var(--hsl-brand-darkest) / 0.8) !important;
+
+  &.scrolled .navbar-bottom {
+    background-color: hsl(255 255 255 / 0.8) !important;
   }
 
+  /* Top row: logo + toggler. Always white, with right-aligned flourish. */
+  .navbar-top {
+    background-color: var(--col-white);
+    background-image: url("../img/nav-flourish.svg");
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: auto 100%;
+  }
+
+  /* Bottom row: menu. Translucent; tinted per-side via body classes elsewhere. */
+  .navbar-bottom {
+    background-color: transparent;
+    transition: background-color var(--transition);
+  }
+
+  &.navbar-pf .navbar-bottom .container > ul {
+    border-bottom: 1px solid var(--col-orange-1000);
+  }
+
+  .navbar-nav {
+    margin-block-start: 0;
+  }
   /* Nav links */
   .nav-link {
-    font-family: var(--font-family);
-    font-size: var(--fs-300);
+    font-family: var(--ff-ui);
+    font-size: var(--fs-400);
     color: var(--col-white);
     text-decoration: none;
     transition: color var(--transition);
@@ -22,7 +44,17 @@ header {
     &:hover,
     &:focus,
     &:focus-visible {
-      color: var(--col-blue-400);
+      color: var(--col-orange-1000);
+    }
+  }
+
+  &.scrolled .nav-link {
+    color: var(--col-grey-900);
+
+    &:hover,
+    &:focus,
+    &:focus-visible {
+      color: var(--col-orange-1000);
     }
   }
 
@@ -51,7 +83,7 @@ header {
 
   /* Dropdown menu */
   .dropdown-menu {
-    background-color: hsl(var(--hsl-brand-darkest) / 0.8);
+    background-color: hsl(var(--hsl-green-dark-1000) / 0.8);
     border-radius: 0;
     --bs-dropdown-spacer: 7px;
     padding-block: 0;
@@ -69,8 +101,8 @@ header {
       &:hover,
       &:focus,
       &:focus-visible {
-        background-color: var(--col-blue-900);
-        color: var(--col-orange-400);
+        background-color: var(--col-green-dark-900);
+        color: var(--col-orange-1000);
       }
     }
   }
@@ -122,8 +154,8 @@ header {
   }
 }
 
-header:has(.navbar-collapse.collapse.show),
-header:has(.navbar-collapse.collapsing) {
+header:has(.navbar-collapse.collapse.show) .navbar-bottom,
+header:has(.navbar-collapse.collapsing) .navbar-bottom {
   background-color: var(--col-brand-darkest) !important;
   transition: none !important;
 }

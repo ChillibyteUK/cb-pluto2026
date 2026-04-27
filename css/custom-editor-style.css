@@ -4,99 +4,115 @@
      COLOURS
      ======== */
   --col-white: #ffffff;
-  --col-white-020: hsla(0 0% 100% / 0.2);
-  --col-white-070: hsla(0 0% 100% / 0.7);
   --col-black: #020202;
-  --col-black-010: hsla(0 0% 1% / 0.05);
-  --col-black-020: hsla(0 0% 1% / 0.2);
-  --col-blue-400: #2a5fac;
-  --col-blue-500: #0055a5;
-  --col-blue-600: #224d92;
-  --col-blue-700: #183975;
-  --col-blue-900: #0f2142;
-  --col-brand-blue: var(--col-blue-500);
-  --col-brand-dark: #1f2a37;
-  --hsl-brand-darkest: 240 48% 5%;
-  --col-brand-darkest: hsl(var(--hsl-brand-darkest));
-  --hsl-orange-400: 28 71% 61%;
-  --col-orange-400: hsl(var(--hsl-orange-400));
-  --hsl-green-400: 93 31% 54%;
-  --col-green-400: hsl(var(--hsl-green-400));
-  --hsl-violet-400: 231 33% 57%;
-  --col-violet-400: hsl(var(--hsl-violet-400));
-  --hsl-purple-400: 293 29% 62%;
-  --col-purple-400: hsl( var(--hsl-purple-400) );
-  --hsl-brown-400: 32 36% 48%;
-  --col-brown-400: hsl( var(--hsl-brown-400) );
-  --col-secondary-dark: #4b5563;
-  --col-secondary-light: #6b7280;
+  --col-grey-400: #ececec;
+  --col-grey-500: #c9c9c9;
+  --col-grey-600: #a6a6a6;
+  --col-grey-700: #838383;
+  --col-grey-800: #606060;
+  --col-grey-900: #1a1a1a;
+  /* Dark Green #215732 */
+  --col-green-dark-1300: hsl(139, 45%, 10%);
+  --col-green-dark-1200: hsl(139, 45%, 14%);
+  --col-green-dark-1100: hsl(139, 45%, 19%);
+  --hsl-green-dark-1000: 139 45% 24%;
+  --col-green-dark-1000: hsl( var(--hsl-green-dark-1000));
+  --col-green-dark-900: hsl(139, 31%, 31%);
+  --col-green-dark-800: hsl(139, 22%, 39%);
+  --col-green-dark-700: hsl(139, 16%, 46%);
+  --col-green-dark-600: hsl(139, 14%, 54%);
+  --col-green-dark-500: hsl(138, 14%, 62%);
+  --col-green-dark-400: hsl(139, 14%, 69%);
+  --col-green-dark-300: hsl(141, 15%, 77%);
+  --col-green-dark-200: hsl(138, 13%, 85%);
+  --col-green-dark-100: hsl(144, 13%, 92%);
+  /* Teal Green #007B5F */
+  --col-green-teal-1000: hsl(166, 100%, 24%);
+  --col-green-teal-900: hsl(167, 68%, 32%);
+  --col-green-teal-800: hsl(167, 49%, 39%);
+  --col-green-teal-700: hsl(167, 36%, 47%);
+  --col-green-teal-600: hsl(167, 32%, 55%);
+  --col-green-teal-500: hsl(166, 32%, 62%);
+  --col-green-teal-400: hsl(166, 33%, 70%);
+  --col-green-teal-300: hsl(166, 32%, 77%);
+  --col-green-teal-200: hsl(166, 33%, 85%);
+  --col-green-teal-100: hsl(165, 32%, 93%);
+  /* Orange #DE7C00 */
+  --col-orange-1000: hsl(34, 100%, 44%);
+  /* Mid Green #1DA97F */
+  --col-green-mid-1000: hsl(162, 71%, 39%);
+  /* Light Green #7ECCC2 */
+  --col-green-light-1000: hsl(172, 43%, 65%);
   /* =========================
-     TYPOGRAPHY (families/weights)
+     TYPOGRAPHY
      ========================= */
   --ff-heading:
-    "Manrope", Arial, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    "Montserrat", Arial, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
     sans-serif;
   --ff-body:
-    "Inter", Arial, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    "Montserrat", Arial, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
     sans-serif;
-  /* compatibility alias */
+  --ff-ui:
+    "Montserrat", Arial, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    sans-serif;
   --font-family: var(--ff-body);
   --fw-400: 400;
   --fw-500: 500;
   --fw-600: 600;
-  /* compatibility aliases */
-  --fw-light: var(--fw-400);
   --fw-regular: var(--fw-400);
-  --fw-book: var(--fw-500);
   --fw-medium: var(--fw-500);
   --fw-semibold: var(--fw-600);
-  /* line heights — one per fs token, larger text = tighter leading */
-  --lh-100: 1.6;
-  --lh-200: 1.5;
-  --lh-400: 1.6;
-  --lh-500: 1.4;
-  --lh-600: 1.3;
-  --lh-700: 1.25;
-  --lh-800: 1.2;
-  --lh-900: 1.15;
-  --lh-1000: 1.1;
-  /* letter spacing */
-  --ls--40: -0.04em;
-  --ls--30: -0.03em;
-  --ls--25: -0.025em;
-  --ls--20: -0.02em;
-  --ls--15: -0.015em;
-  --ls--10: -0.01em;
-  --ls--5: -0.005em;
+  /* Font sizes */
+  --fs-100: 0.67rem;
+  /* 12px - label/overline */
+  --fs-200: 0.72rem;
+  /* 13px - label/overline */
+  --fs-300: 0.78rem;
+  /* 14px - small text/meta */
+  --fs-400: 0.89rem;
+  /* 16px - body secondary / ui/nav */
+  --fs-500: 1rem;
+  /* 18px - body primary */
+  --fs-600: 1.22rem;
+  /* 22px - h4 */
+  --fs-700: 1.56rem;
+  /* 28px - h3 */
+  --fs-800: 2rem;
+  /* 36px - h2 */
+  --fs-900: 2.67rem;
+  /* 48px - h1 */
+  /* Line heights (unitless) */
+  --lh-100: 1.333;
+  /* label/overline */
+  --lh-200: 1.429;
+  /* small/meta */
+  --lh-300: 1.5;
+  /* body secondary */
+  --lh-400: 1.556;
+  /* body primary */
+  --lh-500: 1.364;
+  /* h4 */
+  --lh-600: 1.286;
+  /* h3 */
+  --lh-700: 1.222;
+  /* h2 */
+  --lh-800: 1.167;
+  /* h1 */
+  /* Letter spacing */
   --ls-0: 0;
-  --ls-10: 0.01em;
+  --ls-2: 0.02em;
+  /* ui/nav min */
+  --ls-6: 0.06em;
+  /* ui/nav max */
   --ls-20: 0.02em;
-  --ls-30: 0.03em;
+  /* overline min */
   --ls-40: 0.04em;
-  --ls-80: 0.08em;
-  /* =========================
-     TYPOGRAPHY
-     ========================= */
-  --fs-body: var(--fs-400);
-  --fs-100: 0.666rem;
-  --fs-200: 0.875rem;
-  --fs-300: 1rem;
-  --fs-400: 1.05rem;
-  --fs-500: clamp(1.05rem, 0.29vw + 0.99rem, 1.25rem);
-  --fs-600: clamp(1.25rem, 0.54vw + 1.14rem, 1.625rem);
-  --fs-700: clamp(1.5rem, 0.71vw + 1.36rem, 2rem);
-  --fs-800: clamp(1.5rem, 1.07vw + 1.29rem, 2.25rem);
-  --fs-900: clamp(2rem, 2.21vw + 1.48rem, 3.25rem);
-  --fs-1000: clamp(2.75rem, 4vw, 3.75rem);
-  /* compatibility aliases */
-  --fs-50: var(--fs-100);
-  --fs-850: var(--fs-800);
-  --fs-875: var(--fs-900);
+  /* overline max */
   /* === Utilities === */
   --transition: 250ms ease-out;
   --shadow-active: 0 0 0 3px var(--col-accent-400);
   --h-top: 62px;
-  --h-top-desktop: 62px;
+  --h-top-desktop: 90px;
 }
 
 :root {
@@ -104,99 +120,115 @@
      COLOURS
      ======== */
   --col-white: #ffffff;
-  --col-white-020: hsla(0 0% 100% / 0.2);
-  --col-white-070: hsla(0 0% 100% / 0.7);
   --col-black: #020202;
-  --col-black-010: hsla(0 0% 1% / 0.05);
-  --col-black-020: hsla(0 0% 1% / 0.2);
-  --col-blue-400: #2a5fac;
-  --col-blue-500: #0055a5;
-  --col-blue-600: #224d92;
-  --col-blue-700: #183975;
-  --col-blue-900: #0f2142;
-  --col-brand-blue: var(--col-blue-500);
-  --col-brand-dark: #1f2a37;
-  --hsl-brand-darkest: 240 48% 5%;
-  --col-brand-darkest: hsl(var(--hsl-brand-darkest));
-  --hsl-orange-400: 28 71% 61%;
-  --col-orange-400: hsl(var(--hsl-orange-400));
-  --hsl-green-400: 93 31% 54%;
-  --col-green-400: hsl(var(--hsl-green-400));
-  --hsl-violet-400: 231 33% 57%;
-  --col-violet-400: hsl(var(--hsl-violet-400));
-  --hsl-purple-400: 293 29% 62%;
-  --col-purple-400: hsl( var(--hsl-purple-400) );
-  --hsl-brown-400: 32 36% 48%;
-  --col-brown-400: hsl( var(--hsl-brown-400) );
-  --col-secondary-dark: #4b5563;
-  --col-secondary-light: #6b7280;
+  --col-grey-400: #ececec;
+  --col-grey-500: #c9c9c9;
+  --col-grey-600: #a6a6a6;
+  --col-grey-700: #838383;
+  --col-grey-800: #606060;
+  --col-grey-900: #1a1a1a;
+  /* Dark Green #215732 */
+  --col-green-dark-1300: hsl(139, 45%, 10%);
+  --col-green-dark-1200: hsl(139, 45%, 14%);
+  --col-green-dark-1100: hsl(139, 45%, 19%);
+  --hsl-green-dark-1000: 139 45% 24%;
+  --col-green-dark-1000: hsl( var(--hsl-green-dark-1000));
+  --col-green-dark-900: hsl(139, 31%, 31%);
+  --col-green-dark-800: hsl(139, 22%, 39%);
+  --col-green-dark-700: hsl(139, 16%, 46%);
+  --col-green-dark-600: hsl(139, 14%, 54%);
+  --col-green-dark-500: hsl(138, 14%, 62%);
+  --col-green-dark-400: hsl(139, 14%, 69%);
+  --col-green-dark-300: hsl(141, 15%, 77%);
+  --col-green-dark-200: hsl(138, 13%, 85%);
+  --col-green-dark-100: hsl(144, 13%, 92%);
+  /* Teal Green #007B5F */
+  --col-green-teal-1000: hsl(166, 100%, 24%);
+  --col-green-teal-900: hsl(167, 68%, 32%);
+  --col-green-teal-800: hsl(167, 49%, 39%);
+  --col-green-teal-700: hsl(167, 36%, 47%);
+  --col-green-teal-600: hsl(167, 32%, 55%);
+  --col-green-teal-500: hsl(166, 32%, 62%);
+  --col-green-teal-400: hsl(166, 33%, 70%);
+  --col-green-teal-300: hsl(166, 32%, 77%);
+  --col-green-teal-200: hsl(166, 33%, 85%);
+  --col-green-teal-100: hsl(165, 32%, 93%);
+  /* Orange #DE7C00 */
+  --col-orange-1000: hsl(34, 100%, 44%);
+  /* Mid Green #1DA97F */
+  --col-green-mid-1000: hsl(162, 71%, 39%);
+  /* Light Green #7ECCC2 */
+  --col-green-light-1000: hsl(172, 43%, 65%);
   /* =========================
-     TYPOGRAPHY (families/weights)
+     TYPOGRAPHY
      ========================= */
   --ff-heading:
-    "Manrope", Arial, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    "Montserrat", Arial, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
     sans-serif;
   --ff-body:
-    "Inter", Arial, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    "Montserrat", Arial, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
     sans-serif;
-  /* compatibility alias */
+  --ff-ui:
+    "Montserrat", Arial, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    sans-serif;
   --font-family: var(--ff-body);
   --fw-400: 400;
   --fw-500: 500;
   --fw-600: 600;
-  /* compatibility aliases */
-  --fw-light: var(--fw-400);
   --fw-regular: var(--fw-400);
-  --fw-book: var(--fw-500);
   --fw-medium: var(--fw-500);
   --fw-semibold: var(--fw-600);
-  /* line heights — one per fs token, larger text = tighter leading */
-  --lh-100: 1.6;
-  --lh-200: 1.5;
-  --lh-400: 1.6;
-  --lh-500: 1.4;
-  --lh-600: 1.3;
-  --lh-700: 1.25;
-  --lh-800: 1.2;
-  --lh-900: 1.15;
-  --lh-1000: 1.1;
-  /* letter spacing */
-  --ls--40: -0.04em;
-  --ls--30: -0.03em;
-  --ls--25: -0.025em;
-  --ls--20: -0.02em;
-  --ls--15: -0.015em;
-  --ls--10: -0.01em;
-  --ls--5: -0.005em;
+  /* Font sizes */
+  --fs-100: 0.67rem;
+  /* 12px - label/overline */
+  --fs-200: 0.72rem;
+  /* 13px - label/overline */
+  --fs-300: 0.78rem;
+  /* 14px - small text/meta */
+  --fs-400: 0.89rem;
+  /* 16px - body secondary / ui/nav */
+  --fs-500: 1rem;
+  /* 18px - body primary */
+  --fs-600: 1.22rem;
+  /* 22px - h4 */
+  --fs-700: 1.56rem;
+  /* 28px - h3 */
+  --fs-800: 2rem;
+  /* 36px - h2 */
+  --fs-900: 2.67rem;
+  /* 48px - h1 */
+  /* Line heights (unitless) */
+  --lh-100: 1.333;
+  /* label/overline */
+  --lh-200: 1.429;
+  /* small/meta */
+  --lh-300: 1.5;
+  /* body secondary */
+  --lh-400: 1.556;
+  /* body primary */
+  --lh-500: 1.364;
+  /* h4 */
+  --lh-600: 1.286;
+  /* h3 */
+  --lh-700: 1.222;
+  /* h2 */
+  --lh-800: 1.167;
+  /* h1 */
+  /* Letter spacing */
   --ls-0: 0;
-  --ls-10: 0.01em;
+  --ls-2: 0.02em;
+  /* ui/nav min */
+  --ls-6: 0.06em;
+  /* ui/nav max */
   --ls-20: 0.02em;
-  --ls-30: 0.03em;
+  /* overline min */
   --ls-40: 0.04em;
-  --ls-80: 0.08em;
-  /* =========================
-     TYPOGRAPHY
-     ========================= */
-  --fs-body: var(--fs-400);
-  --fs-100: 0.666rem;
-  --fs-200: 0.875rem;
-  --fs-300: 1rem;
-  --fs-400: 1.05rem;
-  --fs-500: clamp(1.05rem, 0.29vw + 0.99rem, 1.25rem);
-  --fs-600: clamp(1.25rem, 0.54vw + 1.14rem, 1.625rem);
-  --fs-700: clamp(1.5rem, 0.71vw + 1.36rem, 2rem);
-  --fs-800: clamp(1.5rem, 1.07vw + 1.29rem, 2.25rem);
-  --fs-900: clamp(2rem, 2.21vw + 1.48rem, 3.25rem);
-  --fs-1000: clamp(2.75rem, 4vw, 3.75rem);
-  /* compatibility aliases */
-  --fs-50: var(--fs-100);
-  --fs-850: var(--fs-800);
-  --fs-875: var(--fs-900);
+  /* overline max */
   /* === Utilities === */
   --transition: 250ms ease-out;
   --shadow-active: 0 0 0 3px var(--col-accent-400);
   --h-top: 62px;
-  --h-top-desktop: 62px;
+  --h-top-desktop: 90px;
 }
 
 *,
@@ -5773,15 +5805,22 @@ body.understrap-no-sidebar .wp-block-cover.alignwide {
 }
 
 .editor-styles-wrapper .wp-block {
-  max-width: 1140px;
+  max-width: 1360px;
   margin-left: auto;
   margin-right: auto;
 }
 .editor-styles-wrapper .wp-block[data-align=wide] {
-  max-width: 1320px;
+  max-width: 1360px;
 }
 .editor-styles-wrapper .wp-block[data-align=full] {
   max-width: none;
+}
+.editor-styles-wrapper .editor-post-title,
+.editor-styles-wrapper .wp-block-post-title,
+.editor-styles-wrapper .edit-post-visual-editor__post-title-wrapper {
+  max-width: 1360px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /*# sourceMappingURL=custom-editor-style.css.map */

@@ -933,12 +933,20 @@ add_action(
 		);
 	}
 );
-add_action( 'admin_footer', function() {
-	echo '<div id="cb-sideload-debug" style="position:fixed;bottom:5px;right:5px;background:#000;color:#0f0;padding:4px 8px;font-size:12px;z-index:999999;display:none;">CB SIDELOAD: ' . ( wp_script_is( 'cb-sideload-image', 'enqueued' ) ? 'ENQUEUED' : 'NOT ENQUEUED' ) . '</div>';
-}, 999 );
-add_action( 'admin_head', function() {
-	echo '<style>#cb-sideload-debug{display:' . ( isset( $_GET['cb_debug'] ) ? 'block' : 'none' ) . '}</style>';
-}, 999 );
+add_action(
+	'admin_footer',
+	function () {
+		echo '<div id="cb-sideload-debug" style="position:fixed;bottom:5px;right:5px;background:#000;color:#0f0;padding:4px 8px;font-size:12px;z-index:999999;display:none;">CB SIDELOAD: ' . ( wp_script_is( 'cb-sideload-image', 'enqueued' ) ? 'ENQUEUED' : 'NOT ENQUEUED' ) . '</div>';
+	},
+	999
+);
+add_action(
+	'admin_head',
+	function () {
+		echo '<style>#cb-sideload-debug{display:' . ( isset( $_GET['cb_debug'] ) ? 'block' : 'none' ) . '}</style>';
+	},
+	999
+);
 
 /**
  * Load, augment, and sanitize an SVG from attachment ID or local file path.
@@ -1058,6 +1066,89 @@ function cb_sanitise_svg( $svg_source, $classes = '', $width = '', $height = '' 
 	$classes = array_filter( array_map( 'sanitize_html_class', $classes ) );
 
 	$svg_markup = preg_replace( '/<\?xml.*?\?>/i', '', $svg_markup );
+
+	/*
+	 * Localise CSS classes defined inside any inline <style> blocks so that
+	 * multiple SVGs on the same page can have their own .cls-1 (etc.)
+	 * definitions without colliding. Each class declared in <style> is
+	 * suffixed with a unique token, and matching class names in element
+	 * class="" attributes within the same SVG are renamed to match. User-
+	 * supplied $classes are not rewritten because this step runs before the
+	 * root <svg> attribute merge below.
+	 */
+	if ( false !== stripos( $svg_markup, '<style' ) ) {
+		$suffix = '-' . substr( md5( $file_path . microtime( true ) . wp_rand() ), 0, 6 );
+
+		$declared = array();
+		if ( preg_match_all( '/<style\b[^>]*>(.*?)<\/style>/is', $svg_markup, $style_blocks ) ) {
+			foreach ( $style_blocks[1] as $css_block ) {
+				// Strip CSS comments so commented-out class names are ignored.
+				$css_block = preg_replace( '!/\*.*?\*/!s', '', $css_block );
+				if ( preg_match_all( '/\.([A-Za-z_][\w-]*)/', $css_block, $cls_matches ) ) {
+					foreach ( $cls_matches[1] as $cls_name ) {
+						$declared[ $cls_name ] = true;
+					}
+				}
+			}
+		}
+
+		if ( ! empty( $declared ) ) {
+			$declared_keys = array_keys( $declared );
+
+			// Sort longest first so longer names match before shorter prefixes.
+			usort(
+				$declared_keys,
+				static function ( $a, $b ) {
+					return strlen( $b ) - strlen( $a );
+				}
+			);
+
+			$alt = implode(
+				'|',
+				array_map(
+					static function ( $c ) {
+						return preg_quote( $c, '/' );
+					},
+					$declared_keys
+				)
+			);
+
+			// 1. Rename `.classname` selectors inside <style> blocks.
+			$svg_markup = preg_replace_callback(
+				'/(<style\b[^>]*>)(.*?)(<\/style>)/is',
+				static function ( $m ) use ( $alt, $suffix ) {
+					$rewritten = preg_replace(
+						'/\.(' . $alt . ')(?![\w-])/',
+						'.$1' . $suffix,
+						$m[2]
+					);
+					return $m[1] . $rewritten . $m[3];
+				},
+				$svg_markup
+			);
+
+			// 2. Rename matching tokens inside any class="..." attribute.
+			$svg_markup = preg_replace_callback(
+				'/\bclass=("|\')(.*?)\1/i',
+				static function ( $m ) use ( $declared, $suffix ) {
+					$quote = $m[1];
+					$names = preg_split( '/\s+/', trim( $m[2] ) );
+					$names = array_map(
+						static function ( $n ) use ( $declared, $suffix ) {
+							if ( '' === $n ) {
+								return $n;
+							}
+							return isset( $declared[ $n ] ) ? $n . $suffix : $n;
+						},
+						$names
+					);
+					return 'class=' . $quote . implode( ' ', array_filter( $names ) ) . $quote;
+				},
+				$svg_markup
+			);
+		}
+	}
+
 	$svg_markup = preg_replace_callback(
 		'/<svg\b([^>]*)>/i',
 		static function ( $matches ) use ( $classes, $width, $height ) {

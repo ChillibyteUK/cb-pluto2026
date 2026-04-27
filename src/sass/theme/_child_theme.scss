@@ -4,13 +4,23 @@
 @import "header";
 @import "footer";
 @import "blog";
+@import "news";
 @import "a11y";
 @import "search";
 @import "wp";
 @import "blocks/blocks";
+@import "templates/templates";
 
 body {
   background-color: var(--col-white);
+}
+
+main {
+  margin-top: var(--h-top);
+
+  @media (min-width: 992px) {
+    margin-top: var(--h-top-desktop);
+  }
 }
 
 @media (min-width: 992px) {
@@ -23,16 +33,16 @@ body {
   }
 }
 
-.sticky {
-  position: sticky;
-  top: 0; // var(--h-top);
+// .sticky {
+//   position: sticky;
+//   top: 0; // var(--h-top);
 
-  @media (min-width: 992px) {
-    top: 0; //var(--h-top-desktop);
-  }
+//   @media (min-width: 992px) {
+//     top: 0; //var(--h-top-desktop);
+//   }
 
-  background-color: var(--col-white);
-}
+//   background-color: var(--col-white);
+// }
 
 // Adjust fixed header when admin bar is present
 .admin-bar header.fixed-top {

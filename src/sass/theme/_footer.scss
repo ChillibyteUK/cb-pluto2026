@@ -1,34 +1,68 @@
+// -----------------------------------------------------------------------------
+// Footer
+//
+// Two stacked sections (`__main` + `__colophon`) on the brand dark-green scale,
+// with a translucent rounded-rect overlay sliding in from the right that sits
+// over both backgrounds but under the text.
+//
+// Stacking strategy: `.footer` is the only stacking context. Section
+// backgrounds paint at the auto layer (no z-index); `__overlay` is positioned
+// with z-index 1 so it covers both bgs; `.container` inside each section is
+// positioned with z-index 2 so text/links sit above the overlay. Nested
+// stacking contexts on the section wrappers would trap the container
+// underneath the overlay, so we deliberately don't z-index the sections.
+// -----------------------------------------------------------------------------
+
 .footer {
-  background-color: var(--col-brand-darkest);
-  color: var(--col-white);
-
-  font-size: var(--fs-200);
   position: relative;
+  color: var(--col-white);
+  font-size: var(--fs-300);
+  overflow: hidden; // clip the overlay's rounded edge to the footer
 
-  &::before {
-    content: "";
+  &__main {
+    background-color: var(--col-green-dark-1100);
+  }
+
+  &__title {
+    font-size: var(--fs-500);
+    font-weight: var(--fw-semibold);
+    margin-bottom: .75rem;
+  }
+
+  &__colophon {
+    background-color: var(--col-green-dark-1300);
+    color: var(--col-white-070);
+    font-size: var(--fs-200);
+    font-weight: var(--fw-light);
+    line-height: var(--lh-800);
+    letter-spacing: var(--ls-20);
+  }
+
+  // Translucent rounded-rect overlay coming in from the right: spans the full
+  // height of the footer, starts at 50% width, with a semicircular cap on its
+  // left edge (border-radius pill). Sits above the section backgrounds, below
+  // the text content.
+  &__overlay {
     position: absolute;
     top: 0;
-    left: 0;
+    bottom: 0;
+    left: 40%;
     right: 0;
-    height: 4px;
-    background: linear-gradient(
-      to right,
-      var(--col-purple-400),
-      var(--col-green-400),
-      var(--col-brown-400),
-      var(--col-violet-400),
-      var(--col-orange-400)
-    );
+    background-color: rgb(0 0 0 / 0.2);
+    border-radius: 9999px 0 0 9999px;
     z-index: 1;
+    pointer-events: none;
+  }
+
+  // Lift content above the overlay.
+  &__main > .container,
+  &__colophon > .container {
+    position: relative;
+    z-index: 2;
   }
 
   .footer-title {
     font-weight: var(--fw-semibold);
-  }
-  .footer-title--lg {
-    font-weight: var(--fw-semibold);
-    font-size: var(--fs-100);
   }
   .footer__menu {
     list-style: none;
@@ -44,7 +78,7 @@
     text-decoration: none;
     transition: color 0.3s ease;
     &:hover {
-      color: var(--col-blue-400);
+      color: var(--col-green-teal-400);
     }
   }
   .current_page_item > a,
@@ -52,19 +86,10 @@
   .current-page-ancestor > a,
   .current-menu-parent > a,
   .current-menu-ancestor > a {
-    color: var(--col-orange-400);
+    color: var(--col-orange-1000);
   }
 
   &__logo {
     max-width: 140px;
-  }
-
-  &__colophon {
-    border-top: 1px solid var(--col-white-020);
-    color: var(--col-white-070);
-    font-size: var(--fs-50);
-    font-weight: var(--fw-light);
-    line-height: var(--lh-800);
-    letter-spacing: var(--ls-20);
   }
 }

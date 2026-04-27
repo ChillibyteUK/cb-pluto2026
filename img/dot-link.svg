@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 502.78 34.42">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #114e25;
+      }
+
+      .cls-2 {
+        fill: none;
+        stroke: #114e25;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-3 {
+        fill: #d37d0b;
+      }
+
+      .cls-4 {
+        fill: #fff;
+      }
+
+      .cls-5 {
+        fill: #80bcb4;
+      }
+    </style>
+  </defs>
+  <g id="Meet_the_People_content" data-name="Meet the People content">
+    <g>
+      <path class="cls-1" d="M468.94,17.5c0,9.34,7.57,16.92,16.92,16.92s16.92-7.58,16.92-16.92-7.58-16.92-16.92-16.92-16.92,7.58-16.92,16.92Z"/>
+      <circle class="cls-5" cx="485.86" cy="17.5" r="11.51"/>
+      <path class="cls-3" d="M478.33,17.5c0,4.16,3.37,7.53,7.53,7.53s7.53-3.37,7.53-7.53-3.37-7.53-7.53-7.53-7.53,3.37-7.53,7.53Z"/>
+      <path class="cls-4" d="M480.73,17.5c0,2.84,2.3,5.14,5.14,5.14s5.14-2.3,5.14-5.14-2.3-5.14-5.14-5.14-5.14,2.3-5.14,5.14Z"/>
+    </g>
+  </g>
+</svg>

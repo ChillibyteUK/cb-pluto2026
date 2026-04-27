@@ -1,0 +1,189 @@
+.home-page {
+  &__hero {
+    position: relative;
+    min-height: 600px;
+    background-color: var(--col-grey-800);
+    color: var(--col-white);
+    isolation: isolate;
+
+    &--has-background-image {
+      overflow: hidden;
+
+      &::before {
+        content: "";
+        position: absolute;
+        inset: -3rem 0;
+        z-index: 0;
+        background-image: var(--home-page-hero-bg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        transform: translateY(var(--home-page-hero-parallax-y, 0));
+        will-change: transform;
+      }
+    }
+
+    > .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    &-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.5;
+      overflow: hidden;
+      container-type: size;
+      container-name: home-hero-overlay;
+      background-color: rgba(0 0 0 / 0.5);
+
+      // Flat rectangular portion: x = 0 → (50% width − height/2).
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: max(0px, calc(50cqw - 50cqh));
+        background-color: var(--col-green-dark-1200);
+      }
+
+      // Circular cap of diameter = hero height; right edge sits at 50%.
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        height: 100cqh;
+        aspect-ratio: 1 / 1;
+        left: calc(50cqw - 100cqh);
+        border-radius: 50%;
+        background-color: var(--col-green-dark-1200);
+      }
+    }
+
+    h1 {
+      font-weight: var(--fw-medium);
+      margin-bottom: 1.5rem;
+    }
+    .home-page__intro {
+      font-size: var(--fs-500);
+      line-height: var(--lh-500);
+      font-weight: var(--fw-medium);
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    border-bottom-right-radius: 2rem;
+    overflow: hidden;
+    text-decoration: none;
+    position: relative;
+    background-color: var(--col-white);
+    height: 100%;
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: rgba(0 0 0 / 0);
+      transition: background-color var(--transition);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    &:hover::after,
+    &:focus-visible::after {
+      background-color: rgba(0 0 0 / 0.2);
+    }
+    &-title {
+      color: var(--col-white);
+      padding: 1rem 2rem;
+      margin-bottom: 0;
+      line-height: 1;
+      font-weight: var(--fw-regular);
+      display: flex;
+      align-items: center;
+      column-gap: 0.75rem;
+    }
+    &-body {
+      background-color: var(--col-white);
+      padding: 1rem 2rem;
+      flex-grow: 1;
+      color: var(--col-grey-900);
+      font-size: var(--fs-500);
+      font-weight: var(--fw-medium);
+      line-height: var(--lh-400);
+    }
+    &-link {
+      text-align: right;
+      font-size: var(--fs-400);
+      font-weight: var(--fw-semibold);
+      color: var(--col-grey-900);
+      margin-right: 1rem;
+      margin-bottom: 1rem;
+      svg {
+        margin-left: 0.5rem;
+      }
+    }
+  }
+  &__card--lending {
+    .home-page__card-title {
+      background-color: var(--col-orange-1000);
+      color: var(--col-white);
+    }
+  }
+  &__card--investing {
+    .home-page__card-title {
+      background-color: var(--col-green-teal-400);
+    }
+  }
+
+  &__insights {
+    position: relative;
+    isolation: isolate;
+
+    // Top-left flourish: SVG curve pinned to the viewport's left edge with the
+    // three horizontal stripes extending infinitely to the right via a layered
+    // gradient. Stripe stops match the SVG viewBox proportions: teal 0–11.72%
+    // (18.06/154.06), green 11.72–16.27% (25.06/154.06), orange 16.27–20.16%
+    // (31.06/154.06), transparent below.
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: clamp(48px, 8vw, 120px);
+      pointer-events: none;
+      z-index: 0;
+      background-image:
+        url("../img/left-edge-flourish.svg"),
+        linear-gradient(
+          to bottom,
+          #80bcb4 0,
+          #80bcb4 11.72%,
+          #0b644a 11.72%,
+          #0b644a 16.27%,
+          #e68300 16.27%,
+          #e68300 20.16%,
+          transparent 20.16%
+        );
+      background-position:
+        top left,
+        top left;
+      background-repeat: no-repeat, no-repeat;
+      background-size:
+        auto 100%,
+        100% 100%;
+    }
+
+    > .container {
+      position: relative;
+      z-index: 1;
+    }
+  }
+}

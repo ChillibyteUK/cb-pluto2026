@@ -25,17 +25,15 @@ if ( session_status() === PHP_SESSION_NONE ) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, minimum-scale=1">
 
 	<link rel="preload"
-        href="<?= esc_url( get_stylesheet_directory_uri() . '/fonts/inter-v20-latin-500.woff2' ); ?>"
+        href="<?= esc_url( get_stylesheet_directory_uri() . '/fonts/montserrat-v31-latin-regular.woff2' ); ?>"
         as="font" type="font/woff2" crossorigin="anonymous">
 	<link rel="preload"
-        href="<?= esc_url( get_stylesheet_directory_uri() . '/fonts/inter-v20-latin-regular.woff2' ); ?>"
+        href="<?= esc_url( get_stylesheet_directory_uri() . '/fonts/montserrat-v31-latin-500.woff2' ); ?>"
         as="font" type="font/woff2" crossorigin="anonymous">
 	<link rel="preload"
-        href="<?= esc_url( get_stylesheet_directory_uri() . '/fonts/manrope-v20-latin-500.woff2' ); ?>"
+        href="<?= esc_url( get_stylesheet_directory_uri() . '/fonts/montserrat-v31-latin-600.woff2' ); ?>"
         as="font" type="font/woff2" crossorigin="anonymous">
-	<link rel="preload"
-        href="<?= esc_url( get_stylesheet_directory_uri() . '/fonts/manrope-v20-latin-600.woff2' ); ?>"
-        as="font" type="font/woff2" crossorigin="anonymous">
+
 	
     <?php
     if ( ! is_user_logged_in() ) {
@@ -108,36 +106,64 @@ if ( session_status() === PHP_SESSION_NONE ) {
     		<?php
     	}
 	}
+
+    $request_uri     = filter_input( INPUT_SERVER, 'REQUEST_URI', FILTER_SANITIZE_URL );
+    $request_uri     = is_string( $request_uri ) ? wp_unslash( $request_uri ) : '/';
+    $current_path    = wp_parse_url( $request_uri, PHP_URL_PATH );
+    $current_path    = is_string( $current_path ) ? $current_path : '/';
+    $normalized_path = trailingslashit( $current_path );
+
+    $home_url  = '/';
+	$the_menu  = '';
+	$the_class = '';
+    if ( '/' === $current_path ) {
+        $home_url  = '/';
+		$the_menu  = '';
+		$the_class = '';
+    } elseif ( 0 === strpos( $normalized_path, '/property-finance/' ) ) {
+        $home_url  = '/property-finance/';
+		$the_menu  = 'pf_nav';
+		$the_class = 'navbar-pf';
+    } elseif ( 0 === strpos( $normalized_path, '/investors/' ) ) {
+        $home_url  = '/investors/';
+		$the_menu  = 'inv_nav';
+		$the_class = 'navbar-inv';
+	}
 	?>
-<header id="wrapper-navbar" class="fixed-top">
-	<nav class="navbar navbar-expand-lg container">
-		<div class="d-flex px-4 px-md-5 gap-4 w-100 w-xl-auto">
-            <div class="d-flex justify-content-between w-100 w-lg-auto align-items-center py-0">
-                <a href="/" class="site-logo" aria-label="Strategic Insurance Services Homepage">
-					<img src="<?= esc_url( get_stylesheet_directory_uri() . '/img/sis-logo-full-wo.png' ); ?>" alt="Strategic Insurance Services" height="45">
-				</a>
+<header id="wrapper-navbar" class="fixed-top <?= esc_attr( $the_class ); ?>" itemscope itemtype="http://schema.org/WPHeader">
+	<nav class="navbar navbar-expand-lg p-0 flex-column align-items-stretch">
+		<div class="navbar-top w-100">
+			<div class="container py-4 px-4 px-md-5">
+				<div class="d-flex justify-content-between align-items-center">
+					<a href="<?= esc_url( $home_url ? $home_url : '/' ); ?>" class="site-logo" aria-label="Pluto Finance Homepage">
+						<img src="<?= esc_url( get_stylesheet_directory_uri() . '/img/pluto-logo-colour.svg' ); ?>" alt="Pluto Finance logo" height="45">
+					</a>
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+						data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false"
+						aria-label="Toggle navigation">
+						<i class="fas fa-bars"></i>
+					</button>
 				</div>
-                <button class="navbar-toggler align-self-center" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-            <div id="navbar" class="collapse navbar-collapse">
+			</div>
+		</div>
+		<div id="navbar" class="navbar-bottom collapse navbar-collapse w-100">
+			<div class="container px-4 px-md-5">
 				<!-- Navigation -->
 				<?php
-				wp_nav_menu(
-					array(
-						'theme_location' => 'primary_nav',
-						'container'      => false,
-						'menu_class'     => 'navbar-nav w-100 justify-content-end gap-4 me-4',
-						'fallback_cb'    => '',
-						'depth'          => 3,
-						'walker'         => new Understrap_WP_Bootstrap_Navwalker(),
-					)
-				);
+				if ( has_nav_menu( $the_menu ) ) {
+					wp_nav_menu(
+						array(
+							'theme_location' => $the_menu,
+							'container'      => false,
+							'menu_class'     => 'navbar-nav w-100 justify-content-start gap-5',
+							'fallback_cb'    => '',
+							'depth'          => 3,
+							'walker'         => new Understrap_WP_Bootstrap_Navwalker(),
+						)
+					);
+				}
 				?>
-            </div>
+			</div>
 		</div>
 	</nav>
 </header>

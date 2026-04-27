@@ -13,6 +13,8 @@ defined( 'ABSPATH' ) || exit;
 require_once CB_THEME_DIR . '/inc/cb-utility.php';
 require_once CB_THEME_DIR . '/inc/cb-acf-theme-palette.php';
 require_once CB_THEME_DIR . '/inc/cb-posttypes.php';
+require_once CB_THEME_DIR . '/inc/cb-taxonomies.php';
+require_once CB_THEME_DIR . '/inc/cb-disable-core-posts.php';
 
 require_once CB_THEME_DIR . '/inc/cb-blocks.php';
 
@@ -99,10 +101,10 @@ function widgets_init() {
 
     register_nav_menus(
         array(
-            'primary_nav'          => 'Primary Nav',
-            'footer_menu_services' => 'Footer Services',
-            'footer_menu_about'    => 'Footer About',
-            'footer_menu_legal'    => 'Footer Legal & Info',
+            'pf_nav'                => 'Lending Nav',
+            'inv_nav'               => 'Investor Nav',
+            'footer_menu_lending'   => 'Footer Lending',
+            'footer_menu_investing' => 'Footer Investing',
         )
     );
 
@@ -142,7 +144,7 @@ add_action( 'widgets_init', 'widgets_init', 11 );
  * This function deregisters jQuery and disables certain styles and scripts
  * that are commented out for potential use in the theme.
  */
-function hub_theme_enqueue() {
+function cb_theme_enqueue() {
     $the_theme = wp_get_theme();
 
 	// phpcs:disable
@@ -156,11 +158,11 @@ function hub_theme_enqueue() {
     // wp_enqueue_script( 'glightbox', 'https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.3.1/js/glightbox.min.js', array(), $the_theme->get( 'Version' ), true );
 	// wp_enqueue_style( 'tom-select', 'https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.min.css', array(), '2.3.1' );
     // wp_enqueue_script( 'tom-select', 'https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js', array(), '2.3.1', true );
-    wp_enqueue_style( 'aos-style', 'https://unpkg.com/aos@2.3.1/dist/aos.css', array() ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
-    wp_enqueue_script( 'aos', 'https://unpkg.com/aos@2.3.1/dist/aos.js', array(), null, true ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
     // wp_deregister_script( 'jquery' ); // needed by gravity forms
     // phpcs:enable
-
+	
+    wp_enqueue_style( 'aos-style', 'https://unpkg.com/aos@2.3.1/dist/aos.css', array() ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
+    wp_enqueue_script( 'aos', 'https://unpkg.com/aos@2.3.1/dist/aos.js', array(), null, true ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
     wp_enqueue_style( 'swiper', 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css', array(), null ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
     wp_enqueue_script( 'swiper', 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js', array(), null, true ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
 	wp_enqueue_script( 'lenis', 'https://unpkg.com/lenis@1.3.11/dist/lenis.min.js', array(), null, true ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
@@ -168,7 +170,7 @@ function hub_theme_enqueue() {
 	wp_enqueue_script( 'gsap', 'https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js', array(), '3.12.7', true );
     wp_enqueue_script( 'gsap-scrolltrigger', 'https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js', array( 'gsap' ), '3.12.7', true );
 }
-add_action( 'wp_enqueue_scripts', 'hub_theme_enqueue' );
+add_action( 'wp_enqueue_scripts', 'cb_theme_enqueue' );
 
 // Performance: Remove WordPress global styles and SVG filters (WP 6.0+).
 // This prevents FOUC by removing unnecessary inline styles in the head.
@@ -527,28 +529,38 @@ function cb_tiny_mce_before_init( $settings ) {
 }
 
 /**
- * Dynamically populate the Associated People checkbox choices from published person posts.
+ * Disable the post editor (Gutenberg + classic) for pages using the Home Page template.
  *
- * @param array $field The ACF field array.
- * @return array
+ * Leaves ACF meta boxes as the primary editing UI for that template, but
+ * keeps the Featured Image panel available.
  */
-function cb_load_associated_people_choices( $field ) {
-	$field['choices'] = array();
+function cb_disable_editor_for_home_template() {
+	global $pagenow;
 
-	$people = get_posts(
-		array(
-			'post_type'      => 'person',
-			'post_status'    => 'publish',
-			'posts_per_page' => -1,
-			'orderby'        => 'title',
-			'order'          => 'ASC',
-		)
-	);
-
-	foreach ( $people as $person ) {
-		$field['choices'][ $person->ID ] = esc_html( $person->post_title );
+	if ( ! in_array( $pagenow, array( 'post.php', 'post-new.php' ), true ) ) {
+		return;
 	}
 
-	return $field;
+	$post_id = 0;
+	if ( isset( $_GET['post'] ) ) {
+		$post_id = (int) $_GET['post'];
+	} elseif ( isset( $_POST['post_ID'] ) ) {
+		$post_id = (int) $_POST['post_ID'];
+	}
+
+	if ( ! $post_id ) {
+		return;
+	}
+
+	if ( 'page' !== get_post_type( $post_id ) ) {
+		return;
+	}
+
+	$template = get_page_template_slug( $post_id );
+	if ( 'page-templates/home-page.php' === $template ) {
+		remove_post_type_support( 'page', 'editor' );
+		// Keep the Featured Image panel even though the content editor is gone.
+		add_post_type_support( 'page', 'thumbnail' );
+	}
 }
-add_filter( 'acf/load_field/key=field_service_sidebar_people', 'cb_load_associated_people_choices' );
+add_action( 'admin_init', 'cb_disable_editor_for_home_template' );
