@@ -103,7 +103,7 @@ if ( $hero_bg_url ) {
             ?>
         </div>
     </section>
-    <section class="home-page__insights">
+    <section class="home-page__insights full-flourish">
         <div class="container py-5">
             <div class="d-flex flex-wrap align-items-center justify-content-between py-5">
                 <h2 class="text-center">PLUTO INSIGHTS</h2>

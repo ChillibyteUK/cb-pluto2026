@@ -507,3 +507,82 @@ for (; i < all.length; i++) {
 // .form-control {
 //   border-radius: 0;
 // }
+
+// -----------------------------------------------------------------------------
+// .full-flourish
+//
+// Utility that pins a brand "left edge" flourish (SVG curve + three coloured
+// stripes) to the top of any block, with the stripes extending infinitely to
+// the right via a layered linear-gradient. Stripe stops match the SVG
+// viewBox proportions and are shared by every flourish variant: stripe 1
+// 0–11.72% (18.06/154.06), stripe 2 11.72–16.27% (25.06/154.06), stripe 3
+// 16.27–20.16% (31.06/154.06), transparent below.
+//
+// The SVG and the three stripe colours are exposed as custom properties so
+// modifier classes only need to override those four values.
+//
+// Default ("insights" palette): teal / dark-green / orange, using
+// img/left-edge-flourish.svg.
+//
+// Modifiers:
+//   .full-flourish--lending  — green / orange / light-orange, using
+//                              img/lend-flourish.svg.
+//
+// Apply to any element that needs the flourish; the utility sets up its own
+// stacking context and lifts a direct `> .container` child above the
+// flourish so content stays readable.
+// -----------------------------------------------------------------------------
+
+.full-flourish {
+  --full-flourish-image: url("../img/left-edge-flourish.svg");
+  --full-flourish-stripe-1: #80bcb4; // teal
+  --full-flourish-stripe-2: #0b644a; // dark green
+  --full-flourish-stripe-3: #e68300; // orange
+
+  position: relative;
+  isolation: isolate;
+  min-height: clamp(48px, 8vw, 120px);
+  padding-top: 3rem;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: clamp(48px, 8vw, 120px);
+    pointer-events: none;
+    z-index: 0;
+    background-image:
+      var(--full-flourish-image),
+      linear-gradient(
+        to bottom,
+        var(--full-flourish-stripe-1) 0,
+        var(--full-flourish-stripe-1) 11.72%,
+        var(--full-flourish-stripe-2) 11.72%,
+        var(--full-flourish-stripe-2) 16.27%,
+        var(--full-flourish-stripe-3) 16.27%,
+        var(--full-flourish-stripe-3) 20.16%,
+        transparent 20.16%
+      );
+    background-position:
+      top left,
+      top left;
+    background-repeat: no-repeat, no-repeat;
+    background-size:
+      auto 100%,
+      100% 100%;
+  }
+
+  > .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  &--lending {
+    --full-flourish-image: url("../img/lend-flourish.svg");
+    --full-flourish-stripe-1: #007a5e; // green teal 1000
+    --full-flourish-stripe-2: #e68300; // orange
+    --full-flourish-stripe-3: #f6c276; // light orange
+  }
+}

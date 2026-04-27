@@ -1,0 +1,112 @@
+// -----------------------------------------------------------------------------
+// CB Ticker x3
+//
+// Three count-up statistics displayed in equal columns. Each stat has an
+// optional title above a value row consisting of optional prefix, the
+// animated number, and an optional suffix.
+//
+// The count-up animation is wired up in src/js/custom-javascript.js: it
+// observes `.cb-ticker-x3` for intersection and animates every
+// `.cb-ticker-x3__stat-value` it contains from 0 to the integer in
+// `data-stat-target`.
+// -----------------------------------------------------------------------------
+
+.cb-ticker-x3 {
+  position: relative;
+  isolation: isolate;
+  color: var(--col-white);
+  background-color: var(--col-grey-600);
+
+  &__item {
+    display: grid;
+    place-content: center;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 100%;
+  }
+
+  &__title,
+  &__posttitle {
+    font-size: var(--fs-400);
+    font-weight: var(--fw-regular);
+  }
+  &__title {
+    margin-bottom: 1.5rem;
+  }
+  &__posttitle {
+    margin-top: 1.5rem;
+  }
+
+  &__stat {
+    margin-top: auto;
+    display: flex;
+    align-items: baseline;
+    gap: 0.1em;
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-1000);
+    line-height: 1;
+    padding-block: 0.25rem;
+
+  }
+
+  &__stat-value,
+  &__stat-prefix,
+  &__stat-suffix {
+    display: inline-block;
+  }
+}
+
+.cb-ticker-x3--pf {
+  background: linear-gradient( 90deg, var(--col-green-teal-200) 50%, var(--col-green-teal-1000) 50% );
+
+  .row > *:nth-child(1) {
+    background-color: var(--col-green-teal-200);
+  }
+
+  .row > *:nth-child(2) {
+    background-color: var(--col-green-teal-500);
+  }
+
+  .row > *:nth-child(3) {
+    background-color: var(--col-green-teal-1000);
+  }
+
+  .cb-ticker-x3__item {
+    background-color: var(--col-white);
+    color: var(--col-grey-900);
+  }
+
+  .cb-ticker-x3__stat {
+    color: var(--col-orange-1000);
+  }
+}
+
+.cb-ticker-x3--inv {
+  // background: linear-gradient( 90deg, var(--col-green-teal-200) 50%, var(--col-green-teal-1000) 50% );
+  background: linear-gradient( 90deg, #00a074 50%, #016549 50% );
+
+  .row > *:nth-child(1) {
+    // background-color: var(--col-green-teal-200);
+    background-color: #00a074;
+  }
+
+  .row > *:nth-child(2) {
+    // background-color: var(--col-green-teal-500);
+    background-color: #114e25;
+  }
+
+  .row > *:nth-child(3) {
+    // background-color: var(--col-green-teal-1000);
+    background-color: #016549;
+  }
+
+  .cb-ticker-x3__item {
+    border: 1px solid var(--col-grey-500);
+    color: var(--col-white);
+  }
+
+  .cb-ticker-x3__stat {
+    color: var(--col-white);
+  }
+
+}

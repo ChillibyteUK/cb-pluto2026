@@ -74,35 +74,44 @@
     margin-bottom: 2rem;
     list-style: none;
     padding-inline-start: 0;
+  }
 
-    // Each USP is decorated with a dot marker (the orange ring + green/white
-    // bullseye from img/dot-line-orange.svg) and a 1px orange line that
-    // extends from the dot all the way to the left edge of the viewport.
-    // The hero has overflow: hidden, so the leftward extent of the line is
-    // clipped at the section's left edge — which sits flush with the
-    // viewport in our layout.
-    li {
+  // ---------------------------------------------------------------------------
+  // Per-side intro list markers
+  //
+  // Each USP gets a dot marker plus a 1px line that runs from the dot all the
+  // way to the left edge of the viewport. The hero has `overflow: hidden`, so
+  // the leftward extent is clipped at the section/viewport edge.
+  //
+  // The dot SVG and line colour are driven by two custom properties so each
+  // side variant (`--pf`, `--inv`) only has to override the two values:
+  //   --topic-home-hero-dot-image  — SVG with the dot at its right edge
+  //   --topic-home-hero-line-color — connector line colour (matches the SVG)
+  // ---------------------------------------------------------------------------
+  &--pf,
+  &--inv {
+    .topic-home-hero__intro li {
       position: relative;
       padding-inline-start: 2.5rem;
       margin-bottom: 0.75rem;
       min-height: 1.5rem;
 
       // Connector line — runs from off-screen left to the top of the dot
-      // (matching the line position baked into dot-line-orange.svg, where
-      // the rect sits at y=0 of the viewBox).
+      // (matching the line position baked into the dot SVGs, where the rect
+      // sits at y=0 of the viewBox).
       &::before {
         content: "";
         position: absolute;
         top: calc(
           0.75em - 0.75rem
-        ); // top of dot (dot is 1.5rem tall, centred on text)
+        ); // top of dot (1.5rem tall, centred on text)
         left: -100vw;
         right: calc(100% - 0.75rem); // line ends at dot centre
         height: 1px;
-        background-color: var(--col-orange-1000);
+        background-color: var(--topic-home-hero-line-color);
       }
 
-      // Dot marker — uses the dot-line-orange SVG, scaled to 1.5rem tall;
+      // Dot marker — uses the side-specific dot SVG, scaled to 1.5rem tall;
       // background is anchored right/center so only the rightmost square
       // (the dot itself) is visible inside the 1.5rem-wide pseudo.
       &::after {
@@ -112,9 +121,19 @@
         top: calc(0.75em - 0.75rem); // centre dot on the first text line
         width: 1.5rem;
         height: 1.5rem;
-        background: url("../img/dot-line-orange.svg") right center / auto 100%
+        background: var(--topic-home-hero-dot-image) right center / auto 100%
           no-repeat;
       }
     }
+  }
+
+  &--pf {
+    --topic-home-hero-dot-image: url("../img/dot-line-orange.svg");
+    --topic-home-hero-line-color: var(--col-orange-1000);
+  }
+
+  &--inv {
+    --topic-home-hero-dot-image: url("../img/dot-line-teal.svg");
+    --topic-home-hero-line-color: var(--col-green-teal-400);
   }
 }

@@ -81,6 +81,8 @@
   /* 36px - h2 */
   --fs-900: 2.67rem;
   /* 48px - h1 */
+  --fs-1000: 3.56rem;
+  /* 64px - ticker */
   /* Line heights (unitless) */
   --lh-100: 1.333;
   /* label/overline */
@@ -197,6 +199,8 @@
   /* 36px - h2 */
   --fs-900: 2.67rem;
   /* 48px - h1 */
+  --fs-1000: 3.56rem;
+  /* 64px - ticker */
   /* Line heights (unitless) */
   --lh-100: 1.333;
   /* label/overline */

@@ -18,6 +18,21 @@ if ( $hero_bg_url ) {
 	$hero_style     = sprintf( '--topic-home-hero-bg: url(%s);', esc_url_raw( $hero_bg_url ) );
 }
 
+$request_uri     = filter_input( INPUT_SERVER, 'REQUEST_URI', FILTER_SANITIZE_URL );
+$request_uri     = is_string( $request_uri ) ? wp_unslash( $request_uri ) : '/';
+$current_path    = wp_parse_url( $request_uri, PHP_URL_PATH );
+$current_path    = is_string( $current_path ) ? $current_path : '/';
+$normalized_path = trailingslashit( $current_path );
+
+$the_class = '';
+if ( '/' === $current_path ) {
+	$hero_classes[] = '';
+} elseif ( 0 === strpos( $normalized_path, '/property-finance/' ) ) {
+	$hero_classes[] = 'topic-home-hero--pf';
+} elseif ( 0 === strpos( $normalized_path, '/investors/' ) ) {
+	$hero_classes[] = 'topic-home-hero--inv';
+}
+
 
 ?>
 <section id="<?= esc_attr( $hero_id ); ?>" class="<?= esc_attr( implode( ' ', $hero_classes ) ); ?>"<?= $hero_style ? ' style="' . esc_attr( $hero_style ) . '"' : ''; ?>>

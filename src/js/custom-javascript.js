@@ -128,7 +128,9 @@
 
 // Count up stat hero values when they enter view.
 (function () {
-  const statHeroes = document.querySelectorAll(".stat-hero, .cb-stats");
+  const statHeroes = document.querySelectorAll(
+    ".stat-hero, .cb-stats, .cb-ticker-x3",
+  );
 
   if (!statHeroes.length) return;
 
@@ -170,7 +172,9 @@
         if (!entry.isIntersecting) return;
 
         entry.target
-          .querySelectorAll(".stat-hero__stat-value, .cb-stats__stat-value")
+          .querySelectorAll(
+            ".stat-hero__stat-value, .cb-stats__stat-value, .cb-ticker-x3__stat-value",
+          )
           .forEach(animateValue);
 
         obs.unobserve(entry.target);
