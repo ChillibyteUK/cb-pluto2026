@@ -22023,11 +22023,79 @@ strong {
     transition: none;
   }
 }
+/* --------------------------------------------------
+   .cb-link-dot — rolling-dot link/button utility
+   Same visual mechanic as `.cb-news-card__link` in
+   `_news.scss` / `.cb-image-cta__link` in
+   `_cb_image_cta.scss`, but self-triggering on hover
+   so it can be used standalone (e.g. on a Gravity
+   Forms submit button — see the `gform_submit_button`
+   filter in `inc/cb-theme.php`).
+
+   Use `--alt` for light-on-dark contexts.
+   -------------------------------------------------- */
+.cb-link-dot {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  min-height: 1.5rem;
+  padding: 0.5rem 3.5rem 0 0;
+  border: 0;
+  background: url("../img/dot-link.svg") center right 1.5rem/auto 1.5rem no-repeat;
+  font-family: inherit;
+  font-size: var(--fs-400);
+  font-weight: var(--fw-semibold);
+  line-height: 1.2;
+  color: var(--col-grey-900);
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all var(--transition);
+  /* Light-on-dark variant (uses the alternate dot SVG). */
+}
+.cb-link-dot::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 2.25rem;
+  height: 1px;
+  margin-top: -0.75rem;
+  background-color: #114e25;
+  transition: all var(--transition);
+}
+.cb-link-dot:hover, .cb-link-dot:focus-visible {
+  background-position: center right 0;
+  color: var(--col-grey-900);
+  text-decoration: none;
+}
+.cb-link-dot:hover::before, .cb-link-dot:focus-visible::before {
+  right: 0.75rem;
+}
+.cb-link-dot[disabled], .cb-link-dot:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.cb-link-dot--alt {
+  background-image: url("../img/dot-link-alt.svg");
+  color: var(--col-white);
+}
+.cb-link-dot--alt::before {
+  background-color: var(--col-white);
+}
+.cb-link-dot--alt:hover, .cb-link-dot--alt:focus-visible {
+  color: var(--col-white);
+}
+
 /* =========================
    HEADER
    ========================= */
 header {
-  z-index: 9999;
+  z-index: 1030;
   background-color: transparent;
   /* Top row: logo + toggler. Always white, with right-aligned flourish. */
   /* Bottom row: menu. Translucent; tinted per-side via body classes elsewhere. */
@@ -23529,15 +23597,10 @@ span a {
   /* Buttons that look like text (name / role openers). */
   /* --------------------------------------------------
      Contact icons
-     -------------------------------------------------- */
-  /* --------------------------------------------------
-     Modal
-     -------------------------------------------------- */
-  /* --------------------------------------------------
-     Contact-form modal variant
-     Single-column layout (no person image), tightened
-     padding, and a light Gravity Forms reset so fields
-     fit the modal width and use the theme typography.
+     The base `.cb-team__contacts` rules are hoisted below
+     so they still apply to the modal contacts list after
+     portaling. The grid-card list inherits `.cb-team`
+     ancestor styles automatically.
      -------------------------------------------------- */
 }
 .cb-team__filters {
@@ -23549,7 +23612,7 @@ span a {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  border: 1px solid currentColor;
+  border: 1px solid var(--col-white);
   background: transparent;
   color: inherit;
   padding: 0.4rem 1rem;
@@ -23560,12 +23623,12 @@ span a {
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 .cb-team__filter:hover, .cb-team__filter:focus-visible {
-  background-color: currentColor;
-  color: #fff;
+  background-color: var(--col-white);
+  color: var(--col-green-dark-1200);
 }
 .cb-team__filter.is-active {
-  background-color: currentColor;
-  color: #fff;
+  background-color: var(--col-white);
+  color: var(--col-green-dark-1200);
 }
 .cb-team__card {
   display: flex;
@@ -23606,7 +23669,7 @@ span a {
   border: 0;
   padding: 0;
   margin: 0;
-  color: inherit;
+  color: var(--col-white);
   font: inherit;
   text-align: left;
   cursor: pointer;
@@ -23630,6 +23693,7 @@ span a {
   font-size: 0.95rem;
   opacity: 0.85;
 }
+
 .cb-team__contacts {
   list-style: none;
   padding: 0;
@@ -23648,7 +23712,7 @@ span a {
   width: 2rem;
   height: 2rem;
   border-radius: 50%;
-  color: inherit;
+  color: var(--col-white);
   text-decoration: none;
   background: transparent;
   border: 0;
@@ -23665,7 +23729,7 @@ span a {
 .cb-team__contacts a:hover svg, .cb-team__contacts a:focus-visible svg,
 .cb-team__contacts .cb-team__contact-btn:hover svg,
 .cb-team__contacts .cb-team__contact-btn:focus-visible svg {
-  color: #fff;
+  color: var(--col-green-dark-1200);
 }
 .cb-team__contacts a svg,
 .cb-team__contacts .cb-team__contact-btn svg {
@@ -23683,19 +23747,31 @@ span a {
   padding: 0.25rem 0.5rem;
   gap: 0.5rem;
   border-radius: 0;
+  color: inherit;
 }
 .cb-team__contacts--modal a:hover, .cb-team__contacts--modal a:focus-visible,
 .cb-team__contacts--modal .cb-team__contact-btn:hover,
 .cb-team__contacts--modal .cb-team__contact-btn:focus-visible {
   background-color: transparent;
   text-decoration: underline;
+  color: inherit;
 }
 .cb-team__contacts--modal a:hover svg, .cb-team__contacts--modal a:focus-visible svg,
 .cb-team__contacts--modal .cb-team__contact-btn:hover svg,
 .cb-team__contacts--modal .cb-team__contact-btn:focus-visible svg {
   color: inherit;
 }
+
+/* --------------------------------------------------
+   Modal
+   Hoisted out of `.cb-team` so the modals can be portaled
+   to <body> at runtime. They must be a direct child of
+   <body> to escape ancestor stacking contexts (notably
+   `.full-flourish { isolation: isolate }`), which would
+   otherwise pin them below the fixed-top header.
+   -------------------------------------------------- */
 .cb-team__modal {
+  --cb-team-modal-z: 1080;
   position: fixed;
   inset: 0;
   z-index: var(--cb-team-modal-z);
@@ -23707,12 +23783,14 @@ span a {
 .cb-team__modal[hidden] {
   display: none !important;
 }
+
 .cb-team__modal-overlay {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.6);
   cursor: pointer;
 }
+
 .cb-team__modal-dialog {
   position: relative;
   background: #fff;
@@ -23724,6 +23802,7 @@ span a {
   border-radius: 4px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
 }
+
 .cb-team__modal-close {
   position: absolute;
   top: 0.5rem;
@@ -23741,6 +23820,7 @@ span a {
 .cb-team__modal-close:hover, .cb-team__modal-close:focus-visible {
   color: #000;
 }
+
 .cb-team__modal-body {
   display: grid;
   grid-template-columns: 1fr;
@@ -23751,6 +23831,7 @@ span a {
     grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
   }
 }
+
 .cb-team__modal-image img {
   display: block;
   width: 100%;
@@ -23764,6 +23845,7 @@ span a {
     max-height: none;
   }
 }
+
 .cb-team__modal-content {
   padding: 2rem 1.5rem 1.5rem;
 }
@@ -23772,22 +23854,31 @@ span a {
     padding: 2.5rem 2.5rem 2rem;
   }
 }
+
 .cb-team__modal-name {
   margin: 0 0 0.25rem;
   font-size: 1.5rem;
   line-height: 1.2;
 }
+
 .cb-team__modal-role {
   margin: 0 0 1rem;
   font-size: 1rem;
   opacity: 0.85;
 }
+
 .cb-team__modal-bio p {
   margin: 0 0 1em;
 }
 .cb-team__modal-bio p:last-child {
   margin-bottom: 0;
 }
+
+/* Contact-form modal variant
+   Single-column layout (no person image), tightened
+   padding, and a light Gravity Forms reset so fields
+   fit the modal width and use the theme typography.
+   -------------------------------------------------- */
 .cb-team__modal--contact .cb-team__modal-dialog {
   max-width: 640px;
 }
@@ -23801,6 +23892,17 @@ span a {
 }
 .cb-team__modal--contact .gform_wrapper {
   margin-top: 1rem;
+  /* --------------------------------------------------
+     Validation
+     Cover both modern (GF 2.5+ framework) markup and
+     the legacy variant. GF sometimes ships these
+     elements with `display: none` until activated, and
+     the modal's tight padding can clip the summary, so
+     we force visibility and a clear red treatment.
+     -------------------------------------------------- */
+  /* Modern: per-field message */
+  /* Modern: summary block at top of form */
+  /* Field-level error indicator on inputs */
 }
 .cb-team__modal--contact .gform_wrapper input[type=text],
 .cb-team__modal--contact .gform_wrapper input[type=email],
@@ -23831,24 +23933,50 @@ span a {
 .cb-team__modal--contact .gform_wrapper .gform_footer {
   margin-top: 1rem;
 }
-.cb-team__modal--contact .gform_wrapper .gform_footer input[type=submit],
-.cb-team__modal--contact .gform_wrapper .gform_footer button[type=submit] {
-  font: inherit;
-  padding: 0.6rem 1.25rem;
-  border: 0;
-  border-radius: 999px;
-  background-color: currentColor;
-  color: #fff;
-  cursor: pointer;
+.cb-team__modal--contact .gform_wrapper .gfield_validation_message,
+.cb-team__modal--contact .gform_wrapper .validation_message {
+  display: block;
+  margin-top: 0.35rem;
+  padding: 0.4rem 0.6rem;
+  border-left: 3px solid #b00020;
+  background: rgba(176, 0, 32, 0.06);
+  color: #b00020;
+  font-size: 0.9em;
+  line-height: 1.3;
 }
-.cb-team__modal--contact .gform_wrapper .gform_footer input[type=submit]:hover, .cb-team__modal--contact .gform_wrapper .gform_footer input[type=submit]:focus-visible,
-.cb-team__modal--contact .gform_wrapper .gform_footer button[type=submit]:hover,
-.cb-team__modal--contact .gform_wrapper .gform_footer button[type=submit]:focus-visible {
-  opacity: 0.9;
+.cb-team__modal--contact .gform_wrapper .gform_validation_errors {
+  display: block !important;
+  margin: 0 0 1rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid #b00020;
+  border-radius: 4px;
+  background: rgba(176, 0, 32, 0.06);
+  color: #b00020;
 }
-.cb-team__modal--contact .gform_wrapper .validation_message,
+.cb-team__modal--contact .gform_wrapper .gform_validation_errors .gform_submission_error {
+  margin: 0 0 0.25rem;
+  font-weight: 600;
+}
+.cb-team__modal--contact .gform_wrapper .gform_validation_errors ol,
+.cb-team__modal--contact .gform_wrapper .gform_validation_errors ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+.cb-team__modal--contact .gform_wrapper .gform_validation_errors a {
+  color: inherit;
+  text-decoration: underline;
+}
 .cb-team__modal--contact .gform_wrapper .gfield_error .gfield_label {
   color: #b00020;
+}
+.cb-team__modal--contact .gform_wrapper .gfield_error input[type=text],
+.cb-team__modal--contact .gform_wrapper .gfield_error input[type=email],
+.cb-team__modal--contact .gform_wrapper .gfield_error input[type=url],
+.cb-team__modal--contact .gform_wrapper .gfield_error input[type=tel],
+.cb-team__modal--contact .gform_wrapper .gfield_error input[type=number],
+.cb-team__modal--contact .gform_wrapper .gfield_error textarea {
+  border-color: #b00020;
+  box-shadow: 0 0 0 1px rgba(176, 0, 32, 0.25);
 }
 .cb-team__modal--contact .gform_wrapper .gform_confirmation_message {
   padding: 1rem;

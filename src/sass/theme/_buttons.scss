@@ -133,3 +133,80 @@
     transition: none;
   }
 }
+
+/* --------------------------------------------------
+   .cb-link-dot — rolling-dot link/button utility
+   Same visual mechanic as `.cb-news-card__link` in
+   `_news.scss` / `.cb-image-cta__link` in
+   `_cb_image_cta.scss`, but self-triggering on hover
+   so it can be used standalone (e.g. on a Gravity
+   Forms submit button — see the `gform_submit_button`
+   filter in `inc/cb-theme.php`).
+
+   Use `--alt` for light-on-dark contexts.
+   -------------------------------------------------- */
+.cb-link-dot {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  min-height: 1.5rem;
+  padding: 0.5rem 3.5rem 0 0; // rolling room on the right
+  border: 0;
+  background: url("../img/dot-link.svg") center right 1.5rem / auto 1.5rem
+    no-repeat;
+  font-family: inherit;
+  font-size: var(--fs-400);
+  font-weight: var(--fw-semibold);
+  line-height: 1.2;
+  color: var(--col-grey-900);
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all var(--transition);
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 2.25rem; // rolling room (1.5rem) + dot radius (0.75rem)
+    height: 1px;
+    margin-top: -0.75rem;
+    background-color: #114e25;
+    transition: all var(--transition);
+  }
+
+  &:hover,
+  &:focus-visible {
+    background-position: center right 0;
+    color: var(--col-grey-900);
+    text-decoration: none;
+
+    &::before {
+      right: 0.75rem; // dot radius — line meets the dot centre
+    }
+  }
+
+  &[disabled],
+  &:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+
+  /* Light-on-dark variant (uses the alternate dot SVG). */
+  &--alt {
+    background-image: url("../img/dot-link-alt.svg");
+    color: var(--col-white);
+
+    &::before {
+      background-color: var(--col-white);
+    }
+
+    &:hover,
+    &:focus-visible {
+      color: var(--col-white);
+    }
+  }
+}

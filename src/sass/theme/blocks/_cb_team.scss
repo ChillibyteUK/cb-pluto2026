@@ -21,7 +21,7 @@
 
   &__filter {
     appearance: none;
-    border: 1px solid currentColor;
+    border: 1px solid var(--col-white);
     background: transparent;
     color: inherit;
     padding: 0.4rem 1rem;
@@ -35,15 +35,15 @@
 
     &:hover,
     &:focus-visible {
-      background-color: currentColor;
+      background-color: var(--col-white);
 
       // Invert text colour against current colour fill.
-      color: #fff;
+      color: var(--col-green-dark-1200);
     }
 
     &.is-active {
-      background-color: currentColor;
-      color: #fff;
+      background-color: var(--col-white);
+      color: var(--col-green-dark-1200);
     }
   }
 
@@ -105,7 +105,7 @@
     border: 0;
     padding: 0;
     margin: 0;
-    color: inherit;
+    color: var(--col-white);
     font: inherit;
     text-align: left;
     cursor: pointer;
@@ -137,158 +137,215 @@
 
   /* --------------------------------------------------
      Contact icons
+     The base `.cb-team__contacts` rules are hoisted below
+     so they still apply to the modal contacts list after
+     portaling. The grid-card list inherits `.cb-team`
+     ancestor styles automatically.
      -------------------------------------------------- */
-  &__contacts {
-    list-style: none;
-    padding: 0;
-    margin: 0.5rem 0 0;
-    display: flex;
-    gap: 0.5rem;
+}
 
-    li {
-      margin: 0;
-    }
+.cb-team__contacts {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 0;
+  display: flex;
+  gap: 0.5rem;
 
-    a,
-    .cb-team__contact-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 2rem;
-      height: 2rem;
-      border-radius: 50%;
-      color: inherit;
-      text-decoration: none;
-      background: transparent;
-      border: 0;
-      padding: 0;
-      font: inherit;
-      cursor: pointer;
-      transition:
-        background-color 0.2s ease,
-        color 0.2s ease;
-
-      &:hover,
-      &:focus-visible {
-        background-color: currentColor;
-
-        svg {
-          color: #fff;
-        }
-      }
-
-      svg {
-        display: block;
-      }
-    }
-
-    &--modal {
-      flex-wrap: wrap;
-      gap: 0.75rem 1rem;
-      margin-top: 1rem;
-
-      a,
-      .cb-team__contact-btn {
-        width: auto;
-        height: auto;
-        padding: 0.25rem 0.5rem;
-        gap: 0.5rem;
-        border-radius: 0;
-
-        &:hover,
-        &:focus-visible {
-          background-color: transparent;
-          text-decoration: underline;
-
-          svg {
-            color: inherit;
-          }
-        }
-      }
-    }
+  li {
+    margin: 0;
   }
 
-  /* --------------------------------------------------
-     Modal
-     -------------------------------------------------- */
-  &__modal {
-    position: fixed;
-    inset: 0;
-    z-index: var(--cb-team-modal-z);
-    display: flex;
+  a,
+  .cb-team__contact-btn {
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 1rem;
-
-    &[hidden] {
-      display: none !important;
-    }
-  }
-
-  &__modal-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.6);
-    cursor: pointer;
-  }
-
-  &__modal-dialog {
-    position: relative;
-    background: #fff;
-    color: #222;
-    max-width: 960px;
-    width: 100%;
-    max-height: calc(100vh - 2rem);
-    overflow-y: auto;
-    border-radius: 4px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
-  }
-
-  &__modal-close {
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-    width: 2.25rem;
-    height: 2.25rem;
-    border: 0;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    color: var(--col-white);
+    text-decoration: none;
     background: transparent;
-    font-size: 1.75rem;
-    line-height: 1;
+    border: 0;
+    padding: 0;
+    font: inherit;
     cursor: pointer;
-    color: inherit;
-    z-index: 1;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease;
 
     &:hover,
     &:focus-visible {
-      color: #000;
+      background-color: currentColor;
+
+      svg {
+        color: var(--col-green-dark-1200);
+      }
     }
-  }
 
-  &__modal-body {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 0;
-
-    @media (min-width: 768px) {
-      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-    }
-  }
-
-  &__modal-image {
-    img {
+    svg {
       display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      max-height: 50vh;
+    }
+  }
 
-      @media (min-width: 768px) {
-        max-height: none;
+  &--modal {
+    flex-wrap: wrap;
+    gap: 0.75rem 1rem;
+    margin-top: 1rem;
+
+    a,
+    .cb-team__contact-btn {
+      width: auto;
+      height: auto;
+      padding: 0.25rem 0.5rem;
+      gap: 0.5rem;
+      border-radius: 0;
+      // Inherit the modal-dialog text colour (#222 on white) instead of the
+      // grid-card white. Without this the icons are invisible against the
+      // modal's white background.
+      color: inherit;
+
+      &:hover,
+      &:focus-visible {
+        background-color: transparent;
+        text-decoration: underline;
+        color: inherit;
+
+        svg {
+          color: inherit;
+        }
       }
     }
   }
+}
 
-  &__modal-content {
+/* --------------------------------------------------
+   Modal
+   Hoisted out of `.cb-team` so the modals can be portaled
+   to <body> at runtime. They must be a direct child of
+   <body> to escape ancestor stacking contexts (notably
+   `.full-flourish { isolation: isolate }`), which would
+   otherwise pin them below the fixed-top header.
+   -------------------------------------------------- */
+.cb-team__modal {
+  --cb-team-modal-z: 1080;
+  position: fixed;
+  inset: 0;
+  z-index: var(--cb-team-modal-z);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+
+  &[hidden] {
+    display: none !important;
+  }
+}
+
+.cb-team__modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+}
+
+.cb-team__modal-dialog {
+  position: relative;
+  background: #fff;
+  color: #222;
+  max-width: 960px;
+  width: 100%;
+  max-height: calc(100vh - 2rem);
+  overflow-y: auto;
+  border-radius: 4px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+.cb-team__modal-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 0;
+  background: transparent;
+  font-size: 1.75rem;
+  line-height: 1;
+  cursor: pointer;
+  color: inherit;
+  z-index: 1;
+
+  &:hover,
+  &:focus-visible {
+    color: #000;
+  }
+}
+
+.cb-team__modal-body {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+
+  @media (min-width: 768px) {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  }
+}
+
+.cb-team__modal-image {
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    max-height: 50vh;
+
+    @media (min-width: 768px) {
+      max-height: none;
+    }
+  }
+}
+
+.cb-team__modal-content {
+  padding: 2rem 1.5rem 1.5rem;
+
+  @media (min-width: 768px) {
+    padding: 2.5rem 2.5rem 2rem;
+  }
+}
+
+.cb-team__modal-name {
+  margin: 0 0 0.25rem;
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+
+.cb-team__modal-role {
+  margin: 0 0 1rem;
+  font-size: 1rem;
+  opacity: 0.85;
+}
+
+.cb-team__modal-bio {
+  p {
+    margin: 0 0 1em;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+/* Contact-form modal variant
+   Single-column layout (no person image), tightened
+   padding, and a light Gravity Forms reset so fields
+   fit the modal width and use the theme typography.
+   -------------------------------------------------- */
+.cb-team__modal--contact {
+  .cb-team__modal-dialog {
+    max-width: 640px;
+  }
+
+  .cb-team__modal-content {
     padding: 2rem 1.5rem 1.5rem;
 
     @media (min-width: 768px) {
@@ -296,49 +353,98 @@
     }
   }
 
-  &__modal-name {
-    margin: 0 0 0.25rem;
-    font-size: 1.5rem;
-    line-height: 1.2;
-  }
+  .gform_wrapper {
+    margin-top: 1rem;
 
-  &__modal-role {
-    margin: 0 0 1rem;
-    font-size: 1rem;
-    opacity: 0.85;
-  }
-
-  &__modal-bio {
-    p {
-      margin: 0 0 1em;
+    input[type="text"],
+    input[type="email"],
+    input[type="url"],
+    input[type="tel"],
+    input[type="number"],
+    textarea {
+      width: 100%;
+      max-width: 100%;
+      font: inherit;
+      padding: 0.5rem 0.75rem;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      border-radius: 4px;
+      background: #fff;
     }
 
-    p:last-child {
-      margin-bottom: 0;
-    }
-  }
-
-  /* --------------------------------------------------
-     Contact-form modal variant
-     Single-column layout (no person image), tightened
-     padding, and a light Gravity Forms reset so fields
-     fit the modal width and use the theme typography.
-     -------------------------------------------------- */
-  &__modal--contact {
-    .cb-team__modal-dialog {
-      max-width: 640px;
+    textarea {
+      min-height: 9rem;
+      resize: vertical;
     }
 
-    .cb-team__modal-content {
-      padding: 2rem 1.5rem 1.5rem;
+    .gfield {
+      margin-bottom: 1rem;
+    }
 
-      @media (min-width: 768px) {
-        padding: 2.5rem 2.5rem 2rem;
+    .gfield_label {
+      display: block;
+      margin-bottom: 0.25rem;
+      font-weight: 600;
+    }
+
+    .gform_footer {
+      margin-top: 1rem;
+    }
+
+    /* --------------------------------------------------
+       Validation
+       Cover both modern (GF 2.5+ framework) markup and
+       the legacy variant. GF sometimes ships these
+       elements with `display: none` until activated, and
+       the modal's tight padding can clip the summary, so
+       we force visibility and a clear red treatment.
+       -------------------------------------------------- */
+
+    /* Modern: per-field message */
+    .gfield_validation_message,
+    /* Legacy: per-field message */
+    .validation_message {
+      display: block;
+      margin-top: 0.35rem;
+      padding: 0.4rem 0.6rem;
+      border-left: 3px solid #b00020;
+      background: rgba(176, 0, 32, 0.06);
+      color: #b00020;
+      font-size: 0.9em;
+      line-height: 1.3;
+    }
+
+    /* Modern: summary block at top of form */
+    .gform_validation_errors {
+      display: block !important;
+      margin: 0 0 1rem;
+      padding: 0.75rem 1rem;
+      border: 1px solid #b00020;
+      border-radius: 4px;
+      background: rgba(176, 0, 32, 0.06);
+      color: #b00020;
+
+      .gform_submission_error {
+        margin: 0 0 0.25rem;
+        font-weight: 600;
+      }
+
+      ol,
+      ul {
+        margin: 0;
+        padding-left: 1.25rem;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: underline;
       }
     }
 
-    .gform_wrapper {
-      margin-top: 1rem;
+    /* Field-level error indicator on inputs */
+    .gfield_error {
+      .gfield_label {
+        color: #b00020;
+      }
 
       input[type="text"],
       input[type="email"],
@@ -346,60 +452,15 @@
       input[type="tel"],
       input[type="number"],
       textarea {
-        width: 100%;
-        max-width: 100%;
-        font: inherit;
-        padding: 0.5rem 0.75rem;
-        border: 1px solid rgba(0, 0, 0, 0.2);
-        border-radius: 4px;
-        background: #fff;
+        border-color: #b00020;
+        box-shadow: 0 0 0 1px rgba(176, 0, 32, 0.25);
       }
+    }
 
-      textarea {
-        min-height: 9rem;
-        resize: vertical;
-      }
-
-      .gfield {
-        margin-bottom: 1rem;
-      }
-
-      .gfield_label {
-        display: block;
-        margin-bottom: 0.25rem;
-        font-weight: 600;
-      }
-
-      .gform_footer {
-        margin-top: 1rem;
-
-        input[type="submit"],
-        button[type="submit"] {
-          font: inherit;
-          padding: 0.6rem 1.25rem;
-          border: 0;
-          border-radius: 999px;
-          background-color: currentColor;
-          color: #fff;
-          cursor: pointer;
-
-          &:hover,
-          &:focus-visible {
-            opacity: 0.9;
-          }
-        }
-      }
-
-      .validation_message,
-      .gfield_error .gfield_label {
-        color: #b00020;
-      }
-
-      .gform_confirmation_message {
-        padding: 1rem;
-        border-radius: 4px;
-        background: rgba(0, 0, 0, 0.04);
-      }
+    .gform_confirmation_message {
+      padding: 1rem;
+      border-radius: 4px;
+      background: rgba(0, 0, 0, 0.04);
     }
   }
 }

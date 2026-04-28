@@ -111,6 +111,16 @@ $missing_img = get_stylesheet_directory_uri() . '/img/missing-person.jpg';
 // Gravity Forms "Contact a person" form ID, configured via Site-Wide Settings.
 $contact_form_id = function_exists( 'cb_team_get_contact_form_id' ) ? cb_team_get_contact_form_id() : 0;
 
+// Resolve the recipient field ID once, so the JS can target it. We render
+// ONE contact form per page (not per card) — multiple copies would all share
+// the same wrapper / iframe target IDs, breaking AJAX submission.
+$contact_field_ids = ( $contact_form_id && function_exists( 'cb_team_resolve_form_fields' ) )
+	? cb_team_resolve_form_fields( $contact_form_id )
+	: null;
+$recipient_field_id = $contact_field_ids && ! empty( $contact_field_ids['recipient'] )
+	? (int) $contact_field_ids['recipient']
+	: 0;
+
 // SVG icons (inline so we don't depend on an icon font).
 $icon_email = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" width="18" height="18"><path fill="currentColor" d="M2 5.5A2.5 2.5 0 0 1 4.5 3h15A2.5 2.5 0 0 1 22 5.5v13a2.5 2.5 0 0 1-2.5 2.5h-15A2.5 2.5 0 0 1 2 18.5v-13Zm2.5-.5a.5.5 0 0 0-.5.5v.41l8 5.2 8-5.2V5.5a.5.5 0 0 0-.5-.5h-15Zm15.5 2.79-7.45 4.84a1 1 0 0 1-1.1 0L4 7.79V18.5a.5.5 0 0 0 .5.5h15a.5.5 0 0 0 .5-.5V7.79Z"/></svg>';
 $icon_phone = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" width="18" height="18"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.5 11.5 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1.04l-2.22 2.19Z"/></svg>';
@@ -196,7 +206,7 @@ $icon_li    = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" wid
 								<?php if ( $has_contact || $phone || $linkedin ) : ?>
 									<ul class="cb-team__contacts" aria-label="<?php esc_attr_e( 'Contact', 'cb-pluto2026' ); ?>">
 										<?php if ( $has_contact ) : ?>
-											<li><button type="button" class="cb-team__contact-btn" data-cb-team-open="<?= esc_attr( $contact_modal_id ); ?>" aria-label="<?php echo esc_attr( sprintf( /* translators: %s: person first name */ __( 'Contact %s', 'cb-pluto2026' ), $first_name ? $first_name : $name ) ); ?>"><?= $icon_email; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></button></li>
+											<li><button type="button" class="cb-team__contact-btn" data-cb-team-contact data-cb-team-pid="<?= esc_attr( $pid ); ?>" data-cb-team-name="<?= esc_attr( $name ); ?>" aria-label="<?php echo esc_attr( sprintf( /* translators: %s: person first name */ __( 'Contact %s', 'cb-pluto2026' ), $first_name ? $first_name : $name ) ); ?>"><?= $icon_email; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></button></li>
 										<?php endif; ?>
 										<?php if ( $phone ) : ?>
 											<li><a href="tel:<?= esc_attr( parse_phone( $phone ) ); ?>" aria-label="<?php echo esc_attr( sprintf( /* translators: %s: person name */ __( 'Call %s', 'cb-pluto2026' ), $name ) ); ?>"><?= $icon_phone; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></a></li>
@@ -227,7 +237,7 @@ $icon_li    = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" wid
 											<?php if ( $has_contact || $phone || $linkedin ) : ?>
 												<ul class="cb-team__contacts cb-team__contacts--modal" aria-label="<?php esc_attr_e( 'Contact', 'cb-pluto2026' ); ?>">
 													<?php if ( $has_contact ) : ?>
-														<li><button type="button" class="cb-team__contact-btn" data-cb-team-open="<?= esc_attr( $contact_modal_id ); ?>"><?= $icon_email; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><span><?php echo esc_html( sprintf( /* translators: %s: person first name */ __( 'Contact %s', 'cb-pluto2026' ), $first_name ? $first_name : $name ) ); ?></span></button></li>
+														<li><button type="button" class="cb-team__contact-btn" data-cb-team-contact data-cb-team-pid="<?= esc_attr( $pid ); ?>" data-cb-team-name="<?= esc_attr( $name ); ?>"><?= $icon_email; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><span><?php echo esc_html( sprintf( /* translators: %s: person first name */ __( 'Contact %s', 'cb-pluto2026' ), $first_name ? $first_name : $name ) ); ?></span></button></li>
 													<?php endif; ?>
 													<?php if ( $phone ) : ?>
 														<li><a href="tel:<?= esc_attr( parse_phone( $phone ) ); ?>"><?= $icon_phone; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><span><?= esc_html( $phone ); ?></span></a></li>
@@ -242,38 +252,49 @@ $icon_li    = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" wid
 								</div>
 							</div>
 						<?php endif; ?>
-
-						<?php if ( $has_contact ) : ?>
-							<div class="cb-team__modal cb-team__modal--contact" id="<?= esc_attr( $contact_modal_id ); ?>" role="dialog" aria-modal="true" aria-labelledby="<?= esc_attr( $contact_modal_id ); ?>-title" hidden>
-								<div class="cb-team__modal-overlay" data-cb-team-close></div>
-								<div class="cb-team__modal-dialog" role="document">
-									<button class="cb-team__modal-close" type="button" data-cb-team-close aria-label="<?php esc_attr_e( 'Close', 'cb-pluto2026' ); ?>">&times;</button>
-									<div class="cb-team__modal-content">
-										<h3 class="cb-team__modal-name" id="<?= esc_attr( $contact_modal_id ); ?>-title"><?php echo esc_html( sprintf( /* translators: %s: person name */ __( 'Contact %s', 'cb-pluto2026' ), $name ) ); ?></h3>
-										<?php
-										if ( function_exists( 'gravity_form' ) ) {
-											gravity_form(
-												$contact_form_id,
-												false,
-												false,
-												false,
-												array( 'recipient_pid' => $pid ),
-												true
-											);
-										} else {
-											echo '<p class="text-muted"><em>' . esc_html__( 'Contact form unavailable.', 'cb-pluto2026' ) . '</em></p>';
-										}
-										?>
-									</div>
-								</div>
-							</div>
-						<?php endif; ?>
 					</div>
 				<?php endforeach; ?>
 			</div>
 		<?php endif; ?>
 	</div>
 </section>
+
+<?php
+/*
+ * Single shared contact modal — rendered once per page (not per card) to
+ * avoid colliding GF form/wrapper/iframe IDs that would otherwise break
+ * AJAX submission, validation rendering, and entry creation. The hidden
+ * `recipient_pid` field is populated on the fly when a contact button is
+ * clicked.
+ */
+static $cb_team_contact_modal_emitted = false;
+if ( ! $cb_team_contact_modal_emitted && $contact_form_id && $recipient_field_id ) :
+	$cb_team_contact_modal_emitted = true;
+	?>
+	<div class="cb-team__modal cb-team__modal--contact" id="cb-team-contact-modal" role="dialog" aria-modal="true" aria-labelledby="cb-team-contact-modal-title" data-cb-team-recipient-field="<?= esc_attr( $recipient_field_id ); ?>" data-cb-team-form-id="<?= esc_attr( $contact_form_id ); ?>" hidden>
+		<div class="cb-team__modal-overlay" data-cb-team-close></div>
+		<div class="cb-team__modal-dialog" role="document">
+			<button class="cb-team__modal-close" type="button" data-cb-team-close aria-label="<?php esc_attr_e( 'Close', 'cb-pluto2026' ); ?>">&times;</button>
+			<div class="cb-team__modal-content">
+				<h3 class="cb-team__modal-name" id="cb-team-contact-modal-title"><?php esc_html_e( 'Contact', 'cb-pluto2026' ); ?></h3>
+				<?php
+				if ( function_exists( 'gravity_form' ) ) {
+					gravity_form(
+						$contact_form_id,
+						false,
+						false,
+						false,
+						array( 'recipient_pid' => 0 ),
+						true
+					);
+				} else {
+					echo '<p class="text-muted"><em>' . esc_html__( 'Contact form unavailable.', 'cb-pluto2026' ) . '</em></p>';
+				}
+				?>
+			</div>
+		</div>
+	</div>
+<?php endif; ?>
 
 <?php
 /*
@@ -290,6 +311,24 @@ if ( ! $cb_team_assets_emitted ) :
 	window.cbTeamModalsBound = true;
 
 	var lastFocus = null;
+
+	// Portal all .cb-team__modal nodes to <body> so they escape any ancestor
+	// stacking context (e.g. `.full-flourish { isolation: isolate }`). Without
+	// this, the fixed-top header (z-index: 1030) renders above the modal even
+	// though the modal sets a higher z-index, because z-index is only
+	// meaningful within the same stacking context.
+	function portalModals(root) {
+		(root || document).querySelectorAll('.cb-team__modal').forEach(function (m) {
+			if (m.parentNode !== document.body) {
+				document.body.appendChild(m);
+			}
+		});
+	}
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', function () { portalModals(); });
+	} else {
+		portalModals();
+	}
 
 	function openModal(id) {
 		var modal = document.getElementById(id);
@@ -315,6 +354,35 @@ if ( ! $cb_team_assets_emitted ) :
 	}
 
 	document.addEventListener('click', function (e) {
+		// Contact buttons: populate the shared contact modal with the chosen
+		// person's PID + name, then open it. We render only one GF form per
+		// page; rendering one per card would collide on form/wrapper/iframe
+		// IDs and break AJAX submission entirely.
+		var contactBtn = e.target.closest('[data-cb-team-contact]');
+		if (contactBtn) {
+			e.preventDefault();
+			var modal = document.getElementById('cb-team-contact-modal');
+			if (!modal) return;
+			var pid = contactBtn.getAttribute('data-cb-team-pid') || '';
+			var name = contactBtn.getAttribute('data-cb-team-name') || '';
+			var fieldId = modal.getAttribute('data-cb-team-recipient-field') || '';
+			var formId = modal.getAttribute('data-cb-team-form-id') || '';
+			// Hidden recipient field — set both the visible-named input and any
+			// `gform_field_values` query-string variant GF may use.
+			if (fieldId) {
+				var sel = '#input_' + formId + '_' + fieldId
+					+ ', input[name="input_' + fieldId + '"]';
+				modal.querySelectorAll(sel).forEach(function (i) { i.value = pid; });
+			}
+			// Title
+			var title = modal.querySelector('#cb-team-contact-modal-title');
+			if (title && name) {
+				title.textContent = (window.cbTeamContactPrefix || 'Contact ') + name;
+			}
+			openModal('cb-team-contact-modal');
+			return;
+		}
+
 		var opener = e.target.closest('[data-cb-team-open]');
 		if (opener) {
 			e.preventDefault();
@@ -324,8 +392,8 @@ if ( ! $cb_team_assets_emitted ) :
 		var closer = e.target.closest('[data-cb-team-close]');
 		if (closer) {
 			e.preventDefault();
-			var modal = closer.closest('.cb-team__modal');
-			closeModal(modal);
+			var modal2 = closer.closest('.cb-team__modal');
+			closeModal(modal2);
 		}
 	});
 
