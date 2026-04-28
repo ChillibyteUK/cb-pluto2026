@@ -138,6 +138,11 @@
     window.matchMedia &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  const formatter =
+    typeof Intl !== "undefined" && Intl.NumberFormat
+      ? new Intl.NumberFormat()
+      : { format: (n) => String(n) };
+
   const animateValue = (element) => {
     const target = Number(element.dataset.statTarget || 0);
 
@@ -146,7 +151,7 @@
     }
 
     if (prefersReducedMotion || target === 0) {
-      element.textContent = String(target);
+      element.textContent = formatter.format(target);
       return;
     }
 
@@ -154,9 +159,13 @@
     const startTime = performance.now();
 
     const tick = (now) => {
-      const progress = Math.min((now - startTime) / duration, 1);
+      // Clamp elapsed to >= 0: the rAF timestamp can be earlier than the
+      // performance.now() captured just before requestAnimationFrame(),
+      // which would otherwise produce a brief negative value on frame 1.
+      const elapsed = Math.max(0, now - startTime);
+      const progress = Math.min(elapsed / duration, 1);
       const eased = 1 - Math.pow(1 - progress, 3);
-      element.textContent = String(Math.round(target * eased));
+      element.textContent = formatter.format(Math.round(target * eased));
 
       if (progress < 1) {
         window.requestAnimationFrame(tick);

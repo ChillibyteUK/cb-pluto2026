@@ -1,0 +1,149 @@
+/* =========================
+   CB Text Image
+   ========================= */
+
+.cb-text-image {
+  /* --------------------------------------------------
+     FULL-BLEED VARIANT
+     Text uses real BS .container/.row/.col so it
+     aligns with everything else on the page. The image
+     is rendered OUTSIDE the container and at md+ is
+     absolutely positioned to bleed to the viewport
+     edge, with its inner edge sitting exactly at the
+     column boundary used by the standard layout.
+     -------------------------------------------------- */
+  &--full-bleed {
+    position: relative;
+    /* Belt-and-braces: prevent any horizontal scroll from 100vw math. */
+    overflow-x: clip;
+
+    /* Container content width per BS5 breakpoint
+       (max-width minus 1.5rem total horizontal padding). */
+    --cb-ti-cw: 100vw;
+    @media (min-width: 576px) {
+      --cb-ti-cw: calc(540px - 1.5rem);
+    }
+    @media (min-width: 768px) {
+      --cb-ti-cw: calc(720px - 1.5rem);
+    }
+    @media (min-width: 992px) {
+      --cb-ti-cw: calc(960px - 1.5rem);
+    }
+    @media (min-width: 1200px) {
+      --cb-ti-cw: calc(1140px - 1.5rem);
+    }
+    @media (min-width: 1400px) {
+      --cb-ti-cw: calc(1320px - 1.5rem);
+    }
+
+    /* Fraction of container content occupied by the LEFT-side column
+       (i.e. where the boundary between text and image sits).
+       Default 50/50. */
+    --cb-ti-boundary-fr: 0.5;
+
+    /* Mobile: image flows below container, plain full-width. */
+    .cb-text-image__image {
+      display: block;
+      margin-top: 2rem;
+
+      img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    /* Desktop: absolute-positioned bleed. */
+    @media (min-width: 768px) {
+      .cb-text-image__image {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        margin-top: 0;
+
+        img {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+
+  /* Boundary fractions per (split × side).
+     For image-right: boundary = TEXT col fraction (text-col-md-N / 12).
+     For image-left:  boundary = IMAGE col fraction. */
+  &--full-bleed#{&}--split-50-50 {
+    --cb-ti-boundary-fr: 0.5;
+  }
+
+  &--full-bleed#{&}--split-60-40#{&}--image-right {
+    --cb-ti-boundary-fr: 0.58333;
+  }
+  &--full-bleed#{&}--split-60-40#{&}--image-left {
+    --cb-ti-boundary-fr: 0.41667;
+  }
+  &--full-bleed#{&}--split-40-60#{&}--image-right {
+    --cb-ti-boundary-fr: 0.41667;
+  }
+  &--full-bleed#{&}--split-40-60#{&}--image-left {
+    --cb-ti-boundary-fr: 0.58333;
+  }
+
+  /* --------------------------------------------------
+     Image on the right
+     -------------------------------------------------- */
+  &--full-bleed#{&}--image-right {
+    @media (min-width: 768px) {
+      .cb-text-image__image {
+        right: 0;
+        /* Boundary in viewport coords:
+           50vw - cw/2 + boundary-fr * cw
+         = 50vw + (boundary-fr - 0.5) * cw */
+        left: calc(50vw + (var(--cb-ti-boundary-fr) - 0.5) * var(--cb-ti-cw));
+
+        img {
+          /* 9999px clamps to half the smaller dimension; with image
+             wider than half its height, the two quarter-circles meet
+             in the middle of the inner edge → true semicircle. */
+          border-radius: 9999px 0 0 9999px;
+        }
+      }
+    }
+  }
+
+  /* --------------------------------------------------
+     Image on the left
+     -------------------------------------------------- */
+  &--full-bleed#{&}--image-left {
+    @media (min-width: 768px) {
+      .cb-text-image__image {
+        left: 0;
+        /* Mirror of the right-side calc. */
+        right: calc(50vw + (0.5 - var(--cb-ti-boundary-fr)) * var(--cb-ti-cw));
+
+        img {
+          border-radius: 0 9999px 9999px 0;
+        }
+      }
+    }
+  }
+}
+
+/* --------------------------------------------------
+   Flourish + full-bleed
+   The .full-flourish utility paints a stripe band
+   across the top 20.16% of clamp(48px, 8vw, 120px).
+   When the image is full-bleed it's absolutely
+   positioned with top: 0, so push its top edge down
+   by the stripe band height to clear the flourish.
+   -------------------------------------------------- */
+.full-flourish.cb-text-image--full-bleed {
+  @media (min-width: 768px) {
+    .cb-text-image__image {
+      top: calc(clamp(48px, 8vw, 120px) * 0.2016);
+    }
+  }
+}

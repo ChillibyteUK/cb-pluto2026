@@ -527,6 +527,10 @@ for (; i < all.length; i++) {
 // Modifiers:
 //   .full-flourish--lending  — green / orange / light-orange, using
 //                              img/lend-flourish.svg.
+//   .full-flourish--flip     — mirrors the flourish horizontally so the SVG
+//                              curve anchors to the right edge instead of
+//                              the left (gradient is vertical so it's
+//                              visually unaffected).
 //
 // Apply to any element that needs the flourish; the utility sets up its own
 // stacking context and lifts a direct `> .container` child above the
@@ -584,5 +588,15 @@ for (; i < all.length; i++) {
     --full-flourish-stripe-1: #007a5e; // green teal 1000
     --full-flourish-stripe-2: #e68300; // orange
     --full-flourish-stripe-3: #f6c276; // light orange
+  }
+  &--investors {
+    --full-flourish-image: url("../img/inv-flourish.svg");
+    --full-flourish-stripe-1: #225933; // green dark 1000
+    --full-flourish-stripe-2: #7fbdaf; // green teal 500
+    --full-flourish-stripe-3: #b2d7ce; // green teal 300
+  }
+
+  &--flip::before {
+    transform: scaleX(-1);
   }
 }

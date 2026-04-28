@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			var percent = (windowHeight - rect.top) / (windowHeight + rect.height);
 			percent = Math.max(0, Math.min(1, percent));
 			var translateY = (percent - 0.5) * 240;
-			section.style.setProperty('--home-page-hero-parallax-y', translateY.toFixed(1) + 'px');
+			section.style.setProperty('--topic-home-hero-parallax-y', translateY.toFixed(1) + 'px');
 		}
 
 		ticking = false;

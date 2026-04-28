@@ -60,12 +60,12 @@ if ( ! $has_content ) {
 }
 ?>
 <section id="<?= esc_attr( $block_id ); ?>" class="cb-ticker-x3 <?= esc_attr( $the_class ); ?>">
-	<div class="container">
+	<div class="container-xl">
 		<div class="row justify-content-center">
 			<?php
 			foreach ( $stats as $stat ) {
 				?>
-			<div class="col-md-4 p-5">
+			<div class="col-lg-4 p-5">
 				<div class="cb-ticker-x3__item text-center">
 					<?php
 					if ( '' !== (string) $stat['title'] ) {
