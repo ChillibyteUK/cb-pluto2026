@@ -13,6 +13,11 @@ $split      = get_field( 'split' ) ? get_field( 'split' ) : '50 50';
 $level      = get_field( 'level' ) ? get_field( 'level' ) : 'h2';
 $full_bleed = (bool) get_field( 'full_bleed' );
 $flourish   = (bool) get_field( 'flourish' );
+$aspect     = get_field( 'aspect' ) ? get_field( 'aspect' ) : 'native';
+// `rounded` defaults to true for backwards-compat with existing blocks
+// authored before the field existed (get_field returns null on missing).
+$rounded_raw = get_field( 'rounded' );
+$rounded     = ( null === $rounded_raw ) ? true : (bool) $rounded_raw;
 
 // Determine the section (lending / investors) from the current URL so the
 // flourish utility can pick up the correct colour variant.
@@ -62,6 +67,11 @@ $modifiers  = array( 'cb-text-image--image-' . $image_side );
 if ( $full_bleed ) {
 	$modifiers[] = 'cb-text-image--full-bleed';
 	$modifiers[] = 'cb-text-image--split-' . str_replace( ' ', '-', $split );
+	if ( $rounded ) {
+		$modifiers[] = 'cb-text-image--rounded';
+	}
+} elseif ( 'native' !== $aspect ) {
+	$modifiers[] = 'cb-text-image--aspect-' . $aspect;
 }
 $modifier_classes = implode( ' ', $modifiers );
 

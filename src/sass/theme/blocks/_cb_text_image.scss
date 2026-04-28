@@ -103,13 +103,6 @@
            50vw - cw/2 + boundary-fr * cw
          = 50vw + (boundary-fr - 0.5) * cw */
         left: calc(50vw + (var(--cb-ti-boundary-fr) - 0.5) * var(--cb-ti-cw));
-
-        img {
-          /* 9999px clamps to half the smaller dimension; with image
-             wider than half its height, the two quarter-circles meet
-             in the middle of the inner edge → true semicircle. */
-          border-radius: 9999px 0 0 9999px;
-        }
       }
     }
   }
@@ -123,12 +116,52 @@
         left: 0;
         /* Mirror of the right-side calc. */
         right: calc(50vw + (0.5 - var(--cb-ti-boundary-fr)) * var(--cb-ti-cw));
-
-        img {
-          border-radius: 0 9999px 9999px 0;
-        }
       }
     }
+  }
+
+  /* --------------------------------------------------
+     Rounded inner edge (full-bleed only).
+     9999px clamps to half the smaller dimension; with
+     image wider than half its height, the two
+     quarter-circles meet at the centre of the inner
+     edge → true semicircle.
+     -------------------------------------------------- */
+  &--full-bleed#{&}--rounded#{&}--image-right {
+    @media (min-width: 768px) {
+      .cb-text-image__image img {
+        border-radius: 9999px 0 0 9999px;
+      }
+    }
+  }
+  &--full-bleed#{&}--rounded#{&}--image-left {
+    @media (min-width: 768px) {
+      .cb-text-image__image img {
+        border-radius: 0 9999px 9999px 0;
+      }
+    }
+  }
+
+  /* --------------------------------------------------
+     Aspect-ratio modifiers (standard layout only).
+     Constrain the image col's image to a fixed ratio
+     using object-fit: cover.
+     -------------------------------------------------- */
+  &--aspect-16-9 .cb-text-image__image,
+  &--aspect-4-3 .cb-text-image__image {
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &--aspect-16-9 .cb-text-image__image {
+    aspect-ratio: 16 / 9;
+  }
+  &--aspect-4-3 .cb-text-image__image {
+    aspect-ratio: 4 / 3;
   }
 }
 

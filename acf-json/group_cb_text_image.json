@@ -1,226 +1,290 @@
 {
-  "key": "group_cb_text_image",
-  "title": "CB Text Image",
-  "fields": [
-    {
-      "key": "field_69f0793691cfd",
-      "label": "CB Text\/Image",
-      "name": "",
-      "aria-label": "",
-      "type": "message",
-      "instructions": "",
-      "required": 0,
-      "conditional_logic": 0,
-      "wrapper": {
-        "width": "",
-        "class": "",
-        "id": ""
-      },
-      "message": "",
-      "new_lines": "wpautop",
-      "esc_html": 0
-    },
-    {
-      "key": "field_68dd13d0eea3d",
-      "label": "Order",
-      "name": "order",
-      "aria-label": "",
-      "type": "radio",
-      "instructions": "",
-      "required": 0,
-      "conditional_logic": 0,
-      "wrapper": {
-        "width": "25",
-        "class": "",
-        "id": ""
-      },
-      "choices": {
-        "Text Image": "Text Image",
-        "Image Text": "Image Text"
-      },
-      "default_value": "Text Image",
-      "return_format": "value",
-      "allow_null": 0,
-      "other_choice": 0,
-      "allow_in_bindings": 0,
-      "layout": "vertical",
-      "save_other_choice": 0
-    },
-    {
-      "key": "field_68dd13f5eea3e",
-      "label": "Split",
-      "name": "split",
-      "aria-label": "",
-      "type": "radio",
-      "instructions": "",
-      "required": 0,
-      "conditional_logic": 0,
-      "wrapper": {
-        "width": "25",
-        "class": "",
-        "id": ""
-      },
-      "choices": {
-        "60 40": "60 40",
-        "50 50": "50 50",
-        "40 60": "40 60"
-      },
-      "default_value": "50 50",
-      "return_format": "value",
-      "allow_null": 0,
-      "other_choice": 0,
-      "allow_in_bindings": 0,
-      "layout": "vertical",
-      "save_other_choice": 0
-    },
-    {
-      "key": "field_cb_text_image_full_bleed",
-      "label": "Full-bleed image",
-      "name": "full_bleed",
-      "aria-label": "",
-      "type": "true_false",
-      "instructions": "Image covers all available space, extends to the viewport edge, and is rounded on its inner edge to create a pill \/ semi-circle.",
-      "required": 0,
-      "conditional_logic": 0,
-      "wrapper": {
-        "width": "25",
-        "class": "",
-        "id": ""
-      },
-      "message": "",
-      "default_value": 0,
-      "allow_in_bindings": 0,
-      "ui_on_text": "",
-      "ui_off_text": "",
-      "ui": 1
-    },
-    {
-      "key": "field_cb_text_image_flourish",
-      "label": "Flourish",
-      "name": "flourish",
-      "aria-label": "",
-      "type": "true_false",
-      "instructions": "Add the brand flourish stripes along the top edge. The colour variant (lending \/ investors) is chosen automatically from the current URL.",
-      "required": 0,
-      "conditional_logic": 0,
-      "wrapper": {
-        "width": "25",
-        "class": "",
-        "id": ""
-      },
-      "message": "",
-      "default_value": 0,
-      "allow_in_bindings": 0,
-      "ui_on_text": "",
-      "ui_off_text": "",
-      "ui": 1
-    },
-    {
-      "key": "field_68a04b729de1e",
-      "label": "Title",
-      "name": "title",
-      "aria-label": "",
-      "type": "text",
-      "instructions": "",
-      "required": 0,
-      "conditional_logic": 0,
-      "wrapper": {
-        "width": "",
-        "class": "",
-        "id": ""
-      },
-      "default_value": "",
-      "maxlength": "",
-      "allow_in_bindings": 0,
-      "placeholder": "",
-      "prepend": "",
-      "append": ""
-    },
-    {
-      "key": "field_68a04b7a9de1f",
-      "label": "Content",
-      "name": "content",
-      "aria-label": "",
-      "type": "wysiwyg",
-      "instructions": "",
-      "required": 0,
-      "conditional_logic": 0,
-      "wrapper": {
-        "width": "",
-        "class": "",
-        "id": ""
-      },
-      "default_value": "",
-      "allow_in_bindings": 0,
-      "tabs": "all",
-      "toolbar": "full",
-      "media_upload": 1,
-      "delay": 0
-    },
-    {
-      "key": "field_68a04b869de20",
-      "label": "Image",
-      "name": "image",
-      "aria-label": "",
-      "type": "image",
-      "instructions": "",
-      "required": 0,
-      "conditional_logic": 0,
-      "wrapper": {
-        "width": "50",
-        "class": "",
-        "id": ""
-      },
-      "return_format": "id",
-      "library": "all",
-      "min_width": "",
-      "min_height": "",
-      "min_size": "",
-      "max_width": "",
-      "max_height": "",
-      "max_size": "",
-      "mime_types": "",
-      "allow_in_bindings": 0,
-      "preview_size": "thumbnail"
-    },
-    {
-      "key": "field_68de38c9d3829",
-      "label": "Link",
-      "name": "link",
-      "aria-label": "",
-      "type": "link",
-      "instructions": "",
-      "required": 0,
-      "conditional_logic": 0,
-      "wrapper": {
-        "width": "50",
-        "class": "",
-        "id": ""
-      },
-      "return_format": "array",
-      "allow_in_bindings": 0
-    }
-  ],
-  "location": [
-    [
-      {
-        "param": "block",
-        "operator": "==",
-        "value": "acf\/cb-text-image"
-      }
-    ]
-  ],
-  "menu_order": 0,
-  "position": "normal",
-  "style": "default",
-  "label_placement": "top",
-  "instruction_placement": "label",
-  "hide_on_screen": "",
-  "active": true,
-  "description": "",
-  "show_in_rest": 0,
-  "display_title": "",
-  "allow_ai_access": false,
-  "ai_description": "",
-  "modified": 1777367370
+    "key": "group_cb_text_image",
+    "title": "CB Text Image",
+    "fields": [
+        {
+            "key": "field_69f0793691cfd",
+            "label": "CB Text\/Image",
+            "name": "",
+            "aria-label": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
+            "key": "field_68dd13d0eea3d",
+            "label": "Order",
+            "name": "order",
+            "aria-label": "",
+            "type": "radio",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "Text Image": "Text Image",
+                "Image Text": "Image Text"
+            },
+            "default_value": "Text Image",
+            "return_format": "value",
+            "allow_null": 0,
+            "other_choice": 0,
+            "allow_in_bindings": 0,
+            "layout": "vertical",
+            "save_other_choice": 0
+        },
+        {
+            "key": "field_68dd13f5eea3e",
+            "label": "Split",
+            "name": "split",
+            "aria-label": "",
+            "type": "radio",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "60 40": "60 40",
+                "50 50": "50 50",
+                "40 60": "40 60"
+            },
+            "default_value": "50 50",
+            "return_format": "value",
+            "allow_null": 0,
+            "other_choice": 0,
+            "allow_in_bindings": 0,
+            "layout": "vertical",
+            "save_other_choice": 0
+        },
+        {
+            "key": "field_cb_text_image_flourish",
+            "label": "Flourish",
+            "name": "flourish",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Add the brand flourish stripes along the top edge. The colour variant (lending \/ investors) is chosen automatically from the current URL.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "allow_in_bindings": 0,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "ui": 1
+        },
+        {
+            "key": "field_cb_text_image_full_bleed",
+            "label": "Full-bleed image",
+            "name": "full_bleed",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Image covers all available space, extends to the viewport edge, and is rounded on its inner edge to create a pill \/ semi-circle.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "allow_in_bindings": 0,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "ui": 1
+        },
+        {
+            "key": "field_cb_text_image_aspect",
+            "label": "Image aspect",
+            "name": "aspect",
+            "aria-label": "",
+            "type": "radio",
+            "instructions": "Constrain the image to a fixed aspect ratio (image is cover-fit). Native keeps the image's intrinsic ratio.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_cb_text_image_full_bleed",
+                        "operator": "!=",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "native": "Native",
+                "16-9": "16:9",
+                "4-3": "4:3"
+            },
+            "default_value": "native",
+            "return_format": "value",
+            "allow_null": 0,
+            "other_choice": 0,
+            "allow_in_bindings": 0,
+            "layout": "vertical",
+            "save_other_choice": 0
+        },
+        {
+            "key": "field_cb_text_image_rounded",
+            "label": "Rounded inner edge",
+            "name": "rounded",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Round the inner edge of the full-bleed image into a semicircle.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_cb_text_image_full_bleed",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "allow_in_bindings": 0,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "ui": 1
+        },
+        {
+            "key": "field_68a04b729de1e",
+            "label": "Title",
+            "name": "title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_68a04b7a9de1f",
+            "label": "Content",
+            "name": "content",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "allow_in_bindings": 0,
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
+        },
+        {
+            "key": "field_68a04b869de20",
+            "label": "Image",
+            "name": "image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "allow_in_bindings": 0,
+            "preview_size": "thumbnail"
+        },
+        {
+            "key": "field_68de38c9d3829",
+            "label": "Link",
+            "name": "link",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "allow_in_bindings": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/cb-text-image"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1777373037
 }
