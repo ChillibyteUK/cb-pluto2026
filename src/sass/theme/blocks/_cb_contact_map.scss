@@ -1,0 +1,40 @@
+// CB Contact Map
+//
+// Title + "Our offices are located at <address>" + responsive map iframe.
+// The brand flourish is applied via the shared `.full-flourish` utility.
+
+.cb-contact-map {
+  &__title {
+    margin-bottom: 1.25rem;
+  }
+
+  &__intro {
+    margin-bottom: 1.5rem;
+    font-size: 1.125rem;
+  }
+
+  &__address {
+    display: inline;
+
+    // Address option uses wpautop which can wrap blocks; flatten for inline.
+    p {
+      display: inline;
+      margin: 0;
+    }
+
+    br {
+      display: none;
+    }
+  }
+
+  &__map {
+    overflow: hidden;
+    border-radius: 0.5rem;
+
+    iframe {
+      width: 100%;
+      height: 450px;
+      border: 0;
+    }
+  }
+}

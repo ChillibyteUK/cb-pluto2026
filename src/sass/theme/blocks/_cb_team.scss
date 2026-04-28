@@ -21,7 +21,7 @@
 
   &__filter {
     appearance: none;
-    border: 1px solid var(--col-white);
+    border: 1px solid rgba(255 255 255 / 0.4);
     background: transparent;
     color: inherit;
     padding: 0.4rem 1rem;
@@ -163,10 +163,11 @@
     width: 2rem;
     height: 2rem;
     border-radius: 50%;
+    border: 1px solid rgba(255 255 255 / 0.4);
     color: var(--col-white);
     text-decoration: none;
     background: transparent;
-    border: 0;
+    // border: 0;
     padding: 0;
     font: inherit;
     cursor: pointer;

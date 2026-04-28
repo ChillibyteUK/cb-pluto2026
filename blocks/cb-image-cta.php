@@ -31,13 +31,40 @@ if ( $image_url ) {
 	$section_classes[] = 'cb-image-cta--has-background-image';
 	$section_style     = sprintf( '--cb-image-cta-bg: url(%s);', esc_url_raw( $image_url ) );
 }
+
+// Gutenberg colour support (background + text). Preset slugs map to the
+// theme's `has-{slug}-background-color` / `has-{slug}-color` classes; custom
+// colour pickers come through as inline styles in `$block['style']`.
+if ( ! empty( $block['backgroundColor'] ) ) {
+	$section_classes[] = 'has-' . $block['backgroundColor'] . '-background-color';
+	$section_classes[] = 'has-background';
+}
+if ( ! empty( $block['textColor'] ) ) {
+	$section_classes[] = 'has-' . $block['textColor'] . '-color';
+	$section_classes[] = 'has-text-color';
+}
+$custom_bg = $block['style']['color']['background'] ?? '';
+$custom_fg = $block['style']['color']['text'] ?? '';
+if ( $custom_bg ) {
+	$section_style .= 'background-color:' . $custom_bg . ';';
+	$section_classes[] = 'has-background';
+}
+if ( $custom_fg ) {
+	$section_style .= 'color:' . $custom_fg . ';';
+	$section_classes[] = 'has-text-color';
+}
+if ( ! empty( $block['className'] ) ) {
+	$section_classes[] = $block['className'];
+}
 ?>
 <section
 	id="<?= esc_attr( $block_id ); ?>"
 	class="<?= esc_attr( implode( ' ', $section_classes ) ); ?>"
 	<?= $section_style ? ' style="' . esc_attr( $section_style ) . '"' : ''; ?>
 >
-	<div class="cb-image-cta__overlay" aria-hidden="true"></div>
+	<?php if ( $image_url ) : ?>
+		<div class="cb-image-cta__overlay" aria-hidden="true"></div>
+	<?php endif; ?>
 	<div class="container py-5">
 		<div class="row justify-content-center">
 			<div class="col-md-8 text-center">

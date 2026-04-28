@@ -1,0 +1,51 @@
+{
+  "key": "group_cb_contact_map",
+  "title": "CB Contact Map",
+  "fields": [
+    {
+      "key": "field_cb_contact_map_message",
+      "label": "CB Contact Map",
+      "name": "",
+      "aria-label": "",
+      "type": "message",
+      "instructions": "Address and map URL come from Site-Wide Settings. The flourish colour variant is chosen automatically from the current URL.",
+      "message": "",
+      "new_lines": "wpautop",
+      "esc_html": 0
+    },
+    {
+      "key": "field_cb_contact_map_title",
+      "label": "Title",
+      "name": "title",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "default_value": "",
+      "placeholder": "",
+      "prepend": "",
+      "append": "",
+      "maxlength": "",
+      "allow_in_bindings": 0
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "block",
+        "operator": "==",
+        "value": "acf/cb-contact-map"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": "",
+  "active": true,
+  "description": "",
+  "show_in_rest": 0,
+  "modified": 1777392800
+}
