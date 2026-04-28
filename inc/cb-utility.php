@@ -16,10 +16,14 @@ function parse_phone( $phone ) {
     $phone = preg_replace( '/\(0\)/', '', $phone );
     $phone = preg_replace( '/[\(\)\.]/', '', $phone );
     $phone = preg_replace( '/-/', '', $phone );
+    // Default to UK country code when the number starts with a trunk "0"
+    // and no international "+CC" prefix is present.
+    if ( 0 === strpos( $phone, '0' ) ) {
+        $phone = '+44' . substr( $phone, 1 );
+    }
     // Drop trunk prefix "0" immediately following an international "+CC" prefix
     // (e.g. "+44020 7123 4567" -> "+4420 7123 4567"). Handles 1- to 3-digit CCs.
     $phone = preg_replace( '/^(\+\d{1,3})0/', '$1', $phone );
-    // $phone = preg_replace( '/^0/', '+44', $phone );
     return $phone;
 }
 
