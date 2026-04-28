@@ -23445,6 +23445,422 @@ span a {
   right: 0.75rem;
 }
 
+/* =========================
+   CB Secondary Hero
+   Two stacked full-bleed strips:
+     1. Thin parallax header image strip.
+     2. White-background body whose text is
+        constrained inside a centred container.
+   First paragraph of the content is a standfirst.
+   ========================= */
+.cb-secondary-hero {
+  position: relative;
+  isolation: isolate;
+  /* --------------------------------------------------
+     Header image strip (full-bleed, parallax)
+     Visible band ~150px (clamp 100–200px). The strip
+     is overflow-hidden; the inner image is enlarged
+     and translated by --cb-secondary-hero-parallax-y
+     (set per scroll frame by the inline script).
+     -------------------------------------------------- */
+  /* --------------------------------------------------
+     Body strip (full-bleed white, constrained text).
+     -------------------------------------------------- */
+}
+.cb-secondary-hero__image {
+  position: relative;
+  height: clamp(80px, 12vw, 150px);
+  overflow: hidden;
+  background-color: var(--col-grey-800);
+}
+.cb-secondary-hero__image::before {
+  content: "";
+  position: absolute;
+  inset: -3rem 0;
+  background-image: var(--cb-secondary-hero-bg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transform: translateY(var(--cb-secondary-hero-parallax-y, 0));
+  will-change: transform;
+}
+.cb-secondary-hero__body {
+  background-color: var(--col-white);
+  padding: 3rem 0;
+}
+.cb-secondary-hero__title {
+  margin-bottom: 1.5rem;
+}
+.cb-secondary-hero__content {
+  font-size: var(--fs-500);
+  /* Standfirst: first paragraph is larger and weighted. */
+}
+.cb-secondary-hero__content > p:first-child {
+  font-size: var(--fs-700);
+  line-height: var(--lh-700);
+  font-weight: var(--fw-medium);
+  margin-bottom: 1.5rem;
+}
+.cb-secondary-hero__content > p:last-child {
+  margin-bottom: 0;
+}
+
+/* =========================
+   CB Team
+   ========================= */
+.cb-team {
+  --cb-team-img-radius: 0;
+  --cb-team-gap: 1.5rem;
+  --cb-team-modal-z: 1080;
+  background-color: var(--col-green-dark-1200);
+  color: var(--col-white);
+  /* --------------------------------------------------
+     Filter buttons (shown when 2+ teams are picked).
+     -------------------------------------------------- */
+  /* Bootstrap row already provides gutters; this hook lets us tweak. */
+  /*
+  &__grid {
+
+  }
+  */
+  /* --------------------------------------------------
+     Card
+     -------------------------------------------------- */
+  /* Buttons that look like text (name / role openers). */
+  /* --------------------------------------------------
+     Contact icons
+     -------------------------------------------------- */
+  /* --------------------------------------------------
+     Modal
+     -------------------------------------------------- */
+  /* --------------------------------------------------
+     Contact-form modal variant
+     Single-column layout (no person image), tightened
+     padding, and a light Gravity Forms reset so fields
+     fit the modal width and use the theme typography.
+     -------------------------------------------------- */
+}
+.cb-team__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.cb-team__filter {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 1px solid currentColor;
+  background: transparent;
+  color: inherit;
+  padding: 0.4rem 1rem;
+  font: inherit;
+  line-height: 1.2;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.cb-team__filter:hover, .cb-team__filter:focus-visible {
+  background-color: currentColor;
+  color: #fff;
+}
+.cb-team__filter.is-active {
+  background-color: currentColor;
+  color: #fff;
+}
+.cb-team__card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.cb-team__media {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 0 0 1rem;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: var(--cb-team-img-radius);
+  aspect-ratio: 1/1;
+  position: relative;
+}
+.cb-team__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  filter: grayscale(100%);
+  transition: filter 0.3s ease, transform 0.5s ease;
+}
+.cb-team__media:hover img, .cb-team__media:focus-visible img {
+  filter: grayscale(0%);
+  transform: scale(1.03);
+}
+.cb-team__media--static {
+  cursor: default;
+}
+.cb-team__name-btn, .cb-team__role-btn {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.cb-team__name-btn:hover, .cb-team__name-btn:focus-visible, .cb-team__role-btn:hover, .cb-team__role-btn:focus-visible {
+  text-decoration: underline;
+}
+.cb-team__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.cb-team__name {
+  margin: 0;
+  font-size: 1.125rem;
+  line-height: 1.25;
+  font-weight: 600;
+}
+.cb-team__role {
+  margin: 0;
+  font-size: 0.95rem;
+  opacity: 0.85;
+}
+.cb-team__contacts {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 0;
+  display: flex;
+  gap: 0.5rem;
+}
+.cb-team__contacts li {
+  margin: 0;
+}
+.cb-team__contacts a,
+.cb-team__contacts .cb-team__contact-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  color: inherit;
+  text-decoration: none;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.cb-team__contacts a:hover, .cb-team__contacts a:focus-visible,
+.cb-team__contacts .cb-team__contact-btn:hover,
+.cb-team__contacts .cb-team__contact-btn:focus-visible {
+  background-color: currentColor;
+}
+.cb-team__contacts a:hover svg, .cb-team__contacts a:focus-visible svg,
+.cb-team__contacts .cb-team__contact-btn:hover svg,
+.cb-team__contacts .cb-team__contact-btn:focus-visible svg {
+  color: #fff;
+}
+.cb-team__contacts a svg,
+.cb-team__contacts .cb-team__contact-btn svg {
+  display: block;
+}
+.cb-team__contacts--modal {
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  margin-top: 1rem;
+}
+.cb-team__contacts--modal a,
+.cb-team__contacts--modal .cb-team__contact-btn {
+  width: auto;
+  height: auto;
+  padding: 0.25rem 0.5rem;
+  gap: 0.5rem;
+  border-radius: 0;
+}
+.cb-team__contacts--modal a:hover, .cb-team__contacts--modal a:focus-visible,
+.cb-team__contacts--modal .cb-team__contact-btn:hover,
+.cb-team__contacts--modal .cb-team__contact-btn:focus-visible {
+  background-color: transparent;
+  text-decoration: underline;
+}
+.cb-team__contacts--modal a:hover svg, .cb-team__contacts--modal a:focus-visible svg,
+.cb-team__contacts--modal .cb-team__contact-btn:hover svg,
+.cb-team__contacts--modal .cb-team__contact-btn:focus-visible svg {
+  color: inherit;
+}
+.cb-team__modal {
+  position: fixed;
+  inset: 0;
+  z-index: var(--cb-team-modal-z);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+.cb-team__modal[hidden] {
+  display: none !important;
+}
+.cb-team__modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+}
+.cb-team__modal-dialog {
+  position: relative;
+  background: #fff;
+  color: #222;
+  max-width: 960px;
+  width: 100%;
+  max-height: calc(100vh - 2rem);
+  overflow-y: auto;
+  border-radius: 4px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+.cb-team__modal-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 0;
+  background: transparent;
+  font-size: 1.75rem;
+  line-height: 1;
+  cursor: pointer;
+  color: inherit;
+  z-index: 1;
+}
+.cb-team__modal-close:hover, .cb-team__modal-close:focus-visible {
+  color: #000;
+}
+.cb-team__modal-body {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+@media (min-width: 768px) {
+  .cb-team__modal-body {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  }
+}
+.cb-team__modal-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  max-height: 50vh;
+}
+@media (min-width: 768px) {
+  .cb-team__modal-image img {
+    max-height: none;
+  }
+}
+.cb-team__modal-content {
+  padding: 2rem 1.5rem 1.5rem;
+}
+@media (min-width: 768px) {
+  .cb-team__modal-content {
+    padding: 2.5rem 2.5rem 2rem;
+  }
+}
+.cb-team__modal-name {
+  margin: 0 0 0.25rem;
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+.cb-team__modal-role {
+  margin: 0 0 1rem;
+  font-size: 1rem;
+  opacity: 0.85;
+}
+.cb-team__modal-bio p {
+  margin: 0 0 1em;
+}
+.cb-team__modal-bio p:last-child {
+  margin-bottom: 0;
+}
+.cb-team__modal--contact .cb-team__modal-dialog {
+  max-width: 640px;
+}
+.cb-team__modal--contact .cb-team__modal-content {
+  padding: 2rem 1.5rem 1.5rem;
+}
+@media (min-width: 768px) {
+  .cb-team__modal--contact .cb-team__modal-content {
+    padding: 2.5rem 2.5rem 2rem;
+  }
+}
+.cb-team__modal--contact .gform_wrapper {
+  margin-top: 1rem;
+}
+.cb-team__modal--contact .gform_wrapper input[type=text],
+.cb-team__modal--contact .gform_wrapper input[type=email],
+.cb-team__modal--contact .gform_wrapper input[type=url],
+.cb-team__modal--contact .gform_wrapper input[type=tel],
+.cb-team__modal--contact .gform_wrapper input[type=number],
+.cb-team__modal--contact .gform_wrapper textarea {
+  width: 100%;
+  max-width: 100%;
+  font: inherit;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  background: #fff;
+}
+.cb-team__modal--contact .gform_wrapper textarea {
+  min-height: 9rem;
+  resize: vertical;
+}
+.cb-team__modal--contact .gform_wrapper .gfield {
+  margin-bottom: 1rem;
+}
+.cb-team__modal--contact .gform_wrapper .gfield_label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+}
+.cb-team__modal--contact .gform_wrapper .gform_footer {
+  margin-top: 1rem;
+}
+.cb-team__modal--contact .gform_wrapper .gform_footer input[type=submit],
+.cb-team__modal--contact .gform_wrapper .gform_footer button[type=submit] {
+  font: inherit;
+  padding: 0.6rem 1.25rem;
+  border: 0;
+  border-radius: 999px;
+  background-color: currentColor;
+  color: #fff;
+  cursor: pointer;
+}
+.cb-team__modal--contact .gform_wrapper .gform_footer input[type=submit]:hover, .cb-team__modal--contact .gform_wrapper .gform_footer input[type=submit]:focus-visible,
+.cb-team__modal--contact .gform_wrapper .gform_footer button[type=submit]:hover,
+.cb-team__modal--contact .gform_wrapper .gform_footer button[type=submit]:focus-visible {
+  opacity: 0.9;
+}
+.cb-team__modal--contact .gform_wrapper .validation_message,
+.cb-team__modal--contact .gform_wrapper .gfield_error .gfield_label {
+  color: #b00020;
+}
+.cb-team__modal--contact .gform_wrapper .gform_confirmation_message {
+  padding: 1rem;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.04);
+}
+
+/* Body-level lock applied while a modal is open. */
+body.cb-team-modal-open {
+  overflow: hidden;
+}
+
 .home-page__hero {
   position: relative;
   min-height: 600px;

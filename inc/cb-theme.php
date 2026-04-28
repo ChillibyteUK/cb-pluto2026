@@ -15,6 +15,8 @@ require_once CB_THEME_DIR . '/inc/cb-acf-theme-palette.php';
 require_once CB_THEME_DIR . '/inc/cb-posttypes.php';
 require_once CB_THEME_DIR . '/inc/cb-taxonomies.php';
 require_once CB_THEME_DIR . '/inc/cb-disable-core-posts.php';
+require_once CB_THEME_DIR . '/inc/cb-people-import.php';
+require_once CB_THEME_DIR . '/inc/cb-people-contact.php';
 
 require_once CB_THEME_DIR . '/inc/cb-blocks.php';
 
