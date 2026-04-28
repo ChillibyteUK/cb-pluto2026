@@ -23361,6 +23361,90 @@ span a {
   text-decoration: underline;
 }
 
+/* =========================
+   CB Image CTA
+   Full-bleed CTA with a parallax background image,
+   dim overlay, and a single rolling-dot link.
+   ========================= */
+.cb-image-cta {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 380px;
+  display: flex;
+  align-items: center;
+  color: var(--col-white);
+  background-color: var(--col-grey-800);
+}
+.cb-image-cta--has-background-image::before {
+  content: "";
+  position: absolute;
+  inset: -3rem 0;
+  z-index: 0;
+  background-image: var(--cb-image-cta-bg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transform: translateY(var(--cb-image-cta-parallax-y, 0));
+  will-change: transform;
+}
+.cb-image-cta__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-color: rgba(0, 0, 0, 0.45);
+}
+.cb-image-cta > .container, .cb-image-cta > .wp-block-group:not(.alignfull) {
+  position: relative;
+  z-index: 1;
+}
+.cb-image-cta__title {
+  color: var(--col-white);
+  margin-bottom: 1.5rem;
+}
+.cb-image-cta__content {
+  font-size: var(--fs-600);
+  line-height: var(--lh-400);
+}
+.cb-image-cta__content p:last-child {
+  margin-bottom: 0;
+}
+.cb-image-cta__link {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  min-height: 1.5rem;
+  padding-right: 4rem;
+  padding-top: 0.5rem;
+  font-size: var(--fs-400);
+  font-weight: var(--fw-semibold);
+  color: var(--col-white);
+  text-decoration: none;
+  background: url("../img/dot-link-alt.svg") center right 1.5rem/auto 1.5rem no-repeat;
+  transition: all var(--transition);
+}
+.cb-image-cta__link::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 2.25rem;
+  height: 1px;
+  margin-top: -0.75rem;
+  background-color: var(--col-green-teal-400);
+  transition: all var(--transition);
+}
+.cb-image-cta__link:hover, .cb-image-cta__link:focus-visible {
+  color: var(--col-white);
+  background-position: center right 0;
+}
+.cb-image-cta__link:hover::before, .cb-image-cta__link:focus-visible::before {
+  right: 0.75rem;
+}
+
 .home-page__hero {
   position: relative;
   min-height: 600px;

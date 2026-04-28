@@ -1,0 +1,105 @@
+/* =========================
+   CB Image CTA
+   Full-bleed CTA with a parallax background image,
+   dim overlay, and a single rolling-dot link.
+   ========================= */
+
+.cb-image-cta {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 380px;
+  display: flex;
+  align-items: center;
+  color: var(--col-white);
+  background-color: var(--col-grey-800);
+
+  // Parallax-driven background. The PHP block emits a small inline script
+  // that updates --cb-image-cta-parallax-y on scroll (mirrors the
+  // cb-topic-home-hero approach).
+  &--has-background-image::before {
+    content: "";
+    position: absolute;
+    inset: -3rem 0;
+    z-index: 0;
+    background-image: var(--cb-image-cta-bg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transform: translateY(var(--cb-image-cta-parallax-y, 0));
+    will-change: transform;
+  }
+
+  // Dim overlay for legibility.
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-color: rgba(0 0 0 / 0.45);
+  }
+
+  > .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  &__title {
+    color: var(--col-white);
+    margin-bottom: 1.5rem;
+  }
+
+  &__content {
+    font-size: var(--fs-600);
+    line-height: var(--lh-400);
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  // Rolling-dot link — same mechanic as .cb-news-card__link in _news.scss
+  // but the hover trigger is the link itself (the news card uses its parent
+  // anchor as the trigger). Tuned for white-on-image: dot SVG and connector
+  // line are both white.
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    min-height: 1.5rem;
+    padding-right: 4rem; // rolling room
+    padding-top: 0.5rem;
+    font-size: var(--fs-400);
+    font-weight: var(--fw-semibold);
+    color: var(--col-white);
+    text-decoration: none;
+
+    background: url("../img/dot-link-alt.svg") center right 1.5rem / auto 1.5rem
+      no-repeat;
+    transition: all var(--transition);
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 2.25rem; // rolling room (1.5rem) + dot radius (0.75rem)
+      height: 1px;
+      margin-top: -0.75rem;
+      background-color: var(--col-green-teal-400);
+      transition: all var(--transition);
+    }
+
+    &:hover,
+    &:focus-visible {
+      color: var(--col-white);
+      background-position: center right 0;
+
+      &::before {
+        right: 0.75rem; // dot radius — line meets the dot centre
+      }
+    }
+  }
+}
