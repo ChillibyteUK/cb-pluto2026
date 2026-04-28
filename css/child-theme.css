@@ -23340,6 +23340,27 @@ span a {
   }
 }
 
+/* =========================
+   CB Latest Posts
+   Two URL-driven presets:
+     --newsroom  → 3 posts, last is a 16:9 feature.
+     --insights  → 4 posts, circular thumbnails.
+   Cards are rendered with the shared .cb-news-card
+   partial (see _news.scss); only section-level chrome
+   (header, "view all" CTA) lives here.
+   ========================= */
+.cb-latest-posts__header h2, .cb-latest-posts__header .h2 {
+  margin: 0;
+}
+.cb-latest-posts__cta {
+  text-decoration: none;
+  font-weight: var(--fw-semibold);
+  color: var(--col-grey-900);
+}
+.cb-latest-posts__cta:hover, .cb-latest-posts__cta:focus-visible {
+  text-decoration: underline;
+}
+
 .home-page__hero {
   position: relative;
   min-height: 600px;

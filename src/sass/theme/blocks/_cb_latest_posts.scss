@@ -1,0 +1,28 @@
+/* =========================
+   CB Latest Posts
+   Two URL-driven presets:
+     --newsroom  → 3 posts, last is a 16:9 feature.
+     --insights  → 4 posts, circular thumbnails.
+   Cards are rendered with the shared .cb-news-card
+   partial (see _news.scss); only section-level chrome
+   (header, "view all" CTA) lives here.
+   ========================= */
+
+.cb-latest-posts {
+  &__header {
+    h2 {
+      margin: 0;
+    }
+  }
+
+  &__cta {
+    text-decoration: none;
+    font-weight: var(--fw-semibold);
+    color: var(--col-grey-900);
+
+    &:hover,
+    &:focus-visible {
+      text-decoration: underline;
+    }
+  }
+}
