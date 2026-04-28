@@ -492,7 +492,10 @@ add_filter(
 add_filter(
 	'gform_submit_button',
 	function ( $button, $form ) {
-		return '<button type="submit" class="gform_button cb-link-dot" id="gform_submit_button_' . esc_attr( $form['id'] ) . '">' . esc_html( $form['button']['text'] ) . '</button>';
+		// GF 2.9+ requires this onclick handler on the submit button to register
+		// the supported submission flow; without it GF logs an
+		// "Unsupported submission flow detected" warning to the console.
+		return '<button type="submit" class="gform_button cb-link-dot" id="gform_submit_button_' . esc_attr( $form['id'] ) . '" onclick="if(window.gform&&gform.submission){gform.submission.handleButtonClick(this);}">' . esc_html( $form['button']['text'] ) . '</button>';
 	},
 	10,
 	2
