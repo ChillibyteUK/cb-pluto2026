@@ -53,28 +53,65 @@ function cb_team_resolve_form_fields( $form_id ) {
 	}
 	$version = isset( $form['version'] ) ? (string) $form['version'] : '';
 
-	$cached = get_transient( $cache_key );
-	if ( is_array( $cached ) && isset( $cached['version'] ) && $cached['version'] === $version ) {
-		return $cached;
+	// Build the set of valid field IDs in the current form so we can detect a
+	// stale cache where a previously-resolved field has since been deleted.
+	$valid_ids = array();
+	if ( ! empty( $form['fields'] ) && is_array( $form['fields'] ) ) {
+		foreach ( $form['fields'] as $f ) {
+			$fid = is_object( $f ) ? (int) $f->id : (int) ( $f['id'] ?? 0 );
+			if ( $fid ) {
+				$valid_ids[ $fid ] = true;
+			}
+		}
 	}
 
-	$by_label = array();
-	$by_type  = array();
+	$cached = get_transient( $cache_key );
+	if ( is_array( $cached ) && isset( $cached['version'] ) && $cached['version'] === $version ) {
+		// Self-heal: if any cached field id no longer exists in the form,
+		// discard the cache and recompute. Guards against form imports / field
+		// deletions that don't bump the version string.
+		$stale = false;
+		foreach ( array( 'name', 'email', 'message', 'recipient' ) as $k ) {
+			if ( ! empty( $cached[ $k ] ) && empty( $valid_ids[ (int) $cached[ $k ] ] ) ) {
+				$stale = true;
+				break;
+			}
+		}
+		if ( ! $stale ) {
+			return $cached;
+		}
+	}
+
+	$by_label      = array();
+	$by_input_name = array();
+	$by_type       = array();
 	if ( ! empty( $form['fields'] ) && is_array( $form['fields'] ) ) {
 		foreach ( $form['fields'] as $f ) {
 			$admin_label = '';
-			if ( is_object( $f ) && isset( $f->adminLabel ) ) {
-				$admin_label = (string) $f->adminLabel;
-			} elseif ( is_array( $f ) && isset( $f['adminLabel'] ) ) {
-				$admin_label = (string) $f['adminLabel'];
+			$label       = '';
+			$input_name  = '';
+			if ( is_object( $f ) ) {
+				$admin_label = (string) ( $f->adminLabel ?? '' );
+				$label       = (string) ( $f->label      ?? '' );
+				$input_name  = (string) ( $f->inputName  ?? '' );
+			} elseif ( is_array( $f ) ) {
+				$admin_label = (string) ( $f['adminLabel'] ?? '' );
+				$label       = (string) ( $f['label']      ?? '' );
+				$input_name  = (string) ( $f['inputName']  ?? '' );
 			}
 			$type = is_object( $f ) ? (string) $f->type : (string) ( $f['type'] ?? '' );
 			$id   = is_object( $f ) ? (int) $f->id     : (int) ( $f['id'] ?? 0 );
 			if ( ! $id ) {
 				continue;
 			}
-			if ( $admin_label ) {
-				$by_label[ strtolower( trim( $admin_label ) ) ] = $id;
+			// Index by admin label first, falling back to label so editors who
+			// forget to set the admin label still get correct routing.
+			$key = strtolower( trim( $admin_label !== '' ? $admin_label : $label ) );
+			if ( $key !== '' && ! isset( $by_label[ $key ] ) ) {
+				$by_label[ $key ] = $id;
+			}
+			if ( $input_name !== '' && ! isset( $by_input_name[ $input_name ] ) ) {
+				$by_input_name[ $input_name ] = $id;
 			}
 			$by_type[ $type ][] = $id;
 		}
@@ -89,7 +126,9 @@ function cb_team_resolve_form_fields( $form_id ) {
 		'name'      => $by_label['name']                ?? ( $first_of( 'name' )     ?: $first_of( 'text' ) ),
 		'email'     => $by_label['email']               ?? $first_of( 'email' ),
 		'message'   => $by_label['message']             ?? $first_of( 'textarea' ),
-		'recipient' => $by_label['recipient person id'] ?? $first_of( 'hidden' ),
+		'recipient' => $by_input_name['recipient_pid']
+			?? $by_label['recipient person id']
+			?? $first_of( 'hidden' ),
 	);
 
 	set_transient( $cache_key, $resolved, DAY_IN_SECONDS );

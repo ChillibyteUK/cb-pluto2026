@@ -368,12 +368,25 @@ if ( ! $cb_team_assets_emitted ) :
 			var fieldId = modal.getAttribute('data-cb-team-recipient-field') || '';
 			var formId = modal.getAttribute('data-cb-team-form-id') || '';
 			// Hidden recipient field — set both the visible-named input and any
-			// `gform_field_values` query-string variant GF may use.
+			// `gform_field_values` query-string variant GF may use. The latter is
+			// what GF actually reads server-side when the field is admin-only
+			// (no input_X_Y element is rendered in that case).
 			if (fieldId) {
 				var sel = '#input_' + formId + '_' + fieldId
 					+ ', input[name="input_' + fieldId + '"]';
 				modal.querySelectorAll(sel).forEach(function (i) { i.value = pid; });
 			}
+			// Always rewrite gform_field_values: replace recipient_pid=<n> or
+			// append it if missing.
+			modal.querySelectorAll('input[name="gform_field_values"]').forEach(function (i) {
+				var v = i.value || '';
+				if (/(^|&)recipient_pid=/.test(v)) {
+					v = v.replace(/(^|&)recipient_pid=[^&]*/, '$1recipient_pid=' + encodeURIComponent(pid));
+				} else {
+					v = v ? v + '&recipient_pid=' + encodeURIComponent(pid) : 'recipient_pid=' + encodeURIComponent(pid);
+				}
+				i.value = v;
+			});
 			// Title
 			var title = modal.querySelector('#cb-team-contact-modal-title');
 			if (title && name) {
