@@ -3,6 +3,24 @@
    ========================= */
 
 .cb-text-image {
+  /* Section min-height with text vertically centered.
+     Container fills the section; inner row stretches full width.
+     Standard layout's .row already has `align-items-center`, so the
+     text col + image col line up; for full-bleed, the lone text col
+     is centered against the absolutely-positioned bleed image. */
+  min-height: 400px;
+
+  > .container {
+    min-height: inherit;
+    display: flex;
+    align-items: center;
+  }
+
+  > .container > .row {
+    flex: 1 1 auto;
+    width: 100%;
+  }
+
   /* --------------------------------------------------
      FULL-BLEED VARIANT
      Text uses real BS .container/.row/.col so it

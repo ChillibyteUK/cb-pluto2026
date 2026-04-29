@@ -23244,6 +23244,12 @@ span a {
    CB Text Image
    ========================= */
 .cb-text-image {
+  /* Section min-height with text vertically centered.
+     Container fills the section; inner row stretches full width.
+     Standard layout's .row already has `align-items-center`, so the
+     text col + image col line up; for full-bleed, the lone text col
+     is centered against the absolutely-positioned bleed image. */
+  min-height: 400px;
   /* --------------------------------------------------
      FULL-BLEED VARIANT
      Text uses real BS .container/.row/.col so it
@@ -23274,6 +23280,15 @@ span a {
      Constrain the image col's image to a fixed ratio
      using object-fit: cover.
      -------------------------------------------------- */
+}
+.cb-text-image > .container, .cb-text-image > .wp-block-group:not(.alignfull) {
+  min-height: inherit;
+  display: flex;
+  align-items: center;
+}
+.cb-text-image > .container > .row, .cb-text-image > .wp-block-group:not(.alignfull) > .row {
+  flex: 1 1 auto;
+  width: 100%;
 }
 .cb-text-image--full-bleed {
   position: relative;
