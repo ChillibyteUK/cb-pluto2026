@@ -23245,11 +23245,13 @@ span a {
    ========================= */
 .cb-text-image {
   /* Section min-height with text vertically centered.
+     Self-compounded selector (`.cb-text-image.cb-text-image`) bumps the
+     specificity to win the tie against `.full-flourish { min-height: clamp(...) }`
+     when both classes sit on the same element.
      Container fills the section; inner row stretches full width.
      Standard layout's .row already has `align-items-center`, so the
      text col + image col line up; for full-bleed, the lone text col
      is centered against the absolutely-positioned bleed image. */
-  min-height: 400px;
   /* --------------------------------------------------
      FULL-BLEED VARIANT
      Text uses real BS .container/.row/.col so it
@@ -23280,6 +23282,9 @@ span a {
      Constrain the image col's image to a fixed ratio
      using object-fit: cover.
      -------------------------------------------------- */
+}
+.cb-text-image.cb-text-image {
+  min-height: 400px;
 }
 .cb-text-image > .container, .cb-text-image > .wp-block-group:not(.alignfull) {
   min-height: inherit;

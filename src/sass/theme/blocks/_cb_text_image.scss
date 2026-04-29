@@ -4,11 +4,16 @@
 
 .cb-text-image {
   /* Section min-height with text vertically centered.
+     Self-compounded selector (`.cb-text-image.cb-text-image`) bumps the
+     specificity to win the tie against `.full-flourish { min-height: clamp(...) }`
+     when both classes sit on the same element.
      Container fills the section; inner row stretches full width.
      Standard layout's .row already has `align-items-center`, so the
      text col + image col line up; for full-bleed, the lone text col
      is centered against the absolutely-positioned bleed image. */
-  min-height: 400px;
+  &#{&} {
+    min-height: 400px;
+  }
 
   > .container {
     min-height: inherit;
