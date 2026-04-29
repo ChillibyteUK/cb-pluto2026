@@ -24174,6 +24174,12 @@ body.cb-team-modal-open {
   display: flex;
   flex-direction: column;
   gap: 0.15rem;
+  padding-inline-start: 4.5rem;
+}
+@media (max-width: 767.98px) {
+  .cb-quote__attribution {
+    padding-inline-start: 0;
+  }
 }
 .cb-quote__author {
   font-size: var(--fs-500);
