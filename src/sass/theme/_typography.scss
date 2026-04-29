@@ -287,6 +287,9 @@ strong {
 .text-balance {
   text-wrap: balance;
 }
+.text-pretty {
+  text-wrap: pretty;
+}
 
 .w-constrained {
   max-width: var(--width, 60ch);

@@ -21898,6 +21898,10 @@ strong {
   text-wrap: balance;
 }
 
+.text-pretty {
+  text-wrap: pretty;
+}
+
 .w-constrained {
   max-width: var(--width, 60ch);
   text-wrap: pretty;
