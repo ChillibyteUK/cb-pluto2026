@@ -35,6 +35,16 @@
       transform: translateY(var(--cb-secondary-hero-parallax-y, 0));
       will-change: transform;
     }
+
+    // Tinted overlay sits above the parallax image to keep tonal
+    // consistency with other hero blocks.
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: hsla(var(--hsl-green-dark-1000) / 0.6);
+      pointer-events: none;
+    }
   }
 
   /* --------------------------------------------------

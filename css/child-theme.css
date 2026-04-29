@@ -23582,6 +23582,13 @@ span a {
   transform: translateY(var(--cb-secondary-hero-parallax-y, 0));
   will-change: transform;
 }
+.cb-secondary-hero__image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: hsla(var(--hsl-green-dark-1000)/0.6);
+  pointer-events: none;
+}
 .cb-secondary-hero__body {
   background-color: var(--col-white);
   padding: 3rem 0;
