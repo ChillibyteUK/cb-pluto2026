@@ -1,0 +1,145 @@
+/* =========================
+   CB Quote
+   Pull-quote section with optional parallax background.
+   7/12 text column (quote + author + role) sits beside a
+   4/12 media column (author portrait + transparent signature).
+   Parallax pattern mirrors cb-image-cta.
+   ========================= */
+
+.cb-quote {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 380px;
+  display: flex;
+  align-items: center;
+  color: var(--col-white);
+  background-color: var(--col-grey-800);
+
+  // Parallax background. Inline script in cb-quote.php sets
+  // --cb-quote-parallax-y on scroll.
+  &--has-background-image::before {
+    content: "";
+    position: absolute;
+    inset: -3rem 0;
+    z-index: 0;
+    background-image: var(--cb-quote-bg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transform: translateY(var(--cb-quote-parallax-y, 0));
+    will-change: transform;
+  }
+
+  // Dim overlay for legibility on busy images.
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-color: rgba(0 0 0 / 0.45);
+  }
+
+  > .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  // ---- Text column ----
+  &__quote {
+    position: relative;
+    margin: 0 0 1.5rem;
+    font-family: var(--ff-serif, var(--ff-base));
+    font-size: var(--fs-700);
+    line-height: var(--lh-300);
+    font-weight: var(--fw-light, 300);
+    font-style: italic;
+    color: var(--col-white);
+
+    // Hanging quote-mark glyph, positioned outside the text column on the left.
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 100%;
+      width: 3.5rem;
+      height: 3rem;
+      margin-right: 1rem;
+      background: url("../img/quotes.svg") left top / contain no-repeat;
+      pointer-events: none;
+
+      @media (max-width: 767.98px) {
+        position: static;
+        display: block;
+        margin: 0 0 0.75rem;
+      }
+    }
+
+    p {
+      display: inline;
+      margin: 0;
+
+      + p {
+        display: block;
+        margin-top: 1rem;
+      }
+    }
+  }
+
+  &__attribution {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  &__author {
+    font-size: var(--fs-500);
+    font-weight: var(--fw-semibold);
+    color: var(--col-white);
+  }
+
+  &__role {
+    font-size: var(--fs-300);
+    color: var(--col-grey-200, rgba(255 255 255 / 0.8));
+  }
+
+  // ---- Media column ----
+  &__media {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+
+    @media (max-width: 767.98px) {
+      margin-top: 2rem;
+      align-items: center;
+      text-align: center;
+    }
+  }
+
+  &__author-image {
+    width: 100%;
+    max-width: 340px;
+
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      aspect-ratio: 4 / 3;
+    }
+  }
+
+  &__author-sig {
+    max-width: 220px;
+
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+      // Signatures are transparent PNGs intended to read as white on image.
+      filter: brightness(0) invert(1);
+    }
+  }
+}

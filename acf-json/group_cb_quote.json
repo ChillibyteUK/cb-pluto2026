@@ -1,0 +1,112 @@
+{
+  "key": "group_cb_quote",
+  "title": "CB Quote",
+  "fields": [
+    {
+      "key": "field_cb_quote_message",
+      "label": "CB Quote",
+      "name": "",
+      "type": "message",
+      "message": "Pull-quote with author photo + signature, on a parallax background image.",
+      "new_lines": "wpautop",
+      "esc_html": 0
+    },
+    {
+      "key": "field_cb_quote_quote",
+      "label": "Quote",
+      "name": "quote",
+      "type": "textarea",
+      "instructions": "Blank lines separate paragraphs.",
+      "required": 1,
+      "default_value": "",
+      "placeholder": "",
+      "rows": 5,
+      "new_lines": "wpautop",
+      "allow_in_bindings": 0
+    },
+    {
+      "key": "field_cb_quote_author",
+      "label": "Quote Author",
+      "name": "quote_author",
+      "type": "text",
+      "wrapper": { "width": "50" },
+      "default_value": "",
+      "placeholder": "",
+      "prepend": "",
+      "append": "",
+      "maxlength": "",
+      "allow_in_bindings": 0
+    },
+    {
+      "key": "field_cb_quote_role",
+      "label": "Author Role",
+      "name": "author_role",
+      "type": "text",
+      "wrapper": { "width": "50" },
+      "default_value": "",
+      "placeholder": "",
+      "prepend": "",
+      "append": "",
+      "maxlength": "",
+      "allow_in_bindings": 0
+    },
+    {
+      "key": "field_cb_quote_author_image",
+      "label": "Author Image",
+      "name": "author_image",
+      "type": "image",
+      "instructions": "JPG portrait of the author.",
+      "wrapper": { "width": "33" },
+      "return_format": "id",
+      "library": "all",
+      "mime_types": "jpg,jpeg,png",
+      "preview_size": "thumbnail",
+      "allow_in_bindings": 0
+    },
+    {
+      "key": "field_cb_quote_author_sig",
+      "label": "Author Signature",
+      "name": "author_sig",
+      "type": "image",
+      "instructions": "Transparent PNG of the author's signature.",
+      "wrapper": { "width": "33" },
+      "return_format": "id",
+      "library": "all",
+      "mime_types": "png",
+      "preview_size": "thumbnail",
+      "allow_in_bindings": 0
+    },
+    {
+      "key": "field_cb_quote_background_image",
+      "label": "Background Image",
+      "name": "background_image",
+      "type": "image",
+      "instructions": "Parallax background image (JPG).",
+      "wrapper": { "width": "34" },
+      "return_format": "id",
+      "library": "all",
+      "mime_types": "jpg,jpeg",
+      "preview_size": "medium",
+      "allow_in_bindings": 0
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "block",
+        "operator": "==",
+        "value": "acf/cb-quote"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": "",
+  "active": true,
+  "description": "",
+  "show_in_rest": 0,
+  "modified": 1777478400
+}
