@@ -49,6 +49,9 @@
   &__quote {
     position: relative;
     margin: 0 0 1.5rem;
+    // Reserve space for the hanging quote-mark glyph so it sits flush
+    // with the container's left edge rather than spilling into the gutter.
+    padding-inline-start: 4.5rem;
     font-family: var(--ff-serif, var(--ff-base));
     font-size: var(--fs-700);
     line-height: var(--lh-300);
@@ -56,15 +59,14 @@
     font-style: italic;
     color: var(--col-white);
 
-    // Hanging quote-mark glyph, positioned outside the text column on the left.
+    // Hanging quote-mark glyph, aligned to the container's left edge.
     &::before {
       content: "";
       position: absolute;
       top: 0;
-      right: 100%;
+      inset-inline-start: 0;
       width: 3.5rem;
       height: 3rem;
-      margin-right: 1rem;
       background: url("../img/quotes.svg") left top / contain no-repeat;
       pointer-events: none;
 
@@ -73,6 +75,10 @@
         display: block;
         margin: 0 0 0.75rem;
       }
+    }
+
+    @media (max-width: 767.98px) {
+      padding-inline-start: 0;
     }
 
     p {
