@@ -104,7 +104,7 @@ $render_text = function () {
 		if ( get_field( 'link' ) ) {
 			$l = get_field( 'link' );
 			?>
-			<p class="mt-4"><a class="button button--primary" href="<?= esc_url( $l['url'] ); ?>"
+			<p class="mt-4"><a class="cb-link-dot" href="<?= esc_url( $l['url'] ); ?>"
 				target="<?= esc_attr( $l['target'] ? $l['target'] : '_self' ); ?>"><?= esc_html( $l['title'] ); ?></a>
 			</p>
 			<?php
