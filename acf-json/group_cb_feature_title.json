@@ -3,26 +3,64 @@
   "title": "CB Feature Title",
   "fields": [
     {
+      "key": "field_69f21c5944be2",
+      "label": "CB Feature Title",
+      "name": "",
+      "aria-label": "",
+      "type": "message",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "message": "",
+      "new_lines": "wpautop",
+      "esc_html": 0
+    },
+    {
       "key": "field_cb_feature_title_title",
       "label": "Title",
       "name": "title",
+      "aria-label": "",
       "type": "text",
+      "instructions": "",
       "required": 1,
+      "conditional_logic": false,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
       "default_value": "",
       "placeholder": "",
       "maxlength": "",
-      "allow_in_bindings": 0
+      "allow_in_bindings": 0,
+      "prepend": "",
+      "append": ""
     },
     {
       "key": "field_cb_feature_title_content",
       "label": "Content",
       "name": "content",
+      "aria-label": "",
       "type": "wysiwyg",
+      "instructions": "",
+      "required": false,
+      "conditional_logic": false,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
       "tabs": "all",
       "toolbar": "basic",
       "media_upload": 0,
       "delay": 0,
-      "allow_in_bindings": 0
+      "allow_in_bindings": 0,
+      "default_value": ""
     }
   ],
   "location": [
@@ -30,7 +68,7 @@
       {
         "param": "block",
         "operator": "==",
-        "value": "acf/cb-feature-title"
+        "value": "acf\/cb-feature-title"
       }
     ]
   ],
@@ -43,5 +81,8 @@
   "active": true,
   "description": "",
   "show_in_rest": 0,
-  "modified": 1777478400
+  "display_title": "",
+  "allow_ai_access": false,
+  "ai_description": "",
+  "modified": 1777474665
 }
