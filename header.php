@@ -125,7 +125,7 @@ if ( session_status() === PHP_SESSION_NONE ) {
 <header id="wrapper-navbar" class="fixed-top <?= esc_attr( $the_class ); ?>" itemscope itemtype="http://schema.org/WPHeader">
 	<nav class="navbar navbar-expand-lg p-0 flex-column align-items-stretch">
 		<div class="navbar-top w-100">
-			<div class="container py-4 px-4 px-md-5">
+			<div class="container py-4">
 				<div class="d-flex justify-content-between align-items-center">
 					<a href="<?= esc_url( $home_url ? $home_url : '/' ); ?>" class="site-logo" aria-label="Pluto Finance Homepage">
 						<img src="<?= esc_url( get_stylesheet_directory_uri() . '/img/pluto-logo-colour.svg' ); ?>" alt="Pluto Finance logo" height="45">
@@ -139,7 +139,7 @@ if ( session_status() === PHP_SESSION_NONE ) {
 			</div>
 		</div>
 		<div id="navbar" class="navbar-bottom collapse navbar-collapse w-100">
-			<div class="container px-4 px-md-5">
+			<div class="container">
 				<!-- Navigation -->
 				<?php
 				if ( has_nav_menu( $the_menu ) ) {
