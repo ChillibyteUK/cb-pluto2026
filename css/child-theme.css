@@ -23629,6 +23629,7 @@ span a {
 }
 .cb-secondary-hero__content {
   font-size: var(--fs-500);
+  text-wrap: pretty;
   /* Standfirst: first paragraph is larger and weighted. */
 }
 .cb-secondary-hero__content > p:first-child {
