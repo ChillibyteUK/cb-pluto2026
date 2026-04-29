@@ -23244,14 +23244,17 @@ span a {
    CB Text Image
    ========================= */
 .cb-text-image {
-  /* Section min-height with text vertically centered.
-     Self-compounded selector (`.cb-text-image.cb-text-image`) bumps the
-     specificity to win the tie against `.full-flourish { min-height: clamp(...) }`
-     when both classes sit on the same element.
-     Container fills the section; inner row stretches full width.
-     Standard layout's .row already has `align-items-center`, so the
-     text col + image col line up; for full-bleed, the lone text col
-     is centered against the absolutely-positioned bleed image. */
+  /* Inner content area gets the min-height + vertical centering, NOT the
+     section. This way any utility padding the editor adds to the section
+     (e.g. py-5) sits OUTSIDE the 400px content box and pads above/below
+     the block as expected, rather than being absorbed into the inner
+     layout (which would otherwise stretch the image).
+     For full-bleed, .cb-text-image__inner wraps both the .container
+     (text) and the absolute bleed image — and is also the image's
+     positioning context, so section padding doesn't shrink the image.
+     Self-compounded selector bumps specificity above
+     `.full-flourish { min-height: clamp(...) }` when both classes sit on
+     the same element. */
   /* --------------------------------------------------
      FULL-BLEED VARIANT
      Text uses real BS .container/.row/.col so it
@@ -23283,22 +23286,23 @@ span a {
      using object-fit: cover.
      -------------------------------------------------- */
 }
-.cb-text-image.cb-text-image {
+.cb-text-image.cb-text-image > .container, .cb-text-image.cb-text-image > .wp-block-group:not(.alignfull), .cb-text-image.cb-text-image > .cb-text-image__inner {
   min-height: 400px;
-}
-.cb-text-image > .container, .cb-text-image > .wp-block-group:not(.alignfull) {
-  min-height: inherit;
   display: flex;
   align-items: center;
 }
-.cb-text-image > .container > .row, .cb-text-image > .wp-block-group:not(.alignfull) > .row {
+.cb-text-image > .container > .row, .cb-text-image > .wp-block-group:not(.alignfull) > .row,
+.cb-text-image > .cb-text-image__inner > .container > .row,
+.cb-text-image > .cb-text-image__inner > .wp-block-group:not(.alignfull) > .row {
   flex: 1 1 auto;
   width: 100%;
 }
 .cb-text-image--full-bleed {
-  position: relative;
   /* Belt-and-braces: prevent any horizontal scroll from 100vw math. */
   overflow-x: clip;
+  /* The inner wrapper is the positioning context for the absolute
+     bleed image — section padding (py-5 etc.) sits OUTSIDE this
+     wrapper, so the image is unaffected. */
   /* Container content width per BS5 breakpoint
      (max-width minus 1.5rem total horizontal padding). */
   --cb-ti-cw: 100vw;
@@ -23307,7 +23311,13 @@ span a {
      Default 50/50. */
   --cb-ti-boundary-fr: 0.5;
   /* Mobile: image flows below container, plain full-width. */
-  /* Desktop: absolute-positioned bleed. */
+  /* Desktop: absolute-positioned bleed.
+     top/bottom: 0 references the section's padding edge, so any
+     py-x / pt-x / pb-x utility on the section naturally leaves space
+     above / below the image. */
+}
+.cb-text-image--full-bleed > .cb-text-image__inner {
+  position: relative;
 }
 @media (min-width: 576px) {
   .cb-text-image--full-bleed {

@@ -122,7 +122,13 @@ $render_text = function () {
 		// Text uses real BS .container/.row/.col so its left edge lines up
 		// exactly with the rest of the page. The image is rendered OUTSIDE
 		// the container and absolutely positioned at md+ to bleed.
-		$text_col_classes = 'col-md-' . $text_col_n . ' py-5';
+		// Both .container and .cb-text-image__image sit inside an inner
+		// wrapper (.cb-text-image__inner) which is the absolute image's
+		// positioning context — that way any vertical padding utility
+		// (py-5 etc.) applied to the section sits OUTSIDE this wrapper
+		// and pads above/below the image, rather than shrinking the
+		// padding-edge that the image references.
+		$text_col_classes = 'col-md-' . $text_col_n;
 		if ( 'left' === $image_side ) {
 			// Push text into the right half so the absolute image fits the left.
 			$text_col_classes .= ' offset-md-' . ( 12 - $text_col_n );
@@ -131,15 +137,17 @@ $render_text = function () {
 			$text_col_classes .= ' pe-md-5';
 		}
 		?>
-		<div class="container">
-			<div class="row">
-				<div class="<?= esc_attr( $text_col_classes ); ?>">
-					<?php $render_text(); ?>
+		<div class="cb-text-image__inner">
+			<div class="container">
+				<div class="row">
+					<div class="<?= esc_attr( $text_col_classes ); ?>">
+						<?php $render_text(); ?>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="cb-text-image__image">
-			<?= wp_get_attachment_image( get_field( 'image' ), 'full', false, array() ); ?>
+			<div class="cb-text-image__image">
+				<?= wp_get_attachment_image( get_field( 'image' ), 'full', false, array() ); ?>
+			</div>
 		</div>
 
 	<?php else : ?>
