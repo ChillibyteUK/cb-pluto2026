@@ -171,6 +171,18 @@ function cb_theme_enqueue() {
 	wp_enqueue_style( 'lenis-style', 'https://unpkg.com/lenis@1.3.11/dist/lenis.css', array() ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
 	wp_enqueue_script( 'gsap', 'https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js', array(), '3.12.7', true );
     wp_enqueue_script( 'gsap-scrolltrigger', 'https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js', array( 'gsap' ), '3.12.7', true );
+
+	// CB Team filter (defer; only enqueues — block markup gates whether it does anything).
+	$team_filter = get_stylesheet_directory() . '/js/cb-team-filter.js';
+	if ( file_exists( $team_filter ) ) {
+		wp_enqueue_script(
+			'cb-team-filter',
+			get_stylesheet_directory_uri() . '/js/cb-team-filter.js',
+			array(),
+			(string) filemtime( $team_filter ),
+			true
+		);
+	}
 }
 add_action( 'wp_enqueue_scripts', 'cb_theme_enqueue' );
 

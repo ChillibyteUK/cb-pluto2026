@@ -99,7 +99,7 @@ function cb_register_taxes() {
 		),
 		'public'             => false,
 		'publicly_queryable' => false,
-		'hierarchical'       => false,
+		'hierarchical'       => true,
 		'show_ui'            => true,
 		'show_in_nav_menus'  => false,
 		'show_tagcloud'      => false,

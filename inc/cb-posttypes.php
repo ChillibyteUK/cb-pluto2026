@@ -45,7 +45,7 @@ function cb_register_post_types() {
 			'show_in_rest'        => true,
 			'menu_position'       => 26,
 			'menu_icon'           => 'dashicons-nametag',
-			'supports'            => array( 'title', 'editor', 'thumbnail' ),
+			'supports'            => array( 'title', 'editor', 'thumbnail', 'page-attributes' ),
 			'capability_type'     => 'post',
 			'map_meta_cap'        => true,
 			'rewrite'             => false,

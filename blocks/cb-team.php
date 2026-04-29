@@ -51,60 +51,71 @@ if ( empty( $team_ids ) ) {
 	return;
 }
 
-// Build the query: people in any of the chosen teams. We sort by surname
-// (last word of the post title) in PHP since WP can't ORDER BY surname.
-$query = new WP_Query(
+/*
+ * Resolve selected team terms ordered by NSP "Category Order and Taxonomy
+ * Terms Order" plugin (term_order). Falls back gracefully when the plugin
+ * isn't active because get_terms simply returns by name in that case.
+ */
+$ordered_terms = get_terms(
 	array(
-		'post_type'      => 'person',
-		'posts_per_page' => -1,
-		'post_status'    => 'publish',
-		'tax_query'      => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
-			array(
-				'taxonomy' => 'team',
-				'field'    => 'term_id',
-				'terms'    => $team_ids,
-			),
-		),
-		'no_found_rows'  => true,
+		'taxonomy'   => 'team',
+		'include'    => $team_ids,
+		'orderby'    => 'term_order',
+		'hide_empty' => false,
 	)
 );
-
-$people = $query->posts ? $query->posts : array();
-wp_reset_postdata();
-
-/**
- * Surname extraction: strip suffixes (Jr., III, etc.), take last whitespace-
- * separated token, lowercase + collation-friendly.
- */
-$cb_team_surname = function ( $title ) {
-	$t = trim( wp_strip_all_tags( (string) $title ) );
-	// Strip common suffixes.
-	$t     = preg_replace( '/\b(Jr\.?|Sr\.?|I{1,3}V?|IV|V|PhD|MBE|OBE|CBE)\b\.?$/i', '', $t );
-	$t     = trim( $t );
-	$parts = preg_split( '/\s+/', $t );
-	$last  = $parts ? end( $parts ) : $t;
-	return function_exists( 'remove_accents' ) ? remove_accents( $last ) : $last;
-};
-
-usort(
-	$people,
-	function ( $a, $b ) use ( $cb_team_surname ) {
-		$cmp = strcasecmp( $cb_team_surname( $a->post_title ), $cb_team_surname( $b->post_title ) );
-		if ( 0 !== $cmp ) {
-			return $cmp;
-		}
-		return strcasecmp( $a->post_title, $b->post_title );
-	}
-);
-
-// Look up the chosen team terms (preserve picker order) for filter buttons.
-$team_terms = array();
-foreach ( $team_ids as $tid ) {
-	$team_term = get_term( $tid, 'team' );
-	if ( $team_term && ! is_wp_error( $team_term ) ) {
-		$team_terms[ $tid ] = $team_term;
-	}
+if ( is_wp_error( $ordered_terms ) ) {
+	$ordered_terms = array();
 }
+
+// Per-team groups: query people for each team, ordered menu_order then title.
+// Dedup people across groups: first-team-wins.
+$seen_ids = array();
+$groups   = array();
+foreach ( $ordered_terms as $team_term ) {
+	$q = new WP_Query(
+		array(
+			'post_type'      => 'person',
+			'posts_per_page' => -1,
+			'post_status'    => 'publish',
+			'orderby'        => array(
+				'menu_order' => 'ASC',
+				'title'      => 'ASC',
+			),
+			'tax_query'      => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
+				array(
+					'taxonomy' => 'team',
+					'field'    => 'term_id',
+					'terms'    => array( (int) $team_term->term_id ),
+				),
+			),
+			'no_found_rows'  => true,
+		)
+	);
+
+	$members = array();
+	if ( $q->posts ) {
+		foreach ( $q->posts as $p ) {
+			if ( in_array( (int) $p->ID, $seen_ids, true ) ) {
+				continue;
+			}
+			$seen_ids[] = (int) $p->ID;
+			$members[]  = $p;
+		}
+	}
+	wp_reset_postdata();
+
+	$groups[] = array(
+		'term'    => $team_term,
+		'members' => $members,
+	);
+}
+
+// Read URL params for initial filter state.
+$initial_team = isset( $_GET['team'] ) ? sanitize_text_field( wp_unslash( $_GET['team'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+$initial_q    = isset( $_GET['q'] ) ? sanitize_text_field( wp_unslash( $_GET['q'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+
+$total_people = count( $seen_ids );
 
 $missing_img = get_stylesheet_directory_uri() . '/img/missing-person.jpg';
 
@@ -127,135 +138,159 @@ $icon_email = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" wid
 $icon_phone = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" width="18" height="18"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.5 11.5 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1.04l-2.22 2.19Z"/></svg>';
 $icon_li    = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" width="18" height="18"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.75h4V21H3V9.75ZM9.5 9.75h3.83v1.54h.05c.53-1 1.84-2.06 3.79-2.06 4.05 0 4.8 2.66 4.8 6.13V21h-4v-4.86c0-1.16-.02-2.65-1.62-2.65-1.62 0-1.86 1.27-1.86 2.57V21h-4V9.75Z"/></svg>';
 ?>
-<section id="<?= esc_attr( $block_uid ); ?>" class="cb-team full-flourish <?= esc_attr( trim( $bg . ' ' . $fg . ' ' . $custom_classes ) ); ?>">
+<section id="<?= esc_attr( $block_uid ); ?>" class="cb-team full-flourish <?= esc_attr( trim( $bg . ' ' . $fg . ' ' . $custom_classes ) ); ?>" data-cb-team-block>
 	<div class="container py-5">
-		<?php if ( empty( $people ) ) : ?>
+		<?php if ( 0 === $total_people ) : ?>
 			<p class="text-muted"><em><?php esc_html_e( 'No people found in the selected team(s).', 'cb-pluto2026' ); ?></em></p>
 		<?php else : ?>
-			<?php if ( count( $team_terms ) > 1 ) : ?>
-				<div class="cb-team__filters mb-4" role="group" aria-label="<?php esc_attr_e( 'Filter by team', 'cb-pluto2026' ); ?>">
-					<button type="button" class="cb-team__filter is-active" data-cb-team-filter="all" aria-pressed="true"><?php esc_html_e( 'All', 'cb-pluto2026' ); ?></button>
-					<?php foreach ( $team_terms as $tid => $team_term ) : ?>
-						<button type="button" class="cb-team__filter" data-cb-team-filter="<?= esc_attr( $tid ); ?>" aria-pressed="false"><?= esc_html( $team_term->name ); ?></button>
-					<?php endforeach; ?>
-				</div>
+			<?php if ( count( $ordered_terms ) > 1 ) : ?>
+				<form class="cb-team__filter mb-5" role="search" aria-label="<?php esc_attr_e( 'Filter team', 'cb-pluto2026' ); ?>" onsubmit="return false;">
+					<div class="row g-3 align-items-center">
+						<div class="col-12 col-md-6 col-lg-5">
+							<input id="cb-team-q" type="search" class="form-control" placeholder="<?php esc_attr_e( 'Search by name…', 'cb-pluto2026' ); ?>" aria-label="<?php esc_attr_e( 'Search team by name', 'cb-pluto2026' ); ?>" value="<?= esc_attr( $initial_q ); ?>" />
+						</div>
+						<div class="col-12 col-md-6 col-lg-4">
+							<select id="cb-team-team" class="form-select" aria-label="<?php esc_attr_e( 'Filter by team', 'cb-pluto2026' ); ?>">
+								<option value=""><?php esc_html_e( 'All teams', 'cb-pluto2026' ); ?></option>
+								<?php foreach ( $ordered_terms as $team_term ) : ?>
+									<option value="<?= esc_attr( $team_term->slug ); ?>" <?= selected( $initial_team, $team_term->slug, false ); ?>><?= esc_html( $team_term->name ); ?></option>
+								<?php endforeach; ?>
+							</select>
+						</div>
+						<div class="col-12 col-lg-3">
+							<button id="cb-team-filter-reset" type="button" class="btn btn-light w-100"><?php esc_html_e( 'Reset filters', 'cb-pluto2026' ); ?></button>
+						</div>
+					</div>
+					<div class="visually-hidden" aria-live="polite" id="cb-team-filter-status"></div>
+				</form>
 			<?php endif; ?>
-			<div class="row gy-4 cb-team__grid">
+
+			<?php foreach ( $groups as $group ) : ?>
 				<?php
-				foreach ( $people as $p ) :
-					$pid       = (int) $p->ID;
-					$name      = get_the_title( $p );
-					$urole     = (string) get_field( 'role', $pid );
-					$email     = (string) get_field( 'email', $pid );
-					$phone     = (string) get_field( 'phone', $pid );
-					$linkedin  = (string) get_field( 'linkedin_url', $pid );
-					$bio_html  = apply_filters( 'the_content', $p->post_content );
-					$has_bio   = (bool) trim( wp_strip_all_tags( $p->post_content ) );
-					$thumb_id  = get_post_thumbnail_id( $pid );
-					$img_url   = $thumb_id ? wp_get_attachment_image_url( $thumb_id, 'medium_large' ) : $missing_img;
-					$img_url   = $img_url ? $img_url : $missing_img;
-					$modal_id  = 'cb-team-modal-' . $pid;
-					$big_url   = $thumb_id ? wp_get_attachment_image_url( $thumb_id, 'large' ) : $missing_img;
-					$big_url   = $big_url ? $big_url : $missing_img;
-					$btn_attrs = $has_bio ? sprintf( ' type="button" data-cb-team-open="%s"', esc_attr( $modal_id ) ) : ' type="button" disabled';
+				if ( empty( $group['members'] ) ) {
+					continue;
+				}
+				$gterm = $group['term'];
+				?>
+				<div class="cb-team__group" data-team-slug="<?= esc_attr( $gterm->slug ); ?>">
+					<h2 class="cb-team__group-heading"><?= esc_html( $gterm->name ); ?></h2>
+					<div class="row gy-4 cb-team__grid">
+						<?php
+						foreach ( $group['members'] as $p ) :
+							$pid       = (int) $p->ID;
+							$name      = get_the_title( $p );
+							$urole     = (string) get_field( 'role', $pid );
+							$email     = (string) get_field( 'email', $pid );
+							$phone     = (string) get_field( 'phone', $pid );
+							$linkedin  = (string) get_field( 'linkedin_url', $pid );
+							$bio_html  = apply_filters( 'the_content', $p->post_content );
+							$has_bio   = (bool) trim( wp_strip_all_tags( $p->post_content ) );
+							$thumb_id  = get_post_thumbnail_id( $pid );
+							$img_url   = $thumb_id ? wp_get_attachment_image_url( $thumb_id, 'medium_large' ) : $missing_img;
+							$img_url   = $img_url ? $img_url : $missing_img;
+							$modal_id  = 'cb-team-modal-' . $pid;
+							$big_url   = $thumb_id ? wp_get_attachment_image_url( $thumb_id, 'large' ) : $missing_img;
+							$big_url   = $big_url ? $big_url : $missing_img;
 
-					// First name for "Contact <FirstName>" labelling.
-					$first_name = '';
-					$name_parts = preg_split( '/\s+/', trim( wp_strip_all_tags( $name ) ) );
-					if ( $name_parts ) {
-						$first_name = (string) reset( $name_parts );
-					}
-					$contact_modal_id = 'cb-team-contact-' . $pid;
-					$has_contact      = ( $email && $contact_form_id );
+							// First name for "Contact <FirstName>" labelling.
+							$first_name = '';
+							$name_parts = preg_split( '/\s+/', trim( wp_strip_all_tags( $name ) ) );
+							if ( $name_parts ) {
+								$first_name = (string) reset( $name_parts );
+							}
+							$has_contact = ( $email && $contact_form_id );
 
-					// Person's team term IDs intersected with the picker selection.
-					$person_term_ids = wp_get_post_terms( $pid, 'team', array( 'fields' => 'ids' ) );
-					if ( is_wp_error( $person_term_ids ) ) {
-						$person_term_ids = array();
-					}
-					$person_team_attr = implode( ' ', array_map( 'intval', array_intersect( $person_term_ids, array_keys( $team_terms ) ) ) );
-					?>
-					<div class="col-12 col-sm-6 col-lg-4 col-xl-3 cb-team__col" data-cb-team-ids="<?= esc_attr( $person_team_attr ); ?>">
-						<article class="cb-team__card" data-person-id="<?= esc_attr( $pid ); ?>">
-							<?php if ( $has_bio ) : ?>
-								<button class="cb-team__media" type="button" data-cb-team-open="<?= esc_attr( $modal_id ); ?>" aria-label="<?php echo esc_attr( sprintf( /* translators: %s: person name */ __( 'View profile for %s', 'cb-pluto2026' ), $name ) ); ?>">
-									<img src="<?= esc_url( $img_url ); ?>" alt="<?= esc_attr( $name ); ?>" loading="lazy" />
-								</button>
-							<?php else : ?>
-								<div class="cb-team__media cb-team__media--static">
-									<img src="<?= esc_url( $img_url ); ?>" alt="<?= esc_attr( $name ); ?>" loading="lazy" />
-								</div>
-							<?php endif; ?>
-
-							<div class="cb-team__body">
-								<?php if ( $has_bio ) : ?>
-									<h3 class="cb-team__name">
-										<button class="cb-team__name-btn" type="button" data-cb-team-open="<?= esc_attr( $modal_id ); ?>"><?= esc_html( $name ); ?></button>
-									</h3>
-									<?php if ( $urole ) : ?>
-										<p class="cb-team__role">
-											<button class="cb-team__role-btn" type="button" data-cb-team-open="<?= esc_attr( $modal_id ); ?>"><?= esc_html( $urole ); ?></button>
-										</p>
-									<?php endif; ?>
-								<?php else : ?>
-									<h3 class="cb-team__name"><?= esc_html( $name ); ?></h3>
-									<?php if ( $urole ) : ?>
-										<p class="cb-team__role"><?= esc_html( $urole ); ?></p>
-									<?php endif; ?>
-								<?php endif; ?>
-
-								<?php if ( $has_contact || $phone || $linkedin ) : ?>
-									<ul class="cb-team__contacts" aria-label="<?php esc_attr_e( 'Contact', 'cb-pluto2026' ); ?>">
-										<?php if ( $has_contact ) : ?>
-											<li><button type="button" class="cb-team__contact-btn" data-cb-team-contact data-cb-team-pid="<?= esc_attr( $pid ); ?>" data-cb-team-name="<?= esc_attr( $name ); ?>" aria-label="<?php echo esc_attr( sprintf( /* translators: %s: person first name */ __( 'Contact %s', 'cb-pluto2026' ), $first_name ? $first_name : $name ) ); ?>"><?= $icon_email; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></button></li>
-										<?php endif; ?>
-										<?php if ( $phone ) : ?>
-											<li><a href="tel:<?= esc_attr( parse_phone( $phone ) ); ?>" aria-label="<?php echo esc_attr( sprintf( /* translators: %s: person name */ __( 'Call %s', 'cb-pluto2026' ), $name ) ); ?>"><?= $icon_phone; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></a></li>
-										<?php endif; ?>
-										<?php if ( $linkedin ) : ?>
-											<li><a href="<?= esc_url( $linkedin ); ?>" target="_blank" rel="noopener noreferrer" aria-label="<?php echo esc_attr( sprintf( /* translators: %s: person name */ __( '%s on LinkedIn', 'cb-pluto2026' ), $name ) ); ?>"><?= $icon_li; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></a></li>
-										<?php endif; ?>
-									</ul>
-								<?php endif; ?>
-							</div>
-						</article>
-
-						<?php if ( $has_bio ) : ?>
-							<div class="cb-team__modal" id="<?= esc_attr( $modal_id ); ?>" role="dialog" aria-modal="true" aria-labelledby="<?= esc_attr( $modal_id ); ?>-title" hidden>
-								<div class="cb-team__modal-overlay" data-cb-team-close></div>
-								<div class="cb-team__modal-dialog" role="document">
-									<button class="cb-team__modal-close" type="button" data-cb-team-close aria-label="<?php esc_attr_e( 'Close', 'cb-pluto2026' ); ?>">&times;</button>
-									<div class="cb-team__modal-body">
-										<div class="cb-team__modal-image">
-											<img src="<?= esc_url( $big_url ); ?>" alt="<?= esc_attr( $name ); ?>" />
+							// All team slugs this person belongs to (for filter matching).
+							$person_team_slugs = wp_get_post_terms( $pid, 'team', array( 'fields' => 'slugs' ) );
+							if ( is_wp_error( $person_team_slugs ) ) {
+								$person_team_slugs = array();
+							}
+							$team_attr  = implode( ' ', array_map( 'sanitize_html_class', $person_team_slugs ) );
+							$name_attr  = strtolower( wp_strip_all_tags( $name ) );
+							?>
+							<div class="col-12 col-sm-6 col-lg-4 col-xl-3 cb-team__col">
+								<article class="cb-team__card" data-person-id="<?= esc_attr( $pid ); ?>" data-name="<?= esc_attr( $name_attr ); ?>" data-team="<?= esc_attr( $team_attr ); ?>">
+									<?php if ( $has_bio ) : ?>
+										<button class="cb-team__media" type="button" data-cb-team-open="<?= esc_attr( $modal_id ); ?>" aria-label="<?php echo esc_attr( sprintf( /* translators: %s: person name */ __( 'View profile for %s', 'cb-pluto2026' ), $name ) ); ?>">
+											<img src="<?= esc_url( $img_url ); ?>" alt="<?= esc_attr( $name ); ?>" loading="lazy" />
+										</button>
+									<?php else : ?>
+										<div class="cb-team__media cb-team__media--static">
+											<img src="<?= esc_url( $img_url ); ?>" alt="<?= esc_attr( $name ); ?>" loading="lazy" />
 										</div>
-										<div class="cb-team__modal-content">
-											<h3 class="cb-team__modal-name" id="<?= esc_attr( $modal_id ); ?>-title"><?= esc_html( $name ); ?></h3>
+									<?php endif; ?>
+
+									<div class="cb-team__body">
+										<?php if ( $has_bio ) : ?>
+											<h3 class="cb-team__name">
+												<button class="cb-team__name-btn" type="button" data-cb-team-open="<?= esc_attr( $modal_id ); ?>"><?= esc_html( $name ); ?></button>
+											</h3>
 											<?php if ( $urole ) : ?>
-												<p class="cb-team__modal-role"><?= esc_html( $urole ); ?></p>
+												<p class="cb-team__role">
+													<button class="cb-team__role-btn" type="button" data-cb-team-open="<?= esc_attr( $modal_id ); ?>"><?= esc_html( $urole ); ?></button>
+												</p>
 											<?php endif; ?>
-											<div class="cb-team__modal-bio"><?= wp_kses_post( $bio_html ); ?></div>
-											<?php if ( $has_contact || $phone || $linkedin ) : ?>
-												<ul class="cb-team__contacts cb-team__contacts--modal" aria-label="<?php esc_attr_e( 'Contact', 'cb-pluto2026' ); ?>">
-													<?php if ( $has_contact ) : ?>
-														<li><button type="button" class="cb-team__contact-btn" data-cb-team-contact data-cb-team-pid="<?= esc_attr( $pid ); ?>" data-cb-team-name="<?= esc_attr( $name ); ?>"><?= $icon_email; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><span><?php echo esc_html( sprintf( /* translators: %s: person first name */ __( 'Contact %s', 'cb-pluto2026' ), $first_name ? $first_name : $name ) ); ?></span></button></li>
-													<?php endif; ?>
-													<?php if ( $phone ) : ?>
-														<li><a href="tel:<?= esc_attr( parse_phone( $phone ) ); ?>"><?= $icon_phone; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><span><?= esc_html( $phone ); ?></span></a></li>
-													<?php endif; ?>
-													<?php if ( $linkedin ) : ?>
-														<li><a href="<?= esc_url( $linkedin ); ?>" target="_blank" rel="noopener noreferrer"><?= $icon_li; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><span>LinkedIn</span></a></li>
-													<?php endif; ?>
-												</ul>
+										<?php else : ?>
+											<h3 class="cb-team__name"><?= esc_html( $name ); ?></h3>
+											<?php if ( $urole ) : ?>
+												<p class="cb-team__role"><?= esc_html( $urole ); ?></p>
 											<?php endif; ?>
+										<?php endif; ?>
+
+										<?php if ( $has_contact || $phone || $linkedin ) : ?>
+											<ul class="cb-team__contacts" aria-label="<?php esc_attr_e( 'Contact', 'cb-pluto2026' ); ?>">
+												<?php if ( $has_contact ) : ?>
+													<li><button type="button" class="cb-team__contact-btn" data-cb-team-contact data-cb-team-pid="<?= esc_attr( $pid ); ?>" data-cb-team-name="<?= esc_attr( $name ); ?>" aria-label="<?php echo esc_attr( sprintf( /* translators: %s: person first name */ __( 'Contact %s', 'cb-pluto2026' ), $first_name ? $first_name : $name ) ); ?>"><?= $icon_email; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></button></li>
+												<?php endif; ?>
+												<?php if ( $phone ) : ?>
+													<li><a href="tel:<?= esc_attr( parse_phone( $phone ) ); ?>" aria-label="<?php echo esc_attr( sprintf( /* translators: %s: person name */ __( 'Call %s', 'cb-pluto2026' ), $name ) ); ?>"><?= $icon_phone; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></a></li>
+												<?php endif; ?>
+												<?php if ( $linkedin ) : ?>
+													<li><a href="<?= esc_url( $linkedin ); ?>" target="_blank" rel="noopener noreferrer" aria-label="<?php echo esc_attr( sprintf( /* translators: %s: person name */ __( '%s on LinkedIn', 'cb-pluto2026' ), $name ) ); ?>"><?= $icon_li; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></a></li>
+												<?php endif; ?>
+											</ul>
+										<?php endif; ?>
+									</div>
+								</article>
+
+								<?php if ( $has_bio ) : ?>
+									<div class="cb-team__modal" id="<?= esc_attr( $modal_id ); ?>" role="dialog" aria-modal="true" aria-labelledby="<?= esc_attr( $modal_id ); ?>-title" hidden>
+										<div class="cb-team__modal-overlay" data-cb-team-close></div>
+										<div class="cb-team__modal-dialog" role="document">
+											<button class="cb-team__modal-close" type="button" data-cb-team-close aria-label="<?php esc_attr_e( 'Close', 'cb-pluto2026' ); ?>">&times;</button>
+											<div class="cb-team__modal-body">
+												<div class="cb-team__modal-image">
+													<img src="<?= esc_url( $big_url ); ?>" alt="<?= esc_attr( $name ); ?>" />
+												</div>
+												<div class="cb-team__modal-content">
+													<h3 class="cb-team__modal-name" id="<?= esc_attr( $modal_id ); ?>-title"><?= esc_html( $name ); ?></h3>
+													<?php if ( $urole ) : ?>
+														<p class="cb-team__modal-role"><?= esc_html( $urole ); ?></p>
+													<?php endif; ?>
+													<div class="cb-team__modal-bio"><?= wp_kses_post( $bio_html ); ?></div>
+													<?php if ( $has_contact || $phone || $linkedin ) : ?>
+														<ul class="cb-team__contacts cb-team__contacts--modal" aria-label="<?php esc_attr_e( 'Contact', 'cb-pluto2026' ); ?>">
+															<?php if ( $has_contact ) : ?>
+																<li><button type="button" class="cb-team__contact-btn" data-cb-team-contact data-cb-team-pid="<?= esc_attr( $pid ); ?>" data-cb-team-name="<?= esc_attr( $name ); ?>"><?= $icon_email; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><span><?php echo esc_html( sprintf( /* translators: %s: person first name */ __( 'Contact %s', 'cb-pluto2026' ), $first_name ? $first_name : $name ) ); ?></span></button></li>
+															<?php endif; ?>
+															<?php if ( $phone ) : ?>
+																<li><a href="tel:<?= esc_attr( parse_phone( $phone ) ); ?>"><?= $icon_phone; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><span><?= esc_html( $phone ); ?></span></a></li>
+															<?php endif; ?>
+															<?php if ( $linkedin ) : ?>
+																<li><a href="<?= esc_url( $linkedin ); ?>" target="_blank" rel="noopener noreferrer"><?= $icon_li; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><span>LinkedIn</span></a></li>
+															<?php endif; ?>
+														</ul>
+													<?php endif; ?>
+												</div>
+											</div>
 										</div>
 									</div>
-								</div>
+								<?php endif; ?>
 							</div>
-						<?php endif; ?>
+						<?php endforeach; ?>
 					</div>
-				<?php endforeach; ?>
-			</div>
+				</div>
+			<?php endforeach; ?>
 		<?php endif; ?>
 	</div>
 </section>
@@ -416,30 +451,6 @@ if ( ! $cb_team_assets_emitted ) :
 			var open = document.querySelector('.cb-team__modal:not([hidden])');
 			if (open) closeModal(open);
 		}
-	});
-
-	// Filter buttons: hide cards whose data-cb-team-ids doesn't include the
-	// chosen team. Scope to the section so multiple cb-team blocks coexist.
-	document.addEventListener('click', function (e) {
-		var btn = e.target.closest('[data-cb-team-filter]');
-		if (!btn) return;
-		e.preventDefault();
-		var section = btn.closest('.cb-team');
-		if (!section) return;
-		var filter = btn.getAttribute('data-cb-team-filter');
-		section.querySelectorAll('[data-cb-team-filter]').forEach(function (b) {
-			var active = b === btn;
-			b.classList.toggle('is-active', active);
-			b.setAttribute('aria-pressed', active ? 'true' : 'false');
-		});
-		section.querySelectorAll('.cb-team__col').forEach(function (col) {
-			if (filter === 'all') {
-				col.hidden = false;
-				return;
-			}
-			var ids = (col.getAttribute('data-cb-team-ids') || '').split(/\s+/);
-			col.hidden = ids.indexOf(filter) === -1;
-		});
 	});
 })();
 </script>

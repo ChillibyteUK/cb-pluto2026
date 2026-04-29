@@ -23612,8 +23612,13 @@ span a {
   --cb-team-modal-z: 1080;
   background-color: var(--col-green-dark-1200);
   color: var(--col-white);
+  /* Hide whole section if filter has no matches. */
   /* --------------------------------------------------
-     Filter buttons (shown when 2+ teams are picked).
+     Filter form (search + team dropdown + reset).
+     Shown only when 2+ teams are selected.
+     -------------------------------------------------- */
+  /* --------------------------------------------------
+     Per-team groups
      -------------------------------------------------- */
   /* Bootstrap row already provides gutters; this hook lets us tweak. */
   /*
@@ -23633,32 +23638,69 @@ span a {
      ancestor styles automatically.
      -------------------------------------------------- */
 }
-.cb-team__filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+.cb-team.is-empty .cb-team__group {
+  display: none;
 }
 .cb-team__filter {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  background: transparent;
-  color: inherit;
-  padding: 0.4rem 1rem;
-  font: inherit;
+  /* Native option list renders against the system colour. Force a dark
+     text colour so options are readable on the white menu, and a dark
+     green hover/checked state with white text. */
+  /* Match the focus ring radius to the pill shape so the outline doesn't
+     render as a square around a rounded input. */
+}
+.cb-team__filter .form-control,
+.cb-team__filter .form-select {
+  border-radius: 100vw;
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: var(--col-white);
+  padding: 0.6rem 1rem;
+}
+.cb-team__filter .form-select option {
+  color: #222;
+  background-color: var(--col-white);
+}
+.cb-team__filter .form-select option:hover,
+.cb-team__filter .form-select option:focus,
+.cb-team__filter .form-select option:checked {
+  color: var(--col-white);
+  background-color: var(--col-green-dark-1200);
+  /* Some browsers (Chromium) need a box-shadow inset to override the
+     default highlight colour for selected options. */
+  box-shadow: 0 0 0 100px var(--col-green-dark-1200) inset;
+}
+.cb-team__filter .form-control::-moz-placeholder {
+  color: rgba(255, 255, 255, 0.7);
+  opacity: 1;
+}
+.cb-team__filter .form-control::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+  opacity: 1;
+}
+.cb-team__filter .form-control:focus,
+.cb-team__filter .form-select:focus {
+  border-radius: 100vw;
+  outline-offset: 2px;
+}
+.cb-team__filter .form-select {
+  /* Re-tint the bootstrap caret to white. */
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+}
+.cb-team__filter #cb-team-filter-reset {
+  padding-block: 0.6rem;
+  border-radius: 100vw;
+}
+.cb-team__group + .cb-team__group {
+  margin-top: 3rem;
+}
+.cb-team__group.is-empty {
+  display: none;
+}
+.cb-team__group-heading {
+  margin: 0 0 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
   line-height: 1.2;
-  border-radius: 999px;
-  cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease;
-}
-.cb-team__filter:hover, .cb-team__filter:focus-visible {
-  background-color: var(--col-white);
-  color: var(--col-green-dark-1200);
-}
-.cb-team__filter.is-active {
-  background-color: var(--col-white);
-  color: var(--col-green-dark-1200);
 }
 .cb-team__card {
   display: flex;
