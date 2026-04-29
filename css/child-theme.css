@@ -23056,6 +23056,36 @@ span a {
   margin-inline: -2rem;
 }
 
+/* Preserve Bootstrap container breakpoints inside constrained groups */
+.is-layout-constrained > .container, .is-layout-constrained > .wp-block-group:not(.alignfull) {
+  max-width: 100%;
+}
+
+@media (min-width: 576px) {
+  .is-layout-constrained > .container, .is-layout-constrained > .wp-block-group:not(.alignfull) {
+    max-width: 540px;
+  }
+}
+@media (min-width: 768px) {
+  .is-layout-constrained > .container, .is-layout-constrained > .wp-block-group:not(.alignfull) {
+    max-width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .is-layout-constrained > .container, .is-layout-constrained > .wp-block-group:not(.alignfull) {
+    max-width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .is-layout-constrained > .container, .is-layout-constrained > .wp-block-group:not(.alignfull) {
+    max-width: 1170px;
+  }
+}
+@media (min-width: 1400px) {
+  .is-layout-constrained > .container, .is-layout-constrained > .wp-block-group:not(.alignfull) {
+    max-width: 1360px;
+  }
+}
 .topic-home-hero {
   position: relative;
   min-height: 600px;
