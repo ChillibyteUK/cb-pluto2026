@@ -22283,10 +22283,7 @@ header:has(.navbar-collapse.collapsing) .navbar-bottom {
   color: var(--col-green-teal-400);
 }
 .footer .current_page_item > a,
-.footer .current_page_parent > a,
-.footer .current-page-ancestor > a,
-.footer .current-menu-parent > a,
-.footer .current-menu-ancestor > a {
+.footer .current-menu-item > a {
   color: var(--col-orange-1000);
 }
 .footer__logo {

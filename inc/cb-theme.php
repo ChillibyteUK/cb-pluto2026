@@ -296,6 +296,7 @@ add_filter(
 				}
 			}
 		}
+
 		return $items;
 	},
 	20

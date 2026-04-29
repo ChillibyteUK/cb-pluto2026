@@ -30,7 +30,6 @@ function acf_blocks() {
 					'anchor'    => true,
 					'className' => true,
 					'align'     => true,
-          
 				),
 			)
 		);

@@ -26,7 +26,7 @@
   &__title {
     font-size: var(--fs-500);
     font-weight: var(--fw-semibold);
-    margin-bottom: .75rem;
+    margin-bottom: 0.75rem;
   }
 
   &__colophon {
@@ -81,11 +81,13 @@
       color: var(--col-green-teal-400);
     }
   }
+  // Footer menus are flat — only highlight the current item itself.
+  // current-page-ancestor / current-menu-ancestor are intentionally
+  // omitted because they apply to silo roots (e.g. Investors) whenever
+  // any descendant page is being viewed, which is correct for the
+  // dropdown header nav but incorrect here.
   .current_page_item > a,
-  .current_page_parent > a,
-  .current-page-ancestor > a,
-  .current-menu-parent > a,
-  .current-menu-ancestor > a {
+  .current-menu-item > a {
     color: var(--col-orange-1000);
   }
 
