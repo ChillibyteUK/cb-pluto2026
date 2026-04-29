@@ -45,16 +45,11 @@ if ( ! empty( $block['style']['color']['text'] ) ) {
 }
 
 // Determine the flourish colour variant from the URL, mirroring cb-text-image.
-$request_uri     = filter_input( INPUT_SERVER, 'REQUEST_URI', FILTER_SANITIZE_URL );
-$request_uri     = is_string( $request_uri ) ? wp_unslash( $request_uri ) : '/';
-$current_path    = wp_parse_url( $request_uri, PHP_URL_PATH );
-$current_path    = is_string( $current_path ) ? $current_path : '/';
-$normalized_path = trailingslashit( $current_path );
-
+$context          = cb_get_site_context();
 $flourish_classes = 'full-flourish';
-if ( 0 === strpos( $normalized_path, '/property-finance/' ) ) {
+if ( 'pf' === $context ) {
 	$flourish_classes .= ' full-flourish--lending full-flourish--flip';
-} elseif ( 0 === strpos( $normalized_path, '/investors/' ) ) {
+} elseif ( 'inv' === $context ) {
 	$flourish_classes .= ' full-flourish--investors full-flourish--flip';
 }
 

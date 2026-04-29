@@ -20,13 +20,9 @@ defined( 'ABSPATH' ) || exit;
 $block_id = $block['anchor'] ?? $block['id'] ?? wp_unique_id( 'cb-latest-posts-' );
 
 // URL-based preset detection (mirrors cb-text-image.php / cb-ticker-x3.php).
-$request_uri     = filter_input( INPUT_SERVER, 'REQUEST_URI', FILTER_SANITIZE_URL );
-$request_uri     = is_string( $request_uri ) ? wp_unslash( $request_uri ) : '/';
-$current_path    = wp_parse_url( $request_uri, PHP_URL_PATH );
-$current_path    = is_string( $current_path ) ? $current_path : '/';
-$normalized_path = trailingslashit( $current_path );
+$context = cb_get_site_context();
 
-if ( 0 === strpos( $normalized_path, '/property-finance/' ) ) {
+if ( 'pf' === $context ) {
 	$preset           = 'newsroom';
 	$insight_type     = 'pf_insight';
 	$count            = 3;
@@ -34,7 +30,7 @@ if ( 0 === strpos( $normalized_path, '/property-finance/' ) ) {
 	$cta_label        = 'View all news';
 	$cta_url          = '/property-finance/insights/';
 	$flourish_variant = 'full-flourish--lending';
-} elseif ( 0 === strpos( $normalized_path, '/investors/' ) ) {
+} elseif ( 'inv' === $context ) {
 	$preset           = 'insights';
 	$insight_type     = 'investor_insight';
 	$count            = 4;

@@ -14,20 +14,8 @@ defined( 'ABSPATH' ) || exit;
 
 $block_id = $block['anchor'] ?? $block['id'] ?? wp_unique_id( 'cb-ticker-x3-' );
 
-$request_uri     = filter_input( INPUT_SERVER, 'REQUEST_URI', FILTER_SANITIZE_URL );
-$request_uri     = is_string( $request_uri ) ? wp_unslash( $request_uri ) : '/';
-$current_path    = wp_parse_url( $request_uri, PHP_URL_PATH );
-$current_path    = is_string( $current_path ) ? $current_path : '/';
-$normalized_path = trailingslashit( $current_path );
-
-$the_class = '';
-if ( '/' === $current_path ) {
-	$the_class = '';
-} elseif ( 0 === strpos( $normalized_path, '/property-finance/' ) ) {
-	$the_class = 'cb-ticker-x3--pf';
-} elseif ( 0 === strpos( $normalized_path, '/investors/' ) ) {
-	$the_class = 'cb-ticker-x3--inv';
-}
+$context   = cb_get_site_context();
+$the_class = '' !== $context ? 'cb-ticker-x3--' . $context : '';
 
 $stats = array();
 

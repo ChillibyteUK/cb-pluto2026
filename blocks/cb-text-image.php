@@ -23,16 +23,11 @@ $rounded     = ( null === $rounded_raw ) ? true : (bool) $rounded_raw;
 // flourish utility can pick up the correct colour variant.
 $flourish_classes = '';
 if ( $flourish ) {
-	$request_uri     = filter_input( INPUT_SERVER, 'REQUEST_URI', FILTER_SANITIZE_URL );
-	$request_uri     = is_string( $request_uri ) ? wp_unslash( $request_uri ) : '/';
-	$current_path    = wp_parse_url( $request_uri, PHP_URL_PATH );
-	$current_path    = is_string( $current_path ) ? $current_path : '/';
-	$normalized_path = trailingslashit( $current_path );
-
 	$flourish_classes = 'full-flourish';
-	if ( 0 === strpos( $normalized_path, '/property-finance/' ) ) {
+	$context          = cb_get_site_context();
+	if ( 'pf' === $context ) {
 		$flourish_classes .= ' full-flourish--lending';
-	} elseif ( 0 === strpos( $normalized_path, '/investors/' ) ) {
+	} elseif ( 'inv' === $context ) {
 		$flourish_classes .= ' full-flourish--investors';
 	}
 

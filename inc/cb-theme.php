@@ -21,6 +21,43 @@ require_once CB_THEME_DIR . '/inc/cb-people-contact.php';
 require_once CB_THEME_DIR . '/inc/cb-blocks.php';
 
 /**
+ * Detect the current site section ("context") from the request URL.
+ *
+ * Pluto has two top-level sections under the marketing site:
+ *   - /property-finance/ (lending)
+ *   - /investors/        (investors)
+ *
+ * Many blocks and the header need to flip colour variants, menus, post
+ * types and CTA URLs based on which section the visitor is in. This
+ * helper centralises the path-sniffing so every caller has identical
+ * detection logic.
+ *
+ * @return string One of 'pf', 'inv', or '' (root / unknown).
+ */
+function cb_get_site_context() {
+	static $context = null;
+	if ( null !== $context ) {
+		return $context;
+	}
+
+	$request_uri = filter_input( INPUT_SERVER, 'REQUEST_URI', FILTER_SANITIZE_URL );
+	$request_uri = is_string( $request_uri ) ? wp_unslash( $request_uri ) : '/';
+	$path        = wp_parse_url( $request_uri, PHP_URL_PATH );
+	$path        = is_string( $path ) ? $path : '/';
+	$path        = trailingslashit( $path );
+
+	if ( 0 === strpos( $path, '/property-finance/' ) ) {
+		$context = 'pf';
+	} elseif ( 0 === strpos( $path, '/investors/' ) ) {
+		$context = 'inv';
+	} else {
+		$context = '';
+	}
+
+	return $context;
+}
+
+/**
  * Editor styles: opt-in so WP loads editor.css in the block editor.
  * With theme.json present, this just adds your custom CSS on top (variables, helpers).
  */

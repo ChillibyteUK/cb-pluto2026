@@ -107,24 +107,16 @@ if ( session_status() === PHP_SESSION_NONE ) {
     	}
 	}
 
-    $request_uri     = filter_input( INPUT_SERVER, 'REQUEST_URI', FILTER_SANITIZE_URL );
-    $request_uri     = is_string( $request_uri ) ? wp_unslash( $request_uri ) : '/';
-    $current_path    = wp_parse_url( $request_uri, PHP_URL_PATH );
-    $current_path    = is_string( $current_path ) ? $current_path : '/';
-    $normalized_path = trailingslashit( $current_path );
+    $context = cb_get_site_context();
 
     $home_url  = '/';
 	$the_menu  = '';
 	$the_class = '';
-    if ( '/' === $current_path ) {
-        $home_url  = '/';
-		$the_menu  = '';
-		$the_class = '';
-    } elseif ( 0 === strpos( $normalized_path, '/property-finance/' ) ) {
+    if ( 'pf' === $context ) {
         $home_url  = '/property-finance/';
 		$the_menu  = 'pf_nav';
 		$the_class = 'navbar-pf';
-    } elseif ( 0 === strpos( $normalized_path, '/investors/' ) ) {
+    } elseif ( 'inv' === $context ) {
         $home_url  = '/investors/';
 		$the_menu  = 'inv_nav';
 		$the_class = 'navbar-inv';

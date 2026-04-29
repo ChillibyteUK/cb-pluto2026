@@ -24214,6 +24214,61 @@ body.cb-team-modal-open {
   filter: brightness(0) invert(1);
 }
 
+/* =========================
+   CB Feature Title
+
+   h2 title preceded by a coloured dot and a 1px line that runs from the
+   dot leftward off the viewport edge. Variant is set by URL context
+   (/property-finance/ → --pf orange, /investors/ → --inv teal).
+
+   Pattern mirrors `_cb_topic_home_hero.scss` line/dot construction.
+   ========================= */
+.cb-feature-title {
+  position: relative;
+  overflow-x: clip;
+}
+.cb-feature-title__heading {
+  position: relative;
+  margin: 0 0 1.25rem;
+  padding-inline-start: 2.5rem;
+  font-weight: var(--fw-medium);
+}
+.cb-feature-title__heading-text {
+  display: inline;
+}
+.cb-feature-title__content {
+  padding-inline-start: 2.5rem;
+}
+.cb-feature-title__content > *:last-child {
+  margin-bottom: 0;
+}
+.cb-feature-title--pf .cb-feature-title__heading::before, .cb-feature-title--inv .cb-feature-title__heading::before {
+  content: "";
+  position: absolute;
+  top: calc(0.5em - 0.7rem);
+  left: -100vw;
+  right: calc(100% - 0.75rem);
+  height: 1px;
+  background-color: var(--cb-feature-title-line-color);
+}
+.cb-feature-title--pf .cb-feature-title__heading::after, .cb-feature-title--inv .cb-feature-title__heading::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: calc(0.5em - 0.7rem);
+  width: 1.5rem;
+  height: 1.5rem;
+  background: var(--cb-feature-title-dot-image) right center/auto 100% no-repeat;
+}
+.cb-feature-title--pf {
+  --cb-feature-title-dot-image: url("../img/dot-line-orange.svg");
+  --cb-feature-title-line-color: var(--col-orange-1000);
+}
+.cb-feature-title--inv {
+  --cb-feature-title-dot-image: url("../img/dot-line-teal.svg");
+  --cb-feature-title-line-color: var(--col-green-teal-400);
+}
+
 .home-page__hero {
   position: relative;
   min-height: 600px;
