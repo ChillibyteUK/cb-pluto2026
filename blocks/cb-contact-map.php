@@ -33,6 +33,7 @@ if ( ! empty( $block['className'] ) ) {
 // Gutenberg colour support.
 $bg = ! empty( $block['backgroundColor'] ) ? 'has-' . $block['backgroundColor'] . '-background-color has-background' : '';
 $fg = ! empty( $block['textColor'] ) ? 'has-' . $block['textColor'] . '-color has-text-color' : '';
+
 $inline_style = '';
 if ( ! empty( $block['style']['color']['background'] ) ) {
 	$inline_style .= 'background-color:' . $block['style']['color']['background'] . ';';

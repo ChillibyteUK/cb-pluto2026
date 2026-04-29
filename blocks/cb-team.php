@@ -117,7 +117,8 @@ $contact_form_id = function_exists( 'cb_team_get_contact_form_id' ) ? cb_team_ge
 $contact_field_ids = ( $contact_form_id && function_exists( 'cb_team_resolve_form_fields' ) )
 	? cb_team_resolve_form_fields( $contact_form_id )
 	: null;
-$recipient_field_id = $contact_field_ids && ! empty( $contact_field_ids['recipient'] )
+
+	$recipient_field_id = $contact_field_ids && ! empty( $contact_field_ids['recipient'] )
 	? (int) $contact_field_ids['recipient']
 	: 0;
 
