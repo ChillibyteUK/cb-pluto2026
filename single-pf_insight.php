@@ -1,4 +1,4 @@
-<?php
+<?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- Ignoring to match post type name.
 /**
  * Template for displaying a single Property Finance Insight.
  *
@@ -11,7 +11,7 @@ get_header();
 <main id="main" class="cb-post cb-post--pf">
 	<div class="container pt-4 pb-5">
 		<div id="breadcrumbs" class="mb-3">
-			<a href="/investors/">Home</a> &raquo; <a href="/investors/insights/">Insights</a> &raquo; <?= esc_html( get_the_title() ); ?>
+			<a href="/investors/">Home</a> &raquo; <a href="/investors/insights/">Newsroom</a> &raquo; <?= esc_html( get_the_title() ); ?>
 		</div>
 		<div class="row">
 			<div class="col-lg-8">
