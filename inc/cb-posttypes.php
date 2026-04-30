@@ -54,6 +54,8 @@ function cb_register_post_types() {
 
 	cb_register_investor_insight();
 	cb_register_pf_insight();
+	cb_register_investor_portfolio();
+	cb_register_pf_portfolio();
 }
 
 add_action( 'init', 'cb_register_post_types' );
@@ -155,7 +157,7 @@ function cb_register_pf_insight() {
 			'feeds'      => false,
 		),
 		'capability_type'    => 'post',
-		'menu_position'      => 6,
+		'menu_position'      => 8,
 		'menu_icon'          => 'dashicons-building',
 		'supports'           => array( 'title', 'editor', 'excerpt', 'thumbnail', 'revisions', 'author', 'custom-fields' ),
 	);
@@ -164,9 +166,115 @@ function cb_register_pf_insight() {
 }
 
 /**
- * Add explicit rewrite rules so the editable WP Pages at /investors/insights/
- * and /property-finance/insights/ resolve to the Page, while child URLs
- * resolve to the matching CPT single.
+ * Register the Investor Portfolio post type.
+ *
+ * Lives under /investors/portfolio/%postname%/. The archive is disabled because
+ * /investors/portfolio/ is an editable WP Page; explicit rewrite rules below
+ * keep page-vs-CPT resolution unambiguous.
+ *
+ * @return void
+ */
+function cb_register_investor_portfolio() {
+	$labels = array(
+		'name'                  => _x( 'Investor Portfolio', 'post type general name', 'cb-pluto2026' ),
+		'singular_name'         => _x( 'Investor Portfolio Item', 'post type singular name', 'cb-pluto2026' ),
+		'menu_name'             => _x( 'Investor Portfolio', 'admin menu', 'cb-pluto2026' ),
+		'name_admin_bar'        => _x( 'Investor Portfolio Item', 'add new on admin bar', 'cb-pluto2026' ),
+		'add_new'               => _x( 'Add New', 'investor portfolio item', 'cb-pluto2026' ),
+		'add_new_item'          => __( 'Add New Investor Portfolio Item', 'cb-pluto2026' ),
+		'new_item'              => __( 'New Investor Portfolio Item', 'cb-pluto2026' ),
+		'edit_item'             => __( 'Edit Investor Portfolio Item', 'cb-pluto2026' ),
+		'view_item'             => __( 'View Investor Portfolio Item', 'cb-pluto2026' ),
+		'all_items'             => __( 'All Investor Portfolio Items', 'cb-pluto2026' ),
+		'search_items'          => __( 'Search Investor Portfolio', 'cb-pluto2026' ),
+		'not_found'             => __( 'No investor portfolio items found.', 'cb-pluto2026' ),
+		'not_found_in_trash'    => __( 'No investor portfolio items found in Trash.', 'cb-pluto2026' ),
+		'featured_image'        => __( 'Featured image', 'cb-pluto2026' ),
+		'set_featured_image'    => __( 'Set featured image', 'cb-pluto2026' ),
+		'remove_featured_image' => __( 'Remove featured image', 'cb-pluto2026' ),
+		'use_featured_image'    => __( 'Use as featured image', 'cb-pluto2026' ),
+	);
+
+	$args = array(
+		'labels'             => $labels,
+		'public'             => true,
+		'publicly_queryable' => true,
+		'show_ui'            => true,
+		'show_in_menu'       => true,
+		'show_in_rest'       => false,
+		'query_var'          => true,
+		'has_archive'        => false,
+		'rewrite'            => array(
+			'slug'       => 'investors/portfolio',
+			'with_front' => false,
+			'feeds'      => false,
+		),
+		'capability_type'    => 'post',
+		'menu_position'      => 6,
+		'menu_icon'          => 'dashicons-chart-line',
+		'supports'           => array( 'title', 'thumbnail', 'revisions', 'author' ),
+	);
+
+	register_post_type( 'investor_portfolio', $args );
+}
+
+/**
+ * Register the Property Finance Portfolio post type.
+ *
+ * Lives under /property-finance/portfolio/%postname%/. The archive is disabled
+ * because /property-finance/portfolio/ is an editable WP Page; explicit
+ * rewrite rules below keep page-vs-CPT resolution unambiguous.
+ *
+ * @return void
+ */
+function cb_register_pf_portfolio() {
+	$labels = array(
+		'name'                  => _x( 'Property Finance Portfolio', 'post type general name', 'cb-pluto2026' ),
+		'singular_name'         => _x( 'Property Finance Portfolio Item', 'post type singular name', 'cb-pluto2026' ),
+		'menu_name'             => _x( 'PF Portfolio', 'admin menu', 'cb-pluto2026' ),
+		'name_admin_bar'        => _x( 'PF Portfolio Item', 'add new on admin bar', 'cb-pluto2026' ),
+		'add_new'               => _x( 'Add New', 'pf portfolio item', 'cb-pluto2026' ),
+		'add_new_item'          => __( 'Add New Property Finance Portfolio Item', 'cb-pluto2026' ),
+		'new_item'              => __( 'New Property Finance Portfolio Item', 'cb-pluto2026' ),
+		'edit_item'             => __( 'Edit Property Finance Portfolio Item', 'cb-pluto2026' ),
+		'view_item'             => __( 'View Property Finance Portfolio Item', 'cb-pluto2026' ),
+		'all_items'             => __( 'All Property Finance Portfolio Items', 'cb-pluto2026' ),
+		'search_items'          => __( 'Search Property Finance Portfolio', 'cb-pluto2026' ),
+		'not_found'             => __( 'No property finance portfolio items found.', 'cb-pluto2026' ),
+		'not_found_in_trash'    => __( 'No property finance portfolio items found in Trash.', 'cb-pluto2026' ),
+		'featured_image'        => __( 'Featured image', 'cb-pluto2026' ),
+		'set_featured_image'    => __( 'Set featured image', 'cb-pluto2026' ),
+		'remove_featured_image' => __( 'Remove featured image', 'cb-pluto2026' ),
+		'use_featured_image'    => __( 'Use as featured image', 'cb-pluto2026' ),
+	);
+
+	$args = array(
+		'labels'             => $labels,
+		'public'             => true,
+		'publicly_queryable' => true,
+		'show_ui'            => true,
+		'show_in_menu'       => true,
+		'show_in_rest'       => false,
+		'query_var'          => true,
+		'has_archive'        => false,
+		'rewrite'            => array(
+			'slug'       => 'property-finance/portfolio',
+			'with_front' => false,
+			'feeds'      => false,
+		),
+		'capability_type'    => 'post',
+		'menu_position'      => 8,
+		'menu_icon'          => 'dashicons-building',
+		'supports'           => array( 'title', 'thumbnail', 'revisions', 'author' ),
+	);
+
+	register_post_type( 'pf_portfolio', $args );
+}
+
+/**
+ * Add explicit rewrite rules so the editable WP Pages at the section index
+ * URLs resolve to the Page, while child URLs resolve to the matching CPT
+ * single.
  *
  * Without these, WP's rewrite resolution can be ambiguous when a Page slug
  * matches a CPT rewrite slug.
@@ -190,6 +298,21 @@ function cb_insights_rewrite_rules() {
 		'index.php?post_type=investor_insight&name=$matches[1]',
 		'top'
 	);
+	add_rewrite_rule(
+		'^investors/portfolio/?$',
+		'index.php?pagename=investors/portfolio',
+		'top'
+	);
+	add_rewrite_rule(
+		'^investors/portfolio/page/([0-9]{1,})/?$',
+		'index.php?pagename=investors/portfolio&paged=$matches[1]',
+		'top'
+	);
+	add_rewrite_rule(
+		'^investors/portfolio/([^/]+)/?$',
+		'index.php?post_type=investor_portfolio&name=$matches[1]',
+		'top'
+	);
 
 	// Property Finance side.
 	add_rewrite_rule(
@@ -207,5 +330,38 @@ function cb_insights_rewrite_rules() {
 		'index.php?post_type=pf_insight&name=$matches[1]',
 		'top'
 	);
+	add_rewrite_rule(
+		'^property-finance/portfolio/?$',
+		'index.php?pagename=property-finance/portfolio',
+		'top'
+	);
+	add_rewrite_rule(
+		'^property-finance/portfolio/page/([0-9]{1,})/?$',
+		'index.php?pagename=property-finance/portfolio&paged=$matches[1]',
+		'top'
+	);
+	add_rewrite_rule(
+		'^property-finance/portfolio/([^/]+)/?$',
+		'index.php?post_type=pf_portfolio&name=$matches[1]',
+		'top'
+	);
 }
 add_action( 'init', 'cb_insights_rewrite_rules', 20 );
+
+/**
+ * Disable the block editor for portfolio post types.
+ *
+ * These items are edited via ACF field groups rather than Gutenberg content.
+ *
+ * @param bool   $use_block_editor Whether the post type can use the block editor.
+ * @param string $post_type        Post type slug.
+ * @return bool
+ */
+function cb_disable_block_editor_for_portfolio( $use_block_editor, $post_type ) {
+	if ( in_array( $post_type, array( 'investor_portfolio', 'pf_portfolio' ), true ) ) {
+		return false;
+	}
+
+	return $use_block_editor;
+}
+add_filter( 'use_block_editor_for_post_type', 'cb_disable_block_editor_for_portfolio', 10, 2 );

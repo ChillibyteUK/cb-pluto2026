@@ -22773,6 +22773,15 @@ span a {
   overflow: hidden;
 }
 
+.swiper-wrapper[aria-live=polite],
+.swiper-wrapper[aria-live=assertive] {
+  position: relative;
+  left: auto;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
 .card:focus-within,
 .hub-team__card:focus-within {
   box-shadow: 0 0 0 3px rgba(255, 139, 56, 0.5);
@@ -24377,6 +24386,42 @@ body.cb-team-modal-open {
   height: 100%;
 }
 
+.cb-portfolio-index .portfolio__card {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  border-radius: 0.5rem;
+  background-color: var(--col-green-dark-400);
+  text-decoration: none;
+  overflow: hidden;
+}
+.cb-portfolio-index .portfolio__card:hover .portfolio__card-image {
+  transform: scale(1.05);
+}
+.cb-portfolio-index .portfolio__card-image-wrapper {
+  overflow: hidden;
+}
+.cb-portfolio-index .portfolio__card-image {
+  width: 100%;
+  aspect-ratio: 16/9;
+  -o-object-fit: cover;
+  object-fit: cover;
+  transition: transform var(--transition);
+}
+.cb-portfolio-index .portfolio__card-inner {
+  padding: 0.5rem 1rem 1rem 1rem;
+}
+.cb-portfolio-index .portfolio__card-content {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5rem;
+}
+.cb-portfolio-index .portfolio__card-title {
+  font-size: var(--fs-600);
+  font-weight: var(--fw-semibold);
+  color: var(--col-green-dark-1100);
+}
+
 .home-page__hero {
   position: relative;
   min-height: 600px;
@@ -24502,6 +24547,55 @@ body.cb-team-modal-open {
 }
 .home-page__card--investing .home-page__card-title {
   background-color: var(--col-green-teal-400);
+}
+
+.case-study {
+  margin-top: calc(var(--h-top) + 6rem);
+}
+
+.cb-portfolio-gallery {
+  width: 100%;
+  min-width: 0;
+}
+.cb-portfolio-gallery .swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+.cb-portfolio-gallery__main-swiper {
+  width: 100%;
+  aspect-ratio: 16/9;
+}
+.cb-portfolio-gallery__thumbs-swiper {
+  box-sizing: border-box;
+  padding: 0;
+}
+.cb-portfolio-gallery__thumbs-swiper .swiper-slide {
+  aspect-ratio: 16/9;
+  opacity: 0.4;
+  cursor: pointer;
+}
+.cb-portfolio-gallery__thumbs-swiper .swiper-slide-thumb-active {
+  opacity: 1;
+}
+.cb-portfolio-gallery__thumb-image {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+.sidebar-highlight {
+  background-color: var(--col-green-dark-100);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: var(--fs-400);
+  display: flex;
+  -moz-column-gap: 0.5rem;
+  column-gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
 body {

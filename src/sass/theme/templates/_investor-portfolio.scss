@@ -1,0 +1,51 @@
+.case-study {
+  margin-top: calc(var(--h-top) + 6rem);
+}
+.cb-portfolio-gallery {
+  width: 100%;
+  min-width: 0;
+
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__main-swiper {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+  }
+
+  &__thumbs-swiper {
+    // height: 6rem;
+    box-sizing: border-box;
+    padding: 0;
+  }
+
+  &__thumbs-swiper .swiper-slide {
+    aspect-ratio: 16 / 9;
+    opacity: 0.4;
+    cursor: pointer;
+  }
+
+  &__thumbs-swiper .swiper-slide-thumb-active {
+    opacity: 1;
+  }
+
+  &__thumb-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.sidebar-highlight {
+  background-color: var(--col-green-dark-100);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: var(--fs-400);
+  display: flex;
+  column-gap: 0.5rem;
+  flex-wrap: wrap;
+}

@@ -258,6 +258,15 @@ span a {
   overflow: hidden;
 }
 
+.swiper-wrapper[aria-live="polite"],
+.swiper-wrapper[aria-live="assertive"] {
+  position: relative;
+  left: auto;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
 // ============================================================================
 // Focus-within for compound components
 // ============================================================================

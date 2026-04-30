@@ -1,0 +1,41 @@
+.cb-portfolio-index {
+    .portfolio__card {
+        display: flex;
+        flex-direction: column;
+        row-gap: 1rem;
+        border-radius: 0.5rem;
+        background-color: var(--col-green-dark-400);
+        text-decoration: none;
+        overflow: hidden;
+
+        &:hover {
+            .portfolio__card-image {
+                transform: scale(1.05);
+            }
+        }
+
+        &-image-wrapper {
+            overflow: hidden;
+        }
+        &-image {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            transition: transform var(--transition);
+        }
+
+        &-inner {
+            padding: 0.5rem 1rem 1rem 1rem;
+        }
+        &-content {
+            display: flex;
+            flex-direction: column;
+            row-gap: 0.5rem;
+        }
+        &-title {
+            font-size: var(--fs-600);
+            font-weight: var(--fw-semibold);
+            color: var(--col-green-dark-1100);
+        }
+    }
+}
