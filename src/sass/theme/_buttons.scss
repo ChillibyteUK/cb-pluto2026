@@ -30,7 +30,7 @@
     color var(--transition);
 
   &:focus-visible {
-    outline: 2px solid var(--col-blue-400);
+    outline: 2px solid var(--col-orange-1000);
     outline-offset: 2px;
   }
 
@@ -48,32 +48,12 @@
 .button--primary {
   isolation: isolate;
   position: relative;
-  background: linear-gradient(
-    to right,
-    var(--col-blue-400),
-    var(--col-blue-700)
-  );
+  background-color: var(--col-green-dark-1000);
   color: var(--col-white);
-  border-color: var(--col-blue-600);
-
-  &::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    background: var(--col-blue-900);
-    opacity: 0;
-    transition: opacity var(--transition);
-    z-index: -1;
-  }
-
+  transition: background-color var(--transition);
   &:hover {
     color: var(--col-white);
-    border-color: var(--col-white);
-
-    &::after {
-      opacity: 1;
-    }
+    background-color: var(--col-green-dark-800);
   }
 }
 

@@ -21937,7 +21937,7 @@ strong {
   transition: background var(--transition), background-color var(--transition), border-color var(--transition), color var(--transition);
 }
 .button:focus-visible {
-  outline: 2px solid var(--col-blue-400);
+  outline: 2px solid var(--col-orange-1000);
   outline-offset: 2px;
 }
 .button:active {
@@ -21951,26 +21951,13 @@ strong {
 .button--primary {
   isolation: isolate;
   position: relative;
-  background: linear-gradient(to right, var(--col-blue-400), var(--col-blue-700));
+  background-color: var(--col-green-dark-1000);
   color: var(--col-white);
-  border-color: var(--col-blue-600);
-}
-.button--primary::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: var(--col-blue-900);
-  opacity: 0;
-  transition: opacity var(--transition);
-  z-index: -1;
+  transition: background-color var(--transition);
 }
 .button--primary:hover {
   color: var(--col-white);
-  border-color: var(--col-white);
-}
-.button--primary:hover::after {
-  opacity: 1;
+  background-color: var(--col-green-dark-800);
 }
 
 .button--secondary {
