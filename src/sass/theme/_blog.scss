@@ -131,7 +131,7 @@
 // ─── Single post ─────────────────────────────────────────────────────────────
 
 .cb-post {
-  margin-top: var(--h-top);
+  margin-top: calc(var(--h-top) + 4rem);
   &__hero {
     width: 100%;
     aspect-ratio: 16 / 9;

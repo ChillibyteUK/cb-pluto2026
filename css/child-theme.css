@@ -22409,7 +22409,7 @@ header:has(.navbar-collapse.collapsing) .navbar-bottom {
 }
 
 .cb-post {
-  margin-top: var(--h-top);
+  margin-top: calc(var(--h-top) + 4rem);
 }
 .cb-post__hero {
   width: 100%;
