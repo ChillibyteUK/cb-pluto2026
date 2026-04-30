@@ -22111,7 +22111,7 @@ header {
   /* Toggler */
   /* Mobile */
 }
-header.scrolled .navbar-bottom {
+header .navbar-bottom {
   background-color: hsla(255, 255%, 255%, 0.8) !important;
 }
 header .navbar-top {
@@ -22137,18 +22137,18 @@ header .navbar-nav {
 header .nav-link {
   font-family: var(--ff-ui);
   font-size: var(--fs-400);
-  color: var(--col-white);
+  color: var(--col-black);
   text-decoration: none;
   transition: color var(--transition);
 }
 header .nav-link:hover, header .nav-link:focus, header .nav-link:focus-visible {
-  color: var(--col-orange-1000);
-}
-header.scrolled .nav-link {
   color: var(--col-grey-900);
 }
+header.scrolled .nav-link {
+  color: var(--col-black);
+}
 header.scrolled .nav-link:hover, header.scrolled .nav-link:focus, header.scrolled .nav-link:focus-visible {
-  color: var(--col-orange-1000);
+  color: var(--col-grey-900);
 }
 header .current_page_item > .nav-link,
 header .current_page_parent > .nav-link,
@@ -22157,7 +22157,8 @@ header .current-menu-parent > .nav-link,
 header .current-menu-ancestor > .nav-link,
 header .dropdown.current-page-ancestor > .nav-link,
 header .dropdown.current-menu-item > .nav-link {
-  color: var(--col-orange-400);
+  color: var(--col-grey-900);
+  font-weight: var(--fw-semibold);
 }
 header .site-logo {
   display: block;
@@ -22199,8 +22200,8 @@ header .dropdown-divider-label {
   pointer-events: none;
 }
 header .navbar-toggler {
-  color: var(--col-white);
-  border-color: rgba(255, 255, 255, 0.5);
+  color: var(--col-black);
+  border-color: rgba(0, 0, 0, 0.5);
 }
 @media (max-width: 991px) {
   header .navbar-nav {

@@ -5,9 +5,10 @@
 header {
   z-index: 1030;
   background-color: transparent;
+  // background-color: hsl(255 255 255 / 0.3) !important;
 
 
-  &.scrolled .navbar-bottom {
+  .navbar-bottom {
     background-color: hsl(255 255 255 / 0.8) !important;
   }
 
@@ -40,24 +41,25 @@ header {
   .nav-link {
     font-family: var(--ff-ui);
     font-size: var(--fs-400);
-    color: var(--col-white);
+    // color: var(--col-white);
+    color: var(--col-black);
     text-decoration: none;
     transition: color var(--transition);
 
     &:hover,
     &:focus,
     &:focus-visible {
-      color: var(--col-orange-1000);
+      color: var(--col-grey-900);
     }
   }
 
   &.scrolled .nav-link {
-    color: var(--col-grey-900);
+    color: var(--col-black);
 
     &:hover,
     &:focus,
     &:focus-visible {
-      color: var(--col-orange-1000);
+      color: var(--col-grey-900);
     }
   }
 
@@ -69,7 +71,8 @@ header {
   .current-menu-ancestor > .nav-link,
   .dropdown.current-page-ancestor > .nav-link,
   .dropdown.current-menu-item > .nav-link {
-    color: var(--col-orange-400);
+    color: var(--col-grey-900);
+    font-weight: var(--fw-semibold);
   }
 
   /* Logo */
@@ -127,8 +130,8 @@ header {
 
   /* Toggler */
   .navbar-toggler {
-    color: var(--col-white);
-    border-color: rgba(255, 255, 255, 0.5);
+    color: var(--col-black);
+    border-color: rgba(0, 0, 0, 0.5);
   }
 
   /* Mobile */
