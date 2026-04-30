@@ -10,11 +10,9 @@ get_header();
 ?>
 <main id="main" class="cb-post cb-post--pf">
 	<div class="container pt-4 pb-5">
-		<?php
-		if ( function_exists( 'yoast_breadcrumb' ) ) {
-			yoast_breadcrumb( '<div id="breadcrumbs" class="mb-3">', '</div>' );
-		}
-		?>
+		<div id="breadcrumbs" class="mb-3">
+			<a href="/investors/">Home</a> &raquo; <a href="/investors/insights/">Insights</a> &raquo; <?= esc_html( get_the_title() ); ?>
+		</div>
 		<div class="row">
 			<div class="col-lg-8">
 				<?php if ( has_post_thumbnail() ) { ?>

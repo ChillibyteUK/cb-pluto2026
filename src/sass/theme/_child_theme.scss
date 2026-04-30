@@ -67,15 +67,19 @@ main {
 
 #breadcrumbs {
   font-family: var(--ff-ui);
-  font-size: var(--fs-400);
-  font-weight: var(--fw-500);
+  font-size: var(--fs-300);
+  font-weight: var(--fw-regular);
   line-height: var(--lh-300);
   letter-spacing: var(--ls-2);
 
   a {
     text-decoration: none;
-    font-weight: var(--fw-500);
+    font-weight: var(--fw-medium);
     color: var(--col-green-dark-1000);
+    transition: color var(--transition);
+    &:hover {
+      color: var(--col-orange-1000);
+    }
   }
 }
 
