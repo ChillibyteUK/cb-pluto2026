@@ -34,7 +34,7 @@ $posts = $query->posts;
 $lead  = array_shift( $posts );
 ?>
 <section id="<?= esc_attr( $block_id ); ?>" class="cb-insights-index">
-	<div class="container py-5">
+	<div class="container pb-5">
 		<div class="row g-4">
 			<div class="col-12">
 				<?php
@@ -62,7 +62,7 @@ $lead  = array_shift( $posts );
 				<div class="col-md-4">
 					<a href="<?= esc_url( get_permalink( $post_item ) ); ?>" class="cb-insights-index__card cb-news-card">
 						<?php if ( has_post_thumbnail( $post_item ) ) : ?>
-							<div class="cb-news-card__image cb-news-card__image--4-3">
+							<div class="cb-news-card__image cb-news-card__image--16-9">
 								<?= get_the_post_thumbnail( $post_item, 'medium_large' ); ?>
 							</div>
 						<?php endif; ?>
