@@ -24,7 +24,7 @@
     align-items: stretch;
     overflow: hidden;
     border-radius: 1rem;
-    background-color: var(--col-white);
+    background-color: var(--col-grey-400);
 
     @media (max-width: 767.98px) {
       grid-template-columns: 1fr;
