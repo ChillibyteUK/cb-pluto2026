@@ -36,6 +36,14 @@ if ( isset( $block['className'] ) ) {
 $bg = ! empty( $block['backgroundColor'] ) ? 'has-' . $block['backgroundColor'] . '-background-color' : '';
 $fg = ! empty( $block['textColor'] ) ? 'has-' . $block['textColor'] . '-color' : '';
 
+$context          = cb_get_site_context();
+$flourish_classes = 'full-flourish';
+if ( 'pf' === $context ) {
+	$flourish_classes .= ' full-flourish--lending';
+} elseif ( 'inv' === $context ) {
+	$flourish_classes .= ' full-flourish--investors';
+}
+
 $block_uid = 'cb-team-' . uniqid();
 
 // Editor preview message when nothing chosen.
@@ -138,7 +146,7 @@ $icon_email = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" wid
 $icon_phone = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" width="18" height="18"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.5 11.5 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1.04l-2.22 2.19Z"/></svg>';
 $icon_li    = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" width="18" height="18"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.75h4V21H3V9.75ZM9.5 9.75h3.83v1.54h.05c.53-1 1.84-2.06 3.79-2.06 4.05 0 4.8 2.66 4.8 6.13V21h-4v-4.86c0-1.16-.02-2.65-1.62-2.65-1.62 0-1.86 1.27-1.86 2.57V21h-4V9.75Z"/></svg>';
 ?>
-<section id="<?= esc_attr( $block_uid ); ?>" class="cb-team full-flourish <?= esc_attr( trim( $bg . ' ' . $fg . ' ' . $custom_classes ) ); ?>" data-cb-team-block>
+<section id="<?= esc_attr( $block_uid ); ?>" class="cb-team <?= esc_attr( trim( $flourish_classes . ' ' . $bg . ' ' . $fg . ' ' . $custom_classes ) ); ?>" data-cb-team-block>
 	<div class="container py-5">
 		<?php if ( 0 === $total_people ) : ?>
 			<p class="text-muted"><em><?php esc_html_e( 'No people found in the selected team(s).', 'cb-pluto2026' ); ?></em></p>

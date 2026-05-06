@@ -32,20 +32,19 @@ if ( ! $query->have_posts() ) {
 
 $posts = $query->posts;
 $lead  = array_shift( $posts );
+
+$lead_has_image = has_post_thumbnail( $lead );
+$lead_classes   = 'cb-insights-index__featured-card cb-news-card';
+if ( ! $lead_has_image ) {
+	$lead_classes .= ' cb-insights-index__featured-card--no-image';
+}
 ?>
 <section id="<?= esc_attr( $block_id ); ?>" class="cb-insights-index">
 	<div class="container pb-5">
 		<div class="row g-4">
 			<div class="col-12">
-				<?php
-				setup_postdata( $lead );
-				$lead_classes = array( 'cb-insights-index__featured-card cb-news-card' );
-				if ( ! has_post_thumbnail( $lead ) ) {
-					$lead_classes[] = 'cb-insights-index__featured-card--no-image';
-				}
-				?>
-				<a href="<?= esc_url( get_permalink( $lead ) ); ?>" class="<?= esc_attr( implode( ' ', $lead_classes ) ); ?>">
-					<?php if ( has_post_thumbnail( $lead ) ) : ?>
+				<a href="<?= esc_url( get_permalink( $lead ) ); ?>" class="<?= esc_attr( $lead_classes ); ?>">
+					<?php if ( $lead_has_image ) : ?>
 						<div class="cb-insights-index__featured-image">
 							<?= get_the_post_thumbnail( $lead, 'large' ); ?>
 						</div>
@@ -67,7 +66,7 @@ $lead  = array_shift( $posts );
 							</div>
 						<?php endif; ?>
 						<h3 class="cb-news-card__title"><?= esc_html( get_the_title( $post_item ) ); ?></h3>
-						<div class="cb-insights-index__excerpt cb-news-card__excerpt"><?= wp_kses_post( get_the_excerpt( $post_item ) ); ?></div>
+						<div class="cb-news-card__excerpt"><?= wp_kses_post( get_the_excerpt( $post_item ) ); ?></div>
 						<div class="cb-news-card__link">Learn more</div>
 					</a>
 				</div>
