@@ -13,6 +13,37 @@
   &.has-grey-400-background-color {
     color: var(--col-grey-900);
 
+    .cb-team__filter {
+      .form-control,
+      .form-select {
+        background-color: rgba(255 255 255 / 0.7);
+        border-color: rgba(26 26 26 / 0.25);
+        color: var(--col-grey-900);
+      }
+
+      .form-control::placeholder {
+        color: rgba(26 26 26 / 0.65);
+      }
+
+      .form-select option:hover,
+      .form-select option:focus,
+      .form-select option:checked {
+        color: var(--col-grey-400);
+        background-color: var(--col-grey-900);
+        box-shadow: 0 0 0 100px var(--col-grey-900) inset;
+      }
+
+      .form-select {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%231a1a1a' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+      }
+
+      #cb-team-filter-reset {
+        color: var(--col-grey-900);
+        border-color: rgba(26 26 26 / 0.25);
+        background-color: rgba(255 255 255 / 0.7);
+      }
+    }
+
     .cb-team__name-btn,
     .cb-team__role-btn,
     .cb-team__role,
