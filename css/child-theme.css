@@ -23674,6 +23674,25 @@ span a {
      ancestor styles automatically.
      -------------------------------------------------- */
 }
+.cb-team.has-grey-400-background-color {
+  color: var(--col-grey-900);
+}
+.cb-team.has-grey-400-background-color .cb-team__name-btn,
+.cb-team.has-grey-400-background-color .cb-team__role-btn,
+.cb-team.has-grey-400-background-color .cb-team__role,
+.cb-team.has-grey-400-background-color .cb-team__contacts a,
+.cb-team.has-grey-400-background-color .cb-team__contacts .cb-team__contact-btn {
+  color: var(--col-grey-900);
+}
+.cb-team.has-grey-400-background-color .cb-team__contacts a,
+.cb-team.has-grey-400-background-color .cb-team__contacts .cb-team__contact-btn {
+  border-color: rgba(26, 26, 26, 0.35);
+}
+.cb-team.has-grey-400-background-color .cb-team__contacts a:hover svg, .cb-team.has-grey-400-background-color .cb-team__contacts a:focus-visible svg,
+.cb-team.has-grey-400-background-color .cb-team__contacts .cb-team__contact-btn:hover svg,
+.cb-team.has-grey-400-background-color .cb-team__contacts .cb-team__contact-btn:focus-visible svg {
+  color: var(--col-grey-400);
+}
 .cb-team.is-empty .cb-team__group {
   display: none;
 }
