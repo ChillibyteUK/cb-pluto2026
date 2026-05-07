@@ -30,14 +30,14 @@ if ( 'pf' === $context ) {
 				the_row();
 				$card_link = get_sub_field( 'link' );
 				?>
-				<div class="col-12 col-md-6 col-lg-4">
-					<a href="<?php echo esc_url( $card_link['url'] ); ?>" class="cb-nav-cards__card full-flourish full-flourish--flip <?= esc_attr( $flourish_variant ); ?>" target="<?php echo esc_attr( $card_link['target'] ); ?>">
-						<div class="cb-nav-cards__content">
-							<h3 class="cb-nav-cards__title"><?php the_sub_field( 'title' ); ?></h3>
-							<p class="cb-link-dot">Find out more</p>
-						</div>
-					</a>
-				</div>
+			<div class="col-12 col-md-6 col-lg-4">
+				<a href="<?php echo esc_url( $card_link['url'] ); ?>" class="cb-nav-cards__card full-flourish full-flourish--flip <?= esc_attr( $flourish_variant ); ?>" target="<?php echo esc_attr( $card_link['target'] ); ?>">
+					<div class="cb-nav-cards__content">
+						<h3 class="cb-nav-cards__title"><?php the_sub_field( 'title' ); ?></h3>
+						<p class="cb-link-dot">Find out more</p>
+					</div>
+				</a>
+			</div>
 				<?php
 			}
 			?>
