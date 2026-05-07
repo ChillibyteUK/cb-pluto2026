@@ -1,0 +1,75 @@
+{
+  "key": "group_cb_nav_cards",
+  "title": "CB Nav Cards",
+  "fields": [
+    {
+      "key": "field_cb_nav_cards_title",
+      "label": "CB Nav Cards",
+      "name": "title",
+      "type": "message"
+    },
+    {
+      "key": "field_cb_nav_cards_cards_4bc4e130",
+      "label": "Cards",
+      "name": "cards",
+      "type": "repeater",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "layout": "block",
+      "button_label": "Add Row",
+      "sub_fields": [
+        {
+          "key": "field_cb_nav_cards_cards_link_a94728dd",
+          "label": "Link",
+          "name": "link",
+          "type": "link",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "return_format": "array"
+        },
+        {
+          "key": "field_cb_nav_cards_cards_title_d2ae449c",
+          "label": "Title",
+          "name": "title",
+          "type": "text",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "default_value": "",
+          "placeholder": "",
+          "prepend": "",
+          "append": ""
+        }
+      ]
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "block",
+        "operator": "==",
+        "value": "acf/cb-nav-cards"
+      }
+    ]
+  ],
+  "active": 1,
+  "description": "",
+  "modified": 1778152009
+}

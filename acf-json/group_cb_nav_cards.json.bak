@@ -1,0 +1,23 @@
+{
+  "key": "group_cb_nav_cards",
+  "title": "CB Nav Cards",
+  "fields": [
+    {
+      "key": "field_cb_nav_cards_title",
+      "label": "CB Nav Cards",
+      "name": "title",
+      "type": "message"
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "block",
+        "operator": "==",
+        "value": "acf/cb-nav-cards"
+      }
+    ]
+  ],
+  "active": 1,
+  "description": ""
+}

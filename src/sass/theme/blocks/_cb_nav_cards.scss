@@ -1,0 +1,41 @@
+.cb-nav-cards {
+  &__card,
+  &__card.full-flourish {
+    height: 100%;
+    min-height: 250px;
+    display: flex;
+    text-decoration: none;
+    overflow: hidden;
+    border-top-right-radius: 1rem;
+
+    &:hover,
+    &:focus-visible {
+      .cb-link-dot {
+        background-position: center right 0;
+        color: var(--col-grey-900);
+        text-decoration: none;
+
+        &::before {
+          right: 0.75rem;
+        }
+      }
+    }
+  }
+  &__content {
+    margin-top: auto;
+    padding: 1rem;
+  }
+  &__title {
+    font-size: var(--fs-700);
+    font-weight: var(--fw-400);
+    span {
+      font-weight: var(--fw-600);
+    }
+  }
+
+  &--property-finance {
+    .cb-nav-cards__card {
+      background-color: var(--col-green-teal-200);
+    }
+  }
+}
