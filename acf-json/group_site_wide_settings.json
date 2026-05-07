@@ -270,6 +270,52 @@
             "placeholder": "",
             "prepend": "",
             "append": ""
+        },
+        {
+            "key": "field_cb_loan_value_billion",
+            "label": "Loan Value (Billions)",
+            "name": "loan_value_billion",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "Value used in the central loan figures shortcode for the pound figure before \"billion\".",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "min": 0,
+            "max": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "step": "0.1",
+            "prepend": "£",
+            "append": ""
+        },
+        {
+            "key": "field_cb_loan_count",
+            "label": "Loan Count",
+            "name": "loan_count",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "Value used in the central loan figures shortcode, output as \"across more than {y} loans\".",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "min": 0,
+            "max": "",
+            "step": 1,
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": "loans"
         }
     ],
     "location": [
@@ -293,5 +339,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1777392750
+    "modified": 1778146569
 }

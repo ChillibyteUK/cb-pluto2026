@@ -106,6 +106,27 @@ add_shortcode(
 	}
 );
 
+add_shortcode(
+	'central_loan_figures',
+	function () {
+		$loan_value = get_field( 'loan_value_billion', 'option' );
+		$loan_count = get_field( 'loan_count', 'option' );
+
+		if ( '' === (string) $loan_value || '' === (string) $loan_count ) {
+			return '';
+		}
+
+		$loan_value = is_numeric( $loan_value ) ? rtrim( rtrim( number_format( (float) $loan_value, 1, '.', '' ), '0' ), '.' ) : (string) $loan_value;
+		$loan_count = is_numeric( $loan_count ) ? number_format_i18n( (int) $loan_count ) : (string) $loan_count;
+
+		return sprintf(
+			'&pound;%1$s billion across more than %2$s loans',
+			esc_html( $loan_value ),
+			esc_html( $loan_count )
+		);
+	}
+);
+
 /**
  * Generates a social icon shortcode based on the provided type.
  *
