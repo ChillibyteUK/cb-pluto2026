@@ -60,7 +60,7 @@ if ( $hero_bg_url ) {
         <div class="container">
             <div class="d-flex flex-wrap align-items-center justify-content-between mb-5">
                 <h2 class="text-center">PLUTO NEWSROOM</h2>
-                <a href="/property-finance/insights/" class="home-page__newsroom-link">View all news</a>
+                <a href="/property-finance/insights/" class="home-page__newsroom-link">View all lending news</a>
             </div>
             <?php
             $news_posts = new WP_Query(
@@ -107,7 +107,7 @@ if ( $hero_bg_url ) {
         <div class="container py-5">
             <div class="d-flex flex-wrap align-items-center justify-content-between py-5">
                 <h2 class="text-center">PLUTO INSIGHTS</h2>
-                <a href="/investors/insights/" class="home-page__insights-link">View all insights</a>
+                <a href="/investors/insights/" class="home-page__insights-link">View all investor insights</a>
             </div>
             <?php
             $insight_posts = new WP_Query(
