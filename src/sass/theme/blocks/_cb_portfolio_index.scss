@@ -8,12 +8,6 @@
         text-decoration: none;
         overflow: hidden;
 
-        &:hover {
-            a.portfolio__card-image {
-                transform: scale(1.05);
-            }
-        }
-
         &-image-wrapper {
             overflow: hidden;
         }
@@ -36,6 +30,11 @@
             font-size: var(--fs-600);
             font-weight: var(--fw-semibold);
             color: var(--col-green-dark-1100);
+        }
+    }
+    a.portfolio__card:hover {
+        .portfolio__card-image {
+            transform: scale(1.05);
         }
     }
 }

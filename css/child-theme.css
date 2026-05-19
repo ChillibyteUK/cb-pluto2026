@@ -24403,9 +24403,6 @@ body.cb-team-modal-open {
   text-decoration: none;
   overflow: hidden;
 }
-.cb-portfolio-index .portfolio__card:hover a.portfolio__card-image {
-  transform: scale(1.05);
-}
 .cb-portfolio-index .portfolio__card-image-wrapper {
   overflow: hidden;
 }
@@ -24428,6 +24425,9 @@ body.cb-team-modal-open {
   font-size: var(--fs-600);
   font-weight: var(--fw-semibold);
   color: var(--col-green-dark-1100);
+}
+.cb-portfolio-index a.portfolio__card:hover .portfolio__card-image {
+  transform: scale(1.05);
 }
 
 .cb-nav-cards__card, .cb-nav-cards__card.full-flourish {
