@@ -1,6 +1,6 @@
 <?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- Ignoring to match post type name.
 /**
- * Template for displaying single investor portfoliio posts.
+ * Template for displaying single property finance portfolio posts.
  *
  * @package cb-identity2025
  */
@@ -22,7 +22,7 @@ $gallery_id     = wp_unique_id( 'investor-portfolio-gallery-' );
 <main id="main" class="case-study">
 	<div class="container">
 		<div id="breadcrumbs" class="mb-3">
-			<a href="/investors/">Home</a> &raquo; <a href="/investors/portfolio/">Portfolio</a> &raquo; <?= esc_html( get_the_title() ); ?>
+			<a href="/property-finance/">Home</a> &raquo; <a href="/property-finance/portfolio/">Portfolio</a> &raquo; <?= esc_html( get_the_title() ); ?>
 		</div>
 		<div class="row g-5 mb-5">
 			<div class="col-lg-9 pb-5 order-lg-2">
