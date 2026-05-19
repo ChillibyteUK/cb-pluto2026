@@ -1,0 +1,127 @@
+<?php
+/**
+ * Block template for CB Text Pullout.
+ *
+ * @package cb-pluto2026
+ */
+
+defined( 'ABSPATH' ) || exit;
+
+/*
+ACF field manifest format:
+field_name|field_type|values|default_value|wrapper_width|instructions
+
+ACF_FIELDS_START
+order|radio|Text Pullout,Pullout Text|Text Pullout|33|Choose whether text or pullout renders first.
+split|radio|60 40,50 50,40 60|50 50|33|Select text and pullout column split.
+flourish|true_false||0|33|Toggle top flourish striping.
+ACF_FIELDS_END
+*/
+
+// Get ACF fields.
+$col_order       = get_field( 'order' ) ? get_field( 'order' ) : 'Text Pullout';
+$split           = get_field( 'split' ) ? get_field( 'split' ) : '50 50';
+$flourish        = (bool) get_field( 'flourish' );
+$pullout_bullets = (bool) get_field( 'pullout_bullets' );
+
+// Determine the section (lending / investors) from the current URL so the
+// flourish utility can pick up the correct colour variant.
+$flourish_classes = '';
+if ( $flourish ) {
+	$flourish_classes = 'full-flourish';
+	$context          = cb_get_site_context();
+	if ( 'pf' === $context ) {
+		$flourish_classes .= ' full-flourish--lending';
+	} elseif ( 'inv' === $context ) {
+		$flourish_classes .= ' full-flourish--investors';
+	}
+
+	// Mirror the flourish when the pullout sits on the left so the SVG curve
+	// anchors to the right edge of the section.
+	if ( 'Pullout Text' === $col_order ) {
+		$flourish_classes .= ' full-flourish--flip';
+	}
+}
+
+// Extract custom classes (filter out wp-generated ones).
+$custom_classes = '';
+if ( isset( $block['className'] ) ) {
+	$class_array    = explode( ' ', $block['className'] );
+	$filtered       = array_filter(
+		$class_array,
+		function ( $item ) {
+			return ! preg_match( '/^wp-/', $item );
+		}
+	);
+	$custom_classes = implode( ' ', $filtered );
+}
+$classes = $custom_classes ? $custom_classes : '';
+
+// Support Gutenberg color picker.
+$bg = ! empty( $block['backgroundColor'] ) ? 'has-' . $block['backgroundColor'] . '-background-color' : '';
+$fg = ! empty( $block['textColor'] ) ? 'has-' . $block['textColor'] . '-color' : '';
+
+$modifier_classes = '';
+
+// Unique ID.
+$block_uid = 'text-pullout-' . uniqid();
+
+// Column widths (BS col-md-N). text-col-N / 12 = the boundary fraction.
+if ( '60 40' === $split ) {
+	$text_col_n    = 7;
+	$pullout_col_n = 5;
+} elseif ( '40 60' === $split ) {
+	$text_col_n    = 5;
+	$pullout_col_n = 7;
+} else {
+	$text_col_n    = 6;
+	$pullout_col_n = 6;
+}
+
+/**
+ * Render the text content (title + wysiwyg + link). Shared by both layouts.
+ */
+$render_text = function () {
+	if ( get_field( 'title' ) ) {
+		echo '<h2 class="cb-text-pullout__title has-700-font-size text-uppercase mb-4">' . wp_kses_post( get_field( 'title' ) ) . '</h2>';
+	}
+	?>
+	<div class="cb-text-pullout__content">
+		<?= wp_kses_post( get_field( 'content' ) ); ?>
+		<?php
+		if ( get_field( 'link' ) ) {
+			$l = get_field( 'link' );
+			?>
+			<p class="mt-4"><a class="cb-link-dot" href="<?= esc_url( $l['url'] ); ?>"
+				target="<?= esc_attr( $l['target'] ? $l['target'] : '_self' ); ?>"><?= esc_html( $l['title'] ); ?></a>
+			</p>
+			<?php
+		}
+		?>
+	</div>
+	<?php
+};
+?>
+<section id="<?= esc_attr( $block_uid ); ?>" class="<?= esc_attr( trim( $flourish_classes . ' cb-text-pullout ' . $modifier_classes . ' ' . $bg . ' ' . $fg . ' ' . $classes ) ); ?>">
+	<?php
+	$text_col_order    = ( 'Pullout Text' === $col_order ) ? 'order-2 order-md-2' : 'order-md-1';
+	$pullout_col_order = ( 'Pullout Text' === $col_order ) ? 'order-1 order-md-1' : 'order-md-2';
+	?>
+	<div class="container py-5">
+		<div class="row gy-5 gx-4 gx-lg-5">
+			<div class="col-md-<?= esc_attr( $text_col_n ); ?> <?= esc_attr( $text_col_order ); ?> <?= esc_attr( 'Pullout Text' === $col_order ? 'pe-md-5' : 'ps-md-5' ); ?>">
+				<?php $render_text(); ?>
+			</div>
+			<div class="col-md-<?= esc_attr( $pullout_col_n ); ?> <?= esc_attr( $pullout_col_order ); ?>">
+				<div class="cb-text-pullout__pullout">
+					<?php if ( $pullout_bullets ) : ?>
+						<ul><?= wp_kses_post( cb_list( get_field( 'pullout' ) ) ); ?></ul>
+					<?php else : ?>
+						<?= wp_kses_post( get_field( 'pullout' ) ); ?>
+					<?php endif; ?>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</section>

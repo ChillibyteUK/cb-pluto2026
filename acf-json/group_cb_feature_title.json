@@ -58,7 +58,7 @@
       "tabs": "all",
       "toolbar": "basic",
       "media_upload": 0,
-      "delay": 0,
+      "delay": 1,
       "allow_in_bindings": 0,
       "default_value": ""
     }

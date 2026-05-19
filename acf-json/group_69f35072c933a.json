@@ -182,7 +182,7 @@
             "tabs": "all",
             "toolbar": "full",
             "media_upload": 1,
-            "delay": 0
+            "delay": 1
         },
         {
             "key": "field_69f36e0fe88c1",

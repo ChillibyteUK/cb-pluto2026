@@ -219,7 +219,7 @@
             "tabs": "all",
             "toolbar": "full",
             "media_upload": 1,
-            "delay": 0
+            "delay": 1
         },
         {
             "key": "field_68a04b869de20",

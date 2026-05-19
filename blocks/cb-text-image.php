@@ -10,7 +10,6 @@ defined( 'ABSPATH' ) || exit;
 // Get ACF fields.
 $col_order  = get_field( 'order' ) ? get_field( 'order' ) : 'Text Image';
 $split      = get_field( 'split' ) ? get_field( 'split' ) : '50 50';
-$level      = get_field( 'level' ) ? get_field( 'level' ) : 'h2';
 $full_bleed = (bool) get_field( 'full_bleed' );
 $flourish   = (bool) get_field( 'flourish' );
 $aspect     = get_field( 'aspect' ) ? get_field( 'aspect' ) : 'native';
