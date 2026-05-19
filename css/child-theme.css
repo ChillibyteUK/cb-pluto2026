@@ -24403,7 +24403,7 @@ body.cb-team-modal-open {
   text-decoration: none;
   overflow: hidden;
 }
-.cb-portfolio-index .portfolio__card:hover .portfolio__card-image {
+.cb-portfolio-index .portfolio__card:hover a.portfolio__card-image {
   transform: scale(1.05);
 }
 .cb-portfolio-index .portfolio__card-image-wrapper {

@@ -141,7 +141,7 @@
             "name": "images",
             "aria-label": "",
             "type": "gallery",
-            "instructions": "First image will be used for the card thumbnail",
+            "instructions": "Note the featured image will be used as the card thumbnail",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -252,5 +252,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1777561152
+    "modified": 1779188519
 }

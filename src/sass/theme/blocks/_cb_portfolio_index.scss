@@ -9,7 +9,7 @@
         overflow: hidden;
 
         &:hover {
-            .portfolio__card-image {
+            a.portfolio__card-image {
                 transform: scale(1.05);
             }
         }
