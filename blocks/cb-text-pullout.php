@@ -109,7 +109,7 @@ $render_text = function () {
 	?>
 	<div class="container py-5">
 		<div class="row gy-5 gx-4 gx-lg-5">
-			<div class="col-md-<?= esc_attr( $text_col_n ); ?> <?= esc_attr( $text_col_order ); ?> <?= esc_attr( 'Pullout Text' === $col_order ? 'pe-md-5' : 'ps-md-5' ); ?>">
+			<div class="col-md-<?= esc_attr( $text_col_n ); ?> <?= esc_attr( $text_col_order ); ?> <?= esc_attr( 'Pullout Text' === $col_order ? 'ps-md-5' : 'pe-md-5' ); ?>">
 				<?php $render_text(); ?>
 			</div>
 			<div class="col-md-<?= esc_attr( $pullout_col_n ); ?> <?= esc_attr( $pullout_col_order ); ?>">
