@@ -71,9 +71,17 @@ if ( ! $query->have_posts() ) {
 					</div>
 					<div class="portfolio__card-inner">
 						<h2 class="portfolio__card-title"><?= esc_html( get_the_title() ); ?></h2>
+						<?php
+						if ( 'pf' === $context ) {
+							echo wp_kses_post( $card_highlights );
+						} else {
+							?>
 						<ul class="portfolio__highlights">
 							<?= wp_kses_post( cb_list( $card_highlights ) ); ?>
 						</ul>
+							<?php
+						}
+						?>
 					</div>
 				<?php if ( $should_link ) : ?>
 					</a>
