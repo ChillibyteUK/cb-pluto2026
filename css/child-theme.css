@@ -24402,6 +24402,7 @@ body.cb-team-modal-open {
   background-color: var(--col-green-dark-400);
   text-decoration: none;
   overflow: hidden;
+  height: 100%;
 }
 .cb-portfolio-index .portfolio__card-image-wrapper {
   overflow: hidden;
