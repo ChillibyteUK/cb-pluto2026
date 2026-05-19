@@ -40,9 +40,13 @@ if ( ! $query->have_posts() ) {
 				$post_id          = get_the_ID();
 				$gallery_images   = get_field( 'images', get_the_ID() );
 				$featured_image_id = (int) get_post_thumbnail_id( $post_id );
-				$card_image_id     = $featured_image_id > 0
-					? $featured_image_id
-					: ( is_array( $gallery_images ) && ! empty( $gallery_images ) ? (int) $gallery_images[0] : 0 );
+				if ( $featured_image_id > 0 ) {
+					$card_image_id = $featured_image_id;
+				} elseif ( is_array( $gallery_images ) && ! empty( $gallery_images ) ) {
+					$card_image_id = (int) $gallery_images[0];
+				} else {
+					$card_image_id = 0;
+				}
 				$card_highlights  = (string) get_field( 'card_highlights', $post_id );
 				$has_highlights   = '' !== trim( wp_strip_all_tags( $card_highlights ) );
 
@@ -67,7 +71,11 @@ if ( ! $query->have_posts() ) {
 					<div class="portfolio__card">
 				<?php endif; ?>
 					<div class="portfolio__card-image-wrapper">
-						<?= wp_get_attachment_image( $card_image_id, 'medium_large', false, array( 'class' => 'portfolio__card-image' ) ); ?>
+						<?php if ( $card_image_id > 0 ) : ?>
+							<?= wp_get_attachment_image( $card_image_id, 'medium_large', false, array( 'class' => 'portfolio__card-image' ) ); ?>
+						<?php else : ?>
+							<img src="<?= esc_url( get_stylesheet_directory_uri() . '/img/missing-image.webp' ); ?>" class="portfolio__card-image" alt="">
+						<?php endif; ?>
 					</div>
 					<div class="portfolio__card-inner">
 						<h2 class="portfolio__card-title"><?= esc_html( get_the_title() ); ?></h2>
