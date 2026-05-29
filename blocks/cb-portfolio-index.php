@@ -10,9 +10,9 @@ defined( 'ABSPATH' ) || exit;
 $context = cb_get_site_context();
 
 if ( 'pf' === $context ) {
-	$cpt_type         = 'pf_portfolio';
+	$cpt_type = 'pf_portfolio';
 } elseif ( 'inv' === $context ) {
-	$cpt_type         = 'investor_portfolio';
+	$cpt_type = 'investor_portfolio';
 } else {
 	// Block is only meaningful inside a silo; render nothing elsewhere.
 	return;
@@ -37,8 +37,8 @@ if ( ! $query->have_posts() ) {
 			<?php
 			while ( $query->have_posts() ) {
 				$query->the_post();
-				$post_id          = get_the_ID();
-				$gallery_images   = get_field( 'images', get_the_ID() );
+				$post_id           = get_the_ID();
+				$gallery_images    = get_field( 'images', get_the_ID() );
 				$featured_image_id = (int) get_post_thumbnail_id( $post_id );
 				if ( $featured_image_id > 0 ) {
 					$card_image_id = $featured_image_id;
@@ -47,8 +47,8 @@ if ( ! $query->have_posts() ) {
 				} else {
 					$card_image_id = 0;
 				}
-				$card_highlights  = (string) get_field( 'card_highlights', $post_id );
-				$has_highlights   = '' !== trim( wp_strip_all_tags( $card_highlights ) );
+				$card_highlights = (string) get_field( 'card_highlights', $post_id );
+				$has_highlights  = '' !== trim( wp_strip_all_tags( $card_highlights ) );
 
 				$subtitle             = (string) get_field( 'subtitle', $post_id );
 				$project_description  = (string) get_field( 'project_description', $post_id );

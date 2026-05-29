@@ -110,5 +110,62 @@ function cb_register_taxes() {
 		'query_var'          => false,
 	);
 	register_taxonomy( 'team', array( 'person' ), $team_args );
+
+	// Siloed, hierarchical solution taxonomies for the portfolio CPTs.
+	$investor_solution_args = array(
+		'labels'             => array(
+			'name'              => _x( 'Investor Solutions', 'taxonomy general name', 'cb-pluto2026' ),
+			'singular_name'     => _x( 'Investor Solution', 'taxonomy singular name', 'cb-pluto2026' ),
+			'search_items'      => __( 'Search Investor Solutions', 'cb-pluto2026' ),
+			'all_items'         => __( 'All Investor Solutions', 'cb-pluto2026' ),
+			'parent_item'       => __( 'Parent Investor Solution', 'cb-pluto2026' ),
+			'parent_item_colon' => __( 'Parent Investor Solution:', 'cb-pluto2026' ),
+			'edit_item'         => __( 'Edit Investor Solution', 'cb-pluto2026' ),
+			'update_item'       => __( 'Update Investor Solution', 'cb-pluto2026' ),
+			'add_new_item'      => __( 'Add New Investor Solution', 'cb-pluto2026' ),
+			'new_item_name'     => __( 'New Investor Solution', 'cb-pluto2026' ),
+			'menu_name'         => __( 'Solutions', 'cb-pluto2026' ),
+		),
+		'public'             => false,
+		'publicly_queryable' => false,
+		'hierarchical'       => true,
+		'show_ui'            => true,
+		'show_in_nav_menus'  => false,
+		'show_tagcloud'      => false,
+		'show_in_quick_edit' => true,
+		'show_admin_column'  => true,
+		'show_in_rest'       => true,
+		'rewrite'            => false,
+		'query_var'          => false,
+	);
+	register_taxonomy( 'investor_solution', array( 'investor_portfolio' ), $investor_solution_args );
+
+	$pf_solution_args = array(
+		'labels'             => array(
+			'name'              => _x( 'PF Solutions', 'taxonomy general name', 'cb-pluto2026' ),
+			'singular_name'     => _x( 'PF Solution', 'taxonomy singular name', 'cb-pluto2026' ),
+			'search_items'      => __( 'Search PF Solutions', 'cb-pluto2026' ),
+			'all_items'         => __( 'All PF Solutions', 'cb-pluto2026' ),
+			'parent_item'       => __( 'Parent PF Solution', 'cb-pluto2026' ),
+			'parent_item_colon' => __( 'Parent PF Solution:', 'cb-pluto2026' ),
+			'edit_item'         => __( 'Edit PF Solution', 'cb-pluto2026' ),
+			'update_item'       => __( 'Update PF Solution', 'cb-pluto2026' ),
+			'add_new_item'      => __( 'Add New PF Solution', 'cb-pluto2026' ),
+			'new_item_name'     => __( 'New PF Solution', 'cb-pluto2026' ),
+			'menu_name'         => __( 'Solutions', 'cb-pluto2026' ),
+		),
+		'public'             => false,
+		'publicly_queryable' => false,
+		'hierarchical'       => true,
+		'show_ui'            => true,
+		'show_in_nav_menus'  => false,
+		'show_tagcloud'      => false,
+		'show_in_quick_edit' => true,
+		'show_admin_column'  => true,
+		'show_in_rest'       => true,
+		'rewrite'            => false,
+		'query_var'          => false,
+	);
+	register_taxonomy( 'pf_solution', array( 'pf_portfolio' ), $pf_solution_args );
 }
 add_action( 'init', 'cb_register_taxes' );

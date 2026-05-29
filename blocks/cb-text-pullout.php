@@ -126,9 +126,7 @@ $render_text = function () {
 					<ul><?= wp_kses_post( cb_list( get_field( 'pullout' ) ) ); ?></ul>
 						<?php
 					} else {
-						?>
-					<?= wp_kses_post( get_field( 'pullout' ) ); ?>
-						<?php
+						echo wp_kses_post( get_field( 'pullout' ) );
 					}
 					?>
 				</div>

@@ -1,0 +1,70 @@
+// CB Case Studies
+//
+// Swiper slider showing portfolio post cards — styled to match
+// the cb-portfolio-index .portfolio__card pattern.
+
+.cb-case-studies {
+  &__slider {
+    overflow: hidden;
+  }
+
+  &__slide {
+    height: auto;
+  }
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    border-radius: 0.5rem;
+    background-color: var(--col-green-dark-400);
+    text-decoration: none;
+    overflow: hidden;
+    height: 100%;
+  }
+
+  &__image-wrapper {
+    overflow: hidden;
+  }
+
+  &__image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    transition: transform var(--transition);
+  }
+
+  &__inner {
+    padding: 0.5rem 1rem 1rem;
+  }
+
+  &__title {
+    font-size: var(--fs-600);
+    font-weight: var(--fw-semibold);
+    color: var(--col-green-dark-1100);
+  }
+
+  &__highlights {
+    margin: 0.5rem 0 0;
+    padding: 0;
+    list-style: none;
+    color: var(--col-green-dark-900);
+    font-size: var(--fs-300);
+    line-height: var(--lh-400);
+
+    li {
+      position: relative;
+      padding-left: 1rem;
+
+      &::before {
+        content: "–";
+        position: absolute;
+        left: 0;
+      }
+    }
+  }
+
+  a#{&}__card:hover &__image {
+    transform: scale(1.05);
+  }
+}
