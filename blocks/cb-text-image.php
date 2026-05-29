@@ -89,7 +89,7 @@ if ( '60 40' === $split ) {
  */
 $render_text = function () {
 	if ( get_field( 'title' ) ) {
-		echo '<h2 class="cb-text-image__title has-700-font-size text-uppercase mb-4">' . wp_kses_post( get_field( 'title' ) ) . '</h2>';
+		echo '<h2 class="cb-text-image__title has-700-font-size mb-4">' . wp_kses_post( get_field( 'title' ) ) . '</h2>';
 	}
 	?>
 	<div class="cb-text-image__content">
