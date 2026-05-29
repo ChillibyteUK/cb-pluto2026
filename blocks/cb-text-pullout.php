@@ -15,6 +15,8 @@ ACF_FIELDS_START
 order|radio|Text Pullout,Pullout Text|Text Pullout|33|Choose whether text or pullout renders first.
 split|radio|60 40,50 50,40 60|50 50|33|Select text and pullout column split.
 flourish|true_false||0|33|Toggle top flourish striping.
+pullout_bullets|true_false||0|33|Toggle pullout bullets.
+pullout_title|text||0|33|Enter the pullout title.
 ACF_FIELDS_END
 */
 
@@ -117,7 +119,7 @@ $render_text = function () {
 				<div class="cb-text-pullout__pullout">
 					<?php
 					if ( $pullout_title ) {
-						echo '<h3 class="cb-text-pullout__pullout-title has-700-font-size text-uppercase mb-4">' . wp_kses_post( $pullout_title ) . '</h3>';
+						echo '<h3 class="cb-text-pullout__pullout-title has-600-font-size mb-4">' . wp_kses_post( $pullout_title ) . '</h3>';
 					}
 					if ( $pullout_bullets ) {
 						?>
