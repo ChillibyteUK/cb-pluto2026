@@ -3,6 +3,45 @@
     "title": "Portfolio",
     "fields": [
         {
+            "key": "field_69f36e0fe88c1",
+            "label": "Index Card",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_69f36e18e88c2",
+            "label": "Card Highlights",
+            "name": "card_highlights",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "One per line",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "rows": 4,
+            "placeholder": "",
+            "new_lines": "br"
+        },
+        {
             "key": "field_69f36df0e88c0",
             "label": "Portfolio Details",
             "name": "",
@@ -183,45 +222,6 @@
             "toolbar": "full",
             "media_upload": 1,
             "delay": 1
-        },
-        {
-            "key": "field_69f36e0fe88c1",
-            "label": "Index Card",
-            "name": "",
-            "aria-label": "",
-            "type": "tab",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "placement": "top",
-            "endpoint": 0,
-            "selected": 0
-        },
-        {
-            "key": "field_69f36e18e88c2",
-            "label": "Card Highlights",
-            "name": "card_highlights",
-            "aria-label": "",
-            "type": "textarea",
-            "instructions": "One per line",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "allow_in_bindings": 0,
-            "rows": 4,
-            "placeholder": "",
-            "new_lines": "br"
         }
     ],
     "location": [
