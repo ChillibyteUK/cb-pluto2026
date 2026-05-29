@@ -5,9 +5,23 @@
 // classes (has-background / has-text-color) on the section wrapper.
 
 .cb-two-col-checklist {
+  &__grid {
+    display: flex;
+    gap: 2rem;
+  }
+
+  &__col {
+    flex: 1;
+    min-width: 0;
+  }
+
   &__item {
     position: relative;
     padding-left: 1.75rem;
+
+    & + & {
+      margin-top: 1rem;
+    }
   }
 
   &__icon {

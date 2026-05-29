@@ -34,19 +34,38 @@ if ( ! empty( $block['className'] ) ) {
 ?>
 <section class="<?= esc_attr( implode( ' ', $section_classes ) ); ?>"<?= $section_style ? ' style="' . esc_attr( $section_style ) . '"' : ''; ?>>
 	<div class="container py-5">
-		<?php if ( have_rows( 'checklist' ) ) : ?>
-		<div class="row g-4">
-			<?php while ( have_rows( 'checklist' ) ) : the_row(); ?>
-			<div class="col-12 col-md-6 cb-two-col-checklist__item">
+		<?php if ( have_rows( 'checklist' ) ) :
+			$rows = array();
+			while ( have_rows( 'checklist' ) ) {
+				the_row();
+				$rows[] = array(
+					'title'   => get_sub_field( 'title' ),
+					'content' => get_sub_field( 'content' ),
+				);
+			}
+			$half   = (int) ceil( count( $rows ) / 2 );
+			$cols   = array_chunk( $rows, $half );
+			$render_item = function ( $item ) {
+			?>
+			<div class="cb-two-col-checklist__item">
 				<i class="fa-regular fa-circle-check cb-two-col-checklist__icon" aria-hidden="true"></i>
-				<?php if ( $title = get_sub_field( 'title' ) ) : ?>
-				<strong class="cb-two-col-checklist__title"><?= esc_html( $title ); ?></strong>
+				<?php if ( $item['title'] ) : ?>
+				<strong class="cb-two-col-checklist__title"><?= esc_html( $item['title'] ); ?></strong>
 				<?php endif; ?>
-				<?php if ( $content = get_sub_field( 'content' ) ) : ?>
-				<div class="cb-two-col-checklist__content"><?= wp_kses_post( $content ); ?></div>
+				<?php if ( $item['content'] ) : ?>
+				<div class="cb-two-col-checklist__content"><?= wp_kses_post( $item['content'] ); ?></div>
 				<?php endif; ?>
 			</div>
-			<?php endwhile; ?>
+			<?php
+			};
+		?>
+		<div class="cb-two-col-checklist__grid">
+			<div class="cb-two-col-checklist__col">
+				<?php foreach ( $cols[0] as $item ) { $render_item( $item ); } ?>
+			</div>
+			<div class="cb-two-col-checklist__col">
+				<?php if ( isset( $cols[1] ) ) { foreach ( $cols[1] as $item ) { $render_item( $item ); } } ?>
+			</div>
 		</div>
 		<?php endif; ?>
 	</div>

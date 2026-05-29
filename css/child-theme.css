@@ -24469,9 +24469,20 @@ body.cb-team-modal-open {
   padding: 2rem;
 }
 
+.cb-two-col-checklist__grid {
+  display: flex;
+  gap: 2rem;
+}
+.cb-two-col-checklist__col {
+  flex: 1;
+  min-width: 0;
+}
 .cb-two-col-checklist__item {
   position: relative;
   padding-left: 1.75rem;
+}
+.cb-two-col-checklist__item + .cb-two-col-checklist__item {
+  margin-top: 1rem;
 }
 .cb-two-col-checklist__icon {
   font-size: 1.25rem;
