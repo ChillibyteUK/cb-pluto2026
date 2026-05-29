@@ -120,7 +120,7 @@ add_shortcode(
 		$loan_count = is_numeric( $loan_count ) ? number_format_i18n( (int) $loan_count ) : (string) $loan_count;
 
 		return sprintf(
-			'&pound;%1$s billion across more than %2$s loans',
+			'&pound;%1$s billion of lending across more than %2$s loans',
 			esc_html( $loan_value ),
 			esc_html( $loan_count )
 		);

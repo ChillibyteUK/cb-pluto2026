@@ -2,7 +2,7 @@
 /**
  * Block template for CB Feature Title.
  *
- * Renders an h2 with a side-coloured dot marker and a 1px line that extends
+ * Renders an h2/h3 with a side-coloured dot marker and a 1px line that extends
  * leftward off the viewport edge. The dot/line variant (orange / teal) is
  * chosen from the URL path: /property-finance/ → orange, /investors/ → teal.
  *
@@ -60,12 +60,14 @@ if ( $link_hex ) {
 	$colour_styles[]  = '--wp--style--link-color:' . $link_hex;
 }
 
+$heading_level = get_field( 'heading_level' ) ? get_field( 'heading_level' ) : 'h2';
+
 $classes = trim( 'cb-feature-title ' . $variant_class . ' ' . implode( ' ', $colour_classes ) );
 $style   = $colour_styles ? implode( ';', $colour_styles ) : '';
 ?>
 <section class="<?= esc_attr( $classes ); ?>"<?= $style ? ' style="' . esc_attr( $style ) . '"' : ''; ?>>
 	<div class="container <?= esc_attr( $container_classes ); ?>">
-		<h2 class="cb-feature-title__heading"><span class="cb-feature-title__heading-text"><?= esc_html( get_field( 'title' ) ); ?></span></h2>
+		<<?= esc_attr( $heading_level ); ?> class="cb-feature-title__heading"><span class="cb-feature-title__heading-text"><?= esc_html( get_field( 'title' ) ); ?></span></<?= esc_attr( $heading_level ); ?>>
 		<div class="cb-feature-title__content"><?= wp_kses_post( get_field( 'content' ) ); ?></div>
 	</div>
 </section>
