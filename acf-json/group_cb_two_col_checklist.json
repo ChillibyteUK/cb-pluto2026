@@ -1,0 +1,78 @@
+{
+  "key": "group_cb_two_col_checklist",
+  "title": "CB Two Col Checklist",
+  "fields": [
+    {
+      "key": "field_cb_two_col_checklist_title",
+      "label": "CB Two Col Checklist",
+      "name": "title",
+      "type": "message"
+    },
+    {
+      "key": "field_cb_two_col_checklist_checklist",
+      "label": "Checklist Items",
+      "name": "checklist",
+      "type": "repeater",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "layout": "block",
+      "button_label": "Add Item",
+      "sub_fields": [
+        {
+          "key": "field_cb_two_col_checklist_checklist_title",
+          "label": "Title",
+          "name": "title",
+          "type": "text",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "default_value": "",
+          "placeholder": "",
+          "prepend": "",
+          "append": ""
+        },
+        {
+          "key": "field_cb_two_col_checklist_checklist_content",
+          "label": "Content",
+          "name": "content",
+          "type": "textarea",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "default_value": "",
+          "placeholder": "",
+          "maxlength": "",
+          "rows": 3,
+          "new_lines": ""
+        }
+      ]
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "block",
+        "operator": "==",
+        "value": "acf/cb-two-col-checklist"
+      }
+    ]
+  ],
+  "active": 1,
+  "description": ""
+}

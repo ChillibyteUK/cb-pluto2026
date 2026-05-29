@@ -24469,6 +24469,27 @@ body.cb-team-modal-open {
   padding: 2rem;
 }
 
+.cb-two-col-checklist__item {
+  position: relative;
+  padding-left: 1.75rem;
+}
+.cb-two-col-checklist__icon {
+  font-size: 1.25rem;
+  color: var(--col-green-teal-400);
+  position: absolute;
+  left: 0;
+  top: 0.15em;
+}
+.cb-two-col-checklist__title {
+  display: block;
+}
+.cb-two-col-checklist__content {
+  margin-top: 0.25rem;
+}
+.cb-two-col-checklist__content p:last-child {
+  margin-bottom: 0;
+}
+
 .home-page__hero {
   position: relative;
   min-height: 600px;

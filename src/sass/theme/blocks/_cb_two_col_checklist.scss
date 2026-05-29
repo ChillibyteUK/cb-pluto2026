@@ -1,0 +1,32 @@
+// CB Two Col Checklist
+//
+// Two-column grid of checklist items, each with a circle-check icon,
+// a title, and optional content body. Inherits Gutenberg colour picker
+// classes (has-background / has-text-color) on the section wrapper.
+
+.cb-two-col-checklist {
+  &__item {
+    position: relative;
+    padding-left: 1.75rem;
+  }
+
+  &__icon {
+    font-size: 1.25rem;
+    color: var(--col-green-teal-400);
+    position: absolute;
+    left: 0;
+    top: 0.15em;
+  }
+
+  &__title {
+    display: block;
+  }
+
+  &__content {
+    margin-top: 0.25rem;
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
