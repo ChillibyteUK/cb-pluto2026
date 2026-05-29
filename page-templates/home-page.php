@@ -36,7 +36,7 @@ if ( ! $has_video && $hero_bg_url ) {
 <main id="main" class="home-page">
     <section id="<?= esc_attr( $hero_id ); ?>" class="<?= esc_attr( implode( ' ', $hero_classes ) ); ?>"<?= $hero_style ? ' style="' . esc_attr( $hero_style ) . '"' : ''; ?>>
         <?php if ( $has_video ) { ?>
-        <video class="home-page__hero-video" autoplay muted loop playsinline<?= $hero_bg_url ? ' poster="' . esc_url( $hero_bg_url ) . '"' : ''; ?>>
+        <video class="home-page__hero-video" autoplay muted loop playsinline>
             <?php if ( $has_video_webm ) { ?>
             <source src="<?= esc_url( $webm_url ); ?>" type="video/webm">
             <?php } ?>
