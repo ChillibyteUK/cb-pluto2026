@@ -24406,6 +24406,26 @@ body.cb-team-modal-open {
   height: 100%;
 }
 
+.cb-portfolio-index__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+.cb-portfolio-index__filter {
+  padding: 0.4rem 1rem;
+  border: 1px solid var(--col-green-dark-600);
+  border-radius: 9999px;
+  background: transparent;
+  color: var(--col-green-dark-1100);
+  font-size: var(--fs-300);
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+}
+.cb-portfolio-index__filter:hover, .cb-portfolio-index__filter--active {
+  background: var(--col-green-dark-600);
+  color: var(--col-white);
+}
 .cb-portfolio-index .portfolio__card {
   display: flex;
   flex-direction: column;
@@ -24418,6 +24438,21 @@ body.cb-team-modal-open {
 }
 .cb-portfolio-index .portfolio__card-image-wrapper {
   overflow: hidden;
+  position: relative;
+}
+.cb-portfolio-index .portfolio__card-pill {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 1;
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  background: var(--col-green-teal-400);
+  color: contrast-color(var(--col-green-teal-400));
+  font-size: var(--fs-200);
+  font-weight: var(--fw-semibold);
+  line-height: 1.4;
+  pointer-events: none;
 }
 .cb-portfolio-index .portfolio__card-image {
   width: 100%;

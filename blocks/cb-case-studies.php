@@ -110,11 +110,11 @@ $block_id = $block['anchor'] ?? 'cb-case-studies-' . uniqid();
 			}
 			?>
                     </div>
-                <?php if ( $_cb_should_link ) : ?>
+                <?php if ( $_cb_should_link ) { ?>
                     </a>
-                <?php else : ?>
+                <?php } else { ?>
                     </div>
-                <?php endif; ?>
+                <?php } ?>
                 </div>
             <?php
         }

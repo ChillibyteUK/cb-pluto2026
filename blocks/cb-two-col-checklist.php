@@ -34,7 +34,8 @@ if ( ! empty( $block['className'] ) ) {
 ?>
 <section class="<?= esc_attr( implode( ' ', $section_classes ) ); ?>"<?= $section_style ? ' style="' . esc_attr( $section_style ) . '"' : ''; ?>>
 	<div class="container py-5">
-		<?php if ( have_rows( 'checklist' ) ) :
+		<?php
+		if ( have_rows( 'checklist' ) ) {
 			$rows = array();
 			while ( have_rows( 'checklist' ) ) {
 				the_row();
@@ -49,16 +50,16 @@ if ( ! empty( $block['className'] ) ) {
 			?>
 			<div class="cb-two-col-checklist__item">
 				<i class="fa-regular fa-circle-check cb-two-col-checklist__icon" aria-hidden="true"></i>
-				<?php if ( $item['title'] ) : ?>
+				<?php if ( $item['title'] ) { ?>
 				<strong class="cb-two-col-checklist__title"><?= esc_html( $item['title'] ); ?></strong>
-				<?php endif; ?>
-				<?php if ( $item['content'] ) : ?>
+				<?php } ?>
+				<?php if ( $item['content'] ) { ?>
 				<div class="cb-two-col-checklist__content"><?= wp_kses_post( $item['content'] ); ?></div>
-				<?php endif; ?>
+				<?php } ?>
 			</div>
 			<?php
 			};
-		?>
+			?>
 		<div class="cb-two-col-checklist__grid">
 			<div class="cb-two-col-checklist__col">
 				<?php foreach ( $cols[0] as $item ) { $render_item( $item ); } ?>
@@ -67,6 +68,6 @@ if ( ! empty( $block['className'] ) ) {
 				<?php if ( isset( $cols[1] ) ) { foreach ( $cols[1] as $item ) { $render_item( $item ); } } ?>
 			</div>
 		</div>
-		<?php endif; ?>
+		<?php } ?>
 	</div>
 </section>

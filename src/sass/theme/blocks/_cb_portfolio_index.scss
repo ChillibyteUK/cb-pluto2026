@@ -1,4 +1,28 @@
 .cb-portfolio-index {
+    &__filters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 2rem;
+    }
+
+    &__filter {
+        padding: 0.4rem 1rem;
+        border: 1px solid var(--col-green-dark-600);
+        border-radius: 9999px;
+        background: transparent;
+        color: var(--col-green-dark-1100);
+        font-size: var(--fs-300);
+        cursor: pointer;
+        transition: background var(--transition), color var(--transition);
+
+        &:hover,
+        &--active {
+            background: var(--col-green-dark-600);
+            color: var(--col-white);
+        }
+    }
+
     .portfolio__card {
         display: flex;
         flex-direction: column;
@@ -11,7 +35,24 @@
 
         &-image-wrapper {
             overflow: hidden;
+            position: relative;
         }
+
+        &-pill {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            z-index: 1;
+            padding: 0.2rem 0.6rem;
+            border-radius: 9999px;
+            background: var(--col-green-teal-400);
+            color: contrast-color(var(--col-green-teal-400));
+            font-size: var(--fs-200);
+            font-weight: var(--fw-semibold);
+            line-height: 1.4;
+            pointer-events: none;
+        }
+
         &-image {
             width: 100%;
             aspect-ratio: 16 / 9;
@@ -22,17 +63,20 @@
         &-inner {
             padding: 0.5rem 1rem 1rem 1rem;
         }
+
         &-content {
             display: flex;
             flex-direction: column;
             row-gap: 0.5rem;
         }
+
         &-title {
             font-size: var(--fs-600);
             font-weight: var(--fw-semibold);
             color: var(--col-green-dark-1100);
         }
     }
+
     a.portfolio__card:hover {
         .portfolio__card-image {
             transform: scale(1.05);
