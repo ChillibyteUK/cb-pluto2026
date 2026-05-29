@@ -103,6 +103,48 @@
             "rows": "",
             "placeholder": "",
             "new_lines": "wpautop"
+        },
+        {
+            "key": "field_6a19b10ea2d1d",
+            "label": "Background Video (WebM)",
+            "name": "background_video_webm",
+            "aria-label": "",
+            "type": "file",
+            "instructions": "Hero uses featured image if this is unset.\r\nWebM format only.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min_size": "",
+            "max_size": "",
+            "mime_types": "webm",
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_6a19b1fd30e3b",
+            "label": "Background Video (MP4)",
+            "name": "background_video_mp4",
+            "aria-label": "",
+            "type": "file",
+            "instructions": "Used as fallback if no WebM.\r\nMP4 format only.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min_size": "",
+            "max_size": "",
+            "mime_types": "mp4",
+            "allow_in_bindings": 0
         }
     ],
     "location": [
@@ -123,5 +165,8 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1777030024
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1780069636
 }

@@ -13,7 +13,21 @@ $hero_style    = '';
 $hero_thumb_id = get_field( 'background_image' );
 $hero_bg_url   = $hero_thumb_id ? wp_get_attachment_image_url( $hero_thumb_id, 'full' ) : '';
 
-if ( $hero_bg_url ) {
+$mp4_field  = get_field( 'background_video_mp4' );
+$webm_field = get_field( 'background_video_webm' );
+
+$mp4_url  = is_array( $mp4_field ) ? $mp4_field['url'] : '';
+$webm_url = is_array( $webm_field ) ? $webm_field['url'] : '';
+
+$has_video      = '' !== $webm_url || '' !== $mp4_url;
+$has_video_webm = '' !== $webm_url;
+$has_video_mp4  = ! $has_video_webm && '' !== $mp4_url;
+
+if ( $has_video ) {
+	$hero_classes[] = 'topic-home-hero--has-video';
+}
+
+if ( ! $has_video && $hero_bg_url ) {
 	$hero_classes[] = 'topic-home-hero--has-background-image';
 	$hero_style     = sprintf( '--topic-home-hero-bg: url(%s);', esc_url_raw( $hero_bg_url ) );
 }
@@ -29,6 +43,16 @@ if ( 'pf' === $context ) {
 
 ?>
 <section id="<?= esc_attr( $hero_id ); ?>" class="<?= esc_attr( implode( ' ', $hero_classes ) ); ?>"<?= $hero_style ? ' style="' . esc_attr( $hero_style ) . '"' : ''; ?>>
+	<?php if ( $has_video ) { ?>
+	<video class="topic-home-hero__video" autoplay muted loop playsinline<?= $hero_bg_url ? ' poster="' . esc_url( $hero_bg_url ) . '"' : ''; ?>>
+		<?php if ( $has_video_webm ) { ?>
+		<source src="<?= esc_url( $webm_url ); ?>" type="video/webm">
+		<?php } ?>
+		<?php if ( $has_video_mp4 ) { ?>
+		<source src="<?= esc_url( $mp4_url ); ?>" type="video/mp4">
+		<?php } ?>
+	</video>
+	<?php } ?>
 	<div class="topic-home-hero__overlay" aria-hidden="true">
 		<div class="topic-home-hero__overlay-rect"></div>
 		<div class="topic-home-hero__overlay-cap"></div>
@@ -44,7 +68,7 @@ if ( 'pf' === $context ) {
 </section>
 
 <?php
-if ( $hero_bg_url ) {
+if ( $has_video || $hero_bg_url ) {
 	?>
 <script>
 document.addEventListener('DOMContentLoaded', function () {

@@ -23,6 +23,21 @@
     }
   }
 
+  &--has-video {
+    overflow: hidden;
+
+    .topic-home-hero__video {
+      position: absolute;
+      inset: -3rem 0;
+      z-index: 0;
+      width: 100%;
+      height: calc(100% + 6rem);
+      object-fit: cover;
+      transform: translateY(var(--topic-home-hero-parallax-y, 0));
+      will-change: transform;
+    }
+  }
+
   > .container {
     position: relative;
     z-index: 1;

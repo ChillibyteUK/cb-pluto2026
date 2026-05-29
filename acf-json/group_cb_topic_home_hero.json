@@ -72,7 +72,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "",
+                "width": "20",
                 "class": "",
                 "id": ""
             },
@@ -87,6 +87,48 @@
             "mime_types": "",
             "allow_in_bindings": 0,
             "preview_size": "thumbnail"
+        },
+        {
+            "key": "field_6a19b546af117",
+            "label": "Background Video (WebM)",
+            "name": "background_video_webm",
+            "aria-label": "",
+            "type": "file",
+            "instructions": "Hero uses featured image if this is unset. WebM format only.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "40",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min_size": "",
+            "max_size": "",
+            "mime_types": "webm",
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_6a19b576c34f0",
+            "label": "Background Video (MP4)",
+            "name": "background_video_mp4",
+            "aria-label": "",
+            "type": "file",
+            "instructions": "Used as fallback if no WebM. MP4 format only.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "40",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min_size": "",
+            "max_size": "",
+            "mime_types": "mp4",
+            "allow_in_bindings": 0
         }
     ],
     "location": [
@@ -110,5 +152,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1777294914
+    "modified": 1780069809
 }

@@ -23063,6 +23063,20 @@ span a {
   transform: translateY(var(--topic-home-hero-parallax-y, 0));
   will-change: transform;
 }
+.topic-home-hero--has-video {
+  overflow: hidden;
+}
+.topic-home-hero--has-video .topic-home-hero__video {
+  position: absolute;
+  inset: -3rem 0;
+  z-index: 0;
+  width: 100%;
+  height: calc(100% + 6rem);
+  -o-object-fit: cover;
+  object-fit: cover;
+  transform: translateY(var(--topic-home-hero-parallax-y, 0));
+  will-change: transform;
+}
 .topic-home-hero > .container, .topic-home-hero > .wp-block-group:not(.alignfull) {
   position: relative;
   z-index: 1;
@@ -24627,6 +24641,20 @@ a.cb-case-studies__card:hover .cb-case-studies__image {
   transform: translateY(var(--home-page-hero-parallax-y, 0));
   will-change: transform;
 }
+.home-page__hero--has-video {
+  overflow: hidden;
+}
+.home-page__hero--has-video .home-page__hero-video {
+  position: absolute;
+  inset: -3rem 0;
+  z-index: 0;
+  width: 100%;
+  height: calc(100% + 6rem);
+  -o-object-fit: cover;
+  object-fit: cover;
+  transform: translateY(var(--home-page-hero-parallax-y, 0));
+  will-change: transform;
+}
 .home-page__hero > .container, .home-page__hero > .wp-block-group:not(.alignfull) {
   position: relative;
   z-index: 1;
@@ -25606,5 +25634,4 @@ body.understrap-no-sidebar .wp-block-cover.alignwide {
 .wp-block-buttons .wp-block-button:not(.is-style-outline) .wp-block-button__link {
   border: 1px solid transparent;
 }
-
 /*# sourceMappingURL=child-theme.css.map */
