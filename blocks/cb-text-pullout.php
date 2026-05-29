@@ -23,6 +23,7 @@ $col_order       = get_field( 'order' ) ? get_field( 'order' ) : 'Text Pullout';
 $split           = get_field( 'split' ) ? get_field( 'split' ) : '50 50';
 $flourish        = (bool) get_field( 'flourish' );
 $pullout_bullets = (bool) get_field( 'pullout_bullets' );
+$pullout_title   = get_field( 'pullout_title' ) ? get_field( 'pullout_title' ) : '';
 
 // Determine the section (lending / investors) from the current URL so the
 // flourish utility can pick up the correct colour variant.
@@ -114,11 +115,20 @@ $render_text = function () {
 			</div>
 			<div class="col-md-<?= esc_attr( $pullout_col_n ); ?> <?= esc_attr( $pullout_col_order ); ?>">
 				<div class="cb-text-pullout__pullout">
-					<?php if ( $pullout_bullets ) : ?>
-						<ul><?= wp_kses_post( cb_list( get_field( 'pullout' ) ) ); ?></ul>
-					<?php else : ?>
-						<?= wp_kses_post( get_field( 'pullout' ) ); ?>
-					<?php endif; ?>
+					<?php
+					if ( $pullout_title ) {
+						echo '<h3 class="cb-text-pullout__pullout-title has-700-font-size text-uppercase mb-4">' . wp_kses_post( $pullout_title ) . '</h3>';
+					}
+					if ( $pullout_bullets ) {
+						?>
+					<ul><?= wp_kses_post( cb_list( get_field( 'pullout' ) ) ); ?></ul>
+						<?php
+					} else {
+						?>
+					<?= wp_kses_post( get_field( 'pullout' ) ); ?>
+						<?php
+					}
+					?>
 				</div>
 			</div>
 		</div>

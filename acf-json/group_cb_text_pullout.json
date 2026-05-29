@@ -170,6 +170,27 @@
             "ui": 1
         },
         {
+            "key": "field_6a19931c11e91",
+            "label": "Pullout Title",
+            "name": "pullout_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_6a0c2cc565c7b",
             "label": "Pullout",
             "name": "pullout",
@@ -212,5 +233,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1779184331
+    "modified": 1780061027
 }
