@@ -23236,6 +23236,11 @@ span a {
      Self-compounded selector bumps specificity above
      `.full-flourish { min-height: clamp(...) }` when both classes sit on
      the same element. */
+  /* Standard layout: the .container is a flex parent so the .row
+     (which carries the text+image cols) gets vertical centering. */
+  /* Full-bleed: the inner wrapper needs flex only at desktop;
+     below that both children (container + image) must flow as
+     stacked blocks so the image can collapse under the text. */
   /* --------------------------------------------------
      FULL-BLEED VARIANT
      Text uses real BS .container/.row/.col so it
@@ -23267,10 +23272,17 @@ span a {
      using object-fit: cover.
      -------------------------------------------------- */
 }
-.cb-text-image.cb-text-image > .container, .cb-text-image.cb-text-image > .wp-block-group:not(.alignfull), .cb-text-image.cb-text-image > .cb-text-image__inner {
+.cb-text-image.cb-text-image > .container, .cb-text-image.cb-text-image > .wp-block-group:not(.alignfull) {
   min-height: 400px;
   display: flex;
   align-items: center;
+}
+@media (min-width: 992px) {
+  .cb-text-image.cb-text-image > .cb-text-image__inner {
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+  }
 }
 .cb-text-image > .container > .row, .cb-text-image > .wp-block-group:not(.alignfull) > .row,
 .cb-text-image > .cb-text-image__inner > .container > .row,
@@ -23334,7 +23346,7 @@ span a {
   width: 100%;
   height: auto;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .cb-text-image--full-bleed .cb-text-image__image {
     position: absolute;
     top: 0;
@@ -23365,7 +23377,7 @@ span a {
 .cb-text-image--full-bleed.cb-text-image--split-40-60.cb-text-image--image-left {
   --cb-ti-boundary-fr: 0.58333;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .cb-text-image--full-bleed.cb-text-image--image-right .cb-text-image__image {
     right: 0;
     /* Boundary in viewport coords:
@@ -23374,19 +23386,19 @@ span a {
     left: calc(50vw + (var(--cb-ti-boundary-fr) - 0.5) * var(--cb-ti-cw));
   }
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .cb-text-image--full-bleed.cb-text-image--image-left .cb-text-image__image {
     left: 0;
     /* Mirror of the right-side calc. */
     right: calc(50vw + (0.5 - var(--cb-ti-boundary-fr)) * var(--cb-ti-cw));
   }
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .cb-text-image--full-bleed.cb-text-image--rounded.cb-text-image--image-right .cb-text-image__image img {
     border-radius: 9999px 0 0 9999px;
   }
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .cb-text-image--full-bleed.cb-text-image--rounded.cb-text-image--image-left .cb-text-image__image img {
     border-radius: 0 9999px 9999px 0;
   }
@@ -23413,7 +23425,7 @@ span a {
    positioned with top: 0, so push its top edge down
    by the stripe band height to clear the flourish.
    -------------------------------------------------- */
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .full-flourish.cb-text-image--full-bleed .cb-text-image__image {
     top: calc(clamp(48px, 8vw, 120px) * 0.2016);
   }
@@ -24469,9 +24481,11 @@ body.cb-team-modal-open {
   padding: 2rem;
 }
 
-.cb-two-col-checklist__grid {
-  display: flex;
-  gap: 2rem;
+@media (min-width: 992px) {
+  .cb-two-col-checklist__grid {
+    display: flex;
+    gap: 2rem;
+  }
 }
 .cb-two-col-checklist__col {
   flex: 1;

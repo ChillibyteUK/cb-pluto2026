@@ -72,7 +72,7 @@ $modifier_classes = implode( ' ', $modifiers );
 // Unique ID.
 $block_uid = 'text-image-' . uniqid();
 
-// Column widths (BS col-md-N). text-col-N / 12 = the boundary fraction.
+// Column widths (BS col-lg-N). text-col-N / 12 = the boundary fraction.
 if ( '60 40' === $split ) {
 	$text_col_n  = 7;
 	$image_col_n = 5;
@@ -122,13 +122,13 @@ $render_text = function () {
 		// (py-5 etc.) applied to the section sits OUTSIDE this wrapper
 		// and pads above/below the image, rather than shrinking the
 		// padding-edge that the image references.
-		$text_col_classes = 'col-md-' . $text_col_n;
+		$text_col_classes = 'col-lg-' . $text_col_n;
 		if ( 'left' === $image_side ) {
 			// Push text into the right half so the absolute image fits the left.
-			$text_col_classes .= ' offset-md-' . ( 12 - $text_col_n );
-			$text_col_classes .= ' ps-md-5';
+			$text_col_classes .= ' offset-lg-' . ( 12 - $text_col_n );
+			$text_col_classes .= ' ps-lg-5';
 		} else {
-			$text_col_classes .= ' pe-md-5';
+			$text_col_classes .= ' pe-lg-5';
 		}
 		?>
 		<div class="cb-text-image__inner">
@@ -147,15 +147,15 @@ $render_text = function () {
 	<?php else : ?>
 
 		<?php
-		$text_col_order  = ( 'Image Text' === $col_order ) ? 'order-2 order-md-2' : 'order-md-1';
-		$image_col_order = ( 'Image Text' === $col_order ) ? 'order-1 order-md-1' : 'order-md-2';
+		$text_col_order  = ( 'Image Text' === $col_order ) ? 'order-2 order-lg-2' : 'order-lg-1';
+		$image_col_order = ( 'Image Text' === $col_order ) ? 'order-1 order-lg-1' : 'order-lg-2';
 		?>
 		<div class="container">
 			<div class="row gy-5 gx-4 gx-lg-5 align-items-center">
-				<div class="col-md-<?= esc_attr( $text_col_n ); ?> <?= esc_attr( $text_col_order ); ?> <?= esc_attr( 'Image Text' === $col_order ? 'pe-md-5' : 'ps-md-5' ); ?>">
+				<div class="col-lg-<?= esc_attr( $text_col_n ); ?> <?= esc_attr( $text_col_order ); ?> <?= esc_attr( 'Image Text' === $col_order ? 'pe-lg-5' : 'ps-lg-5' ); ?>">
 					<?php $render_text(); ?>
 				</div>
-				<div class="col-md-<?= esc_attr( $image_col_n ); ?> <?= esc_attr( $image_col_order ); ?> cb-text-image__image text-center">
+				<div class="col-lg-<?= esc_attr( $image_col_n ); ?> <?= esc_attr( $image_col_order ); ?> cb-text-image__image text-center">
 					<?= wp_get_attachment_image( get_field( 'image' ), 'full', false, array() ); ?>
 				</div>
 			</div>

@@ -14,11 +14,23 @@
      Self-compounded selector bumps specificity above
      `.full-flourish { min-height: clamp(...) }` when both classes sit on
      the same element. */
-  &#{&} > .container,
-  &#{&} > .cb-text-image__inner {
+  /* Standard layout: the .container is a flex parent so the .row
+     (which carries the text+image cols) gets vertical centering. */
+  &#{&} > .container {
     min-height: 400px;
     display: flex;
     align-items: center;
+  }
+
+  /* Full-bleed: the inner wrapper needs flex only at desktop;
+     below that both children (container + image) must flow as
+     stacked blocks so the image can collapse under the text. */
+  &#{&} > .cb-text-image__inner {
+    @media (min-width: 992px) {
+      min-height: 400px;
+      display: flex;
+      align-items: center;
+    }
   }
 
   > .container > .row,
@@ -87,7 +99,7 @@
        top/bottom: 0 references the section's padding edge, so any
        py-x / pt-x / pb-x utility on the section naturally leaves space
        above / below the image. */
-    @media (min-width: 768px) {
+    @media (min-width: 992px) {
       .cb-text-image__image {
         position: absolute;
         top: 0;
@@ -129,7 +141,7 @@
      Image on the right
      -------------------------------------------------- */
   &--full-bleed#{&}--image-right {
-    @media (min-width: 768px) {
+    @media (min-width: 992px) {
       .cb-text-image__image {
         right: 0;
         /* Boundary in viewport coords:
@@ -144,7 +156,7 @@
      Image on the left
      -------------------------------------------------- */
   &--full-bleed#{&}--image-left {
-    @media (min-width: 768px) {
+    @media (min-width: 992px) {
       .cb-text-image__image {
         left: 0;
         /* Mirror of the right-side calc. */
@@ -161,14 +173,14 @@
      edge → true semicircle.
      -------------------------------------------------- */
   &--full-bleed#{&}--rounded#{&}--image-right {
-    @media (min-width: 768px) {
+    @media (min-width: 992px) {
       .cb-text-image__image img {
         border-radius: 9999px 0 0 9999px;
       }
     }
   }
   &--full-bleed#{&}--rounded#{&}--image-left {
-    @media (min-width: 768px) {
+    @media (min-width: 992px) {
       .cb-text-image__image img {
         border-radius: 0 9999px 9999px 0;
       }
@@ -207,7 +219,7 @@
    by the stripe band height to clear the flourish.
    -------------------------------------------------- */
 .full-flourish.cb-text-image--full-bleed {
-  @media (min-width: 768px) {
+  @media (min-width: 992px) {
     .cb-text-image__image {
       top: calc(clamp(48px, 8vw, 120px) * 0.2016);
     }
