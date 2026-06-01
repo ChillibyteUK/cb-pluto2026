@@ -7010,7 +7010,7 @@
 		      element.textContent = formatter.format(target);
 		      return;
 		    }
-		    const duration = 1200;
+		    const duration = 2400;
 		    const startTime = performance.now();
 		    const tick = now => {
 		      // Clamp elapsed to >= 0: the rAF timestamp can be earlier than the

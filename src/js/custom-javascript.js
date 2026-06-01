@@ -155,7 +155,7 @@
       return;
     }
 
-    const duration = 1200;
+    const duration = 2400;
     const startTime = performance.now();
 
     const tick = (now) => {
