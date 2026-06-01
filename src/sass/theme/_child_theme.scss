@@ -587,10 +587,14 @@ for (; i < all.length; i++) {
   }
 
   &--lending {
-    --full-flourish-image: url("../img/lend-flourish.svg");
-    --full-flourish-stripe-1: #007a5e; // green teal 1000
-    --full-flourish-stripe-2: #e68300; // orange
-    --full-flourish-stripe-3: #f6c276; // light orange
+    // --full-flourish-image: url("../img/lend-flourish.svg");
+    // --full-flourish-stripe-1: #007a5e; // green teal 1000
+    // --full-flourish-stripe-2: #e68300; // orange
+    // --full-flourish-stripe-3: #f6c276; // light orange
+    --full-flourish-image: url("../img/left-edge-flourish.svg");
+    --full-flourish-stripe-1: #80bcb4; // teal
+    --full-flourish-stripe-2: #0b644a; // dark green
+    --full-flourish-stripe-3: #e68300; // orange
   }
 
   &--investors {

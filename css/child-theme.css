@@ -25238,10 +25238,10 @@ for (; i < all.length; i++) {
   z-index: 1;
 }
 .full-flourish--lending {
-  --full-flourish-image: url("../img/lend-flourish.svg");
-  --full-flourish-stripe-1: #007a5e;
-  --full-flourish-stripe-2: #e68300;
-  --full-flourish-stripe-3: #f6c276;
+  --full-flourish-image: url("../img/left-edge-flourish.svg");
+  --full-flourish-stripe-1: #80bcb4;
+  --full-flourish-stripe-2: #0b644a;
+  --full-flourish-stripe-3: #e68300;
 }
 .full-flourish--investors {
   --full-flourish-image: url("../img/inv-flourish.svg");
