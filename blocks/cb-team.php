@@ -37,14 +37,15 @@ $bg = ! empty( $block['backgroundColor'] ) ? 'has-' . $block['backgroundColor'] 
 $fg = ! empty( $block['textColor'] ) ? 'has-' . $block['textColor'] . '-color' : '';
 
 $context          = cb_get_site_context();
-$flourish_classes = 'full-flourish';
-if ( 'pf' === $context ) {
-	$flourish_classes .= ' full-flourish--lending';
-	$bg                = 'has-grey-400-background-color';
-	$fg                = 'has-grey-900-color';
-} elseif ( 'inv' === $context ) {
-	$flourish_classes .= ' full-flourish--investors';
-}
+$flourish_classes = '';
+// $flourish_classes = 'full-flourish';
+// if ( 'pf' === $context ) {
+// 	$flourish_classes .= ' full-flourish--lending';
+// 	$bg                = 'has-grey-400-background-color';
+// 	$fg                = 'has-grey-900-color';
+// } elseif ( 'inv' === $context ) {
+// 	$flourish_classes .= ' full-flourish--investors';
+// }
 
 $block_uid = 'cb-team-' . uniqid();
 
