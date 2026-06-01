@@ -15,10 +15,17 @@ header {
   /* Top row: logo + toggler. Always white, with right-aligned flourish. */
   .navbar-top {
     background-color: var(--col-white);
-    background-image: url("../img/nav-flourish.svg");
     background-repeat: no-repeat;
     background-position: right center;
     background-size: auto 100%;
+    background-image: url("../img/nav-flourish.svg");
+  }
+
+  &.navbar-pf .navbar-top {
+    background-image: url("../img/nav-flourish.svg");
+  }
+  &.navbar-inv .navbar-top {
+    background-image: url("../img/nav-flourish-inv.svg");
   }
 
   /* Bottom row: menu. Translucent; tinted per-side via body classes elsewhere. */
