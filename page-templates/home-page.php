@@ -80,6 +80,8 @@ if ( ! $has_video && $hero_bg_url ) {
             </div>
         </div>
     </section>
+	<?php
+	/*
     <section class="home-page__newsroom py-5">
         <div class="container">
             <div class="d-flex flex-wrap align-items-center justify-content-between mb-5">
@@ -170,6 +172,8 @@ if ( ! $has_video && $hero_bg_url ) {
 
         </div>
     </section>
+ 		*/
+	?>
 </main>
 <?php if ( $has_video || $hero_bg_url ) { ?>
 <script>
