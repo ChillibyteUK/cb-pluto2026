@@ -56,6 +56,16 @@
   &__stat-suffix {
     display: inline-block;
   }
+  &__stat-prefix {
+    margin-inline-start: auto;
+  }
+  &_stat-value {
+    margin-inline: auto;
+  }
+  &__stat-suffix {
+    margin-inline-end: auto;
+  }
+
 }
 
 .cb-ticker-x3--pf {

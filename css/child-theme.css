@@ -23194,6 +23194,15 @@ span a {
 .cb-ticker-x3__stat-value, .cb-ticker-x3__stat-prefix, .cb-ticker-x3__stat-suffix {
   display: inline-block;
 }
+.cb-ticker-x3__stat-prefix {
+  margin-inline-start: auto;
+}
+.cb-ticker-x3_stat-value {
+  margin-inline: auto;
+}
+.cb-ticker-x3__stat-suffix {
+  margin-inline-end: auto;
+}
 
 .cb-ticker-x3--pf {
   background: linear-gradient(90deg, var(--col-green-teal-200) 50%, var(--col-green-teal-1000) 50%);

@@ -9,6 +9,10 @@
  */
 
 defined( 'ABSPATH' ) || exit;
+
+
+$context = cb_get_site_context();
+
 ?>
 <div id="footer-top"></div>
 
@@ -29,7 +33,10 @@ defined( 'ABSPATH' ) || exit;
 					<p><strong>Edinburgh:</strong> 26 Alva Street, Edinburgh, EH2 4PY</p>
 					<p><a href="<?= esc_url( get_field( 'linkedin_url', 'option' ) ); ?>" target="_blank" rel="nofollow noopener">Find us on <strong>LinkedIn</strong></a></p>
 				</div>
-				<div class="col-12 col-sm-6 col-md-3">
+				<?php
+				if ( 'pf' === $context ) {
+					?>
+				<div class="col-12 col-sm-6">
 					<div class="footer__title has-orange-1000-color">Pluto Lending</div>
 					<?=
 					wp_nav_menu(
@@ -40,7 +47,10 @@ defined( 'ABSPATH' ) || exit;
 					);
 					?>
 				</div>
-				<div class="col-12 col-sm-6 col-md-3">
+					<?php
+				} elseif ( 'inv' === $context ) {
+					?>
+				<div class="col-12 col-sm-6">
 					<div class="footer__title has-green-teal-400-color">Pluto Investing</div>
 					<?=
 					wp_nav_menu(
@@ -51,6 +61,9 @@ defined( 'ABSPATH' ) || exit;
 					);
 					?>
 				</div>
+					<?php
+				}
+				?>
 			</div>
 		</div>
 	</div>
