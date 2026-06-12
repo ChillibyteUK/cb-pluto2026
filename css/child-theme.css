@@ -24637,6 +24637,47 @@ a.cb-case-studies__card:hover .cb-case-studies__image {
   transform: scale(1.05);
 }
 
+/* =========================
+	 CB BG Text Repeater
+	 Optional section-wide parallax background image.
+	 ========================= */
+.cb-bg-text-repeater {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+.cb-bg-text-repeater--has-background-image::before {
+  content: "";
+  position: absolute;
+  inset: -3rem 0;
+  z-index: 0;
+  background-image: var(--cb-bg-text-repeater-bg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transform: translateY(var(--cb-bg-text-repeater-parallax-y, 0));
+  will-change: transform;
+}
+.cb-bg-text-repeater__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-color: rgba(0, 0, 0, 0.45);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+.cb-bg-text-repeater__inner {
+  padding-block: 5rem;
+}
+.cb-bg-text-repeater > .container, .cb-bg-text-repeater > .wp-block-group:not(.alignfull) {
+  position: relative;
+  z-index: 1;
+}
+.cb-bg-text-repeater li {
+  text-wrap: pretty;
+}
+
 .home-page__hero {
   position: relative;
   min-height: 600px;

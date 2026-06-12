@@ -19,6 +19,27 @@ function acf_blocks() {
 
 		acf_register_block_type(
 			array(
+				'name'            => 'cb_bg_text_repeater',
+				'title'           => __( 'CB BG Text Repeater' ),
+				'category'        => 'layout',
+				'icon'            => 'cover-image',
+				'render_template' => 'blocks/cb-bg-text-repeater.php',
+				'mode'            => 'edit',
+				'supports'        => array(
+					'mode'      => false,
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+					'color'     => array(
+						'background' => true,
+						'text'       => true,
+					),
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
 				'name'            => 'cb_case_studies',
 				'title'           => __( 'CB Case Studies' ),
 				'category'        => 'layout',
@@ -30,7 +51,6 @@ function acf_blocks() {
 					'anchor'    => true,
 					'className' => true,
 					'align'     => true,
-          
 				),
 			)
 		);

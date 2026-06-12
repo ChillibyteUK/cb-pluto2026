@@ -1,0 +1,45 @@
+/* =========================
+	 CB BG Text Repeater
+	 Optional section-wide parallax background image.
+	 ========================= */
+
+.cb-bg-text-repeater {
+	position: relative;
+	isolation: isolate;
+	overflow: hidden;
+
+	&--has-background-image::before {
+		content: "";
+		position: absolute;
+		inset: -3rem 0;
+		z-index: 0;
+		background-image: var(--cb-bg-text-repeater-bg);
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+		transform: translateY(var(--cb-bg-text-repeater-parallax-y, 0));
+		will-change: transform;
+	}
+
+	&__overlay {
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+		pointer-events: none;
+		background-color: rgba(0 0 0 / 0.45);
+        backdrop-filter: blur(4px);
+	}
+
+    &__inner {
+        padding-block: 5rem;
+    }
+
+	> .container {
+		position: relative;
+		z-index: 1;
+	}
+
+    li {
+        text-wrap: pretty;
+    }
+}
