@@ -56,6 +56,10 @@
     p:last-child {
       margin-bottom: 0;
     }
+
+    a {
+      color: color-mix(in srgb, currentColor 80%, var(--col-green-teal-500) / 0);
+    }
   }
 
   // Rolling-dot link — same mechanic as .cb-news-card__link in _news.scss
