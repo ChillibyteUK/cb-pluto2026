@@ -24800,6 +24800,27 @@ a.cb-case-studies__card:hover .cb-case-studies__image {
   --cb-definition-cards-flourish: url("../img/inv-flourish.svg");
 }
 
+/* =========================
+   CB Text Definition
+
+   Two-column layout: text content (left) + a single definition card
+   (right, reusing the .cb-definition-cards card styles). Optional brand
+   flourish along the top edge via the shared `full-flourish` utility.
+   ========================= */
+.cb-text-definition__content {
+  font-size: var(--fs-500);
+  text-wrap: pretty;
+}
+.cb-text-definition__content > *:last-child {
+  margin-bottom: 0;
+}
+.cb-text-definition__card-col .cb-definition-cards {
+  height: 100%;
+}
+.cb-text-definition__card-col .cb-definition-cards__card {
+  height: 100%;
+}
+
 .home-page__hero {
   position: relative;
   min-height: 600px;

@@ -1,0 +1,29 @@
+/* =========================
+   CB Text Definition
+
+   Two-column layout: text content (left) + a single definition card
+   (right, reusing the .cb-definition-cards card styles). Optional brand
+   flourish along the top edge via the shared `full-flourish` utility.
+   ========================= */
+
+.cb-text-definition {
+  &__content {
+    font-size: var(--fs-500);
+    text-wrap: pretty;
+
+    > *:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  // Card column: let the reused definition card stretch full width.
+  &__card-col {
+    .cb-definition-cards {
+      height: 100%;
+    }
+
+    .cb-definition-cards__card {
+      height: 100%;
+    }
+  }
+}
