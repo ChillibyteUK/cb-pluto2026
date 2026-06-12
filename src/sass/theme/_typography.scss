@@ -295,3 +295,8 @@ strong {
   max-width: var(--width, 60ch);
   text-wrap: pretty;
 }
+
+.font-lede {
+  font-size: var(--fs-600);
+  font-weight: var(--fw-500);
+}

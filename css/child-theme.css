@@ -21907,6 +21907,11 @@ strong {
   text-wrap: pretty;
 }
 
+.font-lede {
+  font-size: var(--fs-600);
+  font-weight: var(--fw-500);
+}
+
 /* =========================
    COLOURS — utilities
    ========================= */
