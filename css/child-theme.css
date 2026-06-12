@@ -23531,7 +23531,7 @@ span a {
   margin-bottom: 0;
 }
 .cb-image-cta__content a {
-  color: color-mix(in srgb, currentColor 80%, var(--col-green-teal-500)/0);
+  color: color-mix(in srgb, currentColor 80%, var(--col-green-teal-500) 50%);
 }
 .cb-image-cta__link {
   display: inline-flex;
