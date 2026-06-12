@@ -19,6 +19,27 @@ function acf_blocks() {
 
 		acf_register_block_type(
 			array(
+				'name'            => 'cb_definition_cards',
+				'title'           => __( 'CB Definition Cards' ),
+				'category'        => 'layout',
+				'icon'            => 'cover-image',
+				'render_template' => 'blocks/cb-definition-cards.php',
+				'mode'            => 'edit',
+				'supports'        => array(
+					'mode'      => false,
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+					'color'     => array(
+						'background' => true,
+						'text'       => false,
+					),
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
 				'name'            => 'cb_bg_text_repeater',
 				'title'           => __( 'CB BG Text Repeater' ),
 				'category'        => 'layout',
@@ -31,7 +52,7 @@ function acf_blocks() {
 					'className' => true,
 					'align'     => true,
 					'color'     => array(
-						'background' => true,
+						'background' => false,
 						'text'       => true,
 					),
 				),
