@@ -34,6 +34,40 @@
     background-color: var(--col-white);
   }
 
+  // Clickable card variant — the whole card is an anchor that drives the
+  // rolling-dot link prompt on hover (mirrors cb-nav-cards).
+  &__card--link {
+    text-decoration: none;
+    color: inherit;
+
+    &:hover,
+    &:focus-visible {
+      text-decoration: none;
+
+      .cb-link-dot {
+        background-position: center right 0;
+
+        &::before {
+          right: 0.75rem;
+        }
+      }
+    }
+  }
+
+  &__link {
+    // Pin to the bottom of the card body (margin-top:auto). align-self stops
+    // the inline-flex link from stretching full width so the dot hugs the
+    // text — matching cb-nav-cards.
+    margin-top: auto;
+    margin-bottom: 0;
+    align-self: flex-end;
+    color: var(--col-green-teal-1000);
+
+    &::before {
+      background-color: var(--col-green-teal-1000);
+    }
+  }
+
   &__header,
   &__body {
     width: 100%;
@@ -81,6 +115,8 @@
      -------------------------------------------------- */
   &__body {
     flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
     padding: 2.5rem 1.5rem 1.5rem;
   }
 

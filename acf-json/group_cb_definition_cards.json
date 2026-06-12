@@ -86,6 +86,24 @@
                     "parent_repeater": "field_6a2c0d8856d73"
                 },
                 {
+                    "key": "field_6a2c0db056d77",
+                    "label": "Link",
+                    "name": "link",
+                    "aria-label": "",
+                    "type": "link",
+                    "instructions": "Optional. If set, the whole card becomes clickable and a link prompt is shown at the foot of the card.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "allow_in_bindings": 0,
+                    "parent_repeater": "field_6a2c0d8856d73"
+                },
+                {
                     "key": "field_6a2c0e0c4392a",
                     "label": "Fields",
                     "name": "fields",

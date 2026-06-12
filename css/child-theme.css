@@ -24723,6 +24723,28 @@ a.cb-case-studies__card:hover .cb-case-studies__image {
   width: 100%;
   background-color: var(--col-white);
 }
+.cb-definition-cards__card--link {
+  text-decoration: none;
+  color: inherit;
+}
+.cb-definition-cards__card--link:hover, .cb-definition-cards__card--link:focus-visible {
+  text-decoration: none;
+}
+.cb-definition-cards__card--link:hover .cb-link-dot, .cb-definition-cards__card--link:focus-visible .cb-link-dot {
+  background-position: center right 0;
+}
+.cb-definition-cards__card--link:hover .cb-link-dot::before, .cb-definition-cards__card--link:focus-visible .cb-link-dot::before {
+  right: 0.75rem;
+}
+.cb-definition-cards__link {
+  margin-top: auto;
+  margin-bottom: 0;
+  align-self: flex-end;
+  color: var(--col-green-teal-1000);
+}
+.cb-definition-cards__link::before {
+  background-color: var(--col-green-teal-1000);
+}
 .cb-definition-cards__header, .cb-definition-cards__body {
   width: 100%;
 }
@@ -24757,6 +24779,8 @@ a.cb-case-studies__card:hover .cb-case-studies__image {
 }
 .cb-definition-cards__body {
   flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
   padding: 2.5rem 1.5rem 1.5rem;
 }
 .cb-definition-cards__list {

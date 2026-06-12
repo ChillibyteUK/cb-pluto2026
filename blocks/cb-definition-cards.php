@@ -49,9 +49,15 @@ if ( ! empty( $block['className'] ) ) {
 		if ( have_rows( 'cards' ) ) {
 			while ( have_rows( 'cards' ) ) {
 				the_row();
+				$card_link = get_sub_field( 'link' );
+				$has_link  = ! empty( $card_link['url'] );
 				?>
 				<div class="cb-definition-cards__item col-12 col-md-6 col-lg-4">
+					<?php if ( $has_link ) : ?>
+					<a class="cb-definition-cards__card cb-definition-cards__card--link" href="<?= esc_url( $card_link['url'] ); ?>" target="<?= esc_attr( ! empty( $card_link['target'] ) ? $card_link['target'] : '_self' ); ?>">
+					<?php else : ?>
 					<div class="cb-definition-cards__card">
+					<?php endif; ?>
 					<div class="cb-definition-cards__header">
 						<h3><?= wp_kses_post( get_sub_field( 'title' ) ); ?></h3>
 					</div>
@@ -59,7 +65,7 @@ if ( ! empty( $block['className'] ) ) {
 						<?php
 						if ( have_rows( 'fields' ) ) {
 							?>
-						<dl class="cb-definition-cards__list">
+						<dl class="cb-definition-cards__list mb-4">
 							<?php
 							while ( have_rows( 'fields' ) ) {
 								the_row();
@@ -86,9 +92,19 @@ if ( ! empty( $block['className'] ) ) {
 						</dl>
 							<?php
 						}
+						if ( $has_link ) {
+							$link_label = ! empty( $card_link['title'] ) ? $card_link['title'] : __( 'Find out more' );
+							?>
+						<p class="cb-link-dot cb-definition-cards__link"><?= esc_html( $link_label ); ?></p>
+							<?php
+						}
 						?>
 					</div>
-				</div>
+					<?php if ( $has_link ) : ?>
+					</a>
+					<?php else : ?>
+					</div>
+					<?php endif; ?>
 				</div>
 				<?php
 			}
