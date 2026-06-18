@@ -24642,9 +24642,11 @@ body.cb-team-modal-open {
   row-gap: 1rem;
   border-radius: 0.5rem;
   background-color: var(--col-green-dark-400);
+  box-shadow: var(--shadow-1);
   text-decoration: none;
   overflow: hidden;
   height: 100%;
+  transition: box-shadow var(--transition);
 }
 .cb-portfolio-index .portfolio__card-image-wrapper {
   overflow: hidden;
@@ -24684,7 +24686,12 @@ body.cb-team-modal-open {
   font-weight: var(--fw-semibold);
   color: var(--col-green-dark-1100);
 }
-.cb-portfolio-index a.portfolio__card:hover .portfolio__card-image {
+.cb-portfolio-index a.portfolio__card:hover,
+.cb-portfolio-index a.portfolio__card:focus-visible {
+  box-shadow: var(--shadow-2);
+}
+.cb-portfolio-index a.portfolio__card:hover .portfolio__card-image,
+.cb-portfolio-index a.portfolio__card:focus-visible .portfolio__card-image {
   transform: scale(1.05);
 }
 

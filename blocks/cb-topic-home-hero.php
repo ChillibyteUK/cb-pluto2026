@@ -83,7 +83,7 @@ if ( 'pf' === $context ) {
 							(int) ( $usp_index * 100 ),
 							esc_html( $usp_line )
 						);
-						$usp_index++;
+						++$usp_index;
 					}
 					?>
 				</ul>
