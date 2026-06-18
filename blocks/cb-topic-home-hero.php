@@ -103,7 +103,7 @@ if ( 'pf' === $context ) {
 						if ( $secondary_cta ) {
 							$secondary_target = $secondary_cta['target'] ? $secondary_cta['target'] : '_self';
 							?>
-							<a class="cb-link-dot" href="<?= esc_url( $secondary_cta['url'] ); ?>" target="<?= esc_attr( $secondary_target ); ?>"<?= '_blank' === $secondary_target ? ' rel="noopener"' : ''; ?>><?= esc_html( $secondary_cta['title'] ); ?></a>
+							<a class="cb-link-dot has-white-color" href="<?= esc_url( $secondary_cta['url'] ); ?>" target="<?= esc_attr( $secondary_target ); ?>"<?= '_blank' === $secondary_target ? ' rel="noopener"' : ''; ?>><?= esc_html( $secondary_cta['title'] ); ?></a>
 							<?php
 						}
 						?>
