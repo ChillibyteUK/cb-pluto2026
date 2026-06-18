@@ -1,5 +1,36 @@
 // Add your custom JS here.
 
+// Translate `aos-<animation>` marker classes on native/Gutenberg blocks into
+// the data-aos attributes AOS reads. Lets editors add scroll animations to any
+// core block via the block's "Additional CSS class(es)" field. Must run BEFORE
+// AOS.init() so the attributes exist when AOS scans the DOM.
+(function () {
+  // Valid AOS animation names — so we ignore AOS's own runtime classes
+  // (aos-init / aos-animate) and the aos-delay-* helper handled below.
+  var ANIMATIONS = new Set([
+    'fade', 'fade-up', 'fade-down', 'fade-left', 'fade-right',
+    'fade-up-right', 'fade-up-left', 'fade-down-right', 'fade-down-left',
+    'flip-up', 'flip-down', 'flip-left', 'flip-right',
+    'slide-up', 'slide-down', 'slide-left', 'slide-right',
+    'zoom-in', 'zoom-in-up', 'zoom-in-down', 'zoom-in-left', 'zoom-in-right',
+    'zoom-out', 'zoom-out-up', 'zoom-out-down', 'zoom-out-left', 'zoom-out-right',
+  ]);
+
+  document.querySelectorAll('[class*="aos-"]').forEach(function (el) {
+    if (el.hasAttribute('data-aos')) return; // respect PHP-set blocks
+
+    el.classList.forEach(function (cls) {
+      if (cls.indexOf('aos-') !== 0) return;
+      var name = cls.slice(4); // strip "aos-"
+      if (ANIMATIONS.has(name)) {
+        el.setAttribute('data-aos', name);
+      } else if (/^delay-\d+$/.test(name)) {
+        el.setAttribute('data-aos-delay', name.split('-')[1]); // ms
+      }
+    });
+  });
+})();
+
 AOS.init({
   easing: 'ease-out',
   once: true,
