@@ -58,6 +58,10 @@ $fg = ! empty( $block['textColor'] ) ? 'has-' . $block['textColor'] . '-color' :
 // Side modifier (always set so SCSS can mirror radius / break-out).
 $image_side = ( 'Image Text' === $col_order ) ? 'left' : 'right';
 $modifiers  = array( 'cb-text-image--image-' . $image_side );
+
+// AOS intro animations: the image slides in from its own side, the text fades.
+$image_aos = ( 'left' === $image_side ) ? 'fade-right' : 'fade-left';
+$text_aos  = 'fade';
 if ( $full_bleed ) {
 	$modifiers[] = 'cb-text-image--full-bleed';
 	$modifiers[] = 'cb-text-image--split-' . str_replace( ' ', '-', $split );
@@ -134,12 +138,12 @@ $render_text = function () {
 		<div class="cb-text-image__inner">
 			<div class="container">
 				<div class="row">
-					<div class="<?= esc_attr( $text_col_classes ); ?>">
+					<div class="<?= esc_attr( $text_col_classes ); ?>" data-aos="<?= esc_attr( $text_aos ); ?>">
 						<?php $render_text(); ?>
 					</div>
 				</div>
 			</div>
-			<div class="cb-text-image__image">
+			<div class="cb-text-image__image" data-aos="<?= esc_attr( $image_aos ); ?>">
 				<?= wp_get_attachment_image( get_field( 'image' ), 'full', false, array() ); ?>
 			</div>
 		</div>
@@ -152,10 +156,10 @@ $render_text = function () {
 		?>
 		<div class="container">
 			<div class="row gy-5 gx-4 gx-lg-5 align-items-center">
-				<div class="col-lg-<?= esc_attr( $text_col_n ); ?> <?= esc_attr( $text_col_order ); ?> <?= esc_attr( 'Image Text' === $col_order ? 'pe-lg-5' : 'ps-lg-5' ); ?>">
+				<div class="col-lg-<?= esc_attr( $text_col_n ); ?> <?= esc_attr( $text_col_order ); ?> <?= esc_attr( 'Image Text' === $col_order ? 'pe-lg-5' : 'ps-lg-5' ); ?>" data-aos="<?= esc_attr( $text_aos ); ?>">
 					<?php $render_text(); ?>
 				</div>
-				<div class="col-lg-<?= esc_attr( $image_col_n ); ?> <?= esc_attr( $image_col_order ); ?> cb-text-image__image text-center">
+				<div class="col-lg-<?= esc_attr( $image_col_n ); ?> <?= esc_attr( $image_col_order ); ?> cb-text-image__image text-center" data-aos="<?= esc_attr( $image_aos ); ?>">
 					<?= wp_get_attachment_image( get_field( 'image' ), 'full', false, array() ); ?>
 				</div>
 			</div>
