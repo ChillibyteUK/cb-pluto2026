@@ -1,5 +1,40 @@
 .cb-team-simple {
   --cb-team-simple-filter-active-bg: hsl(139, 14%, 54%);
+  background-color: var(--col-green-dark-1200);
+  color: var(--col-white);
+
+  &.has-grey-400-background-color {
+    color: var(--col-grey-900);
+
+    .cb-team-simple__contacts {
+      a,
+      button {
+        border-color: rgba(26 26 26 / 0.35);
+        color: var(--col-grey-900);
+
+        &:hover,
+        &:focus-visible {
+          svg {
+            color: var(--col-grey-400);
+          }
+        }
+      }
+
+      &--modal {
+        a,
+        button {
+          color: inherit;
+
+          &:hover,
+          &:focus-visible {
+            svg {
+              color: inherit;
+            }
+          }
+        }
+      }
+    }
+  }
 
   &__filters {
     display: flex;
@@ -106,7 +141,8 @@
 
   &__team {
     margin-top: 0.25rem;
-    color: var(--col-grey-700);
+    color: currentColor;
+    opacity: 0.75;
   }
 
   &__contacts {
@@ -125,10 +161,10 @@
       width: 2rem;
       height: 2rem;
       padding: 0;
-      border: 0;
+      border: 1px solid rgba(255 255 255 / 0.4);
       border-radius: 50%;
-      background-color: var(--col-green-dark-1000);
-      color: contrast-color(#225933);
+      background: transparent;
+      color: var(--col-white);
       font: inherit;
       text-decoration: none;
       cursor: pointer;
@@ -138,8 +174,15 @@
 
       &:hover,
       &:focus-visible {
-        background-color: var(--col-green-dark-600);
-        color: contrast-color(hsl(139, 14%, 54%));
+        background-color: currentColor;
+
+        svg {
+          color: var(--col-green-dark-1200);
+        }
+      }
+
+      svg {
+        display: block;
       }
     }
 
@@ -160,7 +203,12 @@
         &:hover,
         &:focus-visible {
           background-color: transparent;
-          color: var(--col-green-dark-1000);
+          color: inherit;
+          text-decoration: underline;
+
+          svg {
+            color: inherit;
+          }
         }
       }
     }

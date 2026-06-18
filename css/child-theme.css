@@ -25158,6 +25158,30 @@ a.cb-case-studies__card:hover .cb-case-studies__image {
 
 .cb-team-simple {
   --cb-team-simple-filter-active-bg: hsl(139, 14%, 54%);
+  background-color: var(--col-green-dark-1200);
+  color: var(--col-white);
+}
+.cb-team-simple.has-grey-400-background-color {
+  color: var(--col-grey-900);
+}
+.cb-team-simple.has-grey-400-background-color .cb-team-simple__contacts a,
+.cb-team-simple.has-grey-400-background-color .cb-team-simple__contacts button {
+  border-color: rgba(26, 26, 26, 0.35);
+  color: var(--col-grey-900);
+}
+.cb-team-simple.has-grey-400-background-color .cb-team-simple__contacts a:hover svg, .cb-team-simple.has-grey-400-background-color .cb-team-simple__contacts a:focus-visible svg,
+.cb-team-simple.has-grey-400-background-color .cb-team-simple__contacts button:hover svg,
+.cb-team-simple.has-grey-400-background-color .cb-team-simple__contacts button:focus-visible svg {
+  color: var(--col-grey-400);
+}
+.cb-team-simple.has-grey-400-background-color .cb-team-simple__contacts--modal a,
+.cb-team-simple.has-grey-400-background-color .cb-team-simple__contacts--modal button {
+  color: inherit;
+}
+.cb-team-simple.has-grey-400-background-color .cb-team-simple__contacts--modal a:hover svg, .cb-team-simple.has-grey-400-background-color .cb-team-simple__contacts--modal a:focus-visible svg,
+.cb-team-simple.has-grey-400-background-color .cb-team-simple__contacts--modal button:hover svg,
+.cb-team-simple.has-grey-400-background-color .cb-team-simple__contacts--modal button:focus-visible svg {
+  color: inherit;
 }
 .cb-team-simple__filters {
   display: flex;
@@ -25241,7 +25265,8 @@ a.cb-case-studies__card:hover .cb-case-studies__image {
 }
 .cb-team-simple__team {
   margin-top: 0.25rem;
-  color: var(--col-grey-700);
+  color: currentColor;
+  opacity: 0.75;
 }
 .cb-team-simple__contacts {
   display: flex;
@@ -25259,10 +25284,10 @@ a.cb-case-studies__card:hover .cb-case-studies__image {
   width: 2rem;
   height: 2rem;
   padding: 0;
-  border: 0;
+  border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 50%;
-  background-color: var(--col-green-dark-1000);
-  color: contrast-color(#225933);
+  background: transparent;
+  color: var(--col-white);
   font: inherit;
   text-decoration: none;
   cursor: pointer;
@@ -25271,8 +25296,16 @@ a.cb-case-studies__card:hover .cb-case-studies__image {
 .cb-team-simple__contacts a:hover, .cb-team-simple__contacts a:focus-visible,
 .cb-team-simple__contacts button:hover,
 .cb-team-simple__contacts button:focus-visible {
-  background-color: var(--col-green-dark-600);
-  color: contrast-color(hsl(139, 14%, 54%));
+  background-color: currentColor;
+}
+.cb-team-simple__contacts a:hover svg, .cb-team-simple__contacts a:focus-visible svg,
+.cb-team-simple__contacts button:hover svg,
+.cb-team-simple__contacts button:focus-visible svg {
+  color: var(--col-green-dark-1200);
+}
+.cb-team-simple__contacts a svg,
+.cb-team-simple__contacts button svg {
+  display: block;
 }
 .cb-team-simple__contacts--modal {
   display: grid;
@@ -25292,7 +25325,13 @@ a.cb-case-studies__card:hover .cb-case-studies__image {
 .cb-team-simple__contacts--modal button:hover,
 .cb-team-simple__contacts--modal button:focus-visible {
   background-color: transparent;
-  color: var(--col-green-dark-1000);
+  color: inherit;
+  text-decoration: underline;
+}
+.cb-team-simple__contacts--modal a:hover svg, .cb-team-simple__contacts--modal a:focus-visible svg,
+.cb-team-simple__contacts--modal button:hover svg,
+.cb-team-simple__contacts--modal button:focus-visible svg {
+  color: inherit;
 }
 .cb-team-simple__modal[hidden] {
   display: none;

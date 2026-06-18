@@ -13,6 +13,12 @@ $block_id = $block['anchor'] ?? ( 'cb-team-simple-' . uniqid() );
 $bg = ! empty( $block['backgroundColor'] ) ? 'has-' . $block['backgroundColor'] . '-background-color' : '';
 $fg = ! empty( $block['textColor'] ) ? 'has-' . $block['textColor'] . '-color' : '';
 
+$context = cb_get_site_context();
+if ( 'pf' === $context ) {
+	$bg = 'has-grey-400-background-color';
+	$fg = 'has-grey-900-color';
+}
+
 // Extract custom classes (filter out wp-generated ones).
 $custom_classes = '';
 if ( isset( $block['className'] ) ) {
