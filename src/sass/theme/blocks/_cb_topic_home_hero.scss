@@ -151,4 +151,17 @@
     --topic-home-hero-dot-image: url("../img/dot-line-teal.svg");
     --topic-home-hero-line-color: var(--col-green-teal-400);
   }
+
+  &__ctas {
+    .btn,
+    .cb-link-dot {
+      display: inline-flex;
+      align-items: center;
+      min-height: 2.75rem;
+    }
+
+    .cb-link-dot {
+      padding-top: 0;
+    }
+  }
 }
