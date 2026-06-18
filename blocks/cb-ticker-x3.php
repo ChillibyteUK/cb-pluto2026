@@ -53,8 +53,8 @@ if ( ! $has_content ) {
 			<?php
 			foreach ( $stats as $stat_index => $stat ) {
 				?>
-			<div class="col-lg-4 p-5" data-aos="fade" data-aos-delay="<?= esc_attr( $stat_index * 150 ); ?>">
-				<div class="cb-ticker-x3__item text-center">
+			<div class="col-lg-4 p-5">
+				<div class="cb-ticker-x3__item text-center" data-aos="fade" data-aos-delay="<?= esc_attr( $stat_index * 150 ); ?>">
 					<?php
 					if ( '' !== (string) $stat['title'] ) {
 						?>
