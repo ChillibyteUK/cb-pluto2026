@@ -34,10 +34,15 @@
   }
 
   &__media {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
     aspect-ratio: 4 / 5;
     margin-bottom: 1rem;
     overflow: hidden;
     background-color: var(--col-grey-300);
+    cursor: pointer;
 
     img {
       display: block;
@@ -45,6 +50,40 @@
       height: 100%;
       object-fit: cover;
       filter: grayscale(1);
+      transition:
+        filter 0.3s ease,
+        transform 0.5s ease;
+    }
+
+    &:hover img,
+    &:focus-visible img {
+      filter: grayscale(0);
+      transform: scale(1.03);
+    }
+
+    &--static {
+      cursor: default;
+
+      &:hover img,
+      &:focus-visible img {
+        filter: grayscale(1);
+        transform: none;
+      }
+    }
+  }
+
+  &__name-btn {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    text-align: inherit;
+    cursor: pointer;
+
+    &:hover,
+    &:focus-visible {
+      text-decoration: underline;
     }
   }
 
@@ -69,4 +108,156 @@
     margin-top: 0.25rem;
     color: var(--col-grey-700);
   }
+
+  &__contacts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0;
+    margin: 1rem 0 0;
+    list-style: none;
+
+    a,
+    button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2rem;
+      height: 2rem;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      background-color: var(--col-green-dark-1000);
+      color: contrast-color(#225933);
+      font: inherit;
+      text-decoration: none;
+      cursor: pointer;
+      transition:
+        background-color var(--transition),
+        color var(--transition);
+
+      &:hover,
+      &:focus-visible {
+        background-color: var(--col-green-dark-600);
+        color: contrast-color(hsl(139, 14%, 54%));
+      }
+    }
+
+    &--modal {
+      display: grid;
+      gap: 0.75rem;
+
+      a,
+      button {
+        justify-content: flex-start;
+        width: auto;
+        height: auto;
+        gap: 0.5rem;
+        border-radius: 0;
+        background-color: transparent;
+        color: inherit;
+
+        &:hover,
+        &:focus-visible {
+          background-color: transparent;
+          color: var(--col-green-dark-1000);
+        }
+      }
+    }
+  }
+
+  &__modal[hidden] {
+    display: none;
+  }
+
+  &__modal {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: grid;
+    place-items: center;
+    padding: 1rem;
+  }
+
+  &__modal-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: hsl(0 0% 0% / 0.6);
+  }
+
+  &__modal-dialog {
+    position: relative;
+    z-index: 1;
+    width: min(960px, 100%);
+    max-height: calc(100vh - 2rem);
+    overflow: auto;
+    background-color: var(--col-white);
+    color: var(--col-grey-900);
+    box-shadow: var(--shadow-2);
+  }
+
+  &__modal-close {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    z-index: 2;
+    width: 2.25rem;
+    height: 2.25rem;
+    border: 0;
+    border-radius: 50%;
+    background-color: var(--col-green-dark-1000);
+    color: var(--col-white);
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+
+  &__modal-body {
+    display: grid;
+
+    @media (min-width: 768px) {
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    }
+  }
+
+  &__modal-image {
+    min-height: 280px;
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__modal-content {
+    padding: clamp(1.5rem, 4vw, 3rem);
+  }
+
+  &__modal-name {
+    margin-bottom: 0.5rem;
+    font-size: var(--fs-700);
+  }
+
+  &__modal-role,
+  &__modal-team {
+    margin-bottom: 0.25rem;
+    font-size: var(--fs-400);
+  }
+
+  &__modal-role {
+    font-weight: var(--fw-medium);
+  }
+
+  &__modal-bio {
+    margin-top: 1.5rem;
+
+    > *:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.cb-team-simple-modal-open {
+  overflow: hidden;
 }
