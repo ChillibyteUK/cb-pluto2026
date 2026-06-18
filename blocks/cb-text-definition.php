@@ -61,7 +61,7 @@ $block_uid = $block['anchor'] ?? ( 'text-definition-' . uniqid() );
 	<div class="container">
 		<div class="row gy-5 gx-4 gx-lg-5 align-items-center">
 
-			<div class="col-md-6 cb-text-definition__text pe-lg-5">
+			<div class="col-md-6 cb-text-definition__text pe-lg-5" data-aos="fade">
 				<?php if ( get_field( 'title' ) ) : ?>
 					<h2 class="cb-text-definition__title has-700-font-size mb-4"><?= wp_kses_post( get_field( 'title' ) ); ?></h2>
 				<?php endif; ?>
@@ -80,7 +80,7 @@ $block_uid = $block['anchor'] ?? ( 'text-definition-' . uniqid() );
 				</div>
 			</div>
 
-			<div class="col-md-6 cb-text-definition__card-col">
+			<div class="col-md-6 cb-text-definition__card-col" data-aos="fade-left">
 				<div class="cb-definition-cards <?= esc_attr( $card_modifier ); ?>">
 					<div class="cb-definition-cards__card">
 						<div class="cb-definition-cards__header">

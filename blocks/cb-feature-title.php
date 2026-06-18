@@ -66,7 +66,7 @@ $classes = trim( 'cb-feature-title ' . $variant_class . ' ' . implode( ' ', $col
 $style   = $colour_styles ? implode( ';', $colour_styles ) : '';
 ?>
 <section class="<?= esc_attr( $classes ); ?>"<?= $style ? ' style="' . esc_attr( $style ) . '"' : ''; ?>>
-	<div class="container <?= esc_attr( $container_classes ); ?>">
+	<div class="cb-feature-title__inner container <?= esc_attr( $container_classes ); ?>">
 		<<?= esc_attr( $heading_level ); ?> class="cb-feature-title__heading"><span class="cb-feature-title__heading-text"><?= esc_html( get_field( 'title' ) ); ?></span></<?= esc_attr( $heading_level ); ?>>
 		<div class="cb-feature-title__content"><?= wp_kses_post( get_field( 'content' ) ); ?></div>
 	</div>

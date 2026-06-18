@@ -61,7 +61,7 @@ if ( 'pf' === $context ) {
 		<div class="row">
 			<div class="col-md-6">
 				<h1 class="text-balance"><?= esc_html( get_field( 'title' ) ); ?></h1>
-				<ul class="topic-home-hero__intro"><?= wp_kses_post( cb_list( get_field( 'usps' ) ) ); ?></ul>
+				<ul class="topic-home-hero__intro" data-aos="cb-stagger"><?= wp_kses_post( cb_list( get_field( 'usps' ) ) ); ?></ul>
 			</div>
 		</div>
 	</div>

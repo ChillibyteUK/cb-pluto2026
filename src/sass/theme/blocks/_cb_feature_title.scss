@@ -31,6 +31,17 @@
     }
   }
 
+  // Hidden up-front so the GSAP staggered reveal (custom-javascript.js) has no
+  // flash of content before the footer script runs. GSAP fades each group in
+  // on scroll; reduced-motion users get it immediately.
+  &__inner {
+    opacity: 0;
+
+    @media (prefers-reduced-motion: reduce) {
+      opacity: 1;
+    }
+  }
+
   // ---------------------------------------------------------------------------
   // Variants — only the orange/teal sides paint the dot + line. Default
   // (no side context) renders just the heading text.

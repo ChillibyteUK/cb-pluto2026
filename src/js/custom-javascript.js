@@ -255,6 +255,75 @@ AOS.init({
   statHeroes.forEach((hero) => observer.observe(hero));
 })();
 
+// Staggered reveal for cb-feature-title blocks.
+//
+// Consecutive .cb-feature-title siblings form a GROUP. Each group reveals as a
+// unit when its first block scrolls into view, fading its members in one after
+// another (stagger). The stagger counter resets per group, so a run broken by
+// other content starts the next group's stagger from zero.
+(function () {
+  if (!window.gsap || !window.ScrollTrigger) return;
+
+  var blocks = Array.prototype.slice.call(
+    document.querySelectorAll(".cb-feature-title"),
+  );
+  if (!blocks.length) return;
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  var prefersReducedMotion =
+    window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // Build groups of DOM-adjacent .cb-feature-title blocks (document order).
+  var groups = [];
+  blocks.forEach(function (block) {
+    var prev = block.previousElementSibling;
+    if (
+      groups.length &&
+      prev &&
+      prev.classList.contains("cb-feature-title")
+    ) {
+      groups[groups.length - 1].push(block);
+    } else {
+      groups.push([block]);
+    }
+  });
+
+  groups.forEach(function (group) {
+    var targets = group
+      .map(function (b) {
+        return b.querySelector(".cb-feature-title__inner");
+      })
+      .filter(Boolean);
+    if (!targets.length) return;
+
+    // Reduced motion: just reveal, no animation.
+    if (prefersReducedMotion) {
+      gsap.set(targets, { autoAlpha: 1, y: 0 });
+      return;
+    }
+
+    gsap.set(targets, { autoAlpha: 0, y: 24 });
+
+    ScrollTrigger.create({
+      trigger: group[0],
+      start: "top 85%",
+      once: true,
+      onEnter: function () {
+        gsap.to(targets, {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.6,
+          ease: "power2.out",
+          stagger: 0.15, // resets per group — each group is its own tween
+          overwrite: true,
+        });
+      },
+    });
+  });
+})();
+
 /*
 
   // Header background

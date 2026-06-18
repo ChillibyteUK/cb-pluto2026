@@ -151,4 +151,43 @@
     --topic-home-hero-dot-image: url("../img/dot-line-teal.svg");
     --topic-home-hero-line-color: var(--col-green-teal-400);
   }
+
+  // ---------------------------------------------------------------------------
+  // Staggered intro animation
+  //
+  // The <ul> carries data-aos="cb-stagger" — a custom AOS value with no CSS of
+  // its own, so AOS only toggles `.aos-animate` on it (no visual change to the
+  // list itself). Each <li> is hidden up-front (in head-loaded CSS, so no FOUC)
+  // and fades in with a cascading transition-delay when the list scrolls into
+  // view. nth-child handles any number of USPs without a PHP counter.
+  // ---------------------------------------------------------------------------
+  .topic-home-hero__intro[data-aos] {
+    li {
+      opacity: 0;
+      transform: translateY(16px);
+      transition:
+        opacity 0.6s ease-out,
+        transform 0.6s ease-out;
+    }
+
+    &.aos-animate li {
+      opacity: 1;
+      transform: none;
+    }
+
+    @for $i from 1 through 8 {
+      &.aos-animate li:nth-child(#{$i}) {
+        transition-delay: #{($i - 1) * 0.12}s;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      li {
+        opacity: 1;
+        transform: none;
+        transition: none;
+        transition-delay: 0s;
+      }
+    }
+  }
 }
