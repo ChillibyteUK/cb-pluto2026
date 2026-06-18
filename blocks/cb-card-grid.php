@@ -41,6 +41,7 @@ $classes = trim( 'cb-card-grid ' . $modifier . ' ' . $custom_classes );
 			foreach ( $cards as $card ) {
 				$layout = $card['acf_fc_layout'] ?? '';
 				$side   = ( 0 === $item_index % 2 ) ? 'left' : 'right';
+				$aos    = ( 'left' === $side ) ? 'fade-right' : 'fade-left';
 				?>
 				<div class="col-md-6 cb-card-grid__col cb-card-grid__col--<?= esc_attr( $side ); ?>">
 					<?php
@@ -48,7 +49,7 @@ $classes = trim( 'cb-card-grid ' . $modifier . ' ' . $custom_classes );
 						$title   = $card['title'] ?? '';
 						$content = $card['content'] ?? '';
 						?>
-						<div class="cb-card-grid__card">
+						<div class="cb-card-grid__card" data-aos="<?= esc_attr( $aos ); ?>">
 							<?php if ( '' !== trim( (string) $title ) ) : ?>
 								<h3 class="cb-card-grid__title"><?= esc_html( $title ); ?></h3>
 							<?php endif; ?>
@@ -66,7 +67,7 @@ $classes = trim( 'cb-card-grid ' . $modifier . ' ' . $custom_classes );
 							$image_classes[] = 'cb-card-grid__image--bleed-' . $side;
 						}
 						?>
-						<div class="<?= esc_attr( implode( ' ', $image_classes ) ); ?>">
+						<div class="<?= esc_attr( implode( ' ', $image_classes ) ); ?>" data-aos="<?= esc_attr( $aos ); ?>">
 							<?php
 							if ( $image_id > 0 ) {
 								echo wp_get_attachment_image( $image_id, 'large' );
