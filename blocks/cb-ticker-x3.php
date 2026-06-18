@@ -51,9 +51,9 @@ if ( ! $has_content ) {
 	<div class="container-xl">
 		<div class="row justify-content-center">
 			<?php
-			foreach ( $stats as $stat ) {
+			foreach ( $stats as $stat_index => $stat ) {
 				?>
-			<div class="col-lg-4 p-5">
+			<div class="col-lg-4 p-5" data-aos="fade-up" data-aos-delay="<?= esc_attr( $stat_index * 150 ); ?>">
 				<div class="cb-ticker-x3__item text-center">
 					<?php
 					if ( '' !== (string) $stat['title'] ) {

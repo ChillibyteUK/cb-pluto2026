@@ -213,6 +213,26 @@ AOS.init({
     window.requestAnimationFrame(tick);
   };
 
+  // AOS duration used for the fade-in (matches AOS.init duration above). When a
+  // value sits inside a staggered [data-aos-delay] card, its count-up is held
+  // back until that card has finished fading in, so the count chains off the
+  // fade rather than firing immediately.
+  const AOS_DURATION = 600;
+
+  const startValue = (element) => {
+    const delayHost = element.closest("[data-aos-delay]");
+    const aosDelay = delayHost
+      ? parseInt(delayHost.getAttribute("data-aos-delay"), 10) || 0
+      : 0;
+
+    if (prefersReducedMotion || aosDelay === 0) {
+      animateValue(element);
+      return;
+    }
+
+    window.setTimeout(() => animateValue(element), aosDelay + AOS_DURATION);
+  };
+
   const observer = new IntersectionObserver(
     (entries, obs) => {
       entries.forEach((entry) => {
@@ -222,7 +242,7 @@ AOS.init({
           .querySelectorAll(
             ".stat-hero__stat-value, .cb-stats__stat-value, .cb-ticker-x3__stat-value",
           )
-          .forEach(animateValue);
+          .forEach(startValue);
 
         obs.unobserve(entry.target);
       });
