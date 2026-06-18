@@ -18,7 +18,7 @@ $context  = cb_get_site_context();
 $modifier = '' !== $context ? 'cb-card-grid--' . $context : '';
 
 // Extract custom classes (filter out wp-generated ones).
-$custom_classes = 'pb-5';
+$custom_classes = 'py-5';
 if ( isset( $block['className'] ) ) {
 	$class_array    = explode( ' ', $block['className'] );
 	$filtered       = array_filter(
