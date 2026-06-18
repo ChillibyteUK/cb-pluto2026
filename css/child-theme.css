@@ -23727,10 +23727,10 @@ span a {
   background-color: color-mix(in srgb, var(--cb-secondary-hero-overlay-color) 80%, transparent);
 }
 .cb-secondary-hero--pf {
-  --cb-secondary-hero-overlay-color: var(--col-green-teal-1000);
+  --cb-secondary-hero-overlay-color: var(--col-green-dark-1000);
 }
 .cb-secondary-hero--inv {
-  --cb-secondary-hero-overlay-color: var(--col-green-dark-1000);
+  --cb-secondary-hero-overlay-color: var(--col-green-teal-1000);
 }
 .cb-secondary-hero__title {
   margin-bottom: 1.5rem;
