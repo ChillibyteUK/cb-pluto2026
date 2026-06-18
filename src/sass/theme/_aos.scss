@@ -1,0 +1,56 @@
+/* =========================
+   AOS — flash-of-content guard for class-mapped blocks
+   -------------------------
+   For PHP blocks the `data-aos` attribute is in the initial HTML, so aos.css
+   (loaded in <head>) hides them on first paint. Native/Gutenberg blocks instead
+   receive `data-aos` from the footer JS mapper (see custom-javascript.js), so
+   without this they paint fully visible for a frame, then AOS hides + animates
+   them — a visible flash.
+
+   These rules mirror AOS 2.3.1's own initial (pre-animate) state, keyed off the
+   `aos-*` MARKER class (present in the initial HTML). The `:not(.aos-init)`
+   guard means they only apply until AOS has processed the element — at which
+   point AOS's own `[data-aos]` rules take over, so there is no double-handling.
+
+   Note: like AOS itself, this hides animated content when JS is unavailable —
+   consistent with the existing PHP `data-aos` blocks.
+   ========================= */
+
+$aos-distance: 100px;
+
+%aos-hidden {
+  opacity: 0;
+  transition-property: opacity, transform;
+}
+
+// --- fade family ---------------------------------------------------------
+.aos-fade:not(.aos-init) { @extend %aos-hidden; }
+
+.aos-fade-up:not(.aos-init)    { @extend %aos-hidden; transform: translate3d(0, $aos-distance, 0); }
+.aos-fade-down:not(.aos-init)  { @extend %aos-hidden; transform: translate3d(0, -$aos-distance, 0); }
+.aos-fade-right:not(.aos-init) { @extend %aos-hidden; transform: translate3d(-$aos-distance, 0, 0); }
+.aos-fade-left:not(.aos-init)  { @extend %aos-hidden; transform: translate3d($aos-distance, 0, 0); }
+
+.aos-fade-up-right:not(.aos-init)   { @extend %aos-hidden; transform: translate3d(-$aos-distance, $aos-distance, 0); }
+.aos-fade-up-left:not(.aos-init)    { @extend %aos-hidden; transform: translate3d($aos-distance, $aos-distance, 0); }
+.aos-fade-down-right:not(.aos-init) { @extend %aos-hidden; transform: translate3d(-$aos-distance, -$aos-distance, 0); }
+.aos-fade-down-left:not(.aos-init)  { @extend %aos-hidden; transform: translate3d($aos-distance, -$aos-distance, 0); }
+
+// --- zoom family (opacity + scale) --------------------------------------
+.aos-zoom-in:not(.aos-init)       { @extend %aos-hidden; transform: scale(0.6); }
+.aos-zoom-in-up:not(.aos-init)    { @extend %aos-hidden; transform: translate3d(0, $aos-distance, 0) scale(0.6); }
+.aos-zoom-in-down:not(.aos-init)  { @extend %aos-hidden; transform: translate3d(0, -$aos-distance, 0) scale(0.6); }
+.aos-zoom-in-right:not(.aos-init) { @extend %aos-hidden; transform: translate3d(-$aos-distance, 0, 0) scale(0.6); }
+.aos-zoom-in-left:not(.aos-init)  { @extend %aos-hidden; transform: translate3d($aos-distance, 0, 0) scale(0.6); }
+
+.aos-zoom-out:not(.aos-init)       { @extend %aos-hidden; transform: scale(1.2); }
+.aos-zoom-out-up:not(.aos-init)    { @extend %aos-hidden; transform: translate3d(0, $aos-distance, 0) scale(1.2); }
+.aos-zoom-out-down:not(.aos-init)  { @extend %aos-hidden; transform: translate3d(0, -$aos-distance, 0) scale(1.2); }
+.aos-zoom-out-right:not(.aos-init) { @extend %aos-hidden; transform: translate3d(-$aos-distance, 0, 0) scale(1.2); }
+.aos-zoom-out-left:not(.aos-init)  { @extend %aos-hidden; transform: translate3d($aos-distance, 0, 0) scale(1.2); }
+
+// --- slide family (transform only, no fade) -----------------------------
+.aos-slide-up:not(.aos-init)    { transform: translate3d(0, 100%, 0); }
+.aos-slide-down:not(.aos-init)  { transform: translate3d(0, -100%, 0); }
+.aos-slide-right:not(.aos-init) { transform: translate3d(-100%, 0, 0); }
+.aos-slide-left:not(.aos-init)  { transform: translate3d(100%, 0, 0); }
