@@ -38,22 +38,32 @@ if ( $image_url ) {
 	class="<?= esc_attr( implode( ' ', $section_classes ) ); ?>"
 	<?= $section_style ? ' style="' . esc_attr( $section_style ) . '"' : ''; ?>
 >
-	<?php if ( $image_url ) : ?>
+	<?php
+	if ( $image_url ) {
+		?>
 		<div class="cb-secondary-hero__image" aria-hidden="true"></div>
-	<?php endif; ?>
+		<?php
+	}
+	?>
 
 	<div class="cb-secondary-hero__body">
 		<div class="container">
 			<div class="row justify-content-center">
-				<div class="col-lg-9 col-xl-8 text-center">
-					<?php if ( '' !== trim( $block_title ) ) : ?>
+				<div class="col-lg-9 col-xl-8 text-center cb-secondary-hero__stagger" data-aos="cb-stagger">
+					<?php
+					if ( '' !== trim( $block_title ) ) {
+						?>
 						<h1 class="cb-secondary-hero__title text-uppercase"><?= esc_html( $block_title ); ?></h1>
-					<?php endif; ?>
-					<?php if ( '' !== trim( $content ) ) : ?>
+						<?php
+					}
+					if ( '' !== trim( $content ) ) {
+						?>
 						<div class="cb-secondary-hero__content">
 							<?= wp_kses_post( wpautop( $content ) ); ?>
 						</div>
-					<?php endif; ?>
+						<?php
+					}
+					?>
 				</div>
 			</div>
 		</div>

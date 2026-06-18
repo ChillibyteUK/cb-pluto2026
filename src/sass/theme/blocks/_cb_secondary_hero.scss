@@ -74,4 +74,58 @@
       margin-bottom: 0;
     }
   }
+
+  /* --------------------------------------------------
+     Staggered intro animation.
+     AOS toggles `.aos-animate` on the [data-aos="cb-stagger"]
+     wrapper when it scrolls into view (cb-stagger is a custom
+     value AOS has no CSS for, so AOS only flips the class —
+     no visual change of its own). The title and each content
+     paragraph then reveal via cascading transition-delay,
+     giving a chained feel without per-element data-aos-delay.
+     Pacing matches AOS.init duration:600.
+     -------------------------------------------------- */
+  &__stagger {
+    .cb-secondary-hero__title,
+    .cb-secondary-hero__content > p {
+      opacity: 0;
+      transform: translateY(24px);
+      transition:
+        opacity 0.6s ease-out,
+        transform 0.6s ease-out;
+    }
+
+    &.aos-animate {
+      .cb-secondary-hero__title,
+      .cb-secondary-hero__content > p {
+        opacity: 1;
+        transform: none;
+      }
+
+      // Title first, then each paragraph cascades after it.
+      .cb-secondary-hero__title {
+        transition-delay: 0s;
+      }
+
+      @for $i from 1 through 8 {
+        .cb-secondary-hero__content > p:nth-child(#{$i}) {
+          transition-delay: #{0.15 + ($i * 0.12)}s;
+        }
+      }
+    }
+
+    // Reduced-motion: reveal instantly, no transform or stagger.
+    @media (prefers-reduced-motion: reduce) {
+      &,
+      &.aos-animate {
+        .cb-secondary-hero__title,
+        .cb-secondary-hero__content > p {
+          opacity: 1;
+          transform: none;
+          transition: none;
+          transition-delay: 0s;
+        }
+      }
+    }
+  }
 }

@@ -23594,6 +23594,16 @@ span a {
   /* --------------------------------------------------
      Body strip (full-bleed white, constrained text).
      -------------------------------------------------- */
+  /* --------------------------------------------------
+     Staggered intro animation.
+     AOS toggles `.aos-animate` on the [data-aos="cb-stagger"]
+     wrapper when it scrolls into view (cb-stagger is a custom
+     value AOS has no CSS for, so AOS only flips the class —
+     no visual change of its own). The title and each content
+     paragraph then reveal via cascading transition-delay,
+     giving a chained feel without per-element data-aos-delay.
+     Pacing matches AOS.init duration:600.
+     -------------------------------------------------- */
 }
 .cb-secondary-hero__image {
   position: relative;
@@ -23639,6 +23649,54 @@ span a {
 }
 .cb-secondary-hero__content > p:last-child {
   margin-bottom: 0;
+}
+.cb-secondary-hero__stagger .cb-secondary-hero__title,
+.cb-secondary-hero__stagger .cb-secondary-hero__content > p {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.cb-secondary-hero__stagger.aos-animate .cb-secondary-hero__title,
+.cb-secondary-hero__stagger.aos-animate .cb-secondary-hero__content > p {
+  opacity: 1;
+  transform: none;
+}
+.cb-secondary-hero__stagger.aos-animate .cb-secondary-hero__title {
+  transition-delay: 0s;
+}
+.cb-secondary-hero__stagger.aos-animate .cb-secondary-hero__content > p:nth-child(1) {
+  transition-delay: 0.27s;
+}
+.cb-secondary-hero__stagger.aos-animate .cb-secondary-hero__content > p:nth-child(2) {
+  transition-delay: 0.39s;
+}
+.cb-secondary-hero__stagger.aos-animate .cb-secondary-hero__content > p:nth-child(3) {
+  transition-delay: 0.51s;
+}
+.cb-secondary-hero__stagger.aos-animate .cb-secondary-hero__content > p:nth-child(4) {
+  transition-delay: 0.63s;
+}
+.cb-secondary-hero__stagger.aos-animate .cb-secondary-hero__content > p:nth-child(5) {
+  transition-delay: 0.75s;
+}
+.cb-secondary-hero__stagger.aos-animate .cb-secondary-hero__content > p:nth-child(6) {
+  transition-delay: 0.87s;
+}
+.cb-secondary-hero__stagger.aos-animate .cb-secondary-hero__content > p:nth-child(7) {
+  transition-delay: 0.99s;
+}
+.cb-secondary-hero__stagger.aos-animate .cb-secondary-hero__content > p:nth-child(8) {
+  transition-delay: 1.11s;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cb-secondary-hero__stagger .cb-secondary-hero__title,
+  .cb-secondary-hero__stagger .cb-secondary-hero__content > p, .cb-secondary-hero__stagger.aos-animate .cb-secondary-hero__title,
+  .cb-secondary-hero__stagger.aos-animate .cb-secondary-hero__content > p {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    transition-delay: 0s;
+  }
 }
 
 /* =========================

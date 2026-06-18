@@ -1,5 +1,12 @@
 // Add your custom JS here.
 
+AOS.init({
+  easing: 'ease-out',
+  once: true,
+  duration: 600,
+});
+
+
 // Add background to navbar on scroll
 (function () {
   var navbar = document.getElementById("wrapper-navbar");
@@ -155,7 +162,7 @@
       return;
     }
 
-    const duration = 2400;
+    const duration = 4200;
     const startTime = performance.now();
 
     const tick = (now) => {
