@@ -129,6 +129,40 @@
             "max_size": "",
             "mime_types": "mp4",
             "allow_in_bindings": 0
+        },
+        {
+            "key": "field_6a33cb5a1f119",
+            "label": "Primary CTA",
+            "name": "primary_cta",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_6a33cb681f11a",
+            "label": "Secondary CTA",
+            "name": "secondary_cta",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "allow_in_bindings": 0
         }
     ],
     "location": [
@@ -152,5 +186,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1780069809
+    "modified": 1781779314
 }

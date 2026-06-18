@@ -16,6 +16,9 @@ $hero_bg_url   = $hero_thumb_id ? wp_get_attachment_image_url( $hero_thumb_id, '
 $mp4_field  = get_field( 'background_video_mp4' );
 $webm_field = get_field( 'background_video_webm' );
 
+$primary_cta   = get_field( 'primary_cta' );
+$secondary_cta = get_field( 'secondary_cta' );
+
 $mp4_url  = is_array( $mp4_field ) ? $mp4_field['url'] : '';
 $webm_url = is_array( $webm_field ) ? $webm_field['url'] : '';
 
@@ -84,6 +87,30 @@ if ( 'pf' === $context ) {
 					}
 					?>
 				</ul>
+				<?php
+				$cta_delay = $usp_index > 0 ? ( ( $usp_index - 1 ) * 100 ) + 600 : 0;
+				if ( $primary_cta || $secondary_cta ) {
+					?>
+					<div class="topic-home-hero__ctas d-flex flex-wrap align-items-center gap-4 mt-4" data-aos="fade" data-aos-delay="<?= esc_attr( $cta_delay ); ?>">
+						<?php
+						if ( $primary_cta ) {
+							$primary_target = $primary_cta['target'] ? $primary_cta['target'] : '_self';
+							?>
+							<a class="btn btn-primary" href="<?= esc_url( $primary_cta['url'] ); ?>" target="<?= esc_attr( $primary_target ); ?>"<?= '_blank' === $primary_target ? ' rel="noopener"' : ''; ?>><?= esc_html( $primary_cta['title'] ); ?></a>
+							<?php
+						}
+
+						if ( $secondary_cta ) {
+							$secondary_target = $secondary_cta['target'] ? $secondary_cta['target'] : '_self';
+							?>
+							<a class="cb-link-dot" href="<?= esc_url( $secondary_cta['url'] ); ?>" target="<?= esc_attr( $secondary_target ); ?>"<?= '_blank' === $secondary_target ? ' rel="noopener"' : ''; ?>><?= esc_html( $secondary_cta['title'] ); ?></a>
+							<?php
+						}
+						?>
+					</div>
+					<?php
+				}
+				?>
 			</div>
 		</div>
 	</div>
