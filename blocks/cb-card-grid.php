@@ -46,12 +46,12 @@ $classes = trim( 'cb-card-grid ' . $modifier . ' ' . $custom_classes );
 				<div class="col-md-6 cb-card-grid__col cb-card-grid__col--<?= esc_attr( $side ); ?>">
 					<?php
 					if ( 'card' === $layout ) {
-						$title   = $card['title'] ?? '';
-						$content = $card['content'] ?? '';
+						$card_title = $card['title'] ?? '';
+						$content    = $card['content'] ?? '';
 						?>
 						<div class="cb-card-grid__card" data-aos="<?= esc_attr( $aos ); ?>">
-							<?php if ( '' !== trim( (string) $title ) ) : ?>
-								<h3 class="cb-card-grid__title"><?= esc_html( $title ); ?></h3>
+							<?php if ( '' !== trim( (string) $card_title ) ) : ?>
+								<h3 class="cb-card-grid__title"><?= esc_html( $card_title ); ?></h3>
 							<?php endif; ?>
 							<?php if ( '' !== trim( (string) $content ) ) : ?>
 								<div class="cb-card-grid__content"><?= wp_kses_post( $content ); ?></div>
@@ -59,8 +59,8 @@ $classes = trim( 'cb-card-grid ' . $modifier . ' ' . $custom_classes );
 						</div>
 						<?php
 					} elseif ( 'image' === $layout ) {
-						$image_id   = (int) ( $card['image'] ?? 0 );
-						$full_bleed = ! empty( $card['full_bleed'] );
+						$image_id      = (int) ( $card['image'] ?? 0 );
+						$full_bleed    = ! empty( $card['full_bleed'] );
 						$image_classes = array( 'cb-card-grid__image' );
 						if ( $full_bleed ) {
 							$image_classes[] = 'cb-card-grid__image--full-bleed';

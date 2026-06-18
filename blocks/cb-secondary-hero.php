@@ -2,8 +2,8 @@
 /**
  * Block template for CB Secondary Hero.
  *
- * Centered hero with a thin parallax header-image strip and a white card
- * containing the title (h1) and content. The first paragraph of the content
+ * Centered hero with a full-section parallax background image and a tinted
+ * body overlay containing the title (h1) and content. The first paragraph of the content
  * is styled as a standfirst (selector: .cb-secondary-hero__content > p:first-child).
  *
  * Parallax: same scroll-driven --parallax-y custom property pattern as
@@ -28,6 +28,10 @@ $image_url = $image_id ? wp_get_attachment_image_url( $image_id, 'full' ) : '';
 
 $section_classes = array( 'cb-secondary-hero' );
 $section_style   = '';
+$context         = cb_get_site_context();
+if ( '' !== $context ) {
+	$section_classes[] = 'cb-secondary-hero--' . $context;
+}
 if ( $image_url ) {
 	$section_classes[] = 'cb-secondary-hero--has-header-image';
 	$section_style     = sprintf( '--cb-secondary-hero-bg: url(%s);', esc_url_raw( $image_url ) );
@@ -38,14 +42,6 @@ if ( $image_url ) {
 	class="<?= esc_attr( implode( ' ', $section_classes ) ); ?>"
 	<?= $section_style ? ' style="' . esc_attr( $section_style ) . '"' : ''; ?>
 >
-	<?php
-	if ( $image_url ) {
-		?>
-		<div class="cb-secondary-hero__image" aria-hidden="true"></div>
-		<?php
-	}
-	?>
-
 	<div class="cb-secondary-hero__body">
 		<div class="container">
 			<div class="row justify-content-center">

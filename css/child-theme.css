@@ -23680,24 +23680,21 @@ span a {
 
 /* =========================
    CB Secondary Hero
-   Two stacked full-bleed strips:
-     1. Thin parallax header image strip.
-     2. White-background body whose text is
-        constrained inside a centred container.
+   Full-section parallax background image with a translucent content overlay.
    First paragraph of the content is a standfirst.
    ========================= */
 .cb-secondary-hero {
   position: relative;
   isolation: isolate;
+  overflow: hidden;
+  background-color: var(--col-green-dark-1000);
+  --cb-secondary-hero-overlay-color: var(--col-green-dark-1000);
+  color: var(--col-white);
   /* --------------------------------------------------
-     Header image strip (full-bleed, parallax)
-     Visible band ~150px (clamp 100–200px). The strip
-     is overflow-hidden; the inner image is enlarged
-     and translated by --cb-secondary-hero-parallax-y
-     (set per scroll frame by the inline script).
+     Full-section background image (parallax)
      -------------------------------------------------- */
   /* --------------------------------------------------
-     Body strip (full-bleed white, constrained text).
+     Body overlay. Margin-top leaves a raw image band visible above it.
      -------------------------------------------------- */
   /* --------------------------------------------------
      Staggered intro animation.
@@ -23710,16 +23707,11 @@ span a {
      Pacing matches AOS.init duration:600.
      -------------------------------------------------- */
 }
-.cb-secondary-hero__image {
-  position: relative;
-  height: clamp(80px, 12vw, 150px);
-  overflow: hidden;
-  background-color: var(--col-grey-800);
-}
-.cb-secondary-hero__image::before {
+.cb-secondary-hero--has-header-image::before {
   content: "";
   position: absolute;
   inset: -3rem 0;
+  z-index: 0;
   background-image: var(--cb-secondary-hero-bg);
   background-position: center;
   background-repeat: no-repeat;
@@ -23727,16 +23719,18 @@ span a {
   transform: translateY(var(--cb-secondary-hero-parallax-y, 0));
   will-change: transform;
 }
-.cb-secondary-hero__image::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-color: hsla(var(--hsl-green-dark-1000)/0.6);
-  pointer-events: none;
-}
 .cb-secondary-hero__body {
-  background-color: var(--col-white);
+  position: relative;
+  z-index: 1;
+  margin-top: 6rem;
   padding: 3rem 0;
+  background-color: color-mix(in srgb, var(--cb-secondary-hero-overlay-color) 80%, transparent);
+}
+.cb-secondary-hero--pf {
+  --cb-secondary-hero-overlay-color: var(--col-green-teal-1000);
+}
+.cb-secondary-hero--inv {
+  --cb-secondary-hero-overlay-color: var(--col-green-dark-1000);
 }
 .cb-secondary-hero__title {
   margin-bottom: 1.5rem;
