@@ -75,7 +75,7 @@ $section_classes = array( 'full-flourish', 'full-flourish--flip', $flourish_vari
 						$cols = 'col-md-6';
 					}
 					?>
-					<div class="<?= esc_attr( $cols ); ?>">
+					<div class="<?= esc_attr( $cols ); ?>" data-aos="fade-up" data-aos-delay="<?= esc_attr( $query->current_post * 120 ); ?>">
 						<a href="<?php the_permalink(); ?>" class="cb-news-card">
 							<?php if ( has_post_thumbnail() ) : ?>
 								<div class="cb-news-card__image cb-news-card__image--<?= $is_feature ? '16-9' : '4-3'; ?>">
@@ -97,7 +97,7 @@ $section_classes = array( 'full-flourish', 'full-flourish--flip', $flourish_vari
 				while ( $query->have_posts() ) {
 					$query->the_post();
 					?>
-					<div class="col-md-3">
+					<div class="col-md-3" data-aos="fade-up" data-aos-delay="<?= esc_attr( $query->current_post * 120 ); ?>">
 						<a href="<?php the_permalink(); ?>" class="cb-news-card">
 							<?php if ( has_post_thumbnail() ) : ?>
 								<div class="cb-news-card__image cb-news-card__image--circle">
