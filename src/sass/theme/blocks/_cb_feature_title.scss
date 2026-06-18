@@ -31,6 +31,18 @@
     }
   }
 
+  // Prevent the footer-loaded GSAP reveal from causing a visible-first paint.
+  // The class is added in <head>, so no-JS users still see the content.
+  .has-js &__inner {
+    opacity: 0;
+    visibility: hidden;
+
+    @media (prefers-reduced-motion: reduce) {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
   // ---------------------------------------------------------------------------
   // Variants — only the orange/teal sides paint the dot + line. Default
   // (no side context) renders just the heading text.

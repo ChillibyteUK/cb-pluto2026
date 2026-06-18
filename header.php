@@ -23,6 +23,7 @@ if ( session_status() === PHP_SESSION_NONE ) {
     <meta
         charset="<?php bloginfo( 'charset' ); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, minimum-scale=1">
+    <script>document.documentElement.classList.add('has-js');</script>
 
 	<link rel="preload"
         href="<?= esc_url( get_stylesheet_directory_uri() . '/fonts/montserrat-v31-latin-regular.woff2' ); ?>"

@@ -304,7 +304,7 @@ AOS.init({
       return;
     }
 
-    gsap.set(targets, { autoAlpha: 0, y: 24 });
+    gsap.set(targets, { autoAlpha: 0 });
 
     ScrollTrigger.create({
       trigger: group[0],
@@ -313,7 +313,6 @@ AOS.init({
       onEnter: function () {
         gsap.to(targets, {
           autoAlpha: 1,
-          y: 0,
           duration: 0.6,
           ease: "power2.out",
           stagger: 0.15, // resets per group — each group is its own tween
