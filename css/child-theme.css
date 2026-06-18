@@ -24497,14 +24497,6 @@ body.cb-team-modal-open {
 .cb-feature-title__content > *:last-child {
   margin-bottom: 0;
 }
-.cb-feature-title__inner {
-  opacity: 0;
-}
-@media (prefers-reduced-motion: reduce) {
-  .cb-feature-title__inner {
-    opacity: 1;
-  }
-}
 .cb-feature-title--pf .cb-feature-title__heading::before, .cb-feature-title--inv .cb-feature-title__heading::before {
   content: "";
   position: absolute;
