@@ -32,6 +32,8 @@
     flex-direction: column;
     width: 100%;
     background-color: var(--col-white);
+    box-shadow: var(--shadow-1);
+    transition: box-shadow var(--transition), background-color var(--transition);
   }
 
   // Clickable card variant — the whole card is an anchor that drives the
@@ -43,6 +45,7 @@
     &:hover,
     &:focus-visible {
       text-decoration: none;
+      box-shadow: var(--shadow-2);
 
       .cb-link-dot {
         background-position: center right 0;

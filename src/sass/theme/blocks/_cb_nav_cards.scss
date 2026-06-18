@@ -7,9 +7,12 @@
     text-decoration: none;
     overflow: hidden;
     border-top-right-radius: 1rem;
+    box-shadow: var(--shadow-1);
+    transition: box-shadow var(--transition), background-color var(--transition);
 
     &:hover,
     &:focus-visible {
+      box-shadow: var(--shadow-2);
       .cb-link-dot {
         background-position: center right 0;
         color: var(--col-grey-900);
