@@ -25986,6 +25986,27 @@ main {
     order: 12 !important;
   }
 }
+.py-6 {
+  padding-top: 6rem !important;
+  padding-bottom: 6rem !important;
+}
+
+.pt-6 {
+  padding-top: 6rem !important;
+}
+
+.pb-6 {
+  padding-bottom: 6rem !important;
+}
+
+.ps-6 {
+  padding-inline-start: 6rem !important;
+}
+
+.pe-6 {
+  padding-inline-end: 6rem !important;
+}
+
 /*
 var all = document.getElementsByTagName("*"), i = 0, rect, docWidth = document.documentElement.offsetWidth;
 for (; i < all.length; i++) {

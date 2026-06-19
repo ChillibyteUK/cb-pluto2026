@@ -486,6 +486,27 @@ main {
   }
 }
 
+.py-6 {
+  padding-top: 6rem !important;
+  padding-bottom: 6rem !important;
+}
+
+.pt-6 {
+  padding-top: 6rem !important;
+}
+
+.pb-6 {
+  padding-bottom: 6rem !important;
+}
+
+.ps-6 {
+  padding-inline-start: 6rem !important;
+}
+
+.pe-6 {
+  padding-inline-end: 6rem !important;
+}
+
 // show stuff that overflows horizontally
 // * {
 //     outline: 1px solid #f00 !important;
