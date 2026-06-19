@@ -1,0 +1,153 @@
+.cb-accordion-tabs {
+  overflow-x: clip;
+
+  --cb-at-dot-image: url("../img/dot-line-teal.svg");
+  --cb-at-line-color: var(--col-green-teal-400);
+  --cb-at-default-color: var(--col-green-teal-300);
+  --cb-at-active-color: var(--col-grey-900);
+
+  &--pf {
+    --cb-at-dot-image: url("../img/dot-line-orange.svg");
+    --cb-at-line-color: var(--col-orange-1000);
+    --cb-at-default-color: var(--col-green-dark-300);
+    --cb-at-active-color: var(--col-grey-900);
+  }
+
+  &--inv {
+    --cb-at-dot-image: url("../img/dot-line-teal.svg");
+    --cb-at-line-color: var(--col-green-teal-400);
+    --cb-at-default-color: var(--col-green-teal-300);
+    --cb-at-active-color: var(--col-grey-900);
+  }
+
+  &__desktop {
+    @media (min-width: 1200px) {
+      display: block;
+    }
+  }
+
+  &__mobile {
+    @media (min-width: 1200px) {
+      display: none;
+    }
+  }
+
+  &__tablist {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  &__trigger {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0.95rem;
+    padding: 0.95rem 1rem 0.95rem 2.75rem;
+    border-radius: 1rem;
+    text-align: left;
+    color: var(--cb-at-default-color, var(--col-grey-900));
+    transition: background-color var(--transition), box-shadow var(--transition), transform var(--transition);
+    position: relative;
+    overflow: visible;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: calc(50% - 0.75rem);
+      left: -100vw;
+      right: calc(100% - 0.75rem);
+      height: 1px;
+      background-color: var(--cb-at-line-color);
+      pointer-events: none;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0.25rem;
+      top: 50%;
+      width: 1.5rem;
+      height: 1.5rem;
+      transform: translateY(-50%);
+      background: var(--cb-at-dot-image) right center / auto 100% no-repeat;
+      pointer-events: none;
+    }
+
+    &:hover,
+    &:focus-visible,
+    &.is-active {
+      color: var(--cb-at-active-color, var(--col-grey-900));
+      text-decoration: none;
+    }
+  }
+
+  &__trigger-dot {
+    display: none;
+  }
+
+  &__trigger-label {
+    display: block;
+    font-size: var(--fs-600);
+    line-height: 1.2;
+    font-weight: var(--fw-semibold);
+  }
+
+  &__stage,
+  &__mobile-panel {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1rem;
+    border: 2px solid transparent;
+    background:
+      linear-gradient(180deg, var(--col-green-teal-100) 0%, var(--col-green-teal-200) 100%) padding-box,
+      linear-gradient(90deg, var(--col-green-teal-500) 0%, var(--col-green-dark-1000) 58%, var(--col-orange-1000) 100%) border-box;
+    box-shadow: var(--shadow-2);
+  }
+
+  &__panel {
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+
+    &[hidden] {
+      display: none !important;
+    }
+  }
+
+  &__panel-inner {
+    display: grid;
+    gap: 1rem;
+  }
+
+  &__panel-title {
+    margin-bottom: 0;
+  }
+
+  &__content {
+    font-size: var(--fs-500);
+    line-height: 1.45;
+
+    >*:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__mobile-item+&__mobile-item {
+    margin-top: 0.85rem;
+  }
+
+  &__mobile-item .cb-accordion-tabs__trigger {
+    background: transparent;
+  }
+
+  &__mobile-panel {
+    margin-top: 0.65rem;
+    padding: 0.25rem;
+  }
+
+  &__mobile-panel .cb-accordion-tabs__panel-inner {
+    padding: clamp(1rem, 4vw, 1.5rem);
+  }
+}

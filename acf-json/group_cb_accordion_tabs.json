@@ -1,0 +1,90 @@
+{
+  "key": "group_cb_accordion_tabs",
+  "title": "CB Accordion Tabs",
+  "fields": [
+    {
+      "key": "field_cb_accordion_tabs_items",
+      "label": "Items",
+      "name": "items",
+      "type": "repeater",
+      "instructions": "Add one item per tab/accordion panel.",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "layout": "block",
+      "pagination": 0,
+      "min": 0,
+      "max": 0,
+      "collapsed": "",
+      "button_label": "Add Item",
+      "rows_per_page": 20,
+      "sub_fields": [
+        {
+          "key": "field_cb_accordion_tabs_item_title",
+          "label": "Title",
+          "name": "title",
+          "type": "text",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "default_value": "",
+          "maxlength": "",
+          "placeholder": "",
+          "prepend": "",
+          "append": "",
+          "parent_repeater": "field_cb_accordion_tabs_items"
+        },
+        {
+          "key": "field_cb_accordion_tabs_item_content",
+          "label": "Content",
+          "name": "content",
+          "type": "textarea",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "default_value": "",
+          "maxlength": "",
+          "rows": 4,
+          "placeholder": "",
+          "new_lines": "",
+          "parent_repeater": "field_cb_accordion_tabs_items"
+        }
+      ]
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "block",
+        "operator": "==",
+        "value": "acf/cb-accordion-tabs"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": "",
+  "active": true,
+  "description": "",
+  "show_in_rest": 0,
+  "display_title": "",
+  "allow_ai_access": false,
+  "ai_description": ""
+}

@@ -67,6 +67,18 @@ function cb_enqueue_theme_js() {
 			true
 		);
 	}
+
+	$accordion_rel = '/js/cb-accordion-tabs.js';
+	$accordion_abs = get_stylesheet_directory() . $accordion_rel;
+	if ( file_exists( $accordion_abs ) ) {
+		wp_enqueue_script(
+			'cb-accordion-tabs',
+			get_stylesheet_directory_uri() . $accordion_rel,
+			array(),
+			filemtime( $accordion_abs ),
+			true
+		);
+	}
 }
 add_action( 'wp_enqueue_scripts', 'cb_enqueue_theme_js', 20 );
 
