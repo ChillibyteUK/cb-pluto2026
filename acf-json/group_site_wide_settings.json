@@ -249,6 +249,45 @@
             "placeholder": ""
         },
         {
+            "key": "field_6a350a0c38f96",
+            "label": "Address 2",
+            "name": "address_2",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "rows": 5,
+            "placeholder": "",
+            "new_lines": "wpautop"
+        },
+        {
+            "key": "field_6a350a3854a6f",
+            "label": "Map Embed URL 2",
+            "name": "map_url_2",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "allow_in_bindings": 0,
+            "placeholder": ""
+        },
+        {
             "key": "field_cb_contact_person_form_id",
             "label": "Contact Person Form ID",
             "name": "contact_person_form_id",
@@ -339,5 +378,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1778146569
+    "modified": 1781860934
 }

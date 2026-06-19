@@ -19,6 +19,24 @@ function acf_blocks() {
 
 		acf_register_block_type(
 			array(
+				'name'            => 'cb_contact_full',
+				'title'           => __( 'CB Contact Full' ),
+				'category'        => 'layout',
+				'icon'            => 'cover-image',
+				'render_template' => 'blocks/cb-contact-full.php',
+				'mode'            => 'edit',
+				'supports'        => array(
+					'mode'      => false,
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+          
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
 				'name'            => 'cb_team_simple',
 				'title'           => __( 'CB Team Simple' ),
 				'category'        => 'layout',
