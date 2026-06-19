@@ -38,7 +38,7 @@
     }
   }
 
-  > .container {
+  >.container {
     position: relative;
     z-index: 1;
   }
@@ -82,13 +82,17 @@
     font-weight: var(--fw-medium);
     margin-bottom: 1.5rem;
   }
+
   &__intro {
-    font-size: var(--fs-500);
-    line-height: var(--lh-500);
+    font-size: var(--fs-600);
+    line-height: var(--lh-600);
     font-weight: var(--fw-medium);
     margin-bottom: 2rem;
     list-style: none;
     padding-inline-start: 0;
+    max-width: 45ch;
+    text-wrap: balance;
+    text-wrap: pretty;
   }
 
   // ---------------------------------------------------------------------------
@@ -117,9 +121,7 @@
       &::before {
         content: "";
         position: absolute;
-        top: calc(
-          0.75em - 0.75rem
-        ); // top of dot (1.5rem tall, centred on text)
+        top: calc(0.75em - 0.75rem); // top of dot (1.5rem tall, centred on text)
         left: -100vw;
         right: calc(100% - 0.75rem); // line ends at dot centre
         height: 1px;
@@ -136,8 +138,7 @@
         top: calc(0.75em - 0.75rem); // centre dot on the first text line
         width: 1.5rem;
         height: 1.5rem;
-        background: var(--topic-home-hero-dot-image) right center / auto 100%
-          no-repeat;
+        background: var(--topic-home-hero-dot-image) right center / auto 100% no-repeat;
       }
     }
   }
@@ -153,6 +154,7 @@
   }
 
   &__ctas {
+
     .btn,
     .cb-link-dot {
       display: inline-flex;
