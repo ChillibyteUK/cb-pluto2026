@@ -129,7 +129,7 @@ $render_pullout = function () use ( $pullout_title, $pullout_bullets ) {
 
 	if ( $pullout_bullets ) {
 		?>
-	<ul><?= wp_kses_post( cb_list( get_field( 'pullout' ) ) ); ?></ul>
+	<ul class="cb-text-pullout__pullout-list"><?= wp_kses_post( cb_list( get_field( 'pullout' ) ) ); ?></ul>
 		<?php
 	} else {
 		echo wp_kses_post( get_field( 'pullout' ) );
