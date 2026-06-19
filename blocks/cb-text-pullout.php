@@ -64,10 +64,19 @@ $classes = $custom_classes ? $custom_classes : '';
 $bg = ! empty( $block['backgroundColor'] ) ? 'has-' . $block['backgroundColor'] . '-background-color' : '';
 $fg = ! empty( $block['textColor'] ) ? 'has-' . $block['textColor'] . '-color' : '';
 
-$modifier_classes = '';
+// Side modifier (used by the full-bleed pullout treatment below).
+$pullout_side = ( 'Pullout Text' === $col_order ) ? 'left' : 'right';
+
+$modifier_classes = implode(
+	' ',
+	array(
+		'cb-text-pullout--full-bleed',
+		'cb-text-pullout--pullout-' . $pullout_side,
+		'cb-text-pullout--split-' . str_replace( ' ', '-', $split ),
+	)
+);
 
 // AOS intro animations: the pullout slides in from its own side, the text fades.
-$pullout_side = ( 'Pullout Text' === $col_order ) ? 'left' : 'right';
 $pullout_aos  = ( 'left' === $pullout_side ) ? 'fade-right' : 'fade-left';
 $text_aos     = 'fade';
 
@@ -104,36 +113,38 @@ $render_text = function () {
 				target="<?= esc_attr( $l['target'] ? $l['target'] : '_self' ); ?>"><?= esc_html( $l['title'] ); ?></a>
 			</p>
 			<?php
-		}
-		?>
+	}
+	?>
 	</div>
 	<?php
 };
+
+/**
+ * Render the pullout content.
+ */
+$render_pullout = function () use ( $pullout_title, $pullout_bullets ) {
+	if ( $pullout_title ) {
+		echo '<h3 class="cb-text-pullout__pullout-title has-600-font-size mb-4">' . wp_kses_post( $pullout_title ) . '</h3>';
+	}
+
+	if ( $pullout_bullets ) {
+		?>
+	<ul><?= wp_kses_post( cb_list( get_field( 'pullout' ) ) ); ?></ul>
+		<?php
+	} else {
+		echo wp_kses_post( get_field( 'pullout' ) );
+	}
+};
 ?>
 <section id="<?= esc_attr( $block_uid ); ?>" class="<?= esc_attr( trim( $flourish_classes . ' cb-text-pullout ' . $modifier_classes . ' ' . $bg . ' ' . $fg . ' ' . $classes ) ); ?>">
-	<?php
-	$text_col_order    = ( 'Pullout Text' === $col_order ) ? 'order-2 order-md-2' : 'order-md-1';
-	$pullout_col_order = ( 'Pullout Text' === $col_order ) ? 'order-1 order-md-1' : 'order-md-2';
-	?>
 	<div class="container py-5">
-		<div class="row gy-5 gx-4 gx-lg-5">
-			<div class="col-md-<?= esc_attr( $text_col_n ); ?> <?= esc_attr( $text_col_order ); ?> <?= esc_attr( 'Pullout Text' === $col_order ? 'ps-md-5' : 'pe-md-5' ); ?>" data-aos="<?= esc_attr( $text_aos ); ?>">
+		<div class="row gy-5 gx-4 gx-lg-5 align-items-start">
+			<div class="col-md-<?= esc_attr( $text_col_n ); ?> <?= esc_attr( 'Pullout Text' === $col_order ? 'order-2 order-md-2 ps-md-5' : 'order-md-1 pe-md-5' ); ?>" data-aos="<?= esc_attr( $text_aos ); ?>">
 				<?php $render_text(); ?>
 			</div>
-			<div class="col-md-<?= esc_attr( $pullout_col_n ); ?> <?= esc_attr( $pullout_col_order ); ?>" data-aos="<?= esc_attr( $pullout_aos ); ?>">
+			<div class="col-md-<?= esc_attr( $pullout_col_n ); ?> <?= esc_attr( 'Pullout Text' === $col_order ? 'order-1 order-md-1' : 'order-md-2' ); ?> cb-text-pullout__pullout-col" data-aos="<?= esc_attr( $pullout_aos ); ?>">
 				<div class="cb-text-pullout__pullout">
-					<?php
-					if ( $pullout_title ) {
-						echo '<h3 class="cb-text-pullout__pullout-title has-600-font-size mb-4">' . wp_kses_post( $pullout_title ) . '</h3>';
-					}
-					if ( $pullout_bullets ) {
-						?>
-					<ul><?= wp_kses_post( cb_list( get_field( 'pullout' ) ) ); ?></ul>
-						<?php
-					} else {
-						echo wp_kses_post( get_field( 'pullout' ) );
-					}
-					?>
+					<?php $render_pullout(); ?>
 				</div>
 			</div>
 		</div>

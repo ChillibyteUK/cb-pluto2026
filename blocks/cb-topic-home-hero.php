@@ -64,29 +64,38 @@ if ( 'pf' === $context ) {
 		<div class="row">
 			<div class="col-md-6">
 				<h1 class="text-balance"><?= esc_html( get_field( 'title' ) ); ?></h1>
-				<ul class="topic-home-hero__intro">
-					<?php
-					// Render the USP list inline (rather than via the shared cb_list)
-					// so each <li> gets a staggered AOS fade. Delays are multiples of
-					// 50 so AOS's stylesheet honours them. Uses AOS's own fade CSS, so
-					// no custom compiled styles are required.
-					$usps_raw   = strip_tags( (string) get_field( 'usps' ), '<br />' );
-					$usps_lines = preg_split( "/\r\n|\n|\r/", $usps_raw );
-					$usp_index  = 0;
-					foreach ( $usps_lines as $usp_line ) {
-						$usp_line = trim( $usp_line );
-						if ( '' === $usp_line ) {
-							continue;
-						}
-						printf(
-							'<li data-aos="fade" data-aos-delay="%d">%s</li>',
-							(int) ( $usp_index * 100 ),
-							esc_html( $usp_line )
-						);
-						++$usp_index;
-					}
+				<?php
+				// Render the USP lines as a list only when there is more than one
+				// line. A single line stays as plain intro text.
+				$usps_raw   = strip_tags( (string) get_field( 'usps' ), '<br />' );
+				$usps_lines = preg_split( "/\r\n|\n|\r/", $usps_raw );
+				$usps_lines = array_values( array_filter( array_map( 'trim', is_array( $usps_lines ) ? $usps_lines : array() ) ) );
+				$usps_count = count( $usps_lines );
+
+				$usp_index = 0;
+				if ( $usps_count > 1 ) :
 					?>
-				</ul>
+					<ul class="topic-home-hero__intro">
+						<?php
+						// Each <li> gets a staggered AOS fade. Delays are multiples of
+						// 100 so AOS's stylesheet honours them.
+						foreach ( $usps_lines as $usp_line ) {
+							printf(
+								'<li data-aos="fade" data-aos-delay="%d">%s</li>',
+								(int) ( $usp_index * 100 ),
+								esc_html( $usp_line )
+							);
+							++$usp_index;
+						}
+						?>
+					</ul>
+					<?php
+				elseif ( 1 === $usps_count ) :
+					?>
+					<div class="topic-home-hero__intro" data-aos="fade"><?= esc_html( $usps_lines[0] ); ?></div>
+					<?php
+				endif;
+				?>
 				<?php
 				$cta_delay = $usp_index > 0 ? ( ( $usp_index - 1 ) * 100 ) + 600 : 0;
 				if ( $primary_cta || $secondary_cta ) {
