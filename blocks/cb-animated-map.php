@@ -14,12 +14,13 @@ defined( 'ABSPATH' ) || exit;
 $context = cb_get_site_context();
 
 // Flourish utility classes, matching the brand variants used elsewhere.
-$flourish_classes = 'full-flourish';
-if ( 'pf' === $context ) {
-	$flourish_classes .= ' full-flourish--lending';
-} elseif ( 'inv' === $context ) {
-	$flourish_classes .= ' full-flourish--investors';
-}
+$flourish_classes = '';
+// $flourish_classes = 'full-flourish';
+// if ( 'pf' === $context ) {
+// 	$flourish_classes .= ' full-flourish--lending';
+// } elseif ( 'inv' === $context ) {
+// 	$flourish_classes .= ' full-flourish--investors';
+// }
 
 // Extract custom classes (filter out wp-generated ones).
 $custom_classes = '';
