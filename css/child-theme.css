@@ -24748,6 +24748,7 @@ body.cb-team-modal-open {
 }
 .cb-text-pullout__pullout ul {
   margin-bottom: 0;
+  font-weight: var(--fw-medium);
 }
 .cb-text-pullout__pullout::before {
   content: "";
