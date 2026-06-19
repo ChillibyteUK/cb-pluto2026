@@ -21,8 +21,22 @@ if ( 'pf' === $context ) {
 	return;
 }
 
+// Extract custom classes (filter out wp-generated ones).
+$custom_classes = '';
+if ( isset( $block['className'] ) ) {
+	$class_array    = explode( ' ', $block['className'] );
+	$filtered       = array_filter(
+		$class_array,
+		function ( $item ) {
+			return ! preg_match( '/^wp-/', $item );
+		}
+	);
+	$custom_classes = implode( ' ', $filtered );
+}
+
+
 ?>
-<div class="cb-nav-cards <?= esc_attr( $preset ); ?>">
+<div class="cb-nav-cards <?= esc_attr( $preset ); ?> <?= esc_attr( $custom_classes ); ?>">
 	<div class="container py-5">
 		<div class="row g-4">
 			<?php
