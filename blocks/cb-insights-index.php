@@ -9,6 +9,7 @@ defined( 'ABSPATH' ) || exit;
 
 $block_id = $block['anchor'] ?? $block['id'] ?? wp_unique_id( 'cb-insights-index-' );
 $context  = cb_get_site_context();
+$fallback_image = get_template_directory_uri() . '/img/pluto-logo.png';
 
 if ( 'pf' === $context ) {
 	$post_type = 'pf_insight';
@@ -35,20 +36,19 @@ $lead  = array_shift( $posts );
 
 $lead_has_image = has_post_thumbnail( $lead );
 $lead_classes   = 'cb-insights-index__featured-card cb-news-card';
-if ( ! $lead_has_image ) {
-	$lead_classes .= ' cb-insights-index__featured-card--no-image';
-}
 ?>
 <section id="<?= esc_attr( $block_id ); ?>" class="cb-insights-index">
 	<div class="container pb-5">
 		<div class="row g-4">
 			<div class="col-12">
 				<a href="<?= esc_url( get_permalink( $lead ) ); ?>" class="<?= esc_attr( $lead_classes ); ?>">
-					<?php if ( $lead_has_image ) : ?>
-						<div class="cb-insights-index__featured-image">
+					<div class="cb-insights-index__featured-image">
+						<?php if ( $lead_has_image ) : ?>
 							<?= get_the_post_thumbnail( $lead, 'large' ); ?>
-						</div>
-					<?php endif; ?>
+						<?php else : ?>
+							<img src="<?= esc_url( $fallback_image ); ?>" alt="<?= esc_attr( get_bloginfo( 'name' ) ); ?>">
+						<?php endif; ?>
+					</div>
 					<div class="cb-insights-index__featured-content">
 						<h2 class="cb-insights-index__title"><?= esc_html( get_the_title( $lead ) ); ?></h2>
 						<div class="cb-insights-index__excerpt"><?= wp_kses_post( get_the_excerpt( $lead ) ); ?></div>
@@ -60,11 +60,13 @@ if ( ! $lead_has_image ) {
 			<?php foreach ( $posts as $post_item ) : ?>
 				<div class="col-md-4">
 					<a href="<?= esc_url( get_permalink( $post_item ) ); ?>" class="cb-insights-index__card cb-news-card">
-						<?php if ( has_post_thumbnail( $post_item ) ) : ?>
-							<div class="cb-news-card__image cb-news-card__image--16-9">
+						<div class="cb-news-card__image cb-news-card__image--16-9">
+							<?php if ( has_post_thumbnail( $post_item ) ) : ?>
 								<?= get_the_post_thumbnail( $post_item, 'medium_large' ); ?>
-							</div>
-						<?php endif; ?>
+							<?php else : ?>
+								<img src="<?= esc_url( $fallback_image ); ?>" alt="<?= esc_attr( get_bloginfo( 'name' ) ); ?>">
+							<?php endif; ?>
+						</div>
 						<h3 class="cb-news-card__title"><?= esc_html( get_the_title( $post_item ) ); ?></h3>
 						<div class="cb-news-card__excerpt"><?= wp_kses_post( get_the_excerpt( $post_item ) ); ?></div>
 						<div class="cb-news-card__link">Learn more</div>

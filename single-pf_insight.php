@@ -6,6 +6,7 @@
  */
 
 defined( 'ABSPATH' ) || exit;
+$fallback_image = get_template_directory_uri() . '/img/pluto-logo.png';
 get_header();
 ?>
 <main id="main" class="cb-post cb-post--pf">
@@ -15,11 +16,13 @@ get_header();
 		</div>
 		<div class="row">
 			<div class="col-lg-8">
-				<?php if ( has_post_thumbnail() ) { ?>
 				<div class="cb-post__hero">
+					<?php if ( has_post_thumbnail() ) { ?>
 					<?= get_the_post_thumbnail( get_the_ID(), 'full', array( 'class' => 'cb-post__hero-img' ) ); ?>
+					<?php } else { ?>
+					<img class="cb-post__hero-img" src="<?= esc_url( $fallback_image ); ?>" alt="<?= esc_attr( get_bloginfo( 'name' ) ); ?>">
+					<?php } ?>
 				</div>
-				<?php } ?>
 				<h1 class="cb-post__title"><?= esc_html( get_the_title() ); ?></h1>
 				<div class="cb-post__meta">
 					<span><?= esc_html( get_the_date( 'j M Y' ) ); ?></span>
@@ -67,11 +70,13 @@ get_header();
 						$q->the_post();
 						?>
 					<a class="cb-post-sidebar__item" href="<?= esc_url( get_permalink() ); ?>">
-						<?php if ( has_post_thumbnail() ) { ?>
 						<div class="cb-post-sidebar__image-wrap">
+							<?php if ( has_post_thumbnail() ) { ?>
 							<?= get_the_post_thumbnail( get_the_ID(), 'medium', array( 'class' => 'cb-post-sidebar__image' ) ); ?>
+							<?php } else { ?>
+							<img class="cb-post-sidebar__image" src="<?= esc_url( $fallback_image ); ?>" alt="<?= esc_attr( get_bloginfo( 'name' ) ); ?>">
+							<?php } ?>
 						</div>
-						<?php } ?>
 						<div class="cb-post-sidebar__body">
 							<div class="cb-post-sidebar__meta">
 								<span><?= esc_html( get_the_date( 'j M Y' ) ); ?></span>
