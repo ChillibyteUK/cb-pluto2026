@@ -18,6 +18,7 @@
 defined( 'ABSPATH' ) || exit;
 
 $block_id = $block['anchor'] ?? $block['id'] ?? wp_unique_id( 'cb-latest-posts-' );
+$fallback_image = get_stylesheet_directory_uri() . '/img/pluto-logo.png';
 
 // URL-based preset detection (mirrors cb-text-image.php / cb-ticker-x3.php).
 $context = cb_get_site_context();
@@ -70,18 +71,20 @@ $section_classes = array( 'full-flourish', 'full-flourish--flip', $flourish_vari
 				$cols = 'col-md-3';
 				while ( $query->have_posts() ) {
 					$query->the_post();
-					$is_feature = ( 2 === $query->current_post );
+					$is_feature = ( 0 === $query->current_post );
 					if ( $is_feature ) {
 						$cols = 'col-md-6';
 					}
 					?>
 					<div class="<?= esc_attr( $cols ); ?>" data-aos="fade-up" data-aos-delay="<?= esc_attr( $query->current_post * 150 ); ?>">
 						<a href="<?php the_permalink(); ?>" class="cb-news-card">
-							<?php if ( has_post_thumbnail() ) : ?>
-								<div class="cb-news-card__image cb-news-card__image--<?= $is_feature ? '16-9' : '4-3'; ?>">
+							<div class="cb-news-card__image cb-news-card__image--<?= $is_feature ? '16-9' : '4-3'; ?>">
+								<?php if ( has_post_thumbnail() ) : ?>
 									<?php the_post_thumbnail( 'large' ); ?>
-								</div>
-							<?php endif; ?>
+								<?php else : ?>
+									<img src="<?= esc_url( $fallback_image ); ?>" alt="<?= esc_attr( get_bloginfo( 'name' ) ); ?>">
+								<?php endif; ?>
+							</div>
 							<h3 class="cb-news-card__title"><?php the_title(); ?></h3>
 							<div class="cb-news-card__excerpt"><?php the_excerpt(); ?></div>
 							<div class="cb-news-card__link">Learn more</div>
@@ -99,11 +102,13 @@ $section_classes = array( 'full-flourish', 'full-flourish--flip', $flourish_vari
 					?>
 					<div class="col-md-3" data-aos="fade-up" data-aos-delay="<?= esc_attr( $query->current_post * 150 ); ?>">
 						<a href="<?php the_permalink(); ?>" class="cb-news-card">
-							<?php if ( has_post_thumbnail() ) : ?>
-								<div class="cb-news-card__image cb-news-card__image--circle">
+							<div class="cb-news-card__image cb-news-card__image--circle">
+								<?php if ( has_post_thumbnail() ) : ?>
 									<?php the_post_thumbnail( 'medium_large' ); ?>
-								</div>
-							<?php endif; ?>
+								<?php else : ?>
+									<img src="<?= esc_url( $fallback_image ); ?>" alt="<?= esc_attr( get_bloginfo( 'name' ) ); ?>">
+								<?php endif; ?>
+							</div>
 							<div class="cb-news-card__date"><?= esc_html( get_the_date( 'jS F, Y' ) ); ?></div>
 							<h3 class="cb-news-card__title"><?php the_title(); ?></h3>
 							<div class="cb-news-card__link">Learn more</div>
