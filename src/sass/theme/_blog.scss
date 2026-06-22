@@ -202,7 +202,7 @@
 
 .cb-post-sidebar {
   position: sticky;
-  top: calc(var(--h-top) + 1.5rem);
+  top: calc(var(--h-top) + 5rem);
 
   &__title {
     font-size: var(--fs-500);

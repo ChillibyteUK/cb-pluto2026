@@ -22462,7 +22462,7 @@ header:has(.navbar-collapse.collapsing) .navbar-bottom {
 
 .cb-post-sidebar {
   position: sticky;
-  top: calc(var(--h-top) + 1.5rem);
+  top: calc(var(--h-top) + 5rem);
 }
 .cb-post-sidebar__title {
   font-size: var(--fs-500);
