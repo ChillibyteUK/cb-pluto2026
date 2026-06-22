@@ -36,6 +36,13 @@ $lead  = array_shift( $posts );
 
 $lead_has_image = has_post_thumbnail( $lead );
 $lead_classes   = 'cb-insights-index__featured-card cb-news-card';
+$get_content_excerpt = static function ( $post ) {
+	$content = get_post_field( 'post_content', $post );
+	$content = strip_shortcodes( $content );
+	$content = wp_strip_all_tags( $content );
+
+	return wp_trim_words( $content, 30 );
+};
 ?>
 <section id="<?= esc_attr( $block_id ); ?>" class="cb-insights-index">
 	<div class="container pb-5">
@@ -51,7 +58,7 @@ $lead_classes   = 'cb-insights-index__featured-card cb-news-card';
 					</div>
 					<div class="cb-insights-index__featured-content">
 						<h2 class="cb-insights-index__title"><?= esc_html( get_the_title( $lead ) ); ?></h2>
-						<div class="cb-insights-index__excerpt"><?= wp_kses_post( get_the_excerpt( $lead ) ); ?></div>
+						<div class="cb-insights-index__excerpt"><?= esc_html( $get_content_excerpt( $lead ) ); ?></div>
 						<div class="cb-news-card__link">Learn more</div>
 					</div>
 				</a>
@@ -68,7 +75,7 @@ $lead_classes   = 'cb-insights-index__featured-card cb-news-card';
 							<?php endif; ?>
 						</div>
 						<h3 class="cb-news-card__title"><?= esc_html( get_the_title( $post_item ) ); ?></h3>
-						<div class="cb-news-card__excerpt"><?= wp_kses_post( get_the_excerpt( $post_item ) ); ?></div>
+						<div class="cb-news-card__excerpt"><?= esc_html( $get_content_excerpt( $post_item ) ); ?></div>
 						<div class="cb-news-card__link">Learn more</div>
 					</a>
 				</div>
