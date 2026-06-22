@@ -6,7 +6,7 @@
  */
 
 defined( 'ABSPATH' ) || exit;
-$fallback_image = get_template_directory_uri() . '/img/pluto-logo.png';
+$fallback_image = get_stylesheet_directory_uri() . '/img/pluto-logo.png';
 get_header();
 ?>
 <main id="main" class="cb-post cb-post--investor">

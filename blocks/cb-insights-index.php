@@ -7,9 +7,9 @@
 
 defined( 'ABSPATH' ) || exit;
 
-$block_id = $block['anchor'] ?? $block['id'] ?? wp_unique_id( 'cb-insights-index-' );
-$context  = cb_get_site_context();
-$fallback_image = get_template_directory_uri() . '/img/pluto-logo.png';
+$block_id       = $block['anchor'] ?? $block['id'] ?? wp_unique_id( 'cb-insights-index-' );
+$context        = cb_get_site_context();
+$fallback_image = get_stylesheet_directory_uri() . '/img/pluto-logo.png';
 
 if ( 'pf' === $context ) {
 	$post_type = 'pf_insight';
