@@ -71,9 +71,11 @@ $section_classes = array( 'full-flourish', 'full-flourish--flip', $flourish_vari
 				$cols = 'col-md-3';
 				while ( $query->have_posts() ) {
 					$query->the_post();
-					$is_feature = ( 0 === $query->current_post );
+					$is_feature = ( 2 === $query->current_post );
 					if ( $is_feature ) {
 						$cols = 'col-md-6';
+					} else {
+						$cols = 'col-md-3';
 					}
 					?>
 					<div class="<?= esc_attr( $cols ); ?>" data-aos="fade-up" data-aos-delay="<?= esc_attr( $query->current_post * 150 ); ?>">
