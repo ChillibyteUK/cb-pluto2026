@@ -25205,6 +25205,10 @@ a.cb-case-studies__card:hover .cb-case-studies__image {
   box-shadow: var(--shadow-1);
   border-top-right-radius: 2rem;
 }
+.cb-card-grid--white-cards .cb-card-grid__card {
+  color: var(--bs-body-color);
+  background-color: var(--col-white);
+}
 .cb-card-grid__title {
   position: relative;
   margin-bottom: 1rem;

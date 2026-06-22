@@ -21,6 +21,29 @@
             "new_lines": "wpautop"
         },
         {
+            "key": "field_cb_card_grid_columns",
+            "label": "Columns",
+            "name": "columns",
+            "aria-label": "",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "2": "2 Columns",
+                "3": "3 Columns"
+            },
+            "default_value": "2",
+            "return_format": "value",
+            "allow_null": 0,
+            "layout": "horizontal"
+        },
+        {
             "key": "field_6a33d23d40861",
             "label": "Cards",
             "name": "cards",
@@ -127,7 +150,15 @@
                             "type": "true_false",
                             "instructions": "",
                             "required": 0,
-                            "conditional_logic": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_cb_card_grid_columns",
+                                        "operator": "!=",
+                                        "value": "3"
+                                    }
+                                ]
+                            ],
                             "wrapper": {
                                 "width": "50",
                                 "class": "",
@@ -171,5 +202,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1781781181
+    "modified": 1782115200
 }

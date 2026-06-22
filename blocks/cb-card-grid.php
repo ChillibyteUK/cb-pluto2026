@@ -13,9 +13,47 @@ if ( empty( $cards ) || ! is_array( $cards ) ) {
 	return;
 }
 
-$block_id = $block['anchor'] ?? ( 'cb-card-grid-' . uniqid() );
-$context  = cb_get_site_context();
-$modifier = '' !== $context ? 'cb-card-grid--' . $context : '';
+$block_id        = $block['anchor'] ?? ( 'cb-card-grid-' . uniqid() );
+$context         = cb_get_site_context();
+$modifier        = '' !== $context ? 'cb-card-grid--' . $context : '';
+$columns         = '3' === (string) get_field( 'columns' ) ? 3 : 2;
+$column_class    = 3 === $columns ? 'col-md-6 col-lg-4' : 'col-md-6';
+$section_classes = array( 'cb-card-grid', 'cb-card-grid--' . $columns . '-col' );
+$section_style   = '';
+
+if ( '' !== $modifier ) {
+	$section_classes[] = $modifier;
+}
+
+$has_non_white_background = false;
+
+if ( ! empty( $block['backgroundColor'] ) ) {
+	$section_classes[]        = 'has-' . $block['backgroundColor'] . '-background-color';
+	$section_classes[]        = 'has-background';
+	$has_non_white_background = 'white' !== $block['backgroundColor'];
+}
+
+if ( ! empty( $block['textColor'] ) ) {
+	$section_classes[] = 'has-' . $block['textColor'] . '-color';
+	$section_classes[] = 'has-text-color';
+}
+
+$custom_bg = $block['style']['color']['background'] ?? '';
+$custom_fg = $block['style']['color']['text'] ?? '';
+if ( $custom_bg ) {
+	$section_style           .= 'background-color:' . $custom_bg . ';';
+	$section_classes[]        = 'has-background';
+	$normalised_custom_bg     = strtolower( trim( (string) $custom_bg ) );
+	$has_non_white_background = ! in_array( $normalised_custom_bg, array( '#fff', '#ffffff', 'white', 'rgb(255,255,255)', 'rgb(255 255 255)' ), true );
+}
+if ( $custom_fg ) {
+	$section_style    .= 'color:' . $custom_fg . ';';
+	$section_classes[] = 'has-text-color';
+}
+
+if ( $has_non_white_background ) {
+	$section_classes[] = 'cb-card-grid--white-cards';
+}
 
 // Extract custom classes (filter out wp-generated ones).
 $custom_classes = 'py-5';
@@ -30,10 +68,14 @@ if ( isset( $block['className'] ) ) {
 	$custom_classes = implode( ' ', $filtered );
 }
 
-$classes = trim( 'cb-card-grid ' . $modifier . ' ' . $custom_classes );
+if ( '' !== trim( $custom_classes ) ) {
+	$section_classes[] = trim( $custom_classes );
+}
+
+$classes = trim( implode( ' ', array_filter( $section_classes ) ) );
 
 ?>
-<section id="<?= esc_attr( $block_id ); ?>" class="<?= esc_attr( $classes ); ?>">
+<section id="<?= esc_attr( $block_id ); ?>" class="<?= esc_attr( $classes ); ?>"<?= $section_style ? ' style="' . esc_attr( $section_style ) . '"' : ''; ?>>
 	<div class="container">
 		<div class="row g-5 align-items-stretch">
 			<?php
@@ -43,7 +85,7 @@ $classes = trim( 'cb-card-grid ' . $modifier . ' ' . $custom_classes );
 				$side   = ( 0 === $item_index % 2 ) ? 'left' : 'right';
 				$aos    = ( 'left' === $side ) ? 'fade-right' : 'fade-left';
 				?>
-				<div class="col-md-6 cb-card-grid__col cb-card-grid__col--<?= esc_attr( $side ); ?>">
+				<div class="<?= esc_attr( $column_class ); ?> cb-card-grid__col cb-card-grid__col--<?= esc_attr( $side ); ?>">
 					<?php
 					if ( 'card' === $layout ) {
 						$card_title = $card['title'] ?? '';
@@ -60,7 +102,7 @@ $classes = trim( 'cb-card-grid ' . $modifier . ' ' . $custom_classes );
 						<?php
 					} elseif ( 'image' === $layout ) {
 						$image_id      = (int) ( $card['image'] ?? 0 );
-						$full_bleed    = ! empty( $card['full_bleed'] );
+						$full_bleed    = 2 === $columns && ! empty( $card['full_bleed'] );
 						$image_classes = array( 'cb-card-grid__image' );
 						if ( $full_bleed ) {
 							$image_classes[] = 'cb-card-grid__image--full-bleed';

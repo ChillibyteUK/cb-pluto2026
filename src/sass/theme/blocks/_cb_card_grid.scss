@@ -49,6 +49,11 @@
     border-top-right-radius: 2rem;
   }
 
+  &--white-cards &__card {
+    color: var(--bs-body-color);
+    background-color: var(--col-white);
+  }
+
   &__title {
     position: relative;
     margin-bottom: 1rem;
