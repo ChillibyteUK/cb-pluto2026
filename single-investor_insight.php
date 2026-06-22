@@ -40,7 +40,7 @@ get_header();
 					?>
 				<nav class="cb-post__nav d-flex <?= esc_attr( $justify ); ?>" aria-label="Post navigation">
 					<?php if ( $prev ) { ?>
-					<a href="<?= esc_url( get_permalink( $prev ) ); ?>" class="button button--secondary">&larr; Previous</a>
+					<a href="<?= esc_url( get_permalink( $prev ) ); ?>" class="button button--primary">&larr; Previous</a>
 					<?php } ?>
 					<?php if ( $next ) { ?>
 					<a href="<?= esc_url( get_permalink( $next ) ); ?>" class="button button--primary">Next &rarr;</a>
