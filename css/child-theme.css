@@ -22552,6 +22552,7 @@ header:has(.navbar-collapse.collapsing) .navbar-bottom {
 }
 .cb-news-card__title {
   color: var(--col-green-dark-1000);
+  font-size: var(--fs-600);
 }
 .cb-news-card__link {
   margin-top: auto;
