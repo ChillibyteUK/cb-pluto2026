@@ -15,33 +15,63 @@
   &__card {
     display: flex;
     flex-direction: column;
-    row-gap: 1rem;
-    border-radius: 0.5rem;
-    background-color: var(--col-green-dark-400);
+    row-gap: 0;
+    --cb-case-studies-card-flourish: url("../img/lend-flourish.svg");
+    background-color: var(--col-grey-400);
+    color: var(--col-grey-900);
+    box-shadow: var(--shadow-1);
     text-decoration: none;
     overflow: hidden;
     height: 100%;
+    transition: box-shadow var(--transition);
   }
 
   &__image-wrapper {
     overflow: hidden;
+    position: relative;
+  }
+
+  &__pill {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    z-index: 1;
+    padding: 0.2rem 0.6rem;
+    border-radius: 9999px;
+    background: var(--col-green-mid-1000);
+    color: contrast-color(var(--col-green-mid-1000));
+    font-size: var(--fs-200);
+    font-weight: var(--fw-semibold);
+    line-height: 1.4;
+    pointer-events: none;
   }
 
   &__image {
     width: 100%;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 2 / 1;
     object-fit: cover;
     transition: transform var(--transition);
   }
 
   &__inner {
-    padding: 0.5rem 1rem 1rem;
+    padding: 0 1rem 1rem;
+
+    &::before {
+      content: "";
+      display: block;
+      height: 1.75rem;
+      margin: 0 -1rem;
+      background: var(--cb-case-studies-card-flourish) left top / auto 100%
+        no-repeat;
+      pointer-events: none;
+      transform: scaleX(-1);
+    }
   }
 
   &__title {
     font-size: var(--fs-600);
     font-weight: var(--fw-semibold);
-    color: var(--col-green-dark-1100);
+    color: var(--col-green-dark-1000);
   }
 
   &__highlights {
@@ -64,7 +94,12 @@
     }
   }
 
-  a#{&}__card:hover &__image {
-    transform: scale(1.05);
+  a#{&}__card:hover,
+  a#{&}__card:focus-visible {
+    box-shadow: var(--shadow-2);
+
+    .cb-case-studies__image {
+      transform: scale(1.05);
+    }
   }
 }

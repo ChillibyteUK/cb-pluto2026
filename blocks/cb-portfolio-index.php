@@ -40,7 +40,7 @@ if ( ! $portfolio_query->have_posts() ) {
 
 $block_id = $block['anchor'] ?? 'cb-portfolio-index-' . uniqid();
 ?>
-<div id="<?= esc_attr( $block_id ); ?>" class="cb-portfolio-index">
+<div id="<?= esc_attr( $block_id ); ?>" class="cb-portfolio-index cb-portfolio-index--<?= esc_attr( $context ); ?>">
 	<div class="container">
 		<?php
 		if ( ! empty( $filter_terms ) && ! is_wp_error( $filter_terms ) ) {
@@ -129,17 +129,7 @@ $block_id = $block['anchor'] ?? 'cb-portfolio-index-' . uniqid();
 					</div>
 					<div class="portfolio__card-inner">
 						<h2 class="portfolio__card-title"><?= esc_html( get_the_title() ); ?></h2>
-						<?php
-						if ( 'pf' === $context ) {
-							echo wp_kses_post( $card_highlights );
-						} else {
-							?>
-						<ul class="portfolio__highlights">
-							<?= wp_kses_post( cb_list( $card_highlights ) ); ?>
-						</ul>
-							<?php
-						}
-						?>
+						<?= wp_kses_post( $card_highlights ); ?>
 					</div>
 				<?php
 				if ( $should_link ) {

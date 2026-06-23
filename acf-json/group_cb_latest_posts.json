@@ -7,6 +7,25 @@
       "label": "CB Latest Posts",
       "name": "title",
       "type": "message"
+    },
+    {
+      "key": "field_cb_latest_posts_flourish",
+      "label": "Flourish",
+      "name": "flourish",
+      "type": "true_false",
+      "instructions": "Show the brand flourish stripes along the top edge.",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "message": "",
+      "default_value": 1,
+      "ui_on_text": "Show",
+      "ui_off_text": "Hide",
+      "ui": 1
     }
   ],
   "location": [

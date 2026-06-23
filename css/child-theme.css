@@ -24645,9 +24645,10 @@ body.cb-team-modal-open {
 .cb-portfolio-index .portfolio__card {
   display: flex;
   flex-direction: column;
-  row-gap: 1rem;
-  border-radius: 0.5rem;
-  background-color: var(--col-green-dark-400);
+  row-gap: 0;
+  --cb-portfolio-card-flourish: url("../img/lend-flourish.svg");
+  background-color: var(--col-grey-400);
+  color: var(--col-grey-900);
   box-shadow: var(--shadow-1);
   text-decoration: none;
   overflow: hidden;
@@ -24665,8 +24666,8 @@ body.cb-team-modal-open {
   z-index: 1;
   padding: 0.2rem 0.6rem;
   border-radius: 9999px;
-  background: var(--col-green-teal-400);
-  color: contrast-color(var(--col-green-teal-400));
+  background: var(--col-green-mid-1000);
+  color: contrast-color(var(--col-green-mid-1000));
   font-size: var(--fs-200);
   font-weight: var(--fw-semibold);
   line-height: 1.4;
@@ -24674,13 +24675,22 @@ body.cb-team-modal-open {
 }
 .cb-portfolio-index .portfolio__card-image {
   width: 100%;
-  aspect-ratio: 16/9;
+  aspect-ratio: 2/1;
   -o-object-fit: cover;
   object-fit: cover;
   transition: transform var(--transition);
 }
 .cb-portfolio-index .portfolio__card-inner {
-  padding: 0.5rem 1rem 1rem 1rem;
+  padding: 0 1rem 1rem;
+}
+.cb-portfolio-index .portfolio__card-inner::before {
+  content: "";
+  display: block;
+  height: 1.75rem;
+  margin: 0 -1rem;
+  background: var(--cb-portfolio-card-flourish) left top/auto 100% no-repeat;
+  pointer-events: none;
+  transform: scaleX(-1);
 }
 .cb-portfolio-index .portfolio__card-content {
   display: flex;
@@ -24690,7 +24700,7 @@ body.cb-team-modal-open {
 .cb-portfolio-index .portfolio__card-title {
   font-size: var(--fs-600);
   font-weight: var(--fw-semibold);
-  color: var(--col-green-dark-1100);
+  color: var(--col-green-dark-1000);
 }
 .cb-portfolio-index a.portfolio__card:hover,
 .cb-portfolio-index a.portfolio__card:focus-visible {
@@ -24699,6 +24709,9 @@ body.cb-team-modal-open {
 .cb-portfolio-index a.portfolio__card:hover .portfolio__card-image,
 .cb-portfolio-index a.portfolio__card:focus-visible .portfolio__card-image {
   transform: scale(1.05);
+}
+.cb-portfolio-index--inv .portfolio__card {
+  --cb-portfolio-card-flourish: url("../img/lend-flourish.svg");
 }
 
 .cb-nav-cards__card, .cb-nav-cards__card.full-flourish {
@@ -24903,30 +24916,57 @@ body.cb-team-modal-open {
 .cb-case-studies__card {
   display: flex;
   flex-direction: column;
-  row-gap: 1rem;
-  border-radius: 0.5rem;
-  background-color: var(--col-green-dark-400);
+  row-gap: 0;
+  --cb-case-studies-card-flourish: url("../img/lend-flourish.svg");
+  background-color: var(--col-grey-400);
+  color: var(--col-grey-900);
+  box-shadow: var(--shadow-1);
   text-decoration: none;
   overflow: hidden;
   height: 100%;
+  transition: box-shadow var(--transition);
 }
 .cb-case-studies__image-wrapper {
   overflow: hidden;
+  position: relative;
+}
+.cb-case-studies__pill {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 1;
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  background: var(--col-green-mid-1000);
+  color: contrast-color(var(--col-green-mid-1000));
+  font-size: var(--fs-200);
+  font-weight: var(--fw-semibold);
+  line-height: 1.4;
+  pointer-events: none;
 }
 .cb-case-studies__image {
   width: 100%;
-  aspect-ratio: 16/9;
+  aspect-ratio: 2/1;
   -o-object-fit: cover;
   object-fit: cover;
   transition: transform var(--transition);
 }
 .cb-case-studies__inner {
-  padding: 0.5rem 1rem 1rem;
+  padding: 0 1rem 1rem;
+}
+.cb-case-studies__inner::before {
+  content: "";
+  display: block;
+  height: 1.75rem;
+  margin: 0 -1rem;
+  background: var(--cb-case-studies-card-flourish) left top/auto 100% no-repeat;
+  pointer-events: none;
+  transform: scaleX(-1);
 }
 .cb-case-studies__title {
   font-size: var(--fs-600);
   font-weight: var(--fw-semibold);
-  color: var(--col-green-dark-1100);
+  color: var(--col-green-dark-1000);
 }
 .cb-case-studies__highlights {
   margin: 0.5rem 0 0;
@@ -24945,7 +24985,12 @@ body.cb-team-modal-open {
   position: absolute;
   left: 0;
 }
-a.cb-case-studies__card:hover .cb-case-studies__image {
+.cb-case-studies a.cb-case-studies__card:hover,
+.cb-case-studies a.cb-case-studies__card:focus-visible {
+  box-shadow: var(--shadow-2);
+}
+.cb-case-studies a.cb-case-studies__card:hover .cb-case-studies__image,
+.cb-case-studies a.cb-case-studies__card:focus-visible .cb-case-studies__image {
   transform: scale(1.05);
 }
 

@@ -80,6 +80,7 @@ $block_id = $block['anchor'] ?? 'cb-case-studies-' . uniqid();
 				}
 				?>
                     <div class="cb-case-studies__image-wrapper">
+                        <span class="cb-case-studies__pill"><?= esc_html( $_cb_term->name ); ?></span>
             <?php
             if ( $_cb_card_image_id > 0 ) {
                 echo wp_get_attachment_image( $_cb_card_image_id, 'medium_large', false, array( 'class' => 'cb-case-studies__image' ) );
@@ -94,7 +95,7 @@ $block_id = $block['anchor'] ?? 'cb-case-studies-' . uniqid();
                         <h3 class="cb-case-studies__title"><?= esc_html( get_the_title() ); ?></h3>
 			<?php
 			if ( $_cb_has_highlights ) {
-				echo wp_kses_post( cb_list( $_cb_card_highlights ) );
+				echo wp_kses_post( $_cb_card_highlights );
 			}
 			?>
                     </div>
@@ -121,9 +122,15 @@ document.addEventListener('DOMContentLoaded', function () {
     new Swiper(slider, {
         slidesPerView: 1,
         spaceBetween: 16,
+        rewind: true,
+        autoplay: {
+            delay: 5000,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true
+        },
         breakpoints: {
             768: { slidesPerView: 2, spaceBetween: 20 },
-            992: { slidesPerView: 4, spaceBetween: 24 }
+            992: { slidesPerView: 3, spaceBetween: 24 }
         }
     });
 });

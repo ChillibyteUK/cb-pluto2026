@@ -20,7 +20,7 @@ if ( $featured_image_id > 0 ) {
 	$gallery_images = array_values( array_unique( array_merge( array( $featured_image_id ), $gallery_images ) ) );
 }
 
-$gallery_id     = wp_unique_id( 'investor-portfolio-gallery-' );
+$gallery_id = wp_unique_id( 'investor-portfolio-gallery-' );
 
 ?>
 <main id="main" class="case-study">
@@ -78,15 +78,6 @@ $gallery_id     = wp_unique_id( 'investor-portfolio-gallery-' );
 			</div>
 			<div class="col-lg-3 order-lg-1">
 				<?php
-				while ( have_rows( 'sidebar_highlights' ) ) {
-					the_row();
-					?>
-					<div class="mb-2 sidebar-highlight">
-						<div class="fw-semibold"><?= esc_html( get_sub_field( 'title' ) ); ?> &ndash;</div>
-						<div class=""><?= esc_html( get_sub_field( 'description' ) ); ?></div>
-					</div>
-					<?php
-				}
 				if ( get_field( 'map' ) ) {
 					echo wp_get_attachment_image( get_field( 'map' ), 'full', false, array( 'class' => 'sidebar-map mt-4 d-block mx-auto' ) );
 				}

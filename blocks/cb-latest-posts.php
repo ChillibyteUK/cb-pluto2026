@@ -17,8 +17,9 @@
 
 defined( 'ABSPATH' ) || exit;
 
-$block_id = $block['anchor'] ?? $block['id'] ?? wp_unique_id( 'cb-latest-posts-' );
-$fallback_image = get_stylesheet_directory_uri() . '/img/pluto-logo.png';
+$block_id         = $block['anchor'] ?? $block['id'] ?? wp_unique_id( 'cb-latest-posts-' );
+$fallback_image   = get_stylesheet_directory_uri() . '/img/pluto-logo.png';
+$display_flourish = false !== get_field( 'flourish' );
 
 // URL-based preset detection (mirrors cb-text-image.php / cb-ticker-x3.php).
 $context = cb_get_site_context();
@@ -54,7 +55,11 @@ if ( ! $query->have_posts() ) {
 	return;
 }
 
-$section_classes = array( 'full-flourish', 'full-flourish--flip', $flourish_variant, 'cb-latest-posts', 'cb-latest-posts--' . $preset );
+$section_classes = array( 'cb-latest-posts', 'cb-latest-posts--' . $preset );
+
+if ( $display_flourish ) {
+	array_unshift( $section_classes, 'full-flourish', 'full-flourish--flip', $flourish_variant );
+}
 ?>
 <section id="<?= esc_attr( $block_id ); ?>" class="<?= esc_attr( implode( ' ', $section_classes ) ); ?>">
 	<div class="container py-5">
