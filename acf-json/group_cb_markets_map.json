@@ -1,0 +1,66 @@
+{
+  "key": "group_cb_markets_map",
+  "title": "CB Markets Map",
+  "fields": [
+    {
+      "key": "field_cb_markets_map_header",
+      "label": "Market Content",
+      "name": "",
+      "type": "message",
+      "message": "Enter the title and body text for each clickable market on the map."
+    },
+    {
+      "key": "field_cb_markets_map_markets",
+      "label": "Markets",
+      "name": "markets",
+      "type": "repeater",
+      "layout": "block",
+      "button_label": "Add Market",
+      "sub_fields": [
+        {
+          "key": "field_cb_mm_market_key",
+          "label": "Market Key",
+          "name": "market_key",
+          "type": "select",
+          "required": 1,
+          "choices": {
+            "GB": "United Kingdom",
+            "IE": "Ireland",
+            "NL": "Netherlands",
+            "DE": "Germany",
+            "ES_PT": "Spain & Portugal"
+          },
+          "allow_null": 0,
+          "multiple": 0
+        },
+        {
+          "key": "field_cb_mm_market_title",
+          "label": "Title",
+          "name": "market_title",
+          "type": "text",
+          "required": 1
+        },
+        {
+          "key": "field_cb_mm_market_body",
+          "label": "Body",
+          "name": "market_body",
+          "type": "wysiwyg",
+          "required": 0,
+          "tabs": "all",
+          "media_upload": 0
+        }
+      ]
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "block",
+        "operator": "==",
+        "value": "acf/cb-markets-map"
+      }
+    ]
+  ],
+  "active": 1,
+  "description": ""
+}

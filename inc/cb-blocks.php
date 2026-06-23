@@ -19,6 +19,24 @@ function acf_blocks() {
 
 		acf_register_block_type(
 			array(
+				'name'            => 'cb_markets_map',
+				'title'           => __( 'CB Markets Map' ),
+				'category'        => 'layout',
+				'icon'            => 'cover-image',
+				'render_template' => 'blocks/cb-markets-map.php',
+				'mode'            => 'edit',
+				'supports'        => array(
+					'mode'      => false,
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+          
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
 				'name'            => 'cb_animated_map',
 				'title'           => __( 'CB Animated Map' ),
 				'category'        => 'layout',

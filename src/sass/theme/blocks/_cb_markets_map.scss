@@ -1,0 +1,91 @@
+.cb-markets-map {
+	&__panel {
+		max-width: 28rem;
+		position: static;
+		left: auto;
+		width: auto;
+		height: auto;
+		overflow: visible;
+	}
+
+	&__eyebrow {
+		margin-bottom: 0.75rem;
+		color: var(--col-green-dark-1000);
+		font-size: var(--fs-300);
+		font-weight: 600;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+
+	&__title {
+		margin-bottom: 1rem;
+	}
+
+	&__body {
+		> :last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	&__stage {
+		position: relative;
+
+		> svg {
+			display: block;
+			width: 100%;
+			height: auto;
+		}
+
+		&::after {
+			position: absolute;
+			inset: 0 0 0 auto;
+			width: 35%;
+			background: linear-gradient(90deg, rgba(255, 255, 255, 0), #fff 72%);
+			content: "";
+			pointer-events: none;
+		}
+	}
+
+	.cls-2 {
+		fill: #d4e2e2;
+		stroke: #fff;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+		stroke-width: 1px;
+	}
+
+	.cls-4 {
+		fill: none;
+	}
+
+	.cls-5 {
+		fill: none;
+		stroke: #80bcb4;
+		stroke-miterlimit: 10;
+		stroke-width: 3px;
+	}
+
+	&__country {
+		fill: #80bcb4;
+		stroke: #fff;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+		stroke-width: 1px;
+		cursor: pointer;
+		transition: fill 0.2s ease;
+
+		&:hover,
+		&:focus,
+		&.is-hovered,
+		&.is-active {
+			fill: var(--col-green-dark-1000);
+			outline: none;
+		}
+	}
+
+	@media (max-width: 991.98px) {
+		&__panel {
+			max-width: none;
+		}
+	}
+}

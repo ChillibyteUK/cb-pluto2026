@@ -25865,6 +25865,79 @@ body.cb-team-modal-open {
   }
 }
 
+.cb-markets-map__panel {
+  max-width: 28rem;
+  position: static;
+  left: auto;
+  width: auto;
+  height: auto;
+  overflow: visible;
+}
+.cb-markets-map__eyebrow {
+  margin-bottom: 0.75rem;
+  color: var(--col-green-dark-1000);
+  font-size: var(--fs-300);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.cb-markets-map__title {
+  margin-bottom: 1rem;
+}
+.cb-markets-map__body > :last-child {
+  margin-bottom: 0;
+}
+.cb-markets-map__stage {
+  position: relative;
+}
+.cb-markets-map__stage > svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.cb-markets-map__stage::after {
+  position: absolute;
+  inset: 0 0 0 auto;
+  width: 35%;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), #fff 72%);
+  content: "";
+  pointer-events: none;
+}
+.cb-markets-map .cls-2 {
+  fill: #d4e2e2;
+  stroke: #fff;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1px;
+}
+.cb-markets-map .cls-4 {
+  fill: none;
+}
+.cb-markets-map .cls-5 {
+  fill: none;
+  stroke: #80bcb4;
+  stroke-miterlimit: 10;
+  stroke-width: 3px;
+}
+.cb-markets-map__country {
+  fill: #80bcb4;
+  stroke: #fff;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1px;
+  cursor: pointer;
+  transition: fill 0.2s ease;
+}
+.cb-markets-map__country:hover, .cb-markets-map__country:focus, .cb-markets-map__country.is-hovered, .cb-markets-map__country.is-active {
+  fill: var(--col-green-dark-1000);
+  outline: none;
+}
+@media (max-width: 991.98px) {
+  .cb-markets-map__panel {
+    max-width: none;
+  }
+}
+
 .home-page__hero {
   position: relative;
   min-height: 600px;
