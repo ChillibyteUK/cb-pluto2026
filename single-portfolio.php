@@ -1,12 +1,16 @@
-<?php // phpcs:ignore WordPress.Files.FileName.NotHyphenatedLowercase -- Ignoring to match post type name.
+<?php
 /**
- * Template for displaying single property finance portfolio posts.
+ * Template for displaying single portfolio posts.
  *
  * @package cb-identity2025
  */
 
 defined( 'ABSPATH' ) || exit;
 get_header();
+
+$context       = cb_get_site_context();
+$home_url      = 'inv' === $context ? '/investors/' : '/property-finance/';
+$portfolio_url = 'inv' === $context ? '/investors/portfolio/' : '/property-finance/portfolio/';
 
 $gallery_images    = get_field( 'images' );
 $gallery_images    = is_array( $gallery_images ) ? array_values( array_filter( array_map( 'intval', $gallery_images ) ) ) : array();
@@ -22,7 +26,7 @@ $gallery_id     = wp_unique_id( 'investor-portfolio-gallery-' );
 <main id="main" class="case-study">
 	<div class="container">
 		<div id="breadcrumbs" class="mb-3">
-			<a href="/property-finance/">Home</a> &raquo; <a href="/property-finance/portfolio/">Portfolio</a> &raquo; <?= esc_html( get_the_title() ); ?>
+			<a href="<?= esc_url( $home_url ); ?>">Home</a> &raquo; <a href="<?= esc_url( $portfolio_url ); ?>">Portfolio</a> &raquo; <?= esc_html( get_the_title() ); ?>
 		</div>
 		<div class="row g-5 mb-5">
 			<div class="col-lg-9 pb-5 order-lg-2">

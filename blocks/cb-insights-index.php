@@ -11,17 +11,13 @@ $block_id       = $block['anchor'] ?? $block['id'] ?? wp_unique_id( 'cb-insights
 $context        = cb_get_site_context();
 $fallback_image = get_stylesheet_directory_uri() . '/img/pluto-logo.png';
 
-if ( 'pf' === $context ) {
-	$post_type = 'pf_insight';
-} elseif ( 'inv' === $context ) {
-	$post_type = 'investor_insight';
-} else {
+if ( ! in_array( $context, array( 'pf', 'inv' ), true ) ) {
 	return;
 }
 
 $query = new WP_Query(
 	array(
-		'post_type'           => $post_type,
+		'post_type'           => 'post',
 		'posts_per_page'      => -1,
 		'ignore_sticky_posts' => true,
 	)

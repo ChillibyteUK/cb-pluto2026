@@ -7,21 +7,9 @@
 
 defined( 'ABSPATH' ) || exit;
 
-
-$_cb_side      = get_field( 'case_study_side' );
-$_cb_term_id   = 0;
-$_cb_taxonomy  = '';
-$_cb_post_type = '';
-
-if ( 'investor' === $_cb_side ) {
-    $_cb_post_type = 'investor_portfolio';
-    $_cb_taxonomy  = 'investor_solution';
-    $_cb_term_id   = (int) get_field( 'investor_solution_term' );
-} elseif ( 'pf' === $_cb_side ) {
-    $_cb_post_type = 'pf_portfolio';
-    $_cb_taxonomy  = 'pf_solution';
-    $_cb_term_id   = (int) get_field( 'pf_solution_term' );
-}
+$_cb_post_type = 'portfolio';
+$_cb_taxonomy  = 'portfolio_solution';
+$_cb_term_id   = (int) get_field( 'portfolio_solution_term' );
 
 if ( ! $_cb_term_id ) {
     return;

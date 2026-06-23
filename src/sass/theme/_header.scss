@@ -25,7 +25,7 @@ header {
     background-image: url("../img/nav-flourish.svg");
   }
   &.navbar-inv .navbar-top {
-    background-image: url("../img/nav-flourish-inv.svg");
+    background-image: url("../img/nav-flourish.svg");
   }
 
   /* Bottom row: menu. Translucent; tinted per-side via body classes elsewhere. */
@@ -38,7 +38,7 @@ header {
     border-bottom: 1px solid var(--col-orange-1000);
   }
   &.navbar-inv .navbar-bottom .container > ul {
-    border-bottom: 1px solid var(--col-green-teal-400);
+    border-bottom: 1px solid var(--col-orange-1000);
   }
 
   .navbar-nav {

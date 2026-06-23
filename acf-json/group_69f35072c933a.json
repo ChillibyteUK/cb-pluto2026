@@ -229,14 +229,7 @@
             {
                 "param": "post_type",
                 "operator": "==",
-                "value": "investor_portfolio"
-            }
-        ],
-        [
-            {
-                "param": "post_type",
-                "operator": "==",
-                "value": "pf_portfolio"
+                "value": "portfolio"
             }
         ]
     ],

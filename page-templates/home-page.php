@@ -91,7 +91,7 @@ if ( ! $has_video && $hero_bg_url ) {
             <?php
             $news_posts = new WP_Query(
                 array(
-                    'post_type'      => 'pf_insight',
+                    'post_type'      => 'post',
                     'posts_per_page' => 3,
                 )
             );
@@ -138,7 +138,7 @@ if ( ! $has_video && $hero_bg_url ) {
             <?php
             $insight_posts = new WP_Query(
                 array(
-                    'post_type'      => 'investor_insight',
+                    'post_type'      => 'post',
                     'posts_per_page' => 4,
                 )
             );

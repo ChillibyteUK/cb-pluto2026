@@ -620,10 +620,10 @@ for (; i < all.length; i++) {
   }
 
   &--investors {
-    --full-flourish-image: url("../img/inv-flourish.svg");
-    --full-flourish-stripe-1: #225933; // green dark 1000
-    --full-flourish-stripe-2: #7fbdaf; // green teal 500
-    --full-flourish-stripe-3: #b2d7ce; // green teal 300
+    --full-flourish-image: url("../img/left-edge-flourish.svg");
+    --full-flourish-stripe-1: #80bcb4; // teal
+    --full-flourish-stripe-2: #0b644a; // dark green
+    --full-flourish-stripe-3: #e68300; // orange
   }
 
   &--flip::before {

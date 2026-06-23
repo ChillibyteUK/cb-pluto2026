@@ -2,12 +2,12 @@
 /**
  * Block template for CB Latest Posts.
  *
- * Renders the most recent posts from the appropriate insights CPT, with the
+ * Renders the most recent posts, with the
  * visual treatment chosen automatically from the current URL:
  *
- *   /property-finance/...  → Newsroom preset, 3 × pf_insight (1-1-1 → 1-1
+ *   /property-finance/...  → Newsroom preset, 3 posts (1-1-1 → 1-1
  *                            row with the third card as a 16:9 feature).
- *   /investors/...         → Insights preset, 4 × investor_insight, all
+ *   /investors/...         → Insights preset, 4 posts, all
  *                            with circular thumbnails.
  *   anywhere else          → block renders nothing (the section is only
  *                            meaningful inside one of the two silos).
@@ -25,7 +25,6 @@ $context = cb_get_site_context();
 
 if ( 'pf' === $context ) {
 	$preset           = 'newsroom';
-	$insight_type     = 'pf_insight';
 	$count            = 3;
 	$heading          = 'PLUTO NEWSROOM';
 	$cta_label        = 'View all news';
@@ -33,7 +32,6 @@ if ( 'pf' === $context ) {
 	$flourish_variant = 'full-flourish--lending';
 } elseif ( 'inv' === $context ) {
 	$preset           = 'insights';
-	$insight_type     = 'investor_insight';
 	$count            = 4;
 	$heading          = 'PLUTO INSIGHTS';
 	$cta_label        = 'View all insights';
@@ -46,7 +44,7 @@ if ( 'pf' === $context ) {
 
 $query = new WP_Query(
 	array(
-		'post_type'      => $insight_type,
+		'post_type'      => 'post',
 		'posts_per_page' => $count,
 		'no_found_rows'  => true,
 	)

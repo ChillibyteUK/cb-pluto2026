@@ -94,31 +94,27 @@
 }
 
 .cb-ticker-x3--inv {
-  // background: linear-gradient( 90deg, var(--col-green-teal-200) 50%, var(--col-green-teal-1000) 50% );
-  background: linear-gradient( 90deg, #00a074 50%, #016549 50% );
+  background: linear-gradient( 90deg, var(--col-green-teal-200) 50%, var(--col-green-teal-1000) 50% );
 
   .row > *:nth-child(1) {
-    // background-color: var(--col-green-teal-200);
-    background-color: #00a074;
+    background-color: var(--col-green-teal-200);
   }
 
   .row > *:nth-child(2) {
-    // background-color: var(--col-green-teal-500);
-    background-color: #114e25;
+    background-color: var(--col-green-teal-500);
   }
 
   .row > *:nth-child(3) {
-    // background-color: var(--col-green-teal-1000);
-    background-color: #016549;
+    background-color: var(--col-green-teal-1000);
   }
 
   .cb-ticker-x3__item {
-    border: 1px solid var(--col-grey-500);
-    color: var(--col-white);
+    background-color: var(--col-white);
+    color: var(--col-grey-900);
   }
 
   .cb-ticker-x3__stat {
-    color: var(--col-white);
+    color: var(--col-orange-1000);
   }
 
 }

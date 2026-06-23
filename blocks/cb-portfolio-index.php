@@ -10,11 +10,11 @@ defined( 'ABSPATH' ) || exit;
 $context = cb_get_site_context();
 
 if ( 'pf' === $context ) {
-	$cpt_type = 'pf_portfolio';
-	$cpt_tax  = 'pf_solution';
+	$cpt_type = 'portfolio';
+	$cpt_tax  = 'portfolio_solution';
 } elseif ( 'inv' === $context ) {
-	$cpt_type = 'investor_portfolio';
-	$cpt_tax  = 'investor_solution';
+	$cpt_type = 'portfolio';
+	$cpt_tax  = 'portfolio_solution';
 } else {
 	return;
 }
