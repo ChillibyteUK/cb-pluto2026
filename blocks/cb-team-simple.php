@@ -38,6 +38,8 @@ $people = get_posts(
 		'posts_per_page' => -1,
 		'post_status'    => 'publish',
 		'no_found_rows'  => true,
+		'orderby'        => 'title',
+		'order'          => 'ASC',
 	)
 );
 
@@ -45,24 +47,24 @@ if ( empty( $people ) ) {
 	return;
 }
 
-$get_sort_name = function ( WP_Post $person ) {
-	$name  = trim( wp_strip_all_tags( get_the_title( $person ) ) );
-	$parts = preg_split( '/\s+/', $name );
+// $get_sort_name = function ( WP_Post $person ) {
+// 	$name  = trim( wp_strip_all_tags( get_the_title( $person ) ) );
+// 	$parts = preg_split( '/\s+/', $name );
 
-	if ( ! $parts ) {
-		return '';
-	}
+// 	if ( ! $parts ) {
+// 		return '';
+// 	}
 
-	$surname = (string) end( $parts );
-	return strtolower( remove_accents( $surname . ' ' . $name ) );
-};
+// 	$surname = (string) end( $parts );
+// 	return strtolower( remove_accents( $surname . ' ' . $name ) );
+// };
 
-usort(
-	$people,
-	function ( WP_Post $a, WP_Post $b ) use ( $get_sort_name ) {
-		return strnatcasecmp( $get_sort_name( $a ), $get_sort_name( $b ) );
-	}
-);
+// usort(
+// 	$people,
+// 	function ( WP_Post $a, WP_Post $b ) use ( $get_sort_name ) {
+// 		return strnatcasecmp( $get_sort_name( $a ), $get_sort_name( $b ) );
+// 	}
+// );
 
 $teams = get_terms(
 	array(
@@ -128,12 +130,12 @@ $recipient_field_id = $contact_field_ids && ! empty( $contact_field_ids['recipie
 				);
 				$team_names = wp_list_pluck( $terms, 'name' );
 
-				$thumb_id = get_post_thumbnail_id( $person_id );
-				$img_url  = $thumb_id ? wp_get_attachment_image_url( $thumb_id, 'medium_large' ) : $missing_img;
-				$img_url  = $img_url ? $img_url : $missing_img;
-				$big_url  = $thumb_id ? wp_get_attachment_image_url( $thumb_id, 'large' ) : $missing_img;
-				$big_url  = $big_url ? $big_url : $missing_img;
-				$modal_id = 'cb-team-simple-modal-' . $person_id;
+				$thumb_id    = get_post_thumbnail_id( $person_id );
+				$img_url     = $thumb_id ? wp_get_attachment_image_url( $thumb_id, 'medium_large' ) : $missing_img;
+				$img_url     = $img_url ? $img_url : $missing_img;
+				$big_url     = $thumb_id ? wp_get_attachment_image_url( $thumb_id, 'large' ) : $missing_img;
+				$big_url     = $big_url ? $big_url : $missing_img;
+				$modal_id    = 'cb-team-simple-modal-' . $person_id;
 				$has_contact = (bool) ( $email && $contact_form_id && $recipient_field_id );
 				?>
 				<div class="col-12 col-sm-6 col-lg-4 col-xl-3 cb-team-simple__col" data-team="<?= esc_attr( implode( ' ', $team_slugs ) ); ?>">

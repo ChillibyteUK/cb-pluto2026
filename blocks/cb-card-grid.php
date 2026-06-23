@@ -84,6 +84,12 @@ $classes = trim( implode( ' ', array_filter( $section_classes ) ) );
 				$layout = $card['acf_fc_layout'] ?? '';
 				$side   = ( 0 === $item_index % 2 ) ? 'left' : 'right';
 				$aos    = ( 'left' === $side ) ? 'fade-right' : 'fade-left';
+
+				if ( 3 === $columns ) {
+					$column_position = $item_index % 3;
+					$side            = 0 === $column_position ? 'left' : ( 1 === $column_position ? 'centre' : 'right' );
+					$aos             = 0 === $column_position ? 'fade-right' : ( 1 === $column_position ? 'fade' : 'fade-left' );
+				}
 				?>
 				<div class="<?= esc_attr( $column_class ); ?> cb-card-grid__col cb-card-grid__col--<?= esc_attr( $side ); ?>">
 					<?php
