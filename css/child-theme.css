@@ -24608,6 +24608,8 @@ body.cb-team-modal-open {
 }
 .cb-insights-index__title {
   margin: 0;
+  font-size: var(--fs-600);
+  font-weight: var(--fw-semibold);
   color: var(--col-green-dark-1000);
 }
 .cb-insights-index__excerpt {
