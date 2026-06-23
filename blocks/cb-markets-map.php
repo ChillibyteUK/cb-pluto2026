@@ -99,7 +99,7 @@ foreach ( $country_keys as $country_id => $market_key ) {
 <section id="<?= esc_attr( $block_uid ); ?>" class="<?= esc_attr( trim( 'cb-markets-map ' . $custom_classes ) ); ?>">
 	<div class="container">
 		<div class="row gy-4 gx-lg-5 align-items-lg-start">
-			<div class="col-lg-5 cb-markets-map__content">
+			<div class="col-lg-5 cb-markets-map__content order-lg-last">
 				<div class="cb-markets-map__panel">
 					<p class="cb-markets-map__eyebrow"><?= esc_html__( 'Explore our markets', 'cb-pluto2026' ); ?></p>
 					<h2 class="cb-markets-map__title" data-cb-markets-title><?= esc_html__( 'Explore our markets', 'cb-pluto2026' ); ?></h2>
