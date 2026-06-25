@@ -23,12 +23,13 @@ $fg = ! empty( $block['textColor'] ) ? 'has-' . $block['textColor'] . '-color ha
 
 // Determine the flourish colour variant from the URL, mirroring cb-text-image.
 $context          = cb_get_site_context();
-$flourish_classes = 'full-flourish';
-if ( 'pf' === $context ) {
-	$flourish_classes .= ' full-flourish--lending full-flourish--flip';
-} elseif ( 'inv' === $context ) {
-	$flourish_classes .= ' full-flourish--investors full-flourish--flip';
-}
+$flourish_classes = '';
+// $flourish_classes = 'full-flourish';
+// if ( 'pf' === $context ) {
+// 	$flourish_classes .= ' full-flourish--lending full-flourish--flip';
+// } elseif ( 'inv' === $context ) {
+// 	$flourish_classes .= ' full-flourish--investors full-flourish--flip';
+// }
 
 $custom_classes = 'pb-5';
 // Custom classes (filter wp-generated).
