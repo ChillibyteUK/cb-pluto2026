@@ -35,7 +35,7 @@ if ( ! $items ) {
 
 $block_uid = 'cb-accordion-tabs-' . uniqid();
 
-$custom_classes = '';
+$custom_classes = 'py-5';
 if ( isset( $block['className'] ) ) {
 	$class_array = explode( ' ', $block['className'] );
 	$filtered    = array_filter(
@@ -75,7 +75,7 @@ $render_panel = static function ( $item, $panel_id, $title_id ) {
 
 ?>
 <section id="<?= esc_attr( $block_uid ); ?>" class="<?= esc_attr( $classes ); ?>">
-	<div class="container py-5">
+	<div class="container">
 		<div class="cb-accordion-tabs__desktop d-none d-xl-block" data-cb-accordion-tabs="tabs">
 			<div class="row g-4 align-items-start">
 				<div class="col-xl-4">
