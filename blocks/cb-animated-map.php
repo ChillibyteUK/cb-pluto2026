@@ -61,7 +61,7 @@ if ( ! empty( $block['style']['color']['background'] ) ) {
 		}
 
 		if ( sanitize_key( (string) $block['backgroundColor'] ) === sanitize_key( (string) $color['slug'] ) ) {
-			$circle_fill   = (string) $color['color'];
+			$circle_fill    = (string) $color['color'];
 			$section_style .= '--cb-animated-map-circle-fill:' . $circle_fill . ';';
 			break;
 		}
@@ -74,31 +74,32 @@ if ( file_exists( $map_svg_path ) ) {
 	$map_svg = file_get_contents( $map_svg_path );
 	if ( false !== $map_svg ) {
 		$replacements = array(
-			'id="Layer_1-2"'         => 'id="' . $svg_id . '__layer-1-2"',
-			'id="line"'              => 'id="' . $svg_id . '__line-group"',
-			'id="outer-line"'        => 'id="' . $svg_id . '__outer-line"',
-			'id="padding-path"'      => 'id="' . $svg_id . '__padding-path"',
-			'id="luminosity-noclip"' => 'id="' . $svg_id . '__luminosity-noclip"',
-			'id="linear-gradient"'   => 'id="' . $svg_id . '__linear-gradient"',
-			'id="mask"'              => 'id="' . $svg_id . '__mask"',
-			'url(#mask)'               => 'url(#' . $svg_id . '__mask)',
-			'url(#luminosity-noclip)'  => 'url(#' . $svg_id . '__luminosity-noclip)',
-			'url(#linear-gradient)'    => 'url(#' . $svg_id . '__linear-gradient)',
-			'class="cls-1"'          => 'class="cb-animated-map__svg-country--highlight"',
-			'class="cls-2"'          => 'class="cb-animated-map__svg-country--base"',
-			'class="cls-3"'          => 'class="cb-animated-map__svg-mask"',
-			'class="cls-4"'          => 'class="cb-animated-map__svg-none"',
-			'class="cls-5"'          => 'class="cb-animated-map__svg-line"',
-			'class="cls-6"'          => 'class="cb-animated-map__svg-gradient"',
-			'class="cls-7"'          => 'class="cb-animated-map__svg-filter"',
-			'.cls-1'                   => '.cb-animated-map__svg-country--highlight',
-			'.cls-2'                   => '.cb-animated-map__svg-country--base',
-			'.cls-3'                   => '.cb-animated-map__svg-mask',
-			'.cls-4'                   => '.cb-animated-map__svg-none',
-			'.cls-5'                   => '.cb-animated-map__svg-line',
-			'.cls-6'                   => '.cb-animated-map__svg-gradient',
-			'.cls-7'                   => '.cb-animated-map__svg-filter',
+			'id="Layer_1-2"'          => 'id="' . $svg_id . '__layer-1-2"',
+			'id="line"'               => 'id="' . $svg_id . '__line-group"',
+			'id="outer-line"'         => 'id="' . $svg_id . '__outer-line"',
+			'id="padding-path"'       => 'id="' . $svg_id . '__padding-path"',
+			'id="luminosity-noclip"'  => 'id="' . $svg_id . '__luminosity-noclip"',
+			'id="linear-gradient"'    => 'id="' . $svg_id . '__linear-gradient"',
+			'id="mask"'               => 'id="' . $svg_id . '__mask"',
+			'url(#mask)'              => 'url(#' . $svg_id . '__mask)',
+			'url(#luminosity-noclip)' => 'url(#' . $svg_id . '__luminosity-noclip)',
+			'url(#linear-gradient)'   => 'url(#' . $svg_id . '__linear-gradient)',
+			'class="cls-1"'           => 'class="cb-animated-map__svg-country--highlight"',
+			'class="cls-2"'           => 'class="cb-animated-map__svg-country--base"',
+			'class="cls-3"'           => 'class="cb-animated-map__svg-mask"',
+			'class="cls-4"'           => 'class="cb-animated-map__svg-none"',
+			'class="cls-5"'           => 'class="cb-animated-map__svg-line"',
+			'class="cls-6"'           => 'class="cb-animated-map__svg-gradient"',
+			'class="cls-7"'           => 'class="cb-animated-map__svg-filter"',
+			'.cls-1'                  => '.cb-animated-map__svg-country--highlight',
+			'.cls-2'                  => '.cb-animated-map__svg-country--base',
+			'.cls-3'                  => '.cb-animated-map__svg-mask',
+			'.cls-4'                  => '.cb-animated-map__svg-none',
+			'.cls-5'                  => '.cb-animated-map__svg-line',
+			'.cls-6'                  => '.cb-animated-map__svg-gradient',
+			'.cls-7'                  => '.cb-animated-map__svg-filter',
 		);
+
 		$map_svg = str_replace( array_keys( $replacements ), array_values( $replacements ), $map_svg );
 	}
 }
@@ -199,7 +200,7 @@ for ( $i = 1; $i <= 3; $i++ ) {
 				const duration = countryDuration + (staggerStep * Math.max(highlights.length - 1, 0));
 				const lineDuration = duration * 0.7;
 				const baseFill = '#d4e2e2';
-				const highlightFill = '#80bcb4';
+				const highlightFill = '#225933';
 				const countUpDuration = 1.2;
 				const countUpStart = lineDuration;
 				const highlightTweenDuration = Math.max(0.1, countUpDuration - (staggerStep * Math.max(highlights.length - 1, 0)));

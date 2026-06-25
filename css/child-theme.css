@@ -21649,6 +21649,7 @@ body {
   letter-spacing: var(--ls-0);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-wrap: pretty;
 }
 
 /* =========================
@@ -25835,7 +25836,7 @@ body.cb-team-modal-open {
 }
 .cb-animated-map__stat-ring {
   fill: none;
-  stroke: #80bcb4;
+  stroke: var(--col-green-dark-1000);
   stroke-width: 3px;
   stroke-linecap: round;
 }
@@ -25872,18 +25873,20 @@ body.cb-team-modal-open {
   gap: 0.15em;
   line-height: 1;
   align-self: center;
-  color: var(--col-green-dark-1000);
 }
 .cb-animated-map__stat-prefix {
   font-size: var(--fs-400);
+  color: var(--col-orange-1000);
 }
 .cb-animated-map__stat-value {
   font-size: var(--fs-900);
   font-weight: 500;
   line-height: 0.95;
+  color: var(--col-orange-1000);
 }
 .cb-animated-map__stat-suffix {
   font-size: var(--fs-500);
+  color: var(--col-orange-1000);
 }
 @media (max-width: 991.98px) {
   .cb-animated-map__stats {
@@ -25969,7 +25972,7 @@ body.cb-team-modal-open {
 }
 .cb-markets-map .cls-5 {
   fill: none;
-  stroke: #80bcb4;
+  stroke: rgba(34, 89, 51, 0.5647058824);
   stroke-miterlimit: 10;
   stroke-width: 3px;
 }
