@@ -25649,6 +25649,11 @@ body.cb-team-modal-open {
   --cb-at-default-color: var(--col-green-teal-300);
   --cb-at-active-color: var(--col-grey-900);
 }
+.wp-block-group.is-layout-constrained > .cb-accordion-tabs {
+  max-width: none !important;
+  margin-inline: 0 !important;
+  overflow-x: visible;
+}
 .cb-accordion-tabs--pf {
   --cb-at-dot-image: url("../img/dot-line-orange.svg");
   --cb-at-line-color: var(--col-orange-1000);
