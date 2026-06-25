@@ -69,7 +69,7 @@ if ( ! empty( $block['className'] ) ) {
 		<div class="row justify-content-center">
 			<div class="col-md-8 text-center">
 				<?php if ( '' !== trim( $site_title ) ) : ?>
-					<h2 class="cb-image-cta__title text-uppercase"><?= esc_html( $site_title ); ?></h2>
+					<h2 class="cb-image-cta__title"><?= esc_html( $site_title ); ?></h2>
 				<?php endif; ?>
 				<?php if ( '' !== trim( wp_strip_all_tags( $content ) ) ) : ?>
 					<div class="cb-image-cta__content"><?= wp_kses_post( $content ); ?></div>

@@ -40,7 +40,7 @@ if ( ! empty( $block['className'] ) ) {
 		<?php
 		if ( get_field( 'title' ) ) {
 			?>
-		<h2 class="cb-definition-cards__title text-center text-uppercase pb-4"><?= wp_kses_post( get_field( 'title' ) ); ?></h2>
+		<h2 class="cb-definition-cards__title text-center pb-4"><?= wp_kses_post( get_field( 'title' ) ); ?></h2>
 			<?php
 		}
 		?>

@@ -63,7 +63,7 @@ $classes   = trim( implode( ' ', array_filter( array( 'cb-contact-map', $flouris
 >
 	<div class="container py-5">
 		<?php if ( '' !== trim( $btitle ) ) : ?>
-			<h2 class="cb-contact-map__title text-center text-uppercase"><?= esc_html( $btitle ); ?></h2>
+			<h2 class="cb-contact-map__title text-center"><?= esc_html( $btitle ); ?></h2>
 		<?php endif; ?>
 
 		<?php if ( '' !== trim( wp_strip_all_tags( $address ) ) ) : ?>

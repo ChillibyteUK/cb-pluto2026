@@ -49,7 +49,7 @@ if ( $image_url ) {
 					<?php
 					if ( '' !== trim( $block_title ) ) {
 						?>
-						<h1 class="cb-secondary-hero__title text-uppercase"><?= esc_html( $block_title ); ?></h1>
+						<h1 class="cb-secondary-hero__title"><?= esc_html( $block_title ); ?></h1>
 						<?php
 					}
 					if ( '' !== trim( $content ) ) {
