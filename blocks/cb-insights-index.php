@@ -41,6 +41,9 @@ $all_categories = array();
 foreach ( $query->posts as $p ) {
 	$cats = get_the_category( $p->ID );
 	foreach ( $cats as $c ) {
+		if ( in_array( $c->slug, array( 'uncategorized', 'uncategorised' ), true ) ) {
+			continue;
+		}
 		$all_categories[ $c->slug ] = $c->name;
 	}
 }
@@ -88,8 +91,9 @@ $ajax_url     = admin_url( 'admin-ajax.php' );
 				<div class="row g-4">
 					<?php foreach ( $year_posts as $post_item ) : ?>
 					<?php
-					$item_cats = get_the_category( $post_item->ID );
-					$item_cat  = ! empty( $item_cats ) ? $item_cats[0]->slug : '';
+					$item_cats  = get_the_category( $post_item->ID );
+					$item_cat   = ! empty( $item_cats ) ? $item_cats[0]->slug : '';
+					$item_cname = ! empty( $item_cats ) ? $item_cats[0]->name : '';
 					?>
 					<div class="col-md-4 insights-item" data-category="<?= esc_attr( $item_cat ); ?>" data-year="<?= esc_attr( get_the_date( 'Y', $post_item ) ); ?>">
 						<a href="<?= esc_url( get_permalink( $post_item ) ); ?>" class="cb-insights-index__card cb-news-card">
@@ -99,7 +103,9 @@ $ajax_url     = admin_url( 'admin-ajax.php' );
 								<?php else : ?>
 									<img src="<?= esc_url( $fallback_image ); ?>" alt="<?= esc_attr( get_bloginfo( 'name' ) ); ?>">
 								<?php endif; ?>
-								<span class="cb-insights-index__pill"><?= esc_html( $item_cats ? $item_cats[0]->name : '' ); ?></span>
+								<?php if ( $item_cname ) : ?>
+								<span class="cb-insights-index__pill"><?= esc_html( $item_cname ); ?></span>
+								<?php endif; ?>
 							</div>
 							<h3 class="cb-news-card__title"><?= esc_html( get_the_title( $post_item ) ); ?></h3>
 							<div class="cb-news-card__date"><?= esc_html( get_the_date( 'jS F, Y', $post_item ) ); ?></div>

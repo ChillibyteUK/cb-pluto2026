@@ -182,7 +182,9 @@ function cb_ajax_search_posts() {
 							<?php else : ?>
 								<img src="<?= esc_url( $fallback ); ?>" alt="<?= esc_attr( get_bloginfo( 'name' ) ); ?>">
 							<?php endif; ?>
+							<?php if ( $cat_name ) : ?>
 							<span class="cb-insights-index__pill"><?= esc_html( $cat_name ); ?></span>
+							<?php endif; ?>
 						</div>
 						<h3 class="cb-news-card__title"><?= esc_html( get_the_title( $post_item ) ); ?></h3>
 						<div class="cb-news-card__date"><?= esc_html( get_the_date( 'jS F, Y', $post_item ) ); ?></div>
