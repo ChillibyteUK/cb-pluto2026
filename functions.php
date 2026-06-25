@@ -125,14 +125,12 @@ add_action( 'customize_controls_enqueue_scripts', 'understrap_child_customize_co
  * AJAX handler for post search functionality
  */
 function cb_ajax_search_posts() {
-	// Verify nonce for security.
-	if ( ! wp_verify_nonce( $_POST['nonce'], 'post_search_nonce' ) ) { // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+	if ( ! wp_verify_nonce( $_POST['nonce'], 'post_search_nonce' ) ) {
 		wp_die( 'Security check failed' );
 	}
 
 	$search_term = isset( $_POST['search_term'] ) ? sanitize_text_field( wp_unslash( $_POST['search_term'] ) ) : '';
 	$category    = isset( $_POST['category'] ) ? sanitize_text_field( wp_unslash( $_POST['category'] ) ) : '';
-	$year        = isset( $_POST['year'] ) ? sanitize_text_field( wp_unslash( $_POST['year'] ) ) : '';
 
 	$args = array(
 		'post_type'      => 'post',
@@ -142,86 +140,67 @@ function cb_ajax_search_posts() {
 		'order'          => 'DESC',
 	);
 
-	// Add search term if provided.
 	if ( ! empty( $search_term ) ) {
 		$args['s'] = $search_term;
 	}
 
-	// Add category filter if provided.
 	if ( ! empty( $category ) && 'all' !== $category ) {
 		$args['category_name'] = $category;
 	}
 
-	// Add year filter if provided.
-	if ( ! empty( $year ) && 'all' !== $year ) {
-		$args['date_query'] = array(
-			array(
-				'year' => intval( $year ),
-			),
-		);
-	}
+	$query       = new WP_Query( $args );
+	$fallback    = get_stylesheet_directory_uri() . '/img/pluto-logo.png';
+	$excerpt_len = 30;
 
-	$query = new WP_Query( $args );
+	$posts_by_year = array();
+	foreach ( $query->posts as $p ) {
+		$y = get_the_date( 'Y', $p );
+		$posts_by_year[ $y ][] = $p;
+	}
+	krsort( $posts_by_year );
 
 	ob_start();
 
 	if ( $query->have_posts() ) {
-		$d = 0;
-		while ( $query->have_posts() ) {
-			$query->the_post();
-
-			// Get categories for data attribute.
-			$categories = get_the_category();
-			if ( ! empty( $categories ) && ! is_wp_error( $categories ) ) {
-				$first_category = $categories[0];
-				if ( count( $categories ) > 1 ) {
-					$categories = array_slice( $categories, 0, 1 );
-				}
-				$categories = implode( ' ', wp_list_pluck( $categories, 'slug' ) );
-			} else {
-				$categories = '';
-			}
+		foreach ( $posts_by_year as $year => $year_posts ) {
 			?>
-			<div class="col-md-6 col-lg-4" data-aos="fade" data-aos-delay="<?= esc_attr( $d ); ?>" data-category="<?= esc_attr( $categories ); ?>" data-year="<?= esc_attr( get_the_date( 'Y' ) ); ?>">
-				<a href="<?= esc_url( get_permalink() ); ?>" class="latest-insights__item">
-					<div class="latest-insights__img-wrapper">
-						<?php
-						$thumbnail_id = get_post_thumbnail_id( get_the_ID() );
-						if ( $thumbnail_id ) {
-							echo wp_get_attachment_image(
-								$thumbnail_id,
-								'large',
-								false,
-								array(
-									'class' => 'img-fluid mb-3',
-									'alt'   => '',
-								)
-							);
-						}
-						?>
-					</div>
-					<div class="latest-insights__inner">
-						<h3><?= esc_html( get_the_title() ); ?></h3>
-						<div class="latest-insights__meta">
-							<span><i class="fa-regular fa-calendar"></i> <?= esc_html( get_the_date( 'jS F Y' ) ); ?></span>
-							<span><i class="fa-regular fa-clock"></i> <?= wp_kses_post( estimate_reading_time_in_minutes( get_the_content() ) ); ?> minute read</span>
+		<div class="cb-insights-index__year-group" data-year="<?= esc_attr( $year ); ?>">
+			<h2 class="cb-insights-index__year-heading"><?= esc_html( $year ); ?></h2>
+			<div class="row g-4">
+				<?php foreach ( $year_posts as $post_item ) : ?>
+				<?php
+				setup_postdata( $post_item );
+				$cats      = get_the_category( $post_item->ID );
+				$cat_slugs = ! empty( $cats ) && ! is_wp_error( $cats ) ? $cats[0]->slug : '';
+				$cat_name  = ! empty( $cats ) && ! is_wp_error( $cats ) ? $cats[0]->name : '';
+				?>
+				<div class="col-md-4 insights-item" data-category="<?= esc_attr( $cat_slugs ); ?>" data-year="<?= esc_attr( get_the_date( 'Y', $post_item ) ); ?>">
+					<a href="<?= esc_url( get_permalink( $post_item ) ); ?>" class="cb-insights-index__card cb-news-card">
+						<div class="cb-news-card__image cb-news-card__image--16-9">
+							<?php if ( has_post_thumbnail( $post_item ) ) : ?>
+								<?= get_the_post_thumbnail( $post_item, 'medium_large' ); ?>
+							<?php else : ?>
+								<img src="<?= esc_url( $fallback ); ?>" alt="<?= esc_attr( get_bloginfo( 'name' ) ); ?>">
+							<?php endif; ?>
+							<span class="cb-insights-index__pill"><?= esc_html( $cat_name ); ?></span>
 						</div>
-						<div><?= esc_html( get_the_excerpt() ); ?></div>
-					</div>
-				</a>
+						<h3 class="cb-news-card__title"><?= esc_html( get_the_title( $post_item ) ); ?></h3>
+						<div class="cb-news-card__date"><?= esc_html( get_the_date( 'jS F, Y', $post_item ) ); ?></div>
+						<div class="cb-news-card__excerpt"><?= esc_html( wp_trim_words( wp_strip_all_tags( get_the_content( $post_item ) ), $excerpt_len ) ); ?></div>
+						<div class="cb-news-card__link">Learn more</div>
+					</a>
+				</div>
+				<?php endforeach; ?>
 			</div>
+		</div>
 			<?php
-			$d += 100;
 		}
+		wp_reset_postdata();
 	} else {
 		echo '<div class="col-12"><p class="text-center">No posts found matching your criteria.</p></div>';
 	}
 
-	wp_reset_postdata();
-
-	$html = ob_get_clean();
-
-	wp_send_json_success( array( 'html' => $html ) );
+	wp_send_json_success( array( 'html' => ob_get_clean() ) );
 }
 
 add_action( 'wp_ajax_search_posts', 'cb_ajax_search_posts' );

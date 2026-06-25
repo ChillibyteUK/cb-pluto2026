@@ -26,9 +26,9 @@ $markets     = array();
 
 if ( ! empty( $acf_markets ) && is_array( $acf_markets ) ) {
 	foreach ( $acf_markets as $item ) {
-		$key          = $item['market_key'] ?? '';
-		$title        = $item['market_title'] ?? '';
-		$body         = $item['market_body'] ?? '';
+		$key             = $item['market_key'] ?? '';
+		$title           = $item['market_title'] ?? '';
+		$body            = $item['market_body'] ?? '';
 		$markets[ $key ] = array(
 			'label' => $title,
 			'title' => $title,
@@ -76,7 +76,7 @@ $country_keys = array(
 	'PT' => 'ES_PT',
 );
 
-$map_svg = '';
+$map_svg  = '';
 $map_path = get_theme_file_path( 'img/map.svg' );
 if ( file_exists( $map_path ) ) {
 	$raw = file_get_contents( $map_path );

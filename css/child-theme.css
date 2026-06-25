@@ -22432,7 +22432,6 @@ header:has(.navbar-collapse.collapsing) .navbar-bottom {
 .cb-post__content {
   font-size: var(--fs-500);
   line-height: var(--lh-500);
-  max-width: 72ch;
 }
 .cb-post__content h2, .cb-post__content .h2 {
   font-size: var(--fs-700);
@@ -22473,7 +22472,7 @@ header:has(.navbar-collapse.collapsing) .navbar-bottom {
   gap: 0.75rem;
   align-items: flex-start;
   padding-block: 0.75rem;
-  border-bottom: 1px solid var(--col-black-020);
+  border-bottom: 1px solid var(--col-grey-800);
   text-decoration: none;
   color: inherit;
   transition: color var(--transition);
@@ -22514,77 +22513,6 @@ header:has(.navbar-collapse.collapsing) .navbar-bottom {
   font-size: var(--fs-300);
   font-weight: var(--fw-semibold);
   line-height: var(--lh-500);
-}
-
-.cb-news-card {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  text-decoration: none;
-  color: inherit;
-}
-.cb-news-card__image {
-  width: 100%;
-  overflow: hidden;
-  margin: 0 auto 1rem;
-}
-.cb-news-card__image img {
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-  object-fit: cover;
-  display: block;
-}
-.cb-news-card__image--4-3 {
-  aspect-ratio: 4/3;
-  border-radius: 1rem;
-}
-.cb-news-card__image--16-9 {
-  aspect-ratio: 16/9;
-  border-radius: 1rem;
-}
-.cb-news-card__image--circle {
-  aspect-ratio: 1/1;
-  border-radius: 100%;
-}
-.cb-news-card__date {
-  color: var(--col-orange-1000);
-}
-.cb-news-card__title {
-  color: var(--col-green-dark-1000);
-  font-size: var(--fs-600);
-}
-.cb-news-card__link {
-  margin-top: auto;
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  min-height: 1.5rem;
-  padding-right: 1.5rem;
-  padding-top: 0.5rem;
-  font-size: var(--fs-400);
-  font-weight: var(--fw-semibold);
-  color: var(--col-grey-900);
-  background: url("../img/dot-link.svg") center right 1.5rem/auto 1.5rem no-repeat;
-  transition: all var(--transition);
-}
-.cb-news-card__link::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 2.25rem;
-  height: 1px;
-  margin-top: -0.75rem;
-  background-color: #114e25;
-  transition: all var(--transition);
-}
-.cb-news-card:hover .cb-news-card__link, .cb-news-card:focus-visible .cb-news-card__link {
-  background-position: center right 0;
-}
-.cb-news-card:hover .cb-news-card__link::before, .cb-news-card:focus-visible .cb-news-card__link::before {
-  right: 0.75rem;
 }
 
 .skip-link {
@@ -24544,68 +24472,93 @@ body.cb-team-modal-open {
   --cb-feature-title-line-color: var(--col-orange-1000);
 }
 
-/* =========================
-   CB Insights Index
-   Lead post in a 12-col card laid out as
-   [image | title/excerpt], followed by a 3-col grid
-   of sub cards. Cards inherit hover behaviour from
-   .cb-news-card (see _news.scss).
-   ========================= */
-.cb-insights-index {
-  /* --------------------------------------------------
-     Lead (12-col) card — two-column [image | text]
-     The text column dictates the row height; the image
-     column stretches to match it via grid alignment.
-     -------------------------------------------------- */
-  /* --------------------------------------------------
-     Sub cards (col-md-4, stacked image-over-text).
-     -------------------------------------------------- */
-}
-.cb-insights-index__featured-card, .cb-insights-index__card {
+.cb-news-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   text-decoration: none;
   color: inherit;
 }
-.cb-insights-index__featured-card {
-  display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-  align-items: stretch;
+.cb-news-card__image {
+  width: 100%;
   overflow: hidden;
-  border-radius: 1rem;
-  background-color: var(--col-grey-400);
-}
-@media (max-width: 767.98px) {
-  .cb-insights-index__featured-card {
-    grid-template-columns: 1fr;
-  }
-}
-.cb-insights-index__featured-card--no-image {
-  grid-template-columns: 1fr;
-}
-.cb-insights-index__featured-image {
-  /* Inside grid stretch, the wrapper height is dictated by the text
-     column. Use position: relative + an absolute img so the image fills
-     the cell without contributing its intrinsic height to the row. */
+  margin: 0 auto 1rem;
   position: relative;
-  overflow: hidden;
-  /* Ensures a sensible minimum on mobile (where the image stacks above
-     the text and there's no other column to inherit height from). */
-  min-height: clamp(180px, 30vw, 320px);
 }
-.cb-insights-index__featured-image img {
-  position: absolute;
-  inset: 0;
+.cb-news-card__image img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
   object-fit: cover;
   display: block;
 }
-.cb-insights-index__featured-content {
+.cb-news-card__image--4-3 {
+  aspect-ratio: 4/3;
+}
+.cb-news-card__image--16-9 {
+  aspect-ratio: 16/9;
+}
+.cb-news-card__image--circle {
+  aspect-ratio: 1/1;
+  border-radius: 100%;
+}
+.cb-news-card__date {
+  color: var(--col-orange-1000);
+  font-size: var(--fs-100);
+}
+.cb-news-card__title {
+  color: var(--col-green-dark-1000);
+  font-size: var(--fs-600);
+}
+.cb-news-card__excerpt {
+  color: var(--col-grey-800);
+  font-size: var(--fs-400);
+}
+.cb-news-card__link {
+  margin-top: auto;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  min-height: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 0.5rem;
+  font-size: var(--fs-400);
+  font-weight: var(--fw-semibold);
+  color: var(--col-grey-900);
+  background: url("../img/dot-link.svg") center right 1.5rem/auto 1.5rem no-repeat;
+  transition: all var(--transition);
+}
+.cb-news-card__link::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 2.25rem;
+  height: 1px;
+  margin-top: -0.75rem;
+  background-color: #114e25;
+  transition: all var(--transition);
+}
+.cb-news-card:hover .cb-news-card__link, .cb-news-card:focus-visible .cb-news-card__link {
+  background-position: center right 0;
+}
+.cb-news-card:hover .cb-news-card__link::before, .cb-news-card:focus-visible .cb-news-card__link::before {
+  right: 0.75rem;
+}
+
+/* =========================
+   CB Insights Index
+   Lead post in a 12-col card laid out as
+   [image | title/excerpt], followed by a 3-col grid
+   of sub cards.
+   ========================= */
+.cb-insights-index__card {
+  text-decoration: none;
+  color: inherit;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  min-width: 0;
-  padding: 2rem;
+  height: 100%;
 }
 .cb-insights-index__title {
   margin: 0;
@@ -24619,10 +24572,104 @@ body.cb-team-modal-open {
 .cb-insights-index__excerpt p:last-child {
   margin-bottom: 0;
 }
-.cb-insights-index__card {
+.cb-insights-index__year-group + .cb-insights-index__year-group {
+  margin-top: 2rem;
+}
+.cb-insights-index__year-heading {
+  font-size: var(--fs-700);
+  font-weight: var(--fw-bold);
+  color: var(--col-green-dark-1000);
+  margin: 0 0 1rem;
+}
+.cb-insights-index__toolbar {
   display: flex;
-  flex-direction: column;
-  height: 100%;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.cb-insights-index__reset {
+  padding: 0.4rem 1rem;
+  border: 1px solid var(--col-green-dark-600);
+  border-radius: 9999px;
+  background: transparent;
+  color: var(--col-green-dark-1100);
+  font-size: var(--fs-300);
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+}
+.cb-insights-index__reset:hover {
+  background: var(--col-green-dark-600);
+  color: var(--col-white);
+}
+.cb-insights-index__search {
+  width: 100%;
+  max-width: 320px;
+  padding: 0.4rem 1rem;
+  border: 1px solid var(--col-green-dark-600);
+  border-radius: 9999px;
+  background: transparent;
+  color: inherit;
+  font-size: var(--fs-300);
+  outline: none;
+}
+.cb-insights-index__search:focus {
+  border-color: var(--col-green-dark-600) !important;
+  outline: none !important;
+  box-shadow: none !important;
+  border-radius: 9999px !important;
+}
+.cb-insights-index__search::-moz-placeholder {
+  color: var(--col-grey-600);
+}
+.cb-insights-index__search::placeholder {
+  color: var(--col-grey-600);
+}
+.cb-insights-index__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.cb-insights-index__filters--cats {
+  margin-bottom: 0.5rem;
+}
+.cb-insights-index__filters--years {
+  margin-bottom: 2rem;
+}
+.cb-insights-index__filter {
+  padding: 0.4rem 1rem;
+  border: 1px solid var(--col-green-dark-600);
+  border-radius: 9999px;
+  background: transparent;
+  color: var(--col-green-dark-1100);
+  font-size: var(--fs-300);
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+}
+.cb-insights-index__filter:hover {
+  background: var(--col-green-dark-600);
+  color: var(--col-white);
+  border-color: var(--col-green-dark-600);
+}
+.cb-insights-index__filter--active {
+  background: var(--col-green-dark-1100);
+  color: var(--col-white);
+  border-color: var(--col-green-dark-1100);
+}
+.cb-insights-index__pill {
+  font-size: var(--fs-200);
+  font-weight: var(--fw-semibold);
+  color: var(--col-white);
+  padding: 0.25rem 0.5rem;
+  border-radius: 100vw;
+  background-color: var(--col-green-dark-1000);
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+}
+
+.cb-news-card__image .cb-insights-index__pill {
+  top: 0.5rem;
+  right: 0.5rem;
+  left: auto;
 }
 
 .cb-portfolio-index__filters {
@@ -24641,9 +24688,15 @@ body.cb-team-modal-open {
   cursor: pointer;
   transition: background var(--transition), color var(--transition);
 }
-.cb-portfolio-index__filter:hover, .cb-portfolio-index__filter--active {
+.cb-portfolio-index__filter:hover {
   background: var(--col-green-dark-600);
   color: var(--col-white);
+  border-color: var(--col-green-dark-600);
+}
+.cb-portfolio-index__filter--active {
+  background: var(--col-green-dark-1100);
+  color: var(--col-white);
+  border-color: var(--col-green-dark-1100);
 }
 .cb-portfolio-index .portfolio__card {
   display: flex;
@@ -24667,10 +24720,10 @@ body.cb-team-modal-open {
   top: 0.5rem;
   right: 0.5rem;
   z-index: 1;
-  padding: 0.2rem 0.6rem;
-  border-radius: 9999px;
-  background: var(--col-green-mid-1000);
-  color: contrast-color(var(--col-green-mid-1000));
+  padding: 0.25rem 0.5rem;
+  border-radius: 100vw;
+  background: var(--col-green-dark-1000);
+  color: var(--col-white);
   font-size: var(--fs-200);
   font-weight: var(--fw-semibold);
   line-height: 1.4;

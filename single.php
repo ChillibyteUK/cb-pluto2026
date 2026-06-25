@@ -20,7 +20,7 @@ if ( 'inv' === $context ) {
 	$home_url       = '/property-finance/';
 	$home_label     = 'Home';
 	$insights_url   = '/property-finance/insights/';
-	$insights_label = 'Newsroom';
+	$insights_label = 'Insights';
 	$main_class     = 'cb-post cb-post--pf';
 }
 
@@ -31,8 +31,8 @@ get_header();
 		<div id="breadcrumbs" class="mb-3">
 			<a href="<?= esc_url( $home_url ); ?>"><?= esc_html( $home_label ); ?></a> &raquo; <a href="<?= esc_url( $insights_url ); ?>"><?= esc_html( $insights_label ); ?></a> &raquo; <?= esc_html( get_the_title() ); ?>
 		</div>
-		<div class="row">
-			<div class="col-lg-8">
+		<div class="row g-5">
+			<div class="col-lg-9">
 				<div class="cb-post__hero">
 					<?php if ( has_post_thumbnail() ) { ?>
 					<?= get_the_post_thumbnail( get_the_ID(), 'full', array( 'class' => 'cb-post__hero-img' ) ); ?>
@@ -67,7 +67,7 @@ get_header();
 				}
 				?>
 			</div>
-			<div class="col-lg-4">
+			<div class="col-lg-3">
 				<?php
 				$q = new WP_Query(
 					array(
@@ -97,7 +97,6 @@ get_header();
 						<div class="cb-post-sidebar__body">
 							<div class="cb-post-sidebar__meta">
 								<span><?= esc_html( get_the_date( 'j M Y' ) ); ?></span>
-								<span><?= esc_html( estimate_reading_time_in_minutes( get_the_content() ) ); ?> min read</span>
 							</div>
 							<div class="cb-post-sidebar__post-title"><?= esc_html( get_the_title() ); ?></div>
 						</div>

@@ -16,10 +16,16 @@
         cursor: pointer;
         transition: background var(--transition), color var(--transition);
 
-        &:hover,
-        &--active {
+        &:hover {
             background: var(--col-green-dark-600);
             color: var(--col-white);
+            border-color: var(--col-green-dark-600);
+        }
+
+        &--active {
+            background: var(--col-green-dark-1100);
+            color: var(--col-white);
+            border-color: var(--col-green-dark-1100);
         }
     }
 
@@ -46,10 +52,10 @@
             top: 0.5rem;
             right: 0.5rem;
             z-index: 1;
-            padding: 0.2rem 0.6rem;
-            border-radius: 9999px;
-            background: var(--col-green-mid-1000);
-            color: contrast-color(var(--col-green-mid-1000));
+            padding: 0.25rem 0.5rem;
+            border-radius: 100vw;
+            background: var(--col-green-dark-1000);
+            color: var(--col-white);
             font-size: var(--fs-200);
             font-weight: var(--fw-semibold);
             line-height: 1.4;
