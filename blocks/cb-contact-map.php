@@ -46,7 +46,7 @@ if ( ! empty( $block['style']['color']['text'] ) ) {
 
 // Determine the flourish colour variant from the URL, mirroring cb-text-image.
 $context          = cb_get_site_context();
-$flourish_classes = 'full-flourish';
+$flourish_classes = '';
 // $flourish_classes = 'full-flourish';
 // if ( 'pf' === $context ) {
 // 	$flourish_classes .= ' full-flourish--lending full-flourish--flip';
