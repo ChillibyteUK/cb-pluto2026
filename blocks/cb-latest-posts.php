@@ -27,14 +27,14 @@ $context = cb_get_site_context();
 if ( 'pf' === $context ) {
 	$preset           = 'newsroom';
 	$count            = 3;
-	$heading          = 'PLUTO NEWSROOM';
+	$heading          = 'Pluto Insights';
 	$cta_label        = 'View all news';
 	$cta_url          = '/property-finance/insights/';
 	$flourish_variant = 'full-flourish--lending';
 } elseif ( 'inv' === $context ) {
 	$preset           = 'insights';
 	$count            = 4;
-	$heading          = 'PLUTO INSIGHTS';
+	$heading          = 'Pluto Insights';
 	$cta_label        = 'View all insights';
 	$cta_url          = '/investors/insights/';
 	$flourish_variant = 'full-flourish--investors';

@@ -77,8 +77,8 @@ $modifier_classes = implode(
 );
 
 // AOS intro animations: the pullout slides in from its own side, the text fades.
-$pullout_aos  = ( 'left' === $pullout_side ) ? 'fade-right' : 'fade-left';
-$text_aos     = 'fade';
+$pullout_aos = ( 'left' === $pullout_side ) ? 'fade-right' : 'fade-left';
+$text_aos    = 'fade';
 
 // Unique ID.
 $block_uid = 'text-pullout-' . uniqid();
@@ -113,8 +113,8 @@ $render_text = function () {
 				target="<?= esc_attr( $l['target'] ? $l['target'] : '_self' ); ?>"><?= esc_html( $l['title'] ); ?></a>
 			</p>
 			<?php
-	}
-	?>
+		}
+		?>
 	</div>
 	<?php
 };

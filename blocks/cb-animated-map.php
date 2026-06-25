@@ -15,12 +15,6 @@ $context = cb_get_site_context();
 
 // Flourish utility classes, matching the brand variants used elsewhere.
 $flourish_classes = '';
-// $flourish_classes = 'full-flourish';
-// if ( 'pf' === $context ) {
-// 	$flourish_classes .= ' full-flourish--lending';
-// } elseif ( 'inv' === $context ) {
-// 	$flourish_classes .= ' full-flourish--investors';
-// }
 
 // Extract custom classes (filter out wp-generated ones).
 $custom_classes = '';
@@ -37,7 +31,6 @@ if ( isset( $block['className'] ) ) {
 
 // Support Gutenberg colour picker.
 $bg = ! empty( $block['backgroundColor'] ) ? 'has-' . $block['backgroundColor'] . '-background-color' : '';
-// $fg = ! empty( $block['textColor'] ) ? 'has-' . $block['textColor'] . '-color' : '';
 
 $block_uid = $block['anchor'] ?? ( 'animated-map-' . uniqid() );
 $svg_id    = $block_uid . '-svg';
@@ -68,7 +61,7 @@ if ( ! empty( $block['style']['color']['background'] ) ) {
 	}
 }
 
-$map_svg = '';
+$map_svg      = '';
 $map_svg_path = get_theme_file_path( 'img/map.svg' );
 if ( file_exists( $map_svg_path ) ) {
 	$map_svg = file_get_contents( $map_svg_path );
@@ -106,7 +99,7 @@ if ( file_exists( $map_svg_path ) ) {
 
 $stats = array();
 for ( $i = 1; $i <= 3; $i++ ) {
-	$group = get_field( 'stat_' . $i );
+	$group   = get_field( 'stat_' . $i );
 	$stats[] = is_array( $group ) ? $group : array();
 }
 ?>

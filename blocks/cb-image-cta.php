@@ -46,11 +46,11 @@ if ( ! empty( $block['textColor'] ) ) {
 $custom_bg = $block['style']['color']['background'] ?? '';
 $custom_fg = $block['style']['color']['text'] ?? '';
 if ( $custom_bg ) {
-	$section_style .= 'background-color:' . $custom_bg . ';';
+	$section_style    .= 'background-color:' . $custom_bg . ';';
 	$section_classes[] = 'has-background';
 }
 if ( $custom_fg ) {
-	$section_style .= 'color:' . $custom_fg . ';';
+	$section_style    .= 'color:' . $custom_fg . ';';
 	$section_classes[] = 'has-text-color';
 }
 if ( ! empty( $block['className'] ) ) {
