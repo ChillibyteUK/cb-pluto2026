@@ -83,7 +83,7 @@ if ( $display_flourish ) {
 					?>
 					<div class="<?= esc_attr( $cols ); ?>" data-aos="fade-up" data-aos-delay="<?= esc_attr( $query->current_post * 150 ); ?>">
 						<a href="<?php the_permalink(); ?>" class="cb-news-card">
-							<div class="cb-news-card__image cb-news-card__image--4-3">
+							<div class="cb-news-card__image cb-news-card__image--16-9">
 								<?php if ( has_post_thumbnail() ) : ?>
 									<?php the_post_thumbnail( 'large' ); ?>
 								<?php else : ?>
