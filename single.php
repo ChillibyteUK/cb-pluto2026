@@ -34,11 +34,15 @@ get_header();
 		<div class="row g-5">
 			<div class="col-lg-9">
 				<div class="cb-post__hero">
-					<?php if ( has_post_thumbnail() ) { ?>
-					<?= get_the_post_thumbnail( get_the_ID(), 'full', array( 'class' => 'cb-post__hero-img' ) ); ?>
-					<?php } else { ?>
+					<?php
+					if ( has_post_thumbnail() ) {
+						echo get_the_post_thumbnail( get_the_ID(), 'full', array( 'class' => 'cb-post__hero-img' ) );
+					} else {
+						?>
 					<img class="cb-post__hero-img" src="<?= esc_url( $fallback_image ); ?>" alt="<?= esc_attr( get_bloginfo( 'name' ) ); ?>">
-					<?php } ?>
+						<?php
+					}
+					?>
 				</div>
 				<h1 class="cb-post__title"><?= esc_html( get_the_title() ); ?></h1>
 				<div class="cb-post__meta">
@@ -88,11 +92,15 @@ get_header();
 						?>
 					<a class="cb-post-sidebar__item" href="<?= esc_url( get_permalink() ); ?>">
 						<div class="cb-post-sidebar__image-wrap">
-							<?php if ( has_post_thumbnail() ) { ?>
-							<?= get_the_post_thumbnail( get_the_ID(), 'medium', array( 'class' => 'cb-post-sidebar__image' ) ); ?>
-							<?php } else { ?>
+							<?php
+							if ( has_post_thumbnail() ) {
+								echo get_the_post_thumbnail( get_the_ID(), 'medium', array( 'class' => 'cb-post-sidebar__image' ) );
+							} else {
+								?>
 							<img class="cb-post-sidebar__image" src="<?= esc_url( $fallback_image ); ?>" alt="<?= esc_attr( get_bloginfo( 'name' ) ); ?>">
-							<?php } ?>
+								<?php
+							}
+							?>
 						</div>
 						<div class="cb-post-sidebar__body">
 							<div class="cb-post-sidebar__meta">

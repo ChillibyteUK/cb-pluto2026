@@ -27,12 +27,12 @@ if ( ! $query->have_posts() ) {
 	return;
 }
 
-$all_years   = array();
+$all_years     = array();
 $posts_by_year = array();
 foreach ( $query->posts as $p ) {
-	$y = get_the_date( 'Y', $p );
+	$y                     = get_the_date( 'Y', $p );
 	$posts_by_year[ $y ][] = $p;
-	$all_years[ $y ] = $y;
+	$all_years[ $y ]       = $y;
 }
 krsort( $posts_by_year );
 krsort( $all_years );
@@ -65,15 +65,23 @@ $ajax_url     = admin_url( 'admin-ajax.php' );
 			<div class="col-md-6">
 				<div class="cb-insights-index__filters cb-insights-index__filters--cats">
 					<button class="cb-insights-index__filter insights-filter cb-insights-index__filter--active" data-filter="all">All</button>
-					<?php foreach ( $all_categories as $slug => $name ) : ?>
-						<button class="cb-insights-index__filter insights-filter" data-filter="<?= esc_attr( $slug ); ?>"><?= esc_html( $name ); ?></button>
-					<?php endforeach; ?>
+					<?php
+					foreach ( $all_categories as $slug => $name ) {
+						?>
+					<button class="cb-insights-index__filter insights-filter" data-filter="<?= esc_attr( $slug ); ?>"><?= esc_html( $name ); ?></button>
+						<?php
+					}
+					?>
 				</div>
 				<div class="cb-insights-index__filters cb-insights-index__filters--years">
 					<button class="cb-insights-index__filter insights-year-filter cb-insights-index__filter--active" data-year="all">All years</button>
-					<?php foreach ( $all_years as $year ) : ?>
-						<button class="cb-insights-index__filter insights-year-filter" data-year="<?= esc_attr( $year ); ?>"><?= esc_html( $year ); ?></button>
-					<?php endforeach; ?>
+					<?php
+					foreach ( $all_years as $yr ) {
+						?>
+					<button class="cb-insights-index__filter insights-year-filter" data-year="<?= esc_attr( $yr ); ?>"><?= esc_html( $yr ); ?></button>
+						<?php
+					}
+					?>
 				</div>
 			</div>
 			<div class="col-md-6">
@@ -85,16 +93,18 @@ $ajax_url     = admin_url( 'admin-ajax.php' );
 		</div>
 
 		<div class="cb-insights-index__results">
-			<?php foreach ( $posts_by_year as $year => $year_posts ) : ?>
-			<div class="cb-insights-index__year-group" data-year="<?= esc_attr( $year ); ?>">
-				<h2 class="cb-insights-index__year-heading"><?= esc_html( $year ); ?></h2>
+			<?php
+			foreach ( $posts_by_year as $yr => $yr_posts ) {
+				?>
+			<div class="cb-insights-index__year-group" data-year="<?= esc_attr( $yr ); ?>">
+				<h2 class="cb-insights-index__year-heading"><?= esc_html( $yr ); ?></h2>
 				<div class="row g-4">
-					<?php foreach ( $year_posts as $post_item ) : ?>
 					<?php
-					$item_cats   = get_the_category( $post_item->ID );
-					$item_cat    = ! empty( $item_cats ) ? implode( ' ', wp_list_pluck( $item_cats, 'slug' ) ) : '';
-					$item_cname  = ! empty( $item_cats ) ? $item_cats[0]->name : '';
-					?>
+					foreach ( $yr_posts as $post_item ) {
+						$item_cats  = get_the_category( $post_item->ID );
+						$item_cat   = ! empty( $item_cats ) ? implode( ' ', wp_list_pluck( $item_cats, 'slug' ) ) : '';
+						$item_cname = ! empty( $item_cats ) ? $item_cats[0]->name : '';
+						?>
 					<div class="col-md-4 insights-item" data-category="<?= esc_attr( $item_cat ); ?>" data-year="<?= esc_attr( get_the_date( 'Y', $post_item ) ); ?>">
 						<a href="<?= esc_url( get_permalink( $post_item ) ); ?>" class="cb-insights-index__card cb-news-card">
 							<div class="cb-news-card__image cb-news-card__image--16-9">
@@ -113,10 +123,14 @@ $ajax_url     = admin_url( 'admin-ajax.php' );
 							<div class="cb-news-card__link">Learn more</div>
 						</a>
 					</div>
-					<?php endforeach; ?>
+						<?php
+					}
+					?>
 				</div>
 			</div>
-			<?php endforeach; ?>
+				<?php
+			}
+			?>
 		</div>
 	</div>
 </section>
