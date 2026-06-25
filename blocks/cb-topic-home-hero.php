@@ -63,7 +63,7 @@ if ( 'pf' === $context ) {
 	<div class="container my-auto">
 		<div class="row">
 			<div class="col-md-6">
-				<h1 class="text-balance"><?= esc_html( get_field( 'title' ) ); ?></h1>
+				<h1 class="text-balance"><?= wp_kses_post( get_field( 'title' ) ); ?></h1>
 				<?php
 				// Render the USP lines as a list only when there is more than one
 				// line. A single line stays as plain intro text.
