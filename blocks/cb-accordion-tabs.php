@@ -37,8 +37,8 @@ $block_uid = 'cb-accordion-tabs-' . uniqid();
 
 $custom_classes = 'py-5';
 if ( isset( $block['className'] ) ) {
-	$class_array = explode( ' ', $block['className'] );
-	$filtered    = array_filter(
+	$class_array    = explode( ' ', $block['className'] );
+	$filtered       = array_filter(
 		$class_array,
 		static function ( $item ) {
 			return ! preg_match( '/^wp-/', $item );
@@ -49,12 +49,12 @@ if ( isset( $block['className'] ) ) {
 
 $classes = trim( 'cb-accordion-tabs ' . $custom_classes );
 
-$context = cb_get_site_context();
-if ( 'pf' === $context ) {
-	$classes .= ' cb-accordion-tabs--pf';
-} elseif ( 'inv' === $context ) {
-	$classes .= ' cb-accordion-tabs--inv';
-}
+// $context = cb_get_site_context();
+// if ( 'pf' === $context ) {
+// 	$classes .= ' cb-accordion-tabs--pf';
+// } elseif ( 'inv' === $context ) {
+// 	$classes .= ' cb-accordion-tabs--inv';
+// }
 
 $render_panel = static function ( $item, $panel_id, $title_id ) {
 	$title   = isset( $item['title'] ) ? $item['title'] : '';
