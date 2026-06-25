@@ -171,7 +171,7 @@ function cb_ajax_search_posts() {
 				<?php
 				setup_postdata( $post_item );
 				$cats      = get_the_category( $post_item->ID );
-				$cat_slugs = ! empty( $cats ) && ! is_wp_error( $cats ) ? $cats[0]->slug : '';
+				$cat_slugs = ! empty( $cats ) && ! is_wp_error( $cats ) ? implode( ' ', wp_list_pluck( $cats, 'slug' ) ) : '';
 				$cat_name  = ! empty( $cats ) && ! is_wp_error( $cats ) ? $cats[0]->name : '';
 				?>
 				<div class="col-md-4 insights-item" data-category="<?= esc_attr( $cat_slugs ); ?>" data-year="<?= esc_attr( get_the_date( 'Y', $post_item ) ); ?>">

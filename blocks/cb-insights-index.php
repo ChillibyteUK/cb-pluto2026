@@ -91,9 +91,9 @@ $ajax_url     = admin_url( 'admin-ajax.php' );
 				<div class="row g-4">
 					<?php foreach ( $year_posts as $post_item ) : ?>
 					<?php
-					$item_cats  = get_the_category( $post_item->ID );
-					$item_cat   = ! empty( $item_cats ) ? $item_cats[0]->slug : '';
-					$item_cname = ! empty( $item_cats ) ? $item_cats[0]->name : '';
+					$item_cats   = get_the_category( $post_item->ID );
+					$item_cat    = ! empty( $item_cats ) ? implode( ' ', wp_list_pluck( $item_cats, 'slug' ) ) : '';
+					$item_cname  = ! empty( $item_cats ) ? $item_cats[0]->name : '';
 					?>
 					<div class="col-md-4 insights-item" data-category="<?= esc_attr( $item_cat ); ?>" data-year="<?= esc_attr( get_the_date( 'Y', $post_item ) ); ?>">
 						<a href="<?= esc_url( get_permalink( $post_item ) ); ?>" class="cb-insights-index__card cb-news-card">
@@ -156,7 +156,8 @@ $ajax_url     = admin_url( 'admin-ajax.php' );
 			var items = group.querySelectorAll('.insights-item');
 			var anyVisible = false;
 			items.forEach(function(item) {
-				var matchCat  = cat === 'all' || item.getAttribute('data-category') === cat;
+				var cats = (item.getAttribute('data-category') || '').split(' ');
+				var matchCat  = cat === 'all' || cats.indexOf(cat) !== -1;
 				var matchYear = year === 'all' || item.getAttribute('data-year') === year;
 				var match = matchCat && matchYear;
 				item.style.display = match ? '' : 'none';
