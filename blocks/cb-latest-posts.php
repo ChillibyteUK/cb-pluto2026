@@ -26,7 +26,7 @@ $context = cb_get_site_context();
 
 if ( 'pf' === $context ) {
 	$preset           = 'newsroom';
-	$count            = 3;
+	$count            = 4;
 	$heading          = 'Pluto Insights';
 	$cta_label        = 'View all news';
 	$cta_url          = '/property-finance/insights/';
@@ -76,14 +76,14 @@ if ( $display_flourish ) {
 					$query->the_post();
 					$is_feature = ( 0 === $query->current_post );
 					if ( $is_feature ) {
-						$cols = 'col-md-6';
+						$cols = 'col-md-3';
 					} else {
 						$cols = 'col-md-3';
 					}
 					?>
 					<div class="<?= esc_attr( $cols ); ?>" data-aos="fade-up" data-aos-delay="<?= esc_attr( $query->current_post * 150 ); ?>">
 						<a href="<?php the_permalink(); ?>" class="cb-news-card">
-							<div class="cb-news-card__image cb-news-card__image--<?= $is_feature ? '16-9' : '4-3'; ?>">
+							<div class="cb-news-card__image cb-news-card__image--4-3">
 								<?php if ( has_post_thumbnail() ) : ?>
 									<?php the_post_thumbnail( 'large' ); ?>
 								<?php else : ?>
