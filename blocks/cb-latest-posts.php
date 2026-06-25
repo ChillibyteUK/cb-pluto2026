@@ -32,7 +32,7 @@ if ( 'pf' === $context ) {
 	$cta_url          = '/property-finance/insights/';
 	$flourish_variant = 'full-flourish--lending';
 } elseif ( 'inv' === $context ) {
-	$preset           = 'insights';
+	$preset           = 'newsroom';
 	$count            = 4;
 	$heading          = 'Pluto Insights';
 	$cta_label        = 'View all insights';
