@@ -26,9 +26,9 @@ $context          = cb_get_site_context();
 $flourish_classes = '';
 // $flourish_classes = 'full-flourish';
 // if ( 'pf' === $context ) {
-// 	$flourish_classes .= ' full-flourish--lending full-flourish--flip';
+// $flourish_classes .= ' full-flourish--lending full-flourish--flip';
 // } elseif ( 'inv' === $context ) {
-// 	$flourish_classes .= ' full-flourish--investors full-flourish--flip';
+// $flourish_classes .= ' full-flourish--investors full-flourish--flip';
 // }
 
 $custom_classes = 'pb-5';
