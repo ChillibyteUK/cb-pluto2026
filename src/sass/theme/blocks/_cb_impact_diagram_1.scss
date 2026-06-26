@@ -256,6 +256,25 @@
   [data-aos-row="3"] &__card-arrow::after {
     --cid-arrow-color: var(--col-green-dark-600);
   }
+
+  [data-aos-row="4"] &__card-icon-svg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 5rem;
+    height: 5rem;
+    margin: 0 auto;
+
+    svg {
+      width: 100%;
+      height: 100%;
+
+      * {
+        fill: currentColor;
+        stroke: currentColor;
+      }
+    }
+  }
 }
 
 @keyframes cid-spin {

@@ -1,0 +1,23 @@
+{
+  "key": "group_cb_impact_diagram_2",
+  "title": "CB Impact Diagram 2",
+  "fields": [
+    {
+      "key": "field_cb_impact_diagram_2_title",
+      "label": "CB Impact Diagram 2",
+      "name": "title",
+      "type": "message"
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "block",
+        "operator": "==",
+        "value": "acf/cb-impact-diagram-2"
+      }
+    ]
+  ],
+  "active": 1,
+  "description": ""
+}
