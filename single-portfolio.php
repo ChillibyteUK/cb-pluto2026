@@ -39,10 +39,14 @@ $gallery_id = wp_unique_id( 'investor-portfolio-gallery-' );
 			<a href="<?= esc_url( $home_url ); ?>">Home</a> &raquo; <a href="<?= esc_url( $portfolio_url ); ?>">Portfolio</a> &raquo; <?= esc_html( get_the_title() ); ?>
 		</div>
 		<div class="row g-5 mb-5">
-			<div class="col-lg-9 pb-5 order-lg-2">
+			<div class="col-lg-9 pb-5">
 				<h1 class="has-green-dark-1000-color"><?= esc_html( get_the_title() ); ?></h1>
-				<h2 class="has-green-dark-600-color mb-4"><?= esc_html( get_field( 'subtitle' ) ); ?></h2>
 				<?php
+				if ( get_field( 'subtitle' ) ) {
+					?>
+				<h2 class="has-green-dark-600-color mb-4"><?= esc_html( get_field( 'subtitle' ) ); ?></h2>
+					<?php
+				}
 				if ( $media_count > 0 ) {
 					if ( 1 === $media_count ) {
 						if ( ! empty( $vimeo_id ) ) {
@@ -112,10 +116,73 @@ $gallery_id = wp_unique_id( 'investor-portfolio-gallery-' );
 					<?= wp_kses_post( get_field( 'project_description' ) ); ?>
 				</article>
 			</div>
-			<div class="col-lg-3 order-lg-1">
+			<div class="col-lg-3">
 				<?php
 				if ( get_field( 'map' ) ) {
 					echo wp_get_attachment_image( get_field( 'map' ), 'full', false, array( 'class' => 'sidebar-map mt-4 d-block mx-auto' ) );
+				}
+
+				$related_terms = wp_get_post_terms( get_the_ID(), 'portfolio_solution', array( 'fields' => 'ids' ) );
+
+				if ( ! empty( $related_terms ) && ! is_wp_error( $related_terms ) ) {
+					$related_query = new WP_Query(
+						array(
+							'post_type'      => 'portfolio',
+							'posts_per_page' => 3,
+							'post__not_in'   => array( get_the_ID() ),
+							'no_found_rows'  => true,
+							'tax_query'      => array(
+								array(
+									'taxonomy' => 'portfolio_solution',
+									'field'    => 'term_id',
+									'terms'    => $related_terms,
+								),
+							),
+						)
+					);
+
+					if ( $related_query->have_posts() ) {
+						?>
+						<div class="mt-4">
+							<h3 class="h5 has-green-dark-1000-color">Related</h3>
+							<?php
+							while ( $related_query->have_posts() ) {
+								$related_query->the_post();
+								$related_id            = get_the_ID();
+								$related_image_id      = (int) get_post_thumbnail_id( $related_id );
+								$related_vimeo_id      = get_field( 'vimeo_id', $related_id );
+								$related_gal_images    = get_field( 'images', $related_id );
+								$related_gal_images    = is_array( $related_gal_images ) ? array_filter( array_map( 'intval', $related_gal_images ) ) : array();
+								$related_image_src     = '';
+								$related_thumb_classes = '';
+
+								if ( $related_image_id > 0 ) {
+									$related_image_src     = wp_get_attachment_image_url( $related_image_id, 'medium_large' );
+									$related_thumb_classes = 'attachment-medium_large size-medium_large';
+								} elseif ( ! empty( $related_gal_images ) ) {
+									$related_image_src     = wp_get_attachment_image_url( (int) $related_gal_images[0], 'medium_large' );
+									$related_thumb_classes = 'attachment-medium_large size-medium_large';
+								} elseif ( ! empty( $related_vimeo_id ) ) {
+									$related_image_src = get_vimeo_data_from_id( $related_vimeo_id, 'thumbnail_url' );
+								}
+								?>
+								<a href="<?= esc_url( get_permalink( $related_id ) ); ?>" class="d-flex gap-3 text-decoration-none mb-3">
+									<?php
+									if ( $related_image_src ) {
+										?>
+									<img src="<?= esc_url( $related_image_src ); ?>" class="rounded flex-shrink-0 <?= esc_attr( $related_thumb_classes ); ?>" alt="" style="width:80px;height:60px;object-fit:cover;">
+										<?php
+									}
+									?>
+									<span class="small fw-semibold has-green-dark-1000-color"><?= esc_html( get_the_title() ); ?></span>
+								</a>
+								<?php
+							}
+							wp_reset_postdata();
+							?>
+						</div>
+						<?php
+					}
 				}
 				?>
 			</div>
