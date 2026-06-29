@@ -40,11 +40,19 @@ if ( isset( $block['className'] ) ) {
 	<div class="container py-5">
 		<div class="row g-4">
 			<?php
+			$cards       = get_field( 'cards' );
+			$card_count  = is_array( $cards ) ? count( $cards ) : 0;
+			$col_class   = 'col-lg-4';
+
+			if ( $card_count > 0 && $card_count % 4 === 0 ) {
+				$col_class = 'col-lg-3';
+			}
+
 			while ( have_rows( 'cards' ) ) {
 				the_row();
 				$card_link = get_sub_field( 'link' );
 				?>
-			<div class="col-12 col-md-6 col-lg-4">
+			<div class="col-12 col-md-6 <?= esc_attr( $col_class ); ?>">
 				<a href="<?php echo esc_url( $card_link['url'] ); ?>" class="cb-nav-cards__card full-flourish full-flourish--flip <?= esc_attr( $flourish_variant ); ?>" target="<?php echo esc_attr( $card_link['target'] ); ?>">
 					<div class="cb-nav-cards__content">
 						<h3 class="cb-nav-cards__title"><?php the_sub_field( 'title' ); ?></h3>
