@@ -78,13 +78,10 @@ $block_id = $block['anchor'] ?? 'cb-portfolio-index-' . uniqid();
 				$subtitle             = (string) get_field( 'subtitle', $the_id );
 				$project_description  = (string) get_field( 'project_description', $the_id );
 				$map_image_id         = (int) get_field( 'map', $the_id );
-				$sidebar_highlights   = get_field( 'sidebar_highlights', $the_id );
-				$has_sidebar_details  = is_array( $sidebar_highlights ) && ! empty( $sidebar_highlights );
 				$has_portfolio_fields =
 					'' !== trim( wp_strip_all_tags( $subtitle ) ) ||
 					'' !== trim( wp_strip_all_tags( $project_description ) ) ||
 					$map_image_id > 0 ||
-					$has_sidebar_details ||
 					! empty( $gallery_images );
 
 				$should_link = $has_highlights && $has_portfolio_fields;

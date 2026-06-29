@@ -55,15 +55,12 @@ $block_id = $block['anchor'] ?? 'cb-case-studies-' . uniqid();
             $_cb_subtitle             = (string) get_field( 'subtitle', $_cb_post_id );
             $_cb_project_desc         = (string) get_field( 'project_description', $_cb_post_id );
             $_cb_map_image_id         = (int) get_field( 'map', $_cb_post_id );
-            $_cb_sidebar_highlights   = get_field( 'sidebar_highlights', $_cb_post_id );
             $_cb_gallery_images       = get_field( 'images', $_cb_post_id );
-            $_cb_has_sidebar          = is_array( $_cb_sidebar_highlights ) && ! empty( $_cb_sidebar_highlights );
             $_cb_has_gallery          = is_array( $_cb_gallery_images ) && ! empty( $_cb_gallery_images );
             $_cb_has_portfolio_fields =
                 '' !== trim( wp_strip_all_tags( $_cb_subtitle ) ) ||
                 '' !== trim( wp_strip_all_tags( $_cb_project_desc ) ) ||
                 $_cb_map_image_id > 0 ||
-                $_cb_has_sidebar ||
                 $_cb_has_gallery;
             $_cb_should_link          = $_cb_has_highlights && $_cb_has_portfolio_fields;
             ?>

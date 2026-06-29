@@ -161,14 +161,14 @@
             {
                 "param": "post_type",
                 "operator": "==",
-                "value": "post"
+                "value": "portfolio"
             }
         ],
         [
             {
                 "param": "post_type",
                 "operator": "==",
-                "value": "post"
+                "value": "portfolio"
             }
         ]
     ],
