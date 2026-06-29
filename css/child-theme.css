@@ -26514,6 +26514,9 @@ body.cb-team-modal-open {
   color: var(--col-grey-600);
 }
 
+.cb-text-stats__text {
+  text-align: start;
+}
 .cb-text-stats__text p:last-child {
   margin-bottom: 0;
 }
@@ -26531,7 +26534,7 @@ body.cb-team-modal-open {
 .cb-text-stats__stat {
   display: flex;
   flex-direction: column;
-  text-align: start;
+  text-align: center;
   padding: 1.5rem;
   border: 1px solid var(--col-green-dark-300);
   border-radius: 0.5rem;

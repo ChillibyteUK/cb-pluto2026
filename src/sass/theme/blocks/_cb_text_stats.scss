@@ -1,5 +1,7 @@
 .cb-text-stats {
   &__text {
+    text-align: start;
+
     p:last-child {
       margin-bottom: 0;
     }
@@ -22,7 +24,7 @@
   &__stat {
     display: flex;
     flex-direction: column;
-    text-align: start;
+    text-align: center;
     padding: 1.5rem;
     border: 1px solid var(--col-green-dark-300);
     border-radius: 0.5rem;
