@@ -11,6 +11,14 @@
     color: var(--col-green-dark-1000);
   }
 
+  &__content {
+    text-align: start;
+
+    p {
+      text-align: start;
+    }
+  }
+
   &__grid {
     margin: 0;
   }
@@ -28,7 +36,7 @@
     padding: 1.5rem;
     border: 1px solid var(--col-green-dark-300);
     border-radius: 0.5rem;
-    background: var(--col-green-dark-100);
+    background: var(--col-white);
     height: 100%;
   }
 

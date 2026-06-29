@@ -26523,6 +26523,12 @@ body.cb-team-modal-open {
 .cb-text-stats__title {
   color: var(--col-green-dark-1000);
 }
+.cb-text-stats__content {
+  text-align: start;
+}
+.cb-text-stats__content p {
+  text-align: start;
+}
 .cb-text-stats__grid {
   margin: 0;
 }
@@ -26538,7 +26544,7 @@ body.cb-team-modal-open {
   padding: 1.5rem;
   border: 1px solid var(--col-green-dark-300);
   border-radius: 0.5rem;
-  background: var(--col-green-dark-100);
+  background: var(--col-white);
   height: 100%;
 }
 .cb-text-stats__stat-title {

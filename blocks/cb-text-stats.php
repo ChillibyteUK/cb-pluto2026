@@ -29,8 +29,8 @@ if ( $bg ) {
 ?>
 <section id="<?= esc_attr( $block_id ); ?>" class="<?= esc_attr( implode( ' ', $section_classes ) ); ?>">
     <div class="container">
-        <div class="row gy-5 gx-4 gx-lg-5 align-items-center">
-            <div class="col-md-6 cb-text-stats__text pe-lg-5">
+        <div class="row gy-5 gx-4 gx-lg-5 align-items-start">
+            <div class="col-md-6 cb-text-stats__text pe-lg-5 pt-3">
                 <?php if ( $title ) { ?>
                 <h2 class="cb-text-stats__title has-700-font-size mb-4"><?= wp_kses_post( $title ); ?></h2>
                 <?php } ?>
