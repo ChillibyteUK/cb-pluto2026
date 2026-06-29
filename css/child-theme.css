@@ -26201,7 +26201,7 @@ body.cb-team-modal-open {
 .cb-impact-diagram-1__row {
   row-gap: 2rem;
 }
-+ .cb-impact-diagram-1__row {
+.cb-impact-diagram-1__row + .cb-impact-diagram-1__row {
   margin-top: 1.5rem;
 }
 .cb-impact-diagram-1__card-wrap {
