@@ -28,6 +28,8 @@ if ( ! empty( $vimeo_id ) ) {
 	$vimeo_thumbnail_url = get_vimeo_data_from_id( $vimeo_id, 'thumbnail_url' );
 }
 
+$media_count = ( empty( $vimeo_id ) ? 0 : 1 ) + count( $gallery_images );
+
 $gallery_id = wp_unique_id( 'investor-portfolio-gallery-' );
 
 ?>
@@ -41,8 +43,19 @@ $gallery_id = wp_unique_id( 'investor-portfolio-gallery-' );
 				<h1 class="has-green-dark-1000-color"><?= esc_html( get_the_title() ); ?></h1>
 				<h2 class="has-green-dark-600-color mb-4"><?= esc_html( get_field( 'subtitle' ) ); ?></h2>
 				<?php
-				if ( ( ! empty( $gallery_images ) && is_array( $gallery_images ) ) || ! empty( $vimeo_id ) ) {
-					?>
+				if ( $media_count > 0 ) {
+					if ( 1 === $media_count ) {
+						if ( ! empty( $vimeo_id ) ) {
+							?>
+							<div class="mb-4">
+								<iframe src="https://player.vimeo.com/video/<?= esc_attr( $vimeo_id ); ?>" style="aspect-ratio:16/9;width:100%" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+							</div>
+							<?php
+						} else {
+							echo wp_get_attachment_image( $gallery_images[0], 'full', false, array( 'class' => 'w-100 mb-4' ) );
+						}
+					} else {
+						?>
 					<div class="row g-3" id="<?= esc_attr( $gallery_id ); ?>" data-cb-portfolio-gallery>
 						<div class="col-md-9">
 							<div class="cb-portfolio-gallery mb-4">
@@ -91,7 +104,8 @@ $gallery_id = wp_unique_id( 'investor-portfolio-gallery-' );
 						</div>
 					</div>
 				</div>
-					<?php
+						<?php
+					}
 				}
 				?>
 				<article>
