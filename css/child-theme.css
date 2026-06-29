@@ -74,6 +74,7 @@
   --fs-500: 1rem;
   /* 18px - body primary */
   --fs-600: 1.22rem;
+  --fs-650: 1.33rem;
   /* 22px - h4 */
   --fs-700: 1.56rem;
   /* 28px - h3 */
@@ -24798,7 +24799,7 @@ body.cb-team-modal-open {
   padding: 1rem;
 }
 .cb-nav-cards__title {
-  font-size: var(--fs-700);
+  font-size: var(--fs-650);
   font-weight: var(--fw-400);
 }
 .cb-nav-cards__title span {
