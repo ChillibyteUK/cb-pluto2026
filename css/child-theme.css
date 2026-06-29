@@ -26000,6 +26000,49 @@ body.cb-team-modal-open {
   }
 }
 
+.cb-collapse__item {
+  border: 1px solid var(--col-grey-500);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+.cb-collapse__toggle {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 0;
+  background: var(--col-grey-400);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  font-size: var(--fs-600);
+  font-weight: var(--fw-semibold);
+  color: var(--col-green-dark-1000);
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+.cb-collapse__toggle::after {
+  content: "+";
+  font-size: var(--fs-700);
+  line-height: 1;
+  color: var(--col-green-dark-1000);
+  transition: transform var(--transition);
+}
+.cb-collapse__toggle:hover {
+  background: var(--col-grey-500);
+}
+.cb-collapse__toggle:not(.collapsed)::after {
+  content: "−";
+}
+.cb-collapse__body {
+  padding: 1rem;
+}
+.cb-collapse__body > :last-child {
+  margin-bottom: 0;
+}
+
 .home-page__hero {
   position: relative;
   min-height: 600px;
