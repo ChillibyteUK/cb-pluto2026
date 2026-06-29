@@ -65,12 +65,17 @@ $block_id = $block['anchor'] ?? 'cb-portfolio-index-' . uniqid();
 				$the_id            = get_the_ID();
 				$gallery_images    = get_field( 'images', $the_id );
 				$featured_image_id = (int) get_post_thumbnail_id( $the_id );
+				$vimeo_id          = get_field( 'vimeo_id', $the_id );
+
+				$card_image_id  = 0;
+				$card_image_url = '';
+
 				if ( $featured_image_id > 0 ) {
 					$card_image_id = $featured_image_id;
+				} elseif ( ! empty( $vimeo_id ) ) {
+					$card_image_url = (string) get_vimeo_data_from_id( $vimeo_id, 'thumbnail_url' );
 				} elseif ( is_array( $gallery_images ) && ! empty( $gallery_images ) ) {
 					$card_image_id = (int) $gallery_images[0];
-				} else {
-					$card_image_id = 0;
 				}
 				$card_highlights = (string) get_field( 'card_highlights', $the_id );
 				$has_highlights  = '' !== trim( wp_strip_all_tags( $card_highlights ) );
@@ -82,6 +87,7 @@ $block_id = $block['anchor'] ?? 'cb-portfolio-index-' . uniqid();
 					'' !== trim( wp_strip_all_tags( $subtitle ) ) ||
 					'' !== trim( wp_strip_all_tags( $project_description ) ) ||
 					$map_image_id > 0 ||
+					! empty( $vimeo_id ) ||
 					! empty( $gallery_images );
 
 				$should_link = $has_highlights && $has_portfolio_fields;
@@ -117,6 +123,10 @@ $block_id = $block['anchor'] ?? 'cb-portfolio-index-' . uniqid();
 						}
 						if ( $card_image_id > 0 ) {
 							echo wp_get_attachment_image( $card_image_id, 'medium_large', false, array( 'class' => 'portfolio__card-image' ) );
+						} elseif ( ! empty( $card_image_url ) ) {
+							?>
+						<img src="<?= esc_url( $card_image_url ); ?>" class="portfolio__card-image" alt="">
+							<?php
 						} else {
 							?>
 						<img src="<?= esc_url( get_stylesheet_directory_uri() . '/img/missing-image.webp' ); ?>" class="portfolio__card-image" alt="">

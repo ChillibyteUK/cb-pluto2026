@@ -20,6 +20,14 @@ if ( $featured_image_id > 0 ) {
 	$gallery_images = array_values( array_unique( array_merge( array( $featured_image_id ), $gallery_images ) ) );
 }
 
+$vimeo_id = get_field( 'vimeo_id' );
+
+$vimeo_thumbnail_url = null;
+
+if ( ! empty( $vimeo_id ) ) {
+	$vimeo_thumbnail_url = get_vimeo_data_from_id( $vimeo_id, 'thumbnail_url' );
+}
+
 $gallery_id = wp_unique_id( 'investor-portfolio-gallery-' );
 
 ?>
@@ -33,7 +41,7 @@ $gallery_id = wp_unique_id( 'investor-portfolio-gallery-' );
 				<h1 class="has-green-dark-1000-color"><?= esc_html( get_the_title() ); ?></h1>
 				<h2 class="has-green-dark-600-color mb-4"><?= esc_html( get_field( 'subtitle' ) ); ?></h2>
 				<?php
-				if ( ! empty( $gallery_images ) && is_array( $gallery_images ) ) {
+				if ( ( ! empty( $gallery_images ) && is_array( $gallery_images ) ) || ! empty( $vimeo_id ) ) {
 					?>
 					<div class="row g-3" id="<?= esc_attr( $gallery_id ); ?>" data-cb-portfolio-gallery>
 						<div class="col-md-9">
@@ -41,6 +49,13 @@ $gallery_id = wp_unique_id( 'investor-portfolio-gallery-' );
 								<div class="swiper cb-portfolio-gallery__main-swiper">
 								<div class="swiper-wrapper">
 									<?php
+									if ( ! empty( $vimeo_id ) ) {
+										?>
+										<div class="swiper-slide swiper-no-swiping">
+											<iframe src="https://player.vimeo.com/video/<?= esc_attr( $vimeo_id ); ?>" style="aspect-ratio:16/9;width:100%" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+										</div>
+										<?php
+									}
 									foreach ( $gallery_images as $image_id ) {
 										?>
 										<div class="swiper-slide">
@@ -57,6 +72,13 @@ $gallery_id = wp_unique_id( 'investor-portfolio-gallery-' );
 						<div class="swiper cb-portfolio-gallery__thumbs-swiper">
 							<div class="swiper-wrapper">
 								<?php
+								if ( ! empty( $vimeo_id ) && $vimeo_thumbnail_url ) {
+									?>
+									<div class="swiper-slide">
+										<img src="<?= esc_url( $vimeo_thumbnail_url ); ?>" class="cb-portfolio-gallery__thumb-image" alt="">
+									</div>
+									<?php
+								}
 								foreach ( $gallery_images as $image_id ) {
 									?>
 									<div class="swiper-slide">
