@@ -19,6 +19,27 @@ function acf_blocks() {
 
 		acf_register_block_type(
 			array(
+				'name'            => 'cb_text_stats',
+				'title'           => __( 'CB Text Stats' ),
+				'category'        => 'layout',
+				'icon'            => 'cover-image',
+				'render_template' => 'blocks/cb-text-stats.php',
+				'mode'            => 'edit',
+				'supports'        => array(
+					'mode'      => false,
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+					'color'     => array(
+						'background' => true,
+						'text'       => false,
+					),
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
 				'name'            => 'cb_stat_bar',
 				'title'           => __( 'CB Stat Bar' ),
 				'category'        => 'layout',
