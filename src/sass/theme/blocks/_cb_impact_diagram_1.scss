@@ -66,9 +66,9 @@
   &__row {
     row-gap: 2rem;
   }
-  &__row + &__row {
-    margin-top: 1.5rem;
-  }
+  // &__row + &__row {
+  //   margin-top: 1.5rem;
+  // }
 
   &__card-wrap {
     display: flex;
