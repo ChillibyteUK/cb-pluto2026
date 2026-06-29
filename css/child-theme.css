@@ -26333,10 +26333,6 @@ body.cb-team-modal-open {
   width: 100%;
   height: 100%;
 }
-[data-aos-row="1"] .cb-impact-diagram-1__card-icon-svg svg * {
-  fill: currentColor;
-  stroke: currentColor;
-}
 [data-aos-row="2"] .cb-impact-diagram-1__card {
   background: var(--col-green-dark-300);
   color: var(--col-green-dark-1000);
