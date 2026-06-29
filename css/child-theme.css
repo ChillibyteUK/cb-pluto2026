@@ -26143,7 +26143,7 @@ body.cb-team-modal-open {
 }
 
 .cb-impact-diagram-1 {
-  --cid-icon-size: 3rem;
+  --cid-icon-size: 5rem;
   --cid-arrow-color: var(--col-green-dark-600);
 }
 .cb-impact-diagram-1__title-wrap {
@@ -26216,7 +26216,7 @@ body.cb-team-modal-open {
   padding: 1.5rem;
 }
 .cb-impact-diagram-1__card-icon {
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   text-align: center;
 }
 .cb-impact-diagram-1__card-icon img {

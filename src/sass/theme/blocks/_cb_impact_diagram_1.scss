@@ -1,5 +1,5 @@
 .cb-impact-diagram-1 {
-  --cid-icon-size: 3rem;
+  --cid-icon-size: 5rem;
   --cid-arrow-color: var(--col-green-dark-600);
 
   &__title-wrap {
@@ -87,7 +87,7 @@
   }
 
   &__card-icon {
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     text-align: center;
 
     img {
