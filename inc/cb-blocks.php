@@ -30,7 +30,64 @@ function acf_blocks() {
 					'anchor'    => true,
 					'className' => true,
 					'align'     => true,
-          
+           
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'cb_impact_diagram_2',
+				'title'           => __( 'CB Impact Diagram 2' ),
+				'category'        => 'layout',
+				'icon'            => 'cover-image',
+				'render_template' => 'blocks/cb-impact-diagram-2.php',
+				'mode'            => 'edit',
+				'supports'        => array(
+					'mode'      => false,
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+           
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'cb_impact_diagram_1',
+				'title'           => __( 'CB Impact Diagram 1' ),
+				'category'        => 'layout',
+				'icon'            => 'cover-image',
+				'render_template' => 'blocks/cb-impact-diagram-1.php',
+				'mode'            => 'edit',
+				'supports'        => array(
+					'mode'      => false,
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+           
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'cb_show_hide_cards',
+				'title'           => __( 'CB Show Hide Cards' ),
+				'category'        => 'layout',
+				'icon'            => 'cover-image',
+				'render_template' => 'blocks/cb-show-hide-cards.php',
+				'mode'            => 'edit',
+				'supports'        => array(
+					'mode'      => false,
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+					'color'     => array(
+						'background' => true,
+						'text'       => false,
+					),
 				),
 			)
 		);
@@ -48,7 +105,6 @@ function acf_blocks() {
 					'anchor'    => true,
 					'className' => true,
 					'align'     => true,
-          
 				),
 			)
 		);
