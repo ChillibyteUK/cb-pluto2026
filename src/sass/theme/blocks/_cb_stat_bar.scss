@@ -1,0 +1,33 @@
+.cb-stat-bar {
+  text-align: center;
+
+  &__item {
+    margin-bottom: 1rem;
+  }
+
+  &__item-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__item-title {
+    font-size: var(--fs-300);
+    text-transform: uppercase;
+    letter-spacing: var(--ls-20);
+    color: var(--col-grey-700);
+    font-weight: var(--fw-semibold);
+  }
+
+  &__item-stat {
+    font-size: var(--fs-700);
+    font-weight: var(--fw-semibold);
+    color: var(--col-green-dark-1000);
+    line-height: 1.2;
+  }
+
+  &__item-after {
+    font-size: var(--fs-200);
+    color: var(--col-grey-600);
+  }
+}
