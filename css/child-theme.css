@@ -26597,6 +26597,13 @@ body.cb-team-modal-open {
   flex-shrink: 0;
 }
 
+.cb-recycling-private-debt__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
 .home-page__hero {
   position: relative;
   min-height: 600px;
