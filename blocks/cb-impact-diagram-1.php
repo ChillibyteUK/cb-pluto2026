@@ -332,7 +332,12 @@ $has_row_4 = ! empty( $row_4_col_1_title ) || ! empty( $row_4_col_1_content ) ||
             });
         };
 
-        const tl = window.gsap.timeline({ paused: true });
+        const tl = window.gsap.timeline({
+            paused: true,
+            onComplete: () => {
+                document.dispatchEvent(new CustomEvent('cbImpactDiagram1Complete'));
+            },
+        });
         let pos = '>';
 
         const row1 = root.querySelectorAll('[data-cid-row="1"]');

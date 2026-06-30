@@ -201,18 +201,31 @@ if ( ! $has_any_card ) {
             },
         });
 
-        if (window.IntersectionObserver) {
+        const play = () => { tl.play(); };
+
+        const diagram1 = document.querySelector('.cb-impact-diagram-1');
+        if (diagram1) {
+            let started = false;
+            const onEvent = () => {
+                if (started) return;
+                started = true;
+                document.removeEventListener('cbImpactDiagram1Complete', onEvent);
+                play();
+            };
+            document.addEventListener('cbImpactDiagram1Complete', onEvent);
+            window.setTimeout(onEvent, 10000);
+        } else if (window.IntersectionObserver) {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
-                        tl.play();
                         observer.disconnect();
+                        play();
                     }
                 });
             }, { threshold: 0.15 });
             observer.observe(root);
         } else {
-            tl.play();
+            play();
         }
 
         return true;
