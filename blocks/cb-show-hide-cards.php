@@ -47,6 +47,7 @@ if ( ! empty( $block['backgroundColor'] ) ) {
 			<?php
 			foreach ( $cards as $index => $card ) {
 				$card_title   = $card['card_title'] ?? '';
+				$card_image   = $card['card_image'] ?? '';
 				$content      = $card['card_content'] ?? '';
 				$content_type = $card['card_content_type'] ?? 'plain';
 				$small_print  = $card['card_small_print'] ?? '';
@@ -68,7 +69,11 @@ if ( ! empty( $block['backgroundColor'] ) ) {
 								data-bs-target="#<?= esc_attr( $collapse_id ); ?>"
 								aria-expanded="false"
 								aria-controls="<?= esc_attr( $collapse_id ); ?>">
-								<span class="cb-show-hide-cards__toggle-icon" aria-hidden="true"></span>
+								<?php if ( $card_image ) { ?>
+									<img class="cb-show-hide-cards__toggle-image" src="<?= esc_url( $card_image ); ?>" alt="" loading="lazy">
+								<?php } else { ?>
+									<span class="cb-show-hide-cards__toggle-icon" aria-hidden="true"></span>
+								<?php } ?>
 								<?= esc_html( $card_title ); ?>
 							</button>
 						<?php } ?>

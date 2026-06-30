@@ -67,6 +67,32 @@
           "maxlength": ""
         },
         {
+          "key": "field_cb_show_hide_cards_card_image",
+          "label": "Image",
+          "name": "card_image",
+          "aria-label": "",
+          "type": "image",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "50",
+            "class": "",
+            "id": ""
+          },
+          "return_format": "url",
+          "library": "all",
+          "min_width": "",
+          "min_height": "",
+          "min_size": "",
+          "max_width": "",
+          "max_height": "",
+          "max_size": "",
+          "mime_types": "",
+          "allow_in_bindings": 0,
+          "preview_size": "thumbnail"
+        },
+        {
           "key": "field_cb_show_hide_cards_card_content",
           "label": "Content",
           "name": "card_content",
