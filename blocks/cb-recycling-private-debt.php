@@ -230,11 +230,6 @@ if ( isset( $block['className'] ) ) {
 						<tspan>BUY &amp; HOLD</tspan>
 					</text>
 
-					<!-- Faded worker icon on Equity bar -->
-					<g opacity="0.42">
-						<use href="#<?= esc_attr( $block_id ); ?>-worker-c" />
-					</g>
-
 					<text data-cb-rpd-result="equity" x="488" y="624" fill="#fff" font-family="Montserrat-Bold,montserrat" font-weight="700" font-size="30">0</text>
 					<text x="488" y="650" fill="#fff" font-family="Montserrat-Regular,montserrat" font-size="21">
 						<tspan>Jobs</tspan>
