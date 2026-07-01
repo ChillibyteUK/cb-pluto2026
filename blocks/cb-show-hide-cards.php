@@ -43,7 +43,7 @@ if ( ! empty( $block['backgroundColor'] ) ) {
 ?>
 <section id="<?= esc_attr( $block_id ); ?>" class="<?= esc_attr( implode( ' ', $section_classes ) ); ?>">
 	<div class="container">
-		<div class="row g-4">
+		<div class="row g-4 align-items-start">
 			<?php
 			foreach ( $cards as $index => $card ) {
 				$card_title   = $card['card_title'] ?? '';
