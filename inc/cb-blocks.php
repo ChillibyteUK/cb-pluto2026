@@ -19,6 +19,24 @@ function acf_blocks() {
 
 		acf_register_block_type(
 			array(
+				'name'            => 'cb_lead_contacts',
+				'title'           => __( 'CB Lead Contacts' ),
+				'category'        => 'layout',
+				'icon'            => 'cover-image',
+				'render_template' => 'blocks/cb-lead-contacts.php',
+				'mode'            => 'edit',
+				'supports'        => array(
+					'mode'      => false,
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+          
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
 				'name'            => 'cb_recycling_private_debt',
 				'title'           => __( 'CB Recycling Private Debt' ),
 				'category'        => 'layout',

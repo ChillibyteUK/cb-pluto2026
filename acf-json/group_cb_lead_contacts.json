@@ -1,0 +1,166 @@
+{
+    "key": "group_cb_lead_contacts",
+    "title": "CB Lead Contacts",
+    "fields": [
+        {
+            "key": "field_6a45198f30081",
+            "label": "CB Lead Contacts",
+            "name": "",
+            "aria-label": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
+            "key": "field_cb_lead_contacts_heading",
+            "label": "Title",
+            "name": "heading",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_cb_lead_contacts_intro",
+            "label": "Intro",
+            "name": "intro",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": 3,
+            "placeholder": "",
+            "new_lines": "wpautop"
+        },
+        {
+            "key": "field_cb_lead_contacts_contacts",
+            "label": "Contacts",
+            "name": "contacts",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Add the lead contacts to display.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "row",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "field_cb_lead_contacts_person",
+            "button_label": "Add Contact",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_cb_lead_contacts_person",
+                    "label": "Person",
+                    "name": "person",
+                    "aria-label": "",
+                    "type": "relationship",
+                    "instructions": "Select one person.",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "post_type": [
+                        "person"
+                    ],
+                    "post_status": [
+                        "publish"
+                    ],
+                    "taxonomy": "",
+                    "filters": [
+                        "search",
+                        "taxonomy"
+                    ],
+                    "return_format": "object",
+                    "min": 1,
+                    "max": 1,
+                    "elements": [
+                        "featured_image"
+                    ],
+                    "bidirectional": 0,
+                    "bidirectional_target": [],
+                    "parent_repeater": "field_cb_lead_contacts_contacts"
+                },
+                {
+                    "key": "field_cb_lead_contacts_contact_title",
+                    "label": "Title",
+                    "name": "title",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Displayed below the person's name.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_cb_lead_contacts_contacts"
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/cb-lead-contacts"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1782913436
+}
