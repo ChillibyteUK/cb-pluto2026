@@ -26652,6 +26652,8 @@ body.cb-team-modal-open {
   font-size: var(--fs-500);
   line-height: var(--lh-500);
   opacity: 0.86;
+  max-width: 58ch;
+  margin-inline: auto;
 }
 .cb-lead-contacts__intro > *:last-child {
   margin-bottom: 0;
