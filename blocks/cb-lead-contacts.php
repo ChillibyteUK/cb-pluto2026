@@ -23,6 +23,7 @@ if ( isset( $block['className'] ) ) {
 
 $heading  = (string) get_field( 'heading' );
 $intro    = (string) get_field( 'intro' );
+$image_id = get_field( 'background_image' );
 $contacts = get_field( 'contacts' );
 
 if ( empty( $contacts ) || ! is_array( $contacts ) ) {
@@ -43,8 +44,24 @@ $recipient_field_id = $contact_field_ids && ! empty( $contact_field_ids['recipie
 	? (int) $contact_field_ids['recipient']
 	: 0;
 $contact_modal_id = $block_id . '-contact-modal';
+
+$image_url       = $image_id ? wp_get_attachment_image_url( $image_id, 'full' ) : '';
+$section_classes = array( 'cb-lead-contacts' );
+$section_style   = '';
+
+if ( $image_url ) {
+	$section_classes[] = 'cb-lead-contacts--has-background-image';
+	$section_style     = sprintf( '--cb-lead-contacts-bg: url(%s);', esc_url_raw( $image_url ) );
+}
+
+if ( $custom_classes ) {
+	$section_classes[] = $custom_classes;
+}
 ?>
-<section id="<?= esc_attr( $block_id ); ?>" class="cb-lead-contacts <?= esc_attr( $custom_classes ); ?>">
+<section id="<?= esc_attr( $block_id ); ?>" class="<?= esc_attr( implode( ' ', $section_classes ) ); ?>"<?= $section_style ? ' style="' . esc_attr( $section_style ) . '"' : ''; ?>>
+	<?php if ( $image_url ) : ?>
+		<div class="cb-lead-contacts__overlay" aria-hidden="true"></div>
+	<?php endif; ?>
 	<div class="container py-5">
 		<?php if ( '' !== trim( $heading ) || '' !== trim( $intro ) ) : ?>
 			<div class="cb-lead-contacts__header">
@@ -56,7 +73,7 @@ $contact_modal_id = $block_id . '-contact-modal';
 				<?php endif; ?>
 			</div>
 		<?php endif; ?>
-		<div class="row g-4 cb-lead-contacts__grid">
+		<div class="row g-4 justify-content-center cb-lead-contacts__grid">
 			<?php foreach ( $contacts as $contact ) : ?>
 				<?php
 				$person = $contact['person'] ?? null;
@@ -80,7 +97,7 @@ $contact_modal_id = $block_id . '-contact-modal';
 				$img_url     = $img_url ? $img_url : $missing_img;
 				$has_contact = (bool) ( $email && $contact_form_id && $recipient_field_id );
 				?>
-				<div class="col-12 col-lg-6 cb-lead-contacts__col">
+				<div class="col-12 col-lg-4 cb-lead-contacts__col">
 					<article class="cb-lead-contacts__card">
 						<div class="cb-lead-contacts__media">
 							<img src="<?= esc_url( $img_url ); ?>" alt="<?= esc_attr( $name ); ?>" loading="lazy">
@@ -221,3 +238,39 @@ document.addEventListener('DOMContentLoaded', function () {
 	});
 });
 </script>
+
+<?php if ( $image_url ) : ?>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+	var section = document.getElementById(<?= wp_json_encode( $block_id ); ?>);
+	if (!section) return;
+
+	var ticking = false;
+
+	function update() {
+		var rect = section.getBoundingClientRect();
+		var windowHeight = window.innerHeight;
+
+		if (rect.bottom > 0 && rect.top < windowHeight) {
+			var percent = (windowHeight - rect.top) / (windowHeight + rect.height);
+			percent = Math.max(0, Math.min(1, percent));
+			var translateY = (percent - 0.5) * 240;
+			section.style.setProperty('--cb-lead-contacts-parallax-y', translateY.toFixed(1) + 'px');
+		}
+
+		ticking = false;
+	}
+
+	function onScroll() {
+		if (!ticking) {
+			window.requestAnimationFrame(update);
+			ticking = true;
+		}
+	}
+
+	window.addEventListener('scroll', onScroll, { passive: true });
+	window.addEventListener('resize', onScroll);
+	onScroll();
+});
+</script>
+<?php endif; ?>

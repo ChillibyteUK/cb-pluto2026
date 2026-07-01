@@ -1,8 +1,37 @@
 .cb-lead-contacts {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   background:
     linear-gradient(135deg, rgba(255 255 255 / 0.08), rgba(255 255 255 / 0)),
     var(--col-green-dark-1200);
   color: var(--col-white);
+
+  &--has-background-image::before {
+    content: "";
+    position: absolute;
+    inset: -3rem 0;
+    z-index: 0;
+    background-image: var(--cb-lead-contacts-bg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transform: translateY(var(--cb-lead-contacts-parallax-y, 0));
+    will-change: transform;
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-color: rgba(0 0 0 / 0.45);
+  }
+
+  > .container {
+    position: relative;
+    z-index: 1;
+  }
 
   &__header {
     margin-bottom: 2rem;

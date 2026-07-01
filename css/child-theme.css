@@ -23666,7 +23666,7 @@ span a {
 .cb-secondary-hero__body {
   position: relative;
   z-index: 1;
-  padding: 6rem 0 3rem 0;
+  padding: 8rem 0 3rem 0;
   background-color: color-mix(in srgb, var(--cb-secondary-hero-overlay-color) 60%, transparent);
 }
 .cb-secondary-hero--pf {
@@ -26610,8 +26610,34 @@ body.cb-team-modal-open {
 }
 
 .cb-lead-contacts {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0)), var(--col-green-dark-1200);
   color: var(--col-white);
+}
+.cb-lead-contacts--has-background-image::before {
+  content: "";
+  position: absolute;
+  inset: -3rem 0;
+  z-index: 0;
+  background-image: var(--cb-lead-contacts-bg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transform: translateY(var(--cb-lead-contacts-parallax-y, 0));
+  will-change: transform;
+}
+.cb-lead-contacts__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-color: rgba(0, 0, 0, 0.45);
+}
+.cb-lead-contacts > .container, .cb-lead-contacts > .wp-block-group:not(.alignfull) {
+  position: relative;
+  z-index: 1;
 }
 .cb-lead-contacts__header {
   margin-bottom: 2rem;

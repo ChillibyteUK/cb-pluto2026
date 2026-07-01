@@ -61,6 +61,31 @@
             "new_lines": "wpautop"
         },
         {
+            "key": "field_cb_lead_contacts_background_image",
+            "label": "Background image",
+            "name": "background_image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Optional parallax background image.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "preview_size": "thumbnail"
+        },
+        {
             "key": "field_cb_lead_contacts_contacts",
             "label": "Contacts",
             "name": "contacts",
