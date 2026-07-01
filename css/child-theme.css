@@ -26081,7 +26081,6 @@ body.cb-team-modal-open {
   color: var(--col-green-dark-1000);
   text-align: left;
   cursor: pointer;
-  flex: 1;
   transition: color var(--transition), background-color var(--transition);
 }
 .cb-show-hide-cards__toggle:hover, .cb-show-hide-cards__toggle:focus-visible {
