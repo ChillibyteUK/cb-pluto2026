@@ -227,7 +227,7 @@ if ( isset( $block['className'] ) ) {
 					<circle cx="432" cy="624.5" r="33.5" fill="url(#<?= esc_attr( $block_id ); ?>-bar-bottom-sm)" />
 
 					<text x="249" y="635" fill="#fff" font-family="Montserrat-SemiBold,montserrat" font-weight="600" font-size="23">
-						<tspan>EQUITY</tspan>
+						<tspan>BUY &amp; HOLD</tspan>
 					</text>
 
 					<!-- Faded worker icon on Equity bar -->

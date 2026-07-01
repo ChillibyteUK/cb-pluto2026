@@ -43,7 +43,7 @@ if ( ! empty( $block['backgroundColor'] ) ) {
 ?>
 <section id="<?= esc_attr( $block_id ); ?>" class="<?= esc_attr( implode( ' ', $section_classes ) ); ?>">
 	<div class="container">
-		<div class="row g-4">
+		<div class="row g-4 align-items-stretch">
 			<?php
 			foreach ( $cards as $index => $card ) {
 				$card_title   = $card['card_title'] ?? '';
@@ -78,18 +78,20 @@ if ( ! empty( $block['backgroundColor'] ) ) {
 							</button>
 						<?php } ?>
 						<div class="collapse cb-show-hide-cards__collapse" id="<?= esc_attr( $collapse_id ); ?>">
-							<div class="cb-show-hide-cards__body">
-								<?php
-								if ( 'bullets' === $content_type ) {
-									echo '<ul class="cb-show-hide-cards__list">' . wp_kses_post( cb_list( $content ) ) . '</ul>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-								} else {
-									echo wp_kses_post( wpautop( $content ) );
-								}
-								?>
+							<div class="cb-show-hide-cards__collapse-inner">
+								<div class="cb-show-hide-cards__body">
+									<?php
+									if ( 'bullets' === $content_type ) {
+										echo '<ul class="cb-show-hide-cards__list">' . wp_kses_post( cb_list( $content ) ) . '</ul>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+									} else {
+										echo wp_kses_post( wpautop( $content ) );
+									}
+									?>
+								</div>
+								<?php if ( '' !== trim( (string) $small_print ) ) { ?>
+									<div class="cb-show-hide-cards__card-small-print"><?= wp_kses_post( wpautop( $small_print ) ); ?></div>
+								<?php } ?>
 							</div>
-							<?php if ( '' !== trim( (string) $small_print ) ) { ?>
-								<div class="cb-show-hide-cards__card-small-print"><?= wp_kses_post( wpautop( $small_print ) ); ?></div>
-							<?php } ?>
 						</div>
 					</div>
 				</div>

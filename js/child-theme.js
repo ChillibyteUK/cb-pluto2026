@@ -6904,6 +6904,124 @@
 		  duration: 600
 		});
 
+		// Match CB Show Hide Card title panels and collapse bodies by visual row.
+		(function () {
+		  function getRows(block) {
+		    const toggles = Array.from(block.querySelectorAll(".cb-show-hide-cards__toggle"));
+		    if (!toggles.length) return [];
+		    const rows = [];
+		    toggles.forEach(toggle => {
+		      const col = toggle.closest(".cb-show-hide-cards__col") || toggle;
+		      const top = Math.round(col.getBoundingClientRect().top);
+		      let row = rows.find(item => Math.abs(item.top - top) <= 2);
+		      if (!row) {
+		        row = {
+		          top,
+		          toggles: []
+		        };
+		        rows.push(row);
+		      }
+		      row.toggles.push(toggle);
+		    });
+		    return rows;
+		  }
+		  function syncBlock(block) {
+		    const rows = getRows(block);
+		    if (!rows.length) return;
+		    rows.forEach(row => {
+		      row.toggles.forEach(toggle => {
+		        toggle.style.minHeight = "";
+		      });
+		    });
+		    rows.forEach(row => {
+		      const height = Math.ceil(Math.max(...row.toggles.map(toggle => toggle.getBoundingClientRect().height)));
+		      row.toggles.forEach(toggle => {
+		        toggle.style.minHeight = `${height}px`;
+		      });
+		    });
+		    syncRowCollapseHeights(block);
+		  }
+		  function measureCollapse(collapse) {
+		    const card = collapse.closest(".cb-show-hide-cards__card");
+		    const inner = collapse.querySelector(".cb-show-hide-cards__collapse-inner");
+		    const originalDisplay = collapse.style.display;
+		    const originalHeight = collapse.style.height;
+		    const originalPosition = collapse.style.position;
+		    const originalVisibility = collapse.style.visibility;
+		    const originalWidth = collapse.style.width;
+		    const originalInnerMinHeight = inner ? inner.style.minHeight : "";
+		    collapse.style.display = "block";
+		    collapse.style.height = "auto";
+		    collapse.style.position = "absolute";
+		    collapse.style.visibility = "hidden";
+		    collapse.style.width = card ? `${card.getBoundingClientRect().width}px` : originalWidth;
+		    if (inner) inner.style.minHeight = "";
+		    const height = Math.ceil(collapse.scrollHeight);
+		    collapse.style.display = originalDisplay;
+		    collapse.style.height = originalHeight;
+		    collapse.style.position = originalPosition;
+		    collapse.style.visibility = originalVisibility;
+		    collapse.style.width = originalWidth;
+		    if (inner) inner.style.minHeight = originalInnerMinHeight;
+		    return height;
+		  }
+		  function syncRowCollapseHeights(block) {
+		    const rows = getRows(block);
+		    rows.forEach(row => {
+		      const cards = row.toggles.map(toggle => toggle.closest(".cb-show-hide-cards__card"));
+		      const collapses = cards.map(card => card && card.querySelector(".cb-show-hide-cards__collapse")).filter(Boolean);
+		      collapses.forEach(collapse => {
+		        const inner = collapse.querySelector(".cb-show-hide-cards__collapse-inner");
+		        if (inner) inner.style.minHeight = "";
+		      });
+		      if (!collapses.length) return;
+		      const targetHeight = Math.ceil(Math.max(...collapses.map(measureCollapse)));
+		      collapses.forEach(collapse => {
+		        const inner = collapse.querySelector(".cb-show-hide-cards__collapse-inner");
+		        if (inner) inner.style.minHeight = `${targetHeight}px`;
+		      });
+		    });
+		  }
+		  function syncAll() {
+		    document.querySelectorAll(".cb-show-hide-cards").forEach(syncBlock);
+		  }
+		  function init() {
+		    syncAll();
+		    document.querySelectorAll(".cb-show-hide-cards__toggle-image").forEach(img => {
+		      if (img.complete) return;
+		      img.addEventListener("load", syncAll, {
+		        once: true
+		      });
+		    });
+		  }
+		  if (document.readyState === "loading") {
+		    document.addEventListener("DOMContentLoaded", init);
+		  } else {
+		    init();
+		  }
+		  window.addEventListener("load", syncAll);
+		  let resizeTimer = null;
+		  window.addEventListener("resize", () => {
+		    clearTimeout(resizeTimer);
+		    resizeTimer = setTimeout(syncAll, 150);
+		  });
+		  document.addEventListener("show.bs.collapse", event => {
+		    if (!event.target.classList.contains("cb-show-hide-cards__collapse")) return;
+		    const block = event.target.closest(".cb-show-hide-cards");
+		    if (block) syncRowCollapseHeights(block);
+		  });
+		  document.addEventListener("shown.bs.collapse", event => {
+		    if (!event.target.classList.contains("cb-show-hide-cards__collapse")) return;
+		    syncAll();
+		  });
+		  document.addEventListener("hide.bs.collapse", event => {
+		    if (!event.target.classList.contains("cb-show-hide-cards__collapse")) return;
+		    const block = event.target.closest(".cb-show-hide-cards");
+		    if (block) syncRowCollapseHeights(block);
+		  });
+		  document.addEventListener("hidden.bs.collapse", syncAll);
+		})();
+
 		// Add background to navbar on scroll
 		(function () {
 		  var navbar = document.getElementById("wrapper-navbar");
