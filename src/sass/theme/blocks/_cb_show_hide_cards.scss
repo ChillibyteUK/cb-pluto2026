@@ -16,7 +16,8 @@
     background-color: var(--cb-sh-card-bg);
     border-top-right-radius: var(--cb-sh-card-radius);
     box-shadow: var(--shadow-1);
-    overflow: hidden;
+    overflow: visible;
+    position: relative;
   }
 
   &__toggle {
@@ -67,6 +68,15 @@
 
   &__collapse {
     border-top: 1px solid var(--col-green-dark-300);
+
+    &.show {
+      position: absolute;
+      inset: 100% 0 auto 0;
+      z-index: 10;
+      background-color: var(--cb-sh-card-bg);
+      border-bottom-right-radius: var(--cb-sh-card-radius);
+      box-shadow: var(--shadow-1);
+    }
   }
 
   &__body {

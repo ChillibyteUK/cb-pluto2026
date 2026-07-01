@@ -26061,7 +26061,8 @@ body.cb-team-modal-open {
   background-color: var(--cb-sh-card-bg);
   border-top-right-radius: var(--cb-sh-card-radius);
   box-shadow: var(--shadow-1);
-  overflow: hidden;
+  overflow: visible;
+  position: relative;
 }
 .cb-show-hide-cards__toggle {
   -webkit-appearance: none;
@@ -26106,6 +26107,14 @@ body.cb-team-modal-open {
 }
 .cb-show-hide-cards__collapse {
   border-top: 1px solid var(--col-green-dark-300);
+}
+.cb-show-hide-cards__collapse.show {
+  position: absolute;
+  inset: 100% 0 auto 0;
+  z-index: 10;
+  background-color: var(--cb-sh-card-bg);
+  border-bottom-right-radius: var(--cb-sh-card-radius);
+  box-shadow: var(--shadow-1);
 }
 .cb-show-hide-cards__body {
   padding: 0.75rem 1.25rem 1.25rem;
