@@ -36,14 +36,14 @@ $icon_email = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" wid
 $icon_phone = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" width="18" height="18"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.5 11.5 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1.04l-2.22 2.19Z"/></svg>';
 $icon_li    = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" width="18" height="18"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.75h4V21H3V9.75ZM9.5 9.75h3.83v1.54h.05c.53-1 1.84-2.06 3.79-2.06 4.05 0 4.8 2.66 4.8 6.13V21h-4v-4.86c0-1.16-.02-2.65-1.62-2.65-1.62 0-1.86 1.27-1.86 2.57V21h-4V9.75Z"/></svg>';
 
-$contact_form_id = function_exists( 'cb_team_get_contact_form_id' ) ? cb_team_get_contact_form_id() : 0;
-$contact_field_ids = ( $contact_form_id && function_exists( 'cb_team_resolve_form_fields' ) )
+$contact_form_id    = function_exists( 'cb_team_get_contact_form_id' ) ? cb_team_get_contact_form_id() : 0;
+$contact_field_ids  = ( $contact_form_id && function_exists( 'cb_team_resolve_form_fields' ) )
 	? cb_team_resolve_form_fields( $contact_form_id )
 	: null;
 $recipient_field_id = $contact_field_ids && ! empty( $contact_field_ids['recipient'] )
 	? (int) $contact_field_ids['recipient']
 	: 0;
-$contact_modal_id = $block_id . '-contact-modal';
+$contact_modal_id   = $block_id . '-contact-modal';
 
 $image_url       = $image_id ? wp_get_attachment_image_url( $image_id, 'full' ) : '';
 $section_classes = array( 'cb-lead-contacts' );
@@ -116,9 +116,6 @@ if ( $custom_classes ) {
 									<?php endif; ?>
 									<?php if ( $phone ) : ?>
 										<li><a href="tel:<?= esc_attr( parse_phone( $phone ) ); ?>" aria-label="<?php echo esc_attr( sprintf( /* translators: %s: person name */ __( 'Call %s', 'cb-pluto2026' ), $name ) ); ?>"><?= $icon_phone; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></a></li>
-									<?php endif; ?>
-									<?php if ( $linkedin ) : ?>
-										<li><a href="<?= esc_url( $linkedin ); ?>" target="_blank" rel="noopener noreferrer" aria-label="<?php echo esc_attr( sprintf( /* translators: %s: person name */ __( '%s on LinkedIn', 'cb-pluto2026' ), $name ) ); ?>"><?= $icon_li; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></a></li>
 									<?php endif; ?>
 								</ul>
 							<?php endif; ?>
