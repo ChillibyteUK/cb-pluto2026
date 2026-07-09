@@ -62,7 +62,7 @@ $ajax_url     = admin_url( 'admin-ajax.php' );
 <section id="<?= esc_attr( $block_id ); ?>" class="cb-insights-index">
 	<div class="container pb-5">
 		<div class="row">
-			<div class="col-md-6">
+			<div class="col-lg-6">
 				<div class="cb-insights-index__filters cb-insights-index__filters--cats">
 					<button class="cb-insights-index__filter insights-filter cb-insights-index__filter--active" data-filter="all">All</button>
 					<?php
@@ -84,7 +84,7 @@ $ajax_url     = admin_url( 'admin-ajax.php' );
 					?>
 				</div>
 			</div>
-			<div class="col-md-6">
+			<div class="col-lg-6">
 				<div class="cb-insights-index__toolbar">
 					<input type="text" class="cb-insights-index__search" placeholder="Search posts..." aria-label="Search posts">
 					<button type="button" class="cb-insights-index__reset">Clear</button>
@@ -105,7 +105,7 @@ $ajax_url     = admin_url( 'admin-ajax.php' );
 						$item_cat   = ! empty( $item_cats ) ? implode( ' ', wp_list_pluck( $item_cats, 'slug' ) ) : '';
 						$item_cname = ! empty( $item_cats ) ? $item_cats[0]->name : '';
 						?>
-					<div class="col-md-4 insights-item" data-category="<?= esc_attr( $item_cat ); ?>" data-year="<?= esc_attr( get_the_date( 'Y', $post_item ) ); ?>">
+					<div class="col-md-6 col-lg-4 insights-item" data-category="<?= esc_attr( $item_cat ); ?>" data-year="<?= esc_attr( get_the_date( 'Y', $post_item ) ); ?>">
 						<a href="<?= esc_url( get_permalink( $post_item ) ); ?>" class="cb-insights-index__card cb-news-card">
 							<div class="cb-news-card__image cb-news-card__image--16-9">
 								<?php if ( has_post_thumbnail( $post_item ) ) : ?>

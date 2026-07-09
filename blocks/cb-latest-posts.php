@@ -69,16 +69,16 @@ if ( $display_flourish ) {
 		</div>
 
 		<?php if ( 'newsroom' === $preset ) : ?>
-			<div class="row">
+			<div class="row g-4">
 				<?php
-				$cols = 'col-md-3';
+				$cols = 'col-md-6 col-lg-3';
 				while ( $query->have_posts() ) {
 					$query->the_post();
 					$is_feature = ( 0 === $query->current_post );
 					if ( $is_feature ) {
-						$cols = 'col-md-3';
+						$cols = $cols;
 					} else {
-						$cols = 'col-md-3';
+						$cols = $cols;
 					}
 					?>
 					<div class="<?= esc_attr( $cols ); ?>" data-aos="fade-up" data-aos-delay="<?= esc_attr( $query->current_post * 150 ); ?>">
@@ -100,12 +100,12 @@ if ( $display_flourish ) {
 				?>
 			</div>
 		<?php else : ?>
-			<div class="row g-5">
+			<div class="row g-4">
 				<?php
 				while ( $query->have_posts() ) {
 					$query->the_post();
 					?>
-					<div class="col-md-3" data-aos="fade-up" data-aos-delay="<?= esc_attr( $query->current_post * 150 ); ?>">
+					<div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="<?= esc_attr( $query->current_post * 150 ); ?>">
 						<a href="<?php the_permalink(); ?>" class="cb-news-card">
 							<div class="cb-news-card__image cb-news-card__image--circle">
 								<?php if ( has_post_thumbnail() ) : ?>

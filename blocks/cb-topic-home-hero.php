@@ -62,7 +62,7 @@ if ( 'pf' === $context ) {
 	</div>
 	<div class="container my-auto">
 		<div class="row">
-			<div class="col-md-6">
+			<div class="col-lg-6">
 				<h1 class="text-balance"><?= wp_kses_post( get_field( 'title' ) ); ?></h1>
 				<?php
 				// Render the USP lines as a list only when there is more than one
