@@ -38,16 +38,18 @@ if ( $bg ) {
                 <div class="cb-text-stats__content"><?= wp_kses_post( $content ); ?></div>
                 <?php } ?>
                 <?php if ( $link ) { ?>
-                <p class="mt-4"><a class="cb-link-dot" href="<?= esc_url( $link['url'] ); ?>" target="<?= esc_attr( $link['target'] ?: '_self' ); ?>"><?= esc_html( $link['title'] ); ?></a></p>
+                <p class="mt-4"><a class="cb-link-dot" href="<?= esc_url( $link['url'] ); ?>" target="<?= esc_attr( $link['target'] ? $link['target'] : '_self' ); ?>"><?= esc_html( $link['title'] ); ?></a></p>
                 <?php } ?>
             </div>
             <div class="col-md-6 cb-text-stats__stats-col">
-                <?php if ( ! empty( $stats ) && is_array( $stats ) ) { ?>
+                <?php
+				if ( ! empty( $stats ) && is_array( $stats ) ) {
+					?>
                 <div class="row g-3 cb-text-stats__grid">
                     <?php
                     $total_stats = count( $stats );
                     foreach ( $stats as $i => $item ) {
-                        $is_last = ( $i + 1 ) === $total_stats;
+                        $is_last    = ( $i + 1 ) === $total_stats;
                         $wrap_class = 'cb-text-stats__stat-wrap';
                         $stat_class = 'cb-text-stats__stat';
                         if ( $is_last ) {
@@ -56,25 +58,36 @@ if ( $bg ) {
                         } else {
                             $wrap_class .= ' col-sm-6';
                         }
-                    ?>
+                    	?>
                     <div class="<?= esc_attr( $wrap_class ); ?>">
                         <div class="<?= esc_attr( $stat_class ); ?>">
-                            <?php if ( ! empty( $item['stat_title'] ) ) { ?>
+                            <?php
+							if ( ! empty( $item['stat_title'] ) ) {
+								?>
                             <div class="cb-text-stats__stat-title"><?= esc_html( $item['stat_title'] ); ?></div>
-                            <?php } ?>
-                            <?php if ( isset( $item['stat'] ) && '' !== $item['stat'] ) {
+                            	<?php
+							}
+							if ( isset( $item['stat'] ) && '' !== $item['stat'] ) {
                                 $stat_size_class = mb_strlen( $item['stat'] ) < 15 ? 'cb-text-stats__stat-value--lg' : 'cb-text-stats__stat-value--sm';
-                            ?>
+                            	?>
                             <div class="cb-text-stats__stat-value <?= esc_attr( $stat_size_class ); ?>"><?= wp_kses_post( nl2br( $item['stat'] ) ); ?></div>
-                            <?php } ?>
-                            <?php if ( ! empty( $item['stat_after'] ) ) { ?>
+                            	<?php
+							}
+							if ( ! empty( $item['stat_after'] ) ) {
+								?>
                             <div class="cb-text-stats__stat-after"><?= esc_html( $item['stat_after'] ); ?></div>
-                            <?php } ?>
+                            	<?php
+							}
+							?>
                         </div>
                     </div>
-                    <?php } ?>
+                    	<?php
+					}
+					?>
                 </div>
-                <?php } ?>
+                	<?php
+				}
+				?>
             </div>
         </div>
     </div>
