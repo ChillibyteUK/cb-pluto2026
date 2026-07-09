@@ -32,11 +32,10 @@
   &__stat {
     display: flex;
     flex-direction: column;
-    text-align: center;
     padding: 1.5rem;
     border: 1px solid var(--col-green-dark-300);
     border-radius: 0.5rem;
-    background: var(--col-white);
+    background: var(--col-green-teal-200);
     height: 100%;
   }
 
@@ -47,6 +46,8 @@
     color: var(--col-grey-700);
     font-weight: var(--fw-semibold);
     margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--col-green-dark-300);
   }
 
   &__stat-value {
