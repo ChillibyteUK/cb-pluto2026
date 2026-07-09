@@ -1,0 +1,11 @@
+.cb-report-pushthrough {
+    &__inner {
+        background-color: var(--col-green-dark-1000);
+        color: var(--col-white);
+        padding: 2rem;
+        border-radius: 0.5rem;
+    }
+    &__cover {
+        border-radius: 0.25rem;
+    }
+}

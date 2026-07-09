@@ -21972,6 +21972,17 @@ strong {
   color: var(--col-white);
 }
 
+.button--inverse {
+  background: var(--col-green-dark-400);
+  color: var(--col-black);
+  border-color: var(--col-green-dark-400);
+}
+.button--inverse:hover {
+  background: var(--col-green-dark-300);
+  border-color: var(--col-green-dark-300);
+  color: var(--col-black);
+}
+
 /* --------------------------------------------------
    Bootstrap 5 .btn — left untouched for compatibility
    -------------------------------------------------- */
@@ -26803,6 +26814,16 @@ body.cb-team-modal-open {
 
 .cb-lead-contacts-modal-open {
   overflow: hidden;
+}
+
+.cb-report-pushthrough__inner {
+  background-color: var(--col-green-dark-1000);
+  color: var(--col-white);
+  padding: 2rem;
+  border-radius: 0.5rem;
+}
+.cb-report-pushthrough__cover {
+  border-radius: 0.25rem;
 }
 
 .home-page__hero {

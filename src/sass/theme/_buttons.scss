@@ -69,6 +69,18 @@
   }
 }
 
+.button--inverse {
+  background: var(--col-green-dark-400);
+  color: var(--col-black);
+  border-color: var(--col-green-dark-400);
+
+  &:hover {
+    background: var(--col-green-dark-300);
+    border-color: var(--col-green-dark-300);
+    color: var(--col-black);
+  }
+}
+
 /* --------------------------------------------------
    Bootstrap 5 .btn — left untouched for compatibility
    -------------------------------------------------- */
