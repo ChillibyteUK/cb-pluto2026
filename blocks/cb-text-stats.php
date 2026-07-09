@@ -43,7 +43,7 @@ if ( $bg ) {
             </div>
             <div class="col-md-6 cb-text-stats__stats-col">
                 <?php if ( ! empty( $stats ) && is_array( $stats ) ) { ?>
-                <div class="row g-3 cb-text-stats__grid" data-aos="fade-left" data-aos-delay="150">
+                <div class="row g-3 cb-text-stats__grid">
                     <?php
                     $total_stats = count( $stats );
                     foreach ( $stats as $i => $item ) {

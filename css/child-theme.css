@@ -26561,6 +26561,7 @@ body.cb-team-modal-open {
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  visibility: hidden;
 }
 .cb-text-stats__stat {
   display: flex;
@@ -26570,6 +26571,12 @@ body.cb-team-modal-open {
   border-radius: 0.5rem;
   background: var(--col-green-teal-200);
   height: 100%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.cb-text-stats__stat:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
 }
 .cb-text-stats__stat-title {
   font-size: var(--fs-300);
@@ -26600,7 +26607,7 @@ body.cb-team-modal-open {
 }
 .cb-text-stats__stat--inline {
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   gap: 1rem;
   text-align: left;
 }

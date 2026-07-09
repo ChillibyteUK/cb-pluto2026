@@ -27,6 +27,7 @@
     display: flex;
     flex-direction: column;
     align-items: stretch;
+    visibility: hidden;
   }
 
   &__stat {
@@ -37,6 +38,15 @@
     border-radius: 0.5rem;
     background: var(--col-green-teal-200);
     height: 100%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    transition:
+      box-shadow 0.3s ease,
+      transform 0.3s ease;
+
+    &:hover {
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+      transform: translateY(-2px);
+    }
   }
 
   &__stat-title {
@@ -73,7 +83,7 @@
 
   &__stat--inline {
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
     gap: 1rem;
     text-align: left;
 
@@ -86,4 +96,6 @@
       flex-shrink: 0;
     }
   }
+
+  
 }

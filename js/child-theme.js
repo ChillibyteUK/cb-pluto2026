@@ -7257,6 +7257,45 @@
 		  });
 		})();
 
+		// Staggered reveal for cb-text-stats stat boxes.
+		(function () {
+		  if (!window.gsap || !window.ScrollTrigger) return;
+		  var grids = document.querySelectorAll(".cb-text-stats__grid");
+		  if (!grids.length) return;
+		  gsap.registerPlugin(ScrollTrigger);
+		  var prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+		  grids.forEach(function (grid) {
+		    var targets = Array.prototype.slice.call(grid.querySelectorAll(".cb-text-stats__stat-wrap"));
+		    if (!targets.length) return;
+		    if (prefersReducedMotion) {
+		      gsap.set(targets, {
+		        autoAlpha: 1,
+		        y: 0
+		      });
+		      return;
+		    }
+		    gsap.set(targets, {
+		      autoAlpha: 0,
+		      y: 30
+		    });
+		    ScrollTrigger.create({
+		      trigger: grid,
+		      start: "top 85%",
+		      once: true,
+		      onEnter: function () {
+		        gsap.to(targets, {
+		          autoAlpha: 1,
+		          y: 0,
+		          duration: 0.5,
+		          ease: "power2.out",
+		          stagger: 0.15,
+		          overwrite: true
+		        });
+		      }
+		    });
+		  });
+		})();
+
 		/*
 
 		  // Header background
