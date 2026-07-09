@@ -141,18 +141,44 @@ header {
     border-color: rgba(0, 0, 0, 0.5);
   }
 
+  /* Hide toggler on the homepage (no nav menu) */
+  body.homepage & .navbar-toggler {
+    display: none;
+  }
+
   /* Mobile */
   @media (max-width: 991px) {
     .navbar-nav {
       width: 100%;
-      padding-bottom: 2rem;
-      padding-inline-start: 1.5rem;
+      padding-bottom: 1rem;
+      padding-inline-start: 0;
+    }
+
+    .nav-link {
+      color: var(--col-white);
     }
 
     .nav-link,
     .dropdown-item {
+      font-size: var(--fs-500);
+      padding-block: 0.5rem;
+      padding-inline: 1.5rem;
+    }
+
+    .dropdown-menu {
+      background-color: transparent;
+      border: none;
+      padding-inline-start: 1rem;
+      --bs-dropdown-spacer: 0;
+    }
+
+    .dropdown-item {
+      padding-block: 0.4rem;
       font-size: var(--fs-400);
-      padding-block: 0.75rem;
+    }
+
+    li:not(:last-of-type) .dropdown-item {
+      border-bottom: none;
     }
   }
 }
@@ -163,12 +189,11 @@ header {
     --bs-dropdown-item-padding-x: 0;
     padding-inline-start: 0;
     padding-block-start: 0;
-    max-width: 90vw;
   }
 }
 
 header:has(.navbar-collapse.collapse.show) .navbar-bottom,
 header:has(.navbar-collapse.collapsing) .navbar-bottom {
-  background-color: var(--col-brand-darkest) !important;
+  background-color: var(--col-green-dark-1000) !important;
   transition: none !important;
 }
