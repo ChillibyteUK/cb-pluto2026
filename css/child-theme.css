@@ -22101,6 +22101,7 @@ header {
   z-index: 1030;
   background-color: transparent;
   /* Top row: logo + toggler. Always white, with right-aligned flourish. */
+  /* Context toggle */
   /* Bottom row: menu. Translucent; tinted per-side via body classes elsewhere. */
   /* Nav links */
   /* Active/current page */
@@ -22109,6 +22110,7 @@ header {
   /* Divider labels in dropdown */
   /* Toggler */
   /* Hide toggler on the homepage (no nav menu) */
+  /* Desktop: push toggle group left to clear the swoosh */
   /* Mobile */
 }
 header .navbar-bottom {
@@ -22120,6 +22122,47 @@ header .navbar-top {
   background-position: right center;
   background-size: auto 100%;
   background-image: url("../img/nav-flourish.svg");
+}
+header .site-context-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  border: 1px solid var(--col-grey-400);
+  border-radius: 999px;
+  overflow: hidden;
+}
+header .site-context-toggle__link {
+  font-family: var(--ff-ui);
+  font-size: var(--fs-200);
+  font-weight: var(--fw-semibold);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: var(--ls-20);
+  padding: 0.35rem 0.75rem;
+  color: var(--col-grey-600);
+  transition: background-color var(--transition), color var(--transition);
+}
+header .site-context-toggle__link.active {
+  background-color: var(--col-green-dark-1000);
+  color: var(--col-white);
+}
+header .site-context-toggle__link:not(.active):hover {
+  color: var(--col-black);
+}
+header .site-context-toggle__divider {
+  width: 1px;
+  height: 1rem;
+  background-color: var(--col-grey-400);
+}
+@media (max-width: 575.98px) {
+  header .site-context-toggle__link {
+    font-size: var(--fs-100);
+    padding: 0.2rem 0.5rem;
+    letter-spacing: 0;
+  }
+  header .site-context-toggle__divider {
+    height: 0.75rem;
+  }
 }
 header.navbar-pf .navbar-top {
   background-image: url("../img/nav-flourish.svg");
@@ -22211,6 +22254,11 @@ header .navbar-toggler {
 }
 body.homepage header .navbar-toggler {
   display: none;
+}
+@media (min-width: 992px) {
+  header .navbar-top .container > .d-flex > .d-flex:last-child, header .navbar-top .wp-block-group:not(.alignfull) > .d-flex > .d-flex:last-child {
+    margin-inline-end: 2rem;
+  }
 }
 @media (max-width: 991px) {
   header .navbar-nav {
@@ -27901,5 +27949,4 @@ body.understrap-no-sidebar .wp-block-cover.alignwide {
 .wp-block-buttons .wp-block-button:not(.is-style-outline) .wp-block-button__link {
   border: 1px solid transparent;
 }
-
 /*# sourceMappingURL=child-theme.css.map */

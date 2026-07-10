@@ -127,15 +127,24 @@ if ( session_status() === PHP_SESSION_NONE ) {
 	<nav class="navbar navbar-expand-lg p-0 flex-column align-items-stretch">
 		<div class="navbar-top w-100">
 			<div class="container py-4">
-				<div class="d-flex justify-content-between align-items-center">
+				<div class="d-flex justify-content-between align-items-center gap-3">
 					<a href="<?= esc_url( $home_url ? $home_url : '/' ); ?>" class="site-logo" aria-label="Pluto Finance Homepage">
 						<img src="<?= esc_url( get_stylesheet_directory_uri() . '/img/pluto-logo-colour.svg' ); ?>" alt="Pluto Finance logo" height="45">
 					</a>
-					<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-						data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false"
-						aria-label="Toggle navigation">
-						<i class="fas fa-bars"></i>
-					</button>
+					<div class="d-flex align-items-center gap-3 ms-auto">
+						<?php if ( '' !== $context ) { ?>
+						<div class="site-context-toggle">
+							<a href="/property-finance/" class="site-context-toggle__link<?= 'pf' === $context ? ' active' : ''; ?>">Lending</a>
+							<span class="site-context-toggle__divider"></span>
+							<a href="/investors/" class="site-context-toggle__link<?= 'inv' === $context ? ' active' : ''; ?>">Investing</a>
+						</div>
+						<?php } ?>
+						<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+							data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false"
+							aria-label="Toggle navigation">
+							<i class="fas fa-bars"></i>
+						</button>
+					</div>
 				</div>
 			</div>
 		</div>

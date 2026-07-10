@@ -21,6 +21,55 @@ header {
     background-image: url("../img/nav-flourish.svg");
   }
 
+  /* Context toggle */
+  .site-context-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    border: 1px solid var(--col-grey-400);
+    border-radius: 999px;
+    overflow: hidden;
+
+    &__link {
+      font-family: var(--ff-ui);
+      font-size: var(--fs-200);
+      font-weight: var(--fw-semibold);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: var(--ls-20);
+      padding: 0.35rem 0.75rem;
+      color: var(--col-grey-600);
+      transition: background-color var(--transition), color var(--transition);
+
+      &.active {
+        background-color: var(--col-green-dark-1000);
+        color: var(--col-white);
+      }
+
+      &:not(.active):hover {
+        color: var(--col-black);
+      }
+    }
+
+    &__divider {
+      width: 1px;
+      height: 1rem;
+      background-color: var(--col-grey-400);
+    }
+
+    @media (max-width: 575.98px) {
+      &__link {
+        font-size: var(--fs-100);
+        padding: 0.2rem 0.5rem;
+        letter-spacing: 0;
+      }
+
+      &__divider {
+        height: 0.75rem;
+      }
+    }
+  }
+
   &.navbar-pf .navbar-top {
     background-image: url("../img/nav-flourish.svg");
   }
@@ -144,6 +193,13 @@ header {
   /* Hide toggler on the homepage (no nav menu) */
   body.homepage & .navbar-toggler {
     display: none;
+  }
+
+  /* Desktop: push toggle group left to clear the swoosh */
+  @media (min-width: 992px) {
+    .navbar-top .container > .d-flex > .d-flex:last-child {
+      margin-inline-end: 2rem;
+    }
   }
 
   /* Mobile */
