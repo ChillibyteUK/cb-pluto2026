@@ -7,6 +7,20 @@
       "label": "CB Team Simple",
       "name": "title",
       "type": "message"
+    },
+    {
+      "key": "field_cb_team_simple_team_filter",
+      "label": "Initial Team Filter",
+      "name": "initial_team_filter",
+      "type": "taxonomy",
+      "taxonomy": "team",
+      "field_type": "checkbox",
+      "multiple": 0,
+      "allow_null": 1,
+      "return_format": "id",
+      "add_term": 0,
+      "load_terms": 0,
+      "save_terms": 0
     }
   ],
   "location": [

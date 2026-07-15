@@ -32,6 +32,8 @@ if ( isset( $block['className'] ) ) {
 	$custom_classes = implode( ' ', $filtered );
 }
 
+$initial_team_filter = get_field( 'initial_team_filter' );
+
 $people = get_posts(
 	array(
 		'post_type'      => 'person',
@@ -79,6 +81,21 @@ if ( is_wp_error( $teams ) ) {
 	$teams = array();
 }
 
+$initial_team_slugs = array();
+if ( ! empty( $initial_team_filter ) && is_array( $initial_team_filter ) ) {
+	$initial_team_slugs = get_terms(
+		array(
+			'taxonomy' => 'team',
+			'include'  => $initial_team_filter,
+			'fields'   => 'slugs',
+			'hide_empty' => false,
+		)
+	);
+	if ( is_wp_error( $initial_team_slugs ) ) {
+		$initial_team_slugs = array();
+	}
+}
+
 $missing_img = get_stylesheet_directory_uri() . '/img/missing-person.jpg';
 
 // SVG icons (inline so we don't depend on an icon font).
@@ -98,9 +115,9 @@ $recipient_field_id = $contact_field_ids && ! empty( $contact_field_ids['recipie
 	<div class="container py-5">
 		<?php if ( ! empty( $teams ) ) : ?>
 			<div class="cb-team-simple__filters" aria-label="<?php esc_attr_e( 'Filter team', 'cb-pluto2026' ); ?>">
-				<button class="cb-team-simple__filter cb-team-simple__filter--active" type="button" data-team-filter="all"><?php esc_html_e( 'All', 'cb-pluto2026' ); ?></button>
+				<button class="cb-team-simple__filter<?= empty( $initial_team_slugs ) ? ' cb-team-simple__filter--active' : ''; ?>" type="button" data-team-filter="all"><?php esc_html_e( 'All', 'cb-pluto2026' ); ?></button>
 				<?php foreach ( $teams as $team ) : ?>
-					<button class="cb-team-simple__filter" type="button" data-team-filter="<?= esc_attr( $team->slug ); ?>"><?= esc_html( $team->name ); ?></button>
+					<button class="cb-team-simple__filter<?= in_array( $team->slug, $initial_team_slugs, true ) ? ' cb-team-simple__filter--active' : ''; ?>" type="button" data-team-filter="<?= esc_attr( $team->slug ); ?>"><?= esc_html( $team->name ); ?></button>
 				<?php endforeach; ?>
 			</div>
 		<?php endif; ?>
@@ -257,20 +274,43 @@ document.addEventListener('DOMContentLoaded', function () {
 	var items = block.querySelectorAll('.cb-team-simple__col');
 	var lastFocus = null;
 
+	function applyFilters() {
+		var activeFilters = [];
+		buttons.forEach(function (btn) {
+			if (btn.classList.contains('cb-team-simple__filter--active')) {
+				activeFilters.push(btn.getAttribute('data-team-filter'));
+			}
+		});
+
+		var showingAll = activeFilters.length === 0 || activeFilters.indexOf('all') !== -1;
+
+		items.forEach(function (item) {
+			if (showingAll) {
+				item.hidden = false;
+			} else {
+				var teams = (item.getAttribute('data-team') || '').split(' ');
+				var matches = activeFilters.some(function (f) {
+					return teams.indexOf(f) !== -1;
+				});
+				item.hidden = !matches;
+			}
+		});
+	}
+
 	buttons.forEach(function (button) {
 		button.addEventListener('click', function () {
 			var filter = button.getAttribute('data-team-filter');
 
 			buttons.forEach(function (btn) {
-				btn.classList.toggle('cb-team-simple__filter--active', btn === button);
+				btn.classList.remove('cb-team-simple__filter--active');
 			});
+			button.classList.add('cb-team-simple__filter--active');
 
-			items.forEach(function (item) {
-				var teams = item.getAttribute('data-team') || '';
-				item.hidden = filter !== 'all' && teams.split(' ').indexOf(filter) === -1;
-			});
+			applyFilters();
 		});
 	});
+
+	applyFilters();
 
 	block.querySelectorAll('.cb-team-simple__modal').forEach(function (modal) {
 		if (modal.parentNode !== document.body) {
