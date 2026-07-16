@@ -24875,10 +24875,6 @@ body.cb-team-modal-open {
   opacity: 0.5;
   z-index: -1;
 }
-.cb-nav-cards__card__card.full-flourish::before, .cb-nav-cards__card.full-flourish__card.full-flourish::before {
-  transform: scaleX(-1) scaleY(-1);
-  height: clamp(30px, 8vw, 70px);
-}
 .cb-nav-cards__card:hover, .cb-nav-cards__card:focus-visible, .cb-nav-cards__card.full-flourish:hover, .cb-nav-cards__card.full-flourish:focus-visible {
   box-shadow: var(--shadow-2);
 }
@@ -24897,8 +24893,18 @@ body.cb-team-modal-open {
 }
 .cb-nav-cards__content {
   margin-top: auto;
-  padding: 2rem 1rem 1rem 1rem;
-  background-color: var(--col-green-teal-200);
+}
+.cb-nav-cards__content .full-flourish {
+  min-height: 60px;
+  height: 60px;
+  transform: scaleX(-1) scaleY(-1);
+}
+.cb-nav-cards__content .full-flourish::before {
+  height: 60px;
+}
+.cb-nav-cards__link {
+  background-color: var(--col-green-teal-500);
+  padding: 1rem;
 }
 .cb-nav-cards__title {
   padding: 1rem;

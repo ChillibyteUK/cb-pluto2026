@@ -26,10 +26,6 @@
       z-index: -1;
     }
 
-    &__card.full-flourish::before {
-      transform: scaleX(-1) scaleY(-1);
-      height: clamp(30px, 8vw, 70px);
-    }
     &:hover,
     &:focus-visible {
       box-shadow: var(--shadow-2);
@@ -53,8 +49,18 @@
   }
   &__content {
     margin-top: auto;
-    padding: 2rem 1rem 1rem 1rem;
-    background-color: var(--col-green-teal-200);
+    .full-flourish {
+      min-height: 60px;
+      height: 60px;
+      transform: scaleX(-1) scaleY(-1);
+      &::before  {
+        height: 60px;
+      }
+    } 
+  }
+  &__link {
+    background-color: var(--col-green-teal-500);
+    padding: 1rem;
   }
   &__title {
     padding: 1rem;

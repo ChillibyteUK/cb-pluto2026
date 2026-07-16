@@ -73,6 +73,7 @@ if ( isset( $block['className'] ) ) {
 					<div class="cb-nav-cards__overlay"></div>
 					<h3 class="cb-nav-cards__title"><?php the_sub_field( 'title' ); ?></h3>
 					<div class="cb-nav-cards__content">
+						<div class="full-flourish"></div>
 						<div class="cb-nav-cards__link">
 							<p class="cb-link-dot">Find out more</p>
 						</div>
