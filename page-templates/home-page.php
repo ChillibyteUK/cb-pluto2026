@@ -67,7 +67,7 @@ if ( ! $has_video && $hero_bg_url ) {
                 </div>
                 <div class="col-md-6">
                     <a class="home-page__card home-page__card--investing" href="/investors/">
-                        <h2 class="home-page__card-title"><?= cb_sanitise_svg( get_stylesheet_directory() . '/img/dot-green-orange-white.svg', null, 40, 40 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> <span><strong>Investing</strong></span></h2>
+                        <h2 class="home-page__card-title"><?= cb_sanitise_svg( get_stylesheet_directory() . '/img/dot-green-orange-white.svg', null, 40, 40 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> <span><strong>Investors</strong></span></h2>
                         <div class="home-page__card-body">
                             <?= wp_kses_post( get_field( 'investing_intro' ) ); ?>
                         </div>
