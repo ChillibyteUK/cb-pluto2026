@@ -34,145 +34,145 @@ if ( ! $has_video && $hero_bg_url ) {
 }
 ?>
 <main id="main" class="home-page">
-    <section id="<?= esc_attr( $hero_id ); ?>" class="<?= esc_attr( implode( ' ', $hero_classes ) ); ?>"<?= $hero_style ? ' style="' . esc_attr( $hero_style ) . '"' : ''; ?>>
-        <?php if ( $has_video ) { ?>
-        <video class="home-page__hero-video" autoplay muted loop playsinline>
-            <?php if ( $has_video_webm ) { ?>
-            <source src="<?= esc_url( $webm_url ); ?>" type="video/webm">
-            <?php } ?>
-            <?php if ( $has_video_mp4 ) { ?>
-            <source src="<?= esc_url( $mp4_url ); ?>" type="video/mp4">
-            <?php } ?>
-        </video>
-        <?php } ?>
-        <div class="home-page__hero-overlay" aria-hidden="true">
-            <div class="home-page__hero-overlay-rect"></div>
-            <div class="home-page__hero-overlay-cap"></div>
-        </div>
-        <div class="container my-auto">
-            <h1><?= esc_html( get_field( 'title' ) ); ?></h1>
-            <div class="home-page__intro"><?= esc_html( get_field( 'intro' ) ); ?></div>
-            <div class="row g-4">
-                <div class="col-md-6">
-                    <a class="home-page__card home-page__card--lending" href="/property-finance/">
-                        <h2 class="home-page__card-title"><?= cb_sanitise_svg( get_stylesheet_directory() . '/img/dot-green-orange-white.svg', null, 40, 40 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> <span><strong>Lending</strong></span></h2>
-                        <div class="home-page__card-body">
-                            <?= wp_kses_post( get_field( 'lending_intro' ) ); ?>
-                        </div>
-                        <div class="home-page__card-link">
-                            Enter site
-                            <?= cb_sanitise_svg( get_stylesheet_directory() . '/img/dot-orange-green-white.svg', null, 40, 40 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-6">
-                    <a class="home-page__card home-page__card--investing" href="/investors/">
-                        <h2 class="home-page__card-title"><?= cb_sanitise_svg( get_stylesheet_directory() . '/img/dot-green-orange-white.svg', null, 40, 40 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> <span><strong>Investors</strong></span></h2>
-                        <div class="home-page__card-body">
-                            <?= wp_kses_post( get_field( 'investing_intro' ) ); ?>
-                        </div>
-                        <div class="home-page__card-link">
-                            Enter site
-                            <?= cb_sanitise_svg( get_stylesheet_directory() . '/img/dot-teal-green-white.svg', null, 40, 40 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+	<section id="<?= esc_attr( $hero_id ); ?>" class="<?= esc_attr( implode( ' ', $hero_classes ) ); ?>"<?= $hero_style ? ' style="' . esc_attr( $hero_style ) . '"' : ''; ?>>
+		<?php if ( $has_video ) { ?>
+		<video class="home-page__hero-video" autoplay muted loop playsinline>
+			<?php if ( $has_video_webm ) { ?>
+			<source src="<?= esc_url( $webm_url ); ?>" type="video/webm">
+			<?php } ?>
+			<?php if ( $has_video_mp4 ) { ?>
+			<source src="<?= esc_url( $mp4_url ); ?>" type="video/mp4">
+			<?php } ?>
+		</video>
+		<?php } ?>
+		<div class="home-page__hero-overlay" aria-hidden="true">
+			<div class="home-page__hero-overlay-rect"></div>
+			<div class="home-page__hero-overlay-cap"></div>
+		</div>
+		<div class="container my-auto">
+			<h1><?= esc_html( get_field( 'title' ) ); ?></h1>
+			<div class="home-page__intro"><?= esc_html( get_field( 'intro' ) ); ?></div>
+			<div class="row g-4">
+				<div class="col-md-6">
+					<a class="home-page__card home-page__card--lending" href="/property-finance/">
+						<h2 class="home-page__card-title"><?= cb_sanitise_svg( get_stylesheet_directory() . '/img/dot-green-orange-white.svg', null, 40, 40 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> <span><strong>Lending</strong></span></h2>
+						<div class="home-page__card-body">
+							<?= wp_kses_post( get_field( 'lending_intro' ) ); ?>
+						</div>
+						<div class="home-page__card-link">
+							Enter site
+							<?= cb_sanitise_svg( get_stylesheet_directory() . '/img/dot-orange-green-white.svg', null, 40, 40 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+						</div>
+					</a>
+				</div>
+				<div class="col-md-6">
+					<a class="home-page__card home-page__card--investing" href="/investors/">
+						<h2 class="home-page__card-title"><?= cb_sanitise_svg( get_stylesheet_directory() . '/img/dot-green-orange-white.svg', null, 40, 40 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> <span><strong>Investors</strong></span></h2>
+						<div class="home-page__card-body">
+							<?= wp_kses_post( get_field( 'investing_intro' ) ); ?>
+						</div>
+						<div class="home-page__card-link">
+							Enter site
+							<?= cb_sanitise_svg( get_stylesheet_directory() . '/img/dot-teal-green-white.svg', null, 40, 40 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
 	<?php
 	/*
-    <section class="home-page__newsroom py-5">
-        <div class="container">
-            <div class="d-flex flex-wrap align-items-center justify-content-between mb-5">
-                <h2 class="text-center">PLUTO NEWSROOM</h2>
-                <a href="/property-finance/insights/" class="home-page__newsroom-link">View all lending news</a>
-            </div>
-            <?php
-            $news_posts = new WP_Query(
-                array(
-                    'post_type'      => 'post',
-                    'posts_per_page' => 3,
-                )
-            );
-            if ( $news_posts ) {
-                ?>
-            <div class="row">
-                <?php
-                $cols = 'col-md-3';
-                while ( $news_posts->have_posts() ) {
-                    $news_posts->the_post();
-                    if ( 2 === $news_posts->current_post ) {
-                        $cols = 'col-md-6';
-                    }
-                    ?>
-                    <?php $is_feature = ( 2 === $news_posts->current_post ); ?>
-                    <div class="<?= esc_attr( $cols ); ?>">
-                        <a href="<?php the_permalink(); ?>" class="cb-news-card">
-                            <?php if ( has_post_thumbnail() ) : ?>
-                                <div class="cb-news-card__image cb-news-card__image--<?= $is_feature ? '16-9' : '4-3'; ?>">
-                                    <?php the_post_thumbnail( 'large' ); ?>
-                                </div>
-                            <?php endif; ?>
-                            <h3 class="cb-news-card__title"><?php the_title(); ?></h3>
-                            <div class="cb-news-card__excerpt"><?php the_excerpt(); ?></div>
-                            <div class="cb-news-card__link">Learn more</div>
-                        </a>
-                    </div>
-                    <?php
-                }
-                wp_reset_postdata();
-                ?>
-            </div>
-                <?php
-            }
-            ?>
-        </div>
-    </section>
-    <section class="home-page__insights full-flourish">
-        <div class="container py-5">
-            <div class="d-flex flex-wrap align-items-center justify-content-between py-5">
-                <h2 class="text-center">PLUTO INSIGHTS</h2>
-                <a href="/investors/insights/" class="home-page__insights-link">View all investor insights</a>
-            </div>
-            <?php
-            $insight_posts = new WP_Query(
-                array(
-                    'post_type'      => 'post',
-                    'posts_per_page' => 4,
-                )
-            );
-            if ( $insight_posts ) {
-                ?>
-            <div class="row g-5">
-                <?php
-                while ( $insight_posts->have_posts() ) {
-                    $insight_posts->the_post();
-                    ?>
-                    <div class="col-md-3">
-                        <a href="<?php the_permalink(); ?>" class="cb-news-card">
-                            <?php if ( has_post_thumbnail() ) : ?>
-                                <div class="cb-news-card__image cb-news-card__image--circle">
-                                    <?php the_post_thumbnail( 'medium_large' ); ?>
-                                </div>
-                            <?php endif; ?>
-                            <div class="cb-news-card__date"><?= get_the_date( 'jS F, Y' ); ?></div>
-                            <h3 class="cb-news-card__title"><?php the_title(); ?></h3>
-                            <div class="cb-news-card__link">Learn more</div>
-                        </a>
-                    </div>
-                    <?php
-                }
-                wp_reset_postdata();
-                ?>
-            </div>
-                <?php
-            }
-            ?>
+	<section class="home-page__newsroom py-5">
+		<div class="container">
+			<div class="d-flex flex-wrap align-items-center justify-content-between mb-5">
+				<h2 class="text-center">PLUTO NEWSROOM</h2>
+				<a href="/property-finance/insights/" class="home-page__newsroom-link">View all lending news</a>
+			</div>
+			<?php
+			$news_posts = new WP_Query(
+				array(
+					'post_type'      => 'post',
+					'posts_per_page' => 3,
+				)
+			);
+			if ( $news_posts ) {
+				?>
+			<div class="row">
+				<?php
+				$cols = 'col-md-3';
+				while ( $news_posts->have_posts() ) {
+					$news_posts->the_post();
+					if ( 2 === $news_posts->current_post ) {
+						$cols = 'col-md-6';
+					}
+					?>
+					<?php $is_feature = ( 2 === $news_posts->current_post ); ?>
+					<div class="<?= esc_attr( $cols ); ?>">
+						<a href="<?php the_permalink(); ?>" class="cb-news-card">
+							<?php if ( has_post_thumbnail() ) : ?>
+								<div class="cb-news-card__image cb-news-card__image--<?= $is_feature ? '16-9' : '4-3'; ?>">
+									<?php the_post_thumbnail( 'large' ); ?>
+								</div>
+							<?php endif; ?>
+							<h3 class="cb-news-card__title"><?php the_title(); ?></h3>
+							<div class="cb-news-card__excerpt"><?php the_excerpt(); ?></div>
+							<div class="cb-news-card__link">Learn more</div>
+						</a>
+					</div>
+					<?php
+				}
+				wp_reset_postdata();
+				?>
+			</div>
+				<?php
+			}
+			?>
+		</div>
+	</section>
+	<section class="home-page__insights full-flourish">
+		<div class="container py-5">
+			<div class="d-flex flex-wrap align-items-center justify-content-between py-5">
+				<h2 class="text-center">PLUTO INSIGHTS</h2>
+				<a href="/investors/insights/" class="home-page__insights-link">View all investor insights</a>
+			</div>
+			<?php
+			$insight_posts = new WP_Query(
+				array(
+					'post_type'      => 'post',
+					'posts_per_page' => 4,
+				)
+			);
+			if ( $insight_posts ) {
+				?>
+			<div class="row g-5">
+				<?php
+				while ( $insight_posts->have_posts() ) {
+					$insight_posts->the_post();
+					?>
+					<div class="col-md-3">
+						<a href="<?php the_permalink(); ?>" class="cb-news-card">
+							<?php if ( has_post_thumbnail() ) : ?>
+								<div class="cb-news-card__image cb-news-card__image--circle">
+									<?php the_post_thumbnail( 'medium_large' ); ?>
+								</div>
+							<?php endif; ?>
+							<div class="cb-news-card__date"><?= get_the_date( 'jS F, Y' ); ?></div>
+							<h3 class="cb-news-card__title"><?php the_title(); ?></h3>
+							<div class="cb-news-card__link">Learn more</div>
+						</a>
+					</div>
+					<?php
+				}
+				wp_reset_postdata();
+				?>
+			</div>
+				<?php
+			}
+			?>
 
-        </div>
-    </section>
- 		*/
+		</div>
+	</section>
+		 */
 	?>
 </main>
 <?php if ( $has_video || $hero_bg_url ) { ?>

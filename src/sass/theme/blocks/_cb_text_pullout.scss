@@ -89,9 +89,7 @@
                 bottom: 0;
                 left: 0;
                 right: 0;
-                background:
-                    linear-gradient(180deg, var(--col-green-teal-100) 0%, var(--col-green-teal-200) 100%) padding-box,
-                    linear-gradient(90deg, var(--col-green-teal-500) 0%, var(--col-green-dark-1000) 58%, var(--col-orange-1000) 100%) border-box;
+                background: var(--col-green-dark-1000);
                 border: 2px solid transparent;
                 border-radius: 1rem;
                 box-shadow: var(--shadow-2);
@@ -107,6 +105,7 @@
             padding-inline-start: clamp(2.5rem, 4vw, 4rem);
             padding-inline-end: clamp(1.5rem, 3vw, 2.5rem);
             background: transparent;
+            color: var(--col-white);
         }
 
         @media (min-width: 992px) {
