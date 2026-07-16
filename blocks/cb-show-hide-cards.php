@@ -16,7 +16,7 @@ if ( empty( $cards ) || ! is_array( $cards ) ) {
 
 $block_id        = $block['anchor'] ?? wp_unique_id( 'cb-show-hide-cards-' );
 $columns         = in_array( $columns, array( 2, 3 ), true ) ? $columns : 2;
-$column_class    = 3 === $columns ? 'col-md-6 col-lg-4' : 'col-md-6';
+$column_class    = 3 === $columns ? 'col-12' : 'col-12';
 $section_classes = array( 'cb-show-hide-cards' );
 
 $custom_classes = 'py-5';
