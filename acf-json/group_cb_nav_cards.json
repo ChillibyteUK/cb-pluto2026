@@ -40,6 +40,23 @@
           "return_format": "array"
         },
         {
+          "key": "field_cb_nav_cards_cards_image_3a9c2f1b",
+          "label": "Background image",
+          "name": "image",
+          "type": "image",
+          "instructions": "Optional background image for the card",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "return_format": "array",
+          "preview_size": "medium",
+          "library": "all"
+        },
+        {
           "key": "field_cb_nav_cards_cards_title_d2ae449c",
           "label": "Title",
           "name": "title",

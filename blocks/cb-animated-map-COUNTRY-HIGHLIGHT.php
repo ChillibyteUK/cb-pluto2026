@@ -128,16 +128,6 @@ for ( $i = 1; $i <= 3; $i++ ) {
 						</div>
 					<?php endif; ?>
 
-						<style>
-							#<?= esc_attr( $block_uid ); ?> .cb-animated-map__svg-country--highlight,
-							#<?= esc_attr( $block_uid ); ?> .cb-animated-map__svg-country--base {
-								fill: var(--col-green-dark-1000) !important;
-							}
-							#<?= esc_attr( $block_uid ); ?> .cb-animated-map__svg-line {
-								stroke: var(--col-green-dark-1000) !important;
-							}
-						</style>
-
 					<div class="cb-animated-map__stats" aria-label="Animated map statistics">
 						<?php foreach ( $stats as $index => $stat_group ) : ?>
 							<?php
@@ -194,7 +184,7 @@ for ( $i = 1; $i <= 3; $i++ ) {
 				const statFills = root.querySelectorAll('.cb-animated-map__stat-fill');
 				const statRings = root.querySelectorAll('.cb-animated-map__stat-ring');
 				const statValues = root.querySelectorAll('.cb-animated-map__stat-value');
-				if (!map || !line) {
+				if (!map || !line || !highlights.length) {
 					return false;
 				}
 
@@ -203,6 +193,7 @@ for ( $i = 1; $i <= 3; $i++ ) {
 				const duration = countryDuration + (staggerStep * Math.max(highlights.length - 1, 0));
 				const lineDuration = duration * 0.7;
 				const baseFill = '#d4e2e2';
+				const highlightFill = '#225933';
 				const countUpDuration = 1.2;
 				const countUpStart = lineDuration;
 				const highlightTweenDuration = Math.max(0.1, countUpDuration - (staggerStep * Math.max(highlights.length - 1, 0)));
@@ -214,7 +205,7 @@ for ( $i = 1; $i <= 3; $i++ ) {
 						strokeDashoffset: lineLength,
 					});
 				}
-
+				window.gsap.set(highlights, { fill: baseFill });
 				if (statRings.length) {
 					statRings.forEach((ring) => {
 						const length = ring.getTotalLength ? ring.getTotalLength() : 0;
@@ -259,7 +250,15 @@ for ( $i = 1; $i <= 3; $i++ ) {
 					duration: lineDuration,
 					ease: 'power2.out',
 				}, 0);
-				// No country highlight animation — keep countries at base fill.
+				tl.to(highlights, {
+					fill: highlightFill,
+					duration: highlightTweenDuration,
+					ease: 'back.out(3.2)',
+					stagger: {
+						each: staggerStep,
+						from: 'start',
+					},
+				}, countUpStart);
 
 				if (statRings.length) {
 					tl.to(statCards, {
