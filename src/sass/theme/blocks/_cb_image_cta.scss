@@ -69,7 +69,6 @@
   &__link {
     display: inline-flex;
     align-items: center;
-    margin-top: 1.5rem;
     position: relative;
     overflow: hidden;
     min-height: 1.5rem;
@@ -105,5 +104,13 @@
         right: 0.75rem; // dot radius — line meets the dot centre
       }
     }
+  }
+
+  &__actions {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+    justify-content: center;
   }
 }

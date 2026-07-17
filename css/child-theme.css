@@ -23669,7 +23669,6 @@ span a {
 .cb-image-cta__link {
   display: inline-flex;
   align-items: center;
-  margin-top: 1.5rem;
   position: relative;
   overflow: hidden;
   min-height: 1.5rem;
@@ -23699,6 +23698,13 @@ span a {
 }
 .cb-image-cta__link:hover::before, .cb-image-cta__link:focus-visible::before {
   right: 0.75rem;
+}
+.cb-image-cta__actions {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  justify-content: center;
 }
 
 /* =========================

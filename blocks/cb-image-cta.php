@@ -15,10 +15,11 @@ defined( 'ABSPATH' ) || exit;
 $site_title = (string) get_field( 'title' );
 $content    = (string) get_field( 'content' );
 $cta_link   = get_field( 'link' );
+$cta_link_2 = get_field( 'link_2' );
 $image_id   = get_field( 'background_image' );
 
 // Bail when nothing of substance has been authored.
-if ( '' === trim( $site_title ) && '' === trim( wp_strip_all_tags( $content ) ) && empty( $cta_link ) && ! $image_id ) {
+if ( '' === trim( $site_title ) && '' === trim( wp_strip_all_tags( $content ) ) && empty( $cta_link ) && empty( $cta_link_2 ) && ! $image_id ) {
 	return;
 }
 
@@ -62,25 +63,48 @@ if ( ! empty( $block['className'] ) ) {
 	class="<?= esc_attr( implode( ' ', $section_classes ) ); ?>"
 	<?= $section_style ? ' style="' . esc_attr( $section_style ) . '"' : ''; ?>
 >
-	<?php if ( $image_url ) : ?>
-		<div class="cb-image-cta__overlay" aria-hidden="true"></div>
-	<?php endif; ?>
+	<?php
+	if ( $image_url ) {
+		?>
+	<div class="cb-image-cta__overlay" aria-hidden="true"></div>
+		<?php
+	}
+	?>
 	<div class="container py-5">
 		<div class="row justify-content-center">
 			<div class="col-md-8 text-center">
-				<?php if ( '' !== trim( $site_title ) ) : ?>
-					<h2 class="cb-image-cta__title"><?= esc_html( $site_title ); ?></h2>
-				<?php endif; ?>
-				<?php if ( '' !== trim( wp_strip_all_tags( $content ) ) ) : ?>
-					<div class="cb-image-cta__content"><?= wp_kses_post( $content ); ?></div>
-				<?php endif; ?>
-				<?php if ( ! empty( $cta_link ) && ! empty( $cta_link['url'] ) ) : ?>
-					<a
-						class="cb-image-cta__link"
-						href="<?= esc_url( $cta_link['url'] ); ?>"
-						target="<?= esc_attr( ! empty( $cta_link['target'] ) ? $cta_link['target'] : '_self' ); ?>"
-					><?= esc_html( ! empty( $cta_link['title'] ) ? $cta_link['title'] : $cta_link['url'] ); ?></a>
-				<?php endif; ?>
+				<?php
+				if ( '' !== trim( $site_title ) ) {
+					?>
+				<h2 class="cb-image-cta__title"><?= esc_html( $site_title ); ?></h2>
+					<?php
+				}
+				if ( '' !== trim( wp_strip_all_tags( $content ) ) ) {
+					?>
+				<div class="cb-image-cta__content"><?= wp_kses_post( $content ); ?></div>
+					<?php
+				}
+				$has_link_1 = ! empty( $cta_link ) && ! empty( $cta_link['url'] );
+				$has_link_2 = ! empty( $cta_link_2 ) && ! empty( $cta_link_2['url'] );
+				if ( $has_link_1 || $has_link_2 ) {
+					?>
+			<div class="cb-image-cta__actions">
+					<?php
+					if ( $has_link_1 ) {
+						?>
+				<a class="cb-image-cta__link" href="<?= esc_url( $cta_link['url'] ); ?>" target="<?= esc_attr( ! empty( $cta_link['target'] ) ? $cta_link['target'] : '_self' ); ?>"><?= esc_html( ! empty( $cta_link['title'] ) ? $cta_link['title'] : $cta_link['url'] ); ?></a>
+						<?php
+					}
+					if ( $has_link_2 ) {
+						?>
+				<a class="cb-image-cta__link" href="<?= esc_url( $cta_link_2['url'] ); ?>" target="<?= esc_attr( ! empty( $cta_link_2['target'] ) ? $cta_link_2['target'] : '_self' ); ?>"><?= esc_html( ! empty( $cta_link_2['title'] ) ? $cta_link_2['title'] : $cta_link_2['url'] ); ?></a>
+						<?php
+					}
+					?>
+			</div>
+					<?php
+				}
+				?>
 			</div>
 		</div>
 	</div>

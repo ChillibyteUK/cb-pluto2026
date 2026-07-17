@@ -80,6 +80,23 @@
             "allow_in_bindings": 0
         },
         {
+            "key": "field_cb_image_cta_link_2",
+            "label": "Link 2",
+            "name": "link_2",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "allow_in_bindings": 0
+        },
+        {
             "key": "field_cb_image_cta_background_image",
             "label": "Background image",
             "name": "background_image",
