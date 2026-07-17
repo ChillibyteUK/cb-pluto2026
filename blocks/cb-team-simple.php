@@ -50,22 +50,22 @@ if ( empty( $people ) ) {
 }
 
 // $get_sort_name = function ( WP_Post $person ) {
-// 	$name  = trim( wp_strip_all_tags( get_the_title( $person ) ) );
-// 	$parts = preg_split( '/\s+/', $name );
+//  $name  = trim( wp_strip_all_tags( get_the_title( $person ) ) );
+//  $parts = preg_split( '/\s+/', $name );
 
-// 	if ( ! $parts ) {
-// 		return '';
-// 	}
+//  if ( ! $parts ) {
+//      return '';
+//  }
 
-// 	$surname = (string) end( $parts );
-// 	return strtolower( remove_accents( $surname . ' ' . $name ) );
+//  $surname = (string) end( $parts );
+//  return strtolower( remove_accents( $surname . ' ' . $name ) );
 // };
 
 // usort(
-// 	$people,
-// 	function ( WP_Post $a, WP_Post $b ) use ( $get_sort_name ) {
-// 		return strnatcasecmp( $get_sort_name( $a ), $get_sort_name( $b ) );
-// 	}
+//  $people,
+//  function ( WP_Post $a, WP_Post $b ) use ( $get_sort_name ) {
+//      return strnatcasecmp( $get_sort_name( $a ), $get_sort_name( $b ) );
+//  }
 // );
 
 $teams = get_terms(
@@ -85,14 +85,25 @@ $initial_team_slugs = array();
 if ( ! empty( $initial_team_filter ) && is_array( $initial_team_filter ) ) {
 	$initial_team_slugs = get_terms(
 		array(
-			'taxonomy' => 'team',
-			'include'  => $initial_team_filter,
-			'fields'   => 'slugs',
+			'taxonomy'   => 'team',
+			'include'    => $initial_team_filter,
+			'fields'     => 'slugs',
 			'hide_empty' => false,
 		)
 	);
 	if ( is_wp_error( $initial_team_slugs ) ) {
 		$initial_team_slugs = array();
+	}
+}
+
+// Override with URL parameter ?t= (comma-separated team slugs).
+if ( isset( $_GET['t'] ) && is_string( $_GET['t'] ) && '' !== trim( $_GET['t'] ) ) {
+	$url_terms = array_map( 'sanitize_title', explode( ',', $_GET['t'] ) );
+	$url_terms = array_filter( $url_terms );
+	if ( in_array( 'all', $url_terms, true ) ) {
+		$initial_team_slugs = array();
+	} elseif ( ! empty( $url_terms ) ) {
+		$initial_team_slugs = $url_terms;
 	}
 }
 
@@ -103,8 +114,8 @@ $icon_email = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" wid
 $icon_phone = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" width="18" height="18"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.5 11.5 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1.04l-2.22 2.19Z"/></svg>';
 $icon_li    = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" width="18" height="18"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.75h4V21H3V9.75ZM9.5 9.75h3.83v1.54h.05c.53-1 1.84-2.06 3.79-2.06 4.05 0 4.8 2.66 4.8 6.13V21h-4v-4.86c0-1.16-.02-2.65-1.62-2.65-1.62 0-1.86 1.27-1.86 2.57V21h-4V9.75Z"/></svg>';
 
-$contact_form_id = function_exists( 'cb_team_get_contact_form_id' ) ? cb_team_get_contact_form_id() : 0;
-$contact_field_ids = ( $contact_form_id && function_exists( 'cb_team_resolve_form_fields' ) )
+$contact_form_id    = function_exists( 'cb_team_get_contact_form_id' ) ? cb_team_get_contact_form_id() : 0;
+$contact_field_ids  = ( $contact_form_id && function_exists( 'cb_team_resolve_form_fields' ) )
 	? cb_team_resolve_form_fields( $contact_form_id )
 	: null;
 $recipient_field_id = $contact_field_ids && ! empty( $contact_field_ids['recipient'] )
