@@ -49,25 +49,6 @@ if ( empty( $people ) ) {
 	return;
 }
 
-// $get_sort_name = function ( WP_Post $person ) {
-//  $name  = trim( wp_strip_all_tags( get_the_title( $person ) ) );
-//  $parts = preg_split( '/\s+/', $name );
-
-//  if ( ! $parts ) {
-//      return '';
-//  }
-
-//  $surname = (string) end( $parts );
-//  return strtolower( remove_accents( $surname . ' ' . $name ) );
-// };
-
-// usort(
-//  $people,
-//  function ( WP_Post $a, WP_Post $b ) use ( $get_sort_name ) {
-//      return strnatcasecmp( $get_sort_name( $a ), $get_sort_name( $b ) );
-//  }
-// );
-
 $teams = get_terms(
 	array(
 		'taxonomy'   => 'team',
@@ -97,8 +78,8 @@ if ( ! empty( $initial_team_filter ) && is_array( $initial_team_filter ) ) {
 }
 
 // Override with URL parameter ?t= (comma-separated team slugs).
-if ( isset( $_GET['t'] ) && is_string( $_GET['t'] ) && '' !== trim( $_GET['t'] ) ) {
-	$url_terms = array_map( 'sanitize_title', explode( ',', $_GET['t'] ) );
+if ( isset( $_GET['t'] ) && is_string( $_GET['t'] ) && '' !== trim( $_GET['t'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	$url_terms = array_map( 'sanitize_title', explode( ',', $_GET['t'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 	$url_terms = array_filter( $url_terms );
 	if ( in_array( 'all', $url_terms, true ) ) {
 		$initial_team_slugs = array();
@@ -138,7 +119,7 @@ $recipient_field_id = $contact_field_ids && ! empty( $contact_field_ids['recipie
 				<?php
 				$person_id = (int) $person->ID;
 				$name      = get_the_title( $person );
-				$role      = (string) get_field( 'role', $person_id );
+				$urole     = (string) get_field( 'role', $person_id );
 				$email     = (string) get_field( 'email', $person_id );
 				$phone     = (string) get_field( 'phone', $person_id );
 				$linkedin  = (string) get_field( 'linkedin_url', $person_id );
@@ -183,8 +164,8 @@ $recipient_field_id = $contact_field_ids && ! empty( $contact_field_ids['recipie
 							<?php else : ?>
 								<h3 class="cb-team-simple__name"><?= esc_html( $name ); ?></h3>
 							<?php endif; ?>
-							<?php if ( '' !== trim( $role ) ) : ?>
-								<p class="cb-team-simple__role"><?= esc_html( $role ); ?></p>
+							<?php if ( '' !== trim( $urole ) ) : ?>
+								<p class="cb-team-simple__role"><?= esc_html( $urole ); ?></p>
 							<?php endif; ?>
 							<?php if ( ! empty( $team_names ) ) : ?>
 								<p class="cb-team-simple__team"><?= esc_html( implode( ', ', $team_names ) ); ?></p>
@@ -217,8 +198,8 @@ $recipient_field_id = $contact_field_ids && ! empty( $contact_field_ids['recipie
 									</div>
 									<div class="cb-team-simple__modal-content">
 										<h3 class="cb-team-simple__modal-name" id="<?= esc_attr( $modal_id ); ?>-title"><?= esc_html( $name ); ?></h3>
-										<?php if ( '' !== trim( $role ) ) : ?>
-											<p class="cb-team-simple__modal-role"><?= esc_html( $role ); ?></p>
+										<?php if ( '' !== trim( $urole ) ) : ?>
+											<p class="cb-team-simple__modal-role"><?= esc_html( $urole ); ?></p>
 										<?php endif; ?>
 										<?php if ( ! empty( $team_names ) ) : ?>
 											<p class="cb-team-simple__modal-team"><?= esc_html( implode( ', ', $team_names ) ); ?></p>
