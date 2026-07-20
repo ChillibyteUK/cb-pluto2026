@@ -21875,13 +21875,13 @@ button,
 
 /* Links */
 a {
-  color: var(--col-accent-400);
+  color: var(--col-green-dark-1000);
   text-decoration: none;
   transition: color 0.2s;
 }
 
 a:focus-visible {
-  outline: 2px solid var(--col-accent-400);
+  outline: 2px solid var(--col-green-dark-1000);
   outline-offset: 2px;
 }
 
