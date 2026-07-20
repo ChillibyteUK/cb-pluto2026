@@ -64,15 +64,19 @@ $classes = trim( implode( ' ', array_filter( $section_classes ) ) );
 			<?php foreach ( $cards as $card ) : ?>
 				<div class="col-lg-6 cb-card-grid__col">
 					<div class="cb-card-grid__card">
-						<?php
-						$icon_id = $card['icon'] ?? 0;
-						if ( $icon_id ) :
-							echo wp_get_attachment_image( $icon_id, 'medium', '', array( 'class' => 'cb-card-grid__icon' ) );
-						endif;
-						?>
-						<?php if ( ! empty( $card['title'] ) ) : ?>
+						<div class="d-flex gap-2">
+							<?php
+							$icon_id = $card['icon'] ?? 0;
+							if ( $icon_id ) {
+								echo wp_get_attachment_image( $icon_id, 'medium', '', array( 'class' => 'cb-card-grid__icon' ) );
+							}
+							if ( ! empty( $card['title'] ) ) {
+								?>
 							<h3 class="cb-card-grid__title"><?= esc_html( $card['title'] ); ?></h3>
-						<?php endif; ?>
+								<?php
+							}
+							?>
+						</div>
 						<?php if ( ! empty( $card['content'] ) ) : ?>
 							<div class="cb-card-grid__content"><?= wp_kses_post( $card['content'] ); ?></div>
 						<?php endif; ?>
