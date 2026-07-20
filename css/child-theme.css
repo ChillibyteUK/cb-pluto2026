@@ -26971,6 +26971,52 @@ body.cb-team-modal-open {
   display: flex;
   justify-content: flex-end;
 }
+.cb-report-pushthrough__modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+}
+.cb-report-pushthrough__modal-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: hsla(0, 0%, 0%, 0.6);
+}
+.cb-report-pushthrough__modal-dialog {
+  position: relative;
+  z-index: 1;
+  width: min(600px, 100%);
+  max-height: calc(100vh - 2rem);
+  overflow: auto;
+  background-color: var(--col-white);
+  color: var(--col-grey-900);
+  box-shadow: var(--shadow-2);
+  padding: 2rem;
+}
+.cb-report-pushthrough__modal-dialog .gform_wrapper {
+  margin-top: 0;
+}
+.cb-report-pushthrough__modal-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 2;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 0;
+  border-radius: 50%;
+  background-color: var(--col-green-dark-1000);
+  color: var(--col-white);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.cb-report-pushthrough-modal-open {
+  overflow: hidden;
+}
 
 .home-page__hero {
   position: relative;
@@ -27175,6 +27221,7 @@ body.cb-team-modal-open {
 
 body {
   background-color: var(--col-white);
+  scrollbar-gutter: stable;
 }
 
 main {
