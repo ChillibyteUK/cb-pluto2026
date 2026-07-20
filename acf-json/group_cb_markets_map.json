@@ -26,8 +26,7 @@
           "choices": {
             "GB": "United Kingdom",
             "IE": "Ireland",
-            "NL": "Netherlands",
-            "DE": "Germany",
+            "DE_NL": "Germany & Netherlands",
             "ES_PT": "Spain & Portugal"
           },
           "allow_null": 0,
@@ -62,5 +61,6 @@
     ]
   ],
   "active": 1,
-  "description": ""
+  "description": "",
+  "modified": 1784559900 
 }

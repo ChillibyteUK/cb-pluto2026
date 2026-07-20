@@ -49,15 +49,10 @@ if ( empty( $markets ) ) {
 			'title' => __( 'Ireland', 'cb-pluto2026' ),
 			'body'  => __( 'Add market copy for Ireland here.', 'cb-pluto2026' ),
 		),
-		'NL'    => array(
-			'label' => __( 'Netherlands', 'cb-pluto2026' ),
-			'title' => __( 'Netherlands', 'cb-pluto2026' ),
-			'body'  => __( 'Add market copy for the Netherlands here.', 'cb-pluto2026' ),
-		),
-		'DE'    => array(
-			'label' => __( 'Germany', 'cb-pluto2026' ),
-			'title' => __( 'Germany', 'cb-pluto2026' ),
-			'body'  => __( 'Add market copy for Germany here.', 'cb-pluto2026' ),
+		'DE_NL' => array(
+			'label' => __( 'Germany and The Netherlands', 'cb-pluto2026' ),
+			'title' => __( 'Germany and The Netherlands', 'cb-pluto2026' ),
+			'body'  => __( 'Add market copy for Germany and The Netherlands here.', 'cb-pluto2026' ),
 		),
 		'ES_PT' => array(
 			'label' => __( 'Spain and Portugal', 'cb-pluto2026' ),
@@ -70,8 +65,8 @@ if ( empty( $markets ) ) {
 $country_keys = array(
 	'GB' => 'GB',
 	'IE' => 'IE',
-	'NL' => 'NL',
-	'DE' => 'DE',
+	'NL' => 'DE_NL',
+	'DE' => 'DE_NL',
 	'ES' => 'ES_PT',
 	'PT' => 'ES_PT',
 );
