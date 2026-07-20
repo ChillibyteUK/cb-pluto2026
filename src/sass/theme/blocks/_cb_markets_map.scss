@@ -25,6 +25,15 @@
 		> :last-child {
 			margin-bottom: 0;
 		}
+		a {
+			font-weight: 600;
+			color: var(--col-green-dark-1000);
+			&:hover,
+			&:focus {
+				color: var(--col-green-dark-1100);
+				text-decoration: underline;
+			}
+		}
 	}
 
 	&__stage {

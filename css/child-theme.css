@@ -25972,6 +25972,14 @@ body.cb-team-modal-open {
 .cb-markets-map__body > :last-child {
   margin-bottom: 0;
 }
+.cb-markets-map__body a {
+  font-weight: 600;
+  color: var(--col-green-dark-1000);
+}
+.cb-markets-map__body a:hover, .cb-markets-map__body a:focus {
+  color: var(--col-green-dark-1100);
+  text-decoration: underline;
+}
 .cb-markets-map__stage {
   position: relative;
 }
