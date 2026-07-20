@@ -64,7 +64,7 @@ $classes = trim( implode( ' ', array_filter( $section_classes ) ) );
 			<?php foreach ( $cards as $card ) : ?>
 				<div class="col-lg-6 cb-card-grid__col">
 					<div class="cb-card-grid__card">
-						<div class="d-flex gap-2 align-items-center">
+						<div class="d-flex gap-4 align-items-center mb-4">
 							<?php
 							$icon_id = $card['icon'] ?? 0;
 							if ( $icon_id ) {
@@ -77,9 +77,13 @@ $classes = trim( implode( ' ', array_filter( $section_classes ) ) );
 							}
 							?>
 						</div>
-						<?php if ( ! empty( $card['content'] ) ) : ?>
-							<div class="cb-card-grid__content"><?= wp_kses_post( $card['content'] ); ?></div>
-						<?php endif; ?>
+						<?php
+						if ( ! empty( $card['content'] ) ) {
+							?>
+						<div class="cb-card-grid__content"><?= wp_kses_post( $card['content'] ); ?></div>
+							<?php
+						}
+						?>
 					</div>
 				</div>
 			<?php endforeach; ?>
