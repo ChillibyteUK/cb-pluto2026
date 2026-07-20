@@ -74,9 +74,21 @@ $context = cb_get_site_context();
 				<div class="col-12 col-md-3">
 					&copy; <?= esc_html( gmdate( 'Y' ) ); ?> Pluto Finance (UK) LLP.<br>
 				</div>
+				<?php
+				if ( 'pf' === $context ) {
+					?>
 				<div class="col-12 col-md-9">
 					<?= wp_kses_post( get_field( 'colophon', 'option' ) ); ?>
 				</div>
+					<?php
+				} elseif ( 'inv' === $context ) {
+					?>
+				<div class="col-12 col-md-9">
+					<?= wp_kses_post( get_field( 'colophon_investors', 'option' ) ); ?>
+				</div>
+					<?php
+				}
+				?>
 			</div>
 		</div>
 	</div>

@@ -190,8 +190,29 @@
         },
         {
             "key": "field_69e600896e281",
-            "label": "Colophon",
+            "label": "Colophon - Lending",
             "name": "colophon",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "rows": 4,
+            "placeholder": "",
+            "new_lines": "br"
+        },
+        {
+            "key": "field_6a5e1df7141f6",
+            "label": "Colophon - Investors",
+            "name": "colophon_investors",
             "aria-label": "",
             "type": "textarea",
             "instructions": "",
@@ -378,5 +399,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1781860934
+    "modified": 1784552994
 }
