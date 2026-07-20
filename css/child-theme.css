@@ -26940,9 +26940,13 @@ body.cb-team-modal-open {
 .cb-report-pushthrough__cover {
   border-radius: 0.5rem;
   box-shadow: var(--shadow-2);
+  max-width: min(100%, 240px);
+  display: block;
+  margin-inline: auto;
 }
 .cb-report-pushthrough__content {
   padding-bottom: 1rem;
+  font-size: var(--fs-600);
 }
 .cb-report-pushthrough__cta {
   background-color: var(--col-white);

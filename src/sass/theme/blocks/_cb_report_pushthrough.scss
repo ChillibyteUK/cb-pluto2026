@@ -8,9 +8,13 @@
     &__cover {
         border-radius: 0.5rem;
         box-shadow: var(--shadow-2);
+        max-width: min(100%,240px);
+        display: block;
+        margin-inline: auto;
     }
     &__content {
         padding-bottom: 1rem;
+        font-size: var(--fs-600);
     }
     &__cta {
         background-color: var(--col-white);
