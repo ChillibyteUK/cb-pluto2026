@@ -89,6 +89,27 @@
             "new_lines": "wpautop"
         },
         {
+            "key": "field_6a5e21278700f",
+            "label": "CTA Contet",
+            "name": "cta_content",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "rows": "",
+            "placeholder": "",
+            "new_lines": "wpautop"
+        },
+        {
             "key": "field_6a4f574ec4773",
             "label": "Button",
             "name": "button",
@@ -127,5 +148,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1783589925
+    "modified": 1784553783
 }

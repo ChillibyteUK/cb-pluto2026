@@ -26932,13 +26932,40 @@ body.cb-team-modal-open {
 }
 
 .cb-report-pushthrough__inner {
-  background-color: var(--col-green-dark-1000);
-  color: var(--col-white);
+  background-color: var(--col-grey-400);
+  color: var(--col-black);
   padding: 2rem;
-  border-radius: 0.5rem;
+  border-radius: 1rem;
 }
 .cb-report-pushthrough__cover {
-  border-radius: 0.25rem;
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow-2);
+}
+.cb-report-pushthrough__content {
+  padding-bottom: 1rem;
+}
+.cb-report-pushthrough__cta {
+  background-color: var(--col-white);
+  border-radius: 0.5rem;
+  padding: 1rem 1rem 1rem 4rem;
+  position: relative;
+}
+.cb-report-pushthrough__cta p:first-child {
+  font-weight: var(--fw-semibold);
+  color: var(--col-green-dark-1000);
+}
+.cb-report-pushthrough__cta::before {
+  content: "";
+  position: absolute;
+  background-image: url(../img/chevron-right.svg);
+  top: 1rem;
+  left: 0;
+  width: 45px;
+  height: 79px;
+}
+.cb-report-pushthrough__button {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .home-page__hero {
