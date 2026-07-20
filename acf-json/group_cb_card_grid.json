@@ -21,29 +21,6 @@
             "new_lines": "wpautop"
         },
         {
-            "key": "field_cb_card_grid_columns",
-            "label": "Columns",
-            "name": "columns",
-            "aria-label": "",
-            "type": "button_group",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "2": "2 Columns",
-                "3": "3 Columns"
-            },
-            "default_value": "2",
-            "return_format": "value",
-            "allow_null": 0,
-            "layout": "horizontal"
-        },
-        {
             "key": "field_6a33d23d40861",
             "label": "Cards",
             "name": "cards",
@@ -64,6 +41,32 @@
                     "label": "Card",
                     "display": "block",
                     "sub_fields": [
+                        {
+                            "key": "field_cb_card_grid_icon",
+                            "label": "Icon",
+                            "name": "icon",
+                            "aria-label": "",
+                            "type": "image",
+                            "instructions": "Square SVG icon.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "id",
+                            "library": "all",
+                            "min_width": "",
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
+                            "mime_types": "svg",
+                            "allow_in_bindings": 0,
+                            "preview_size": "thumbnail"
+                        },
                         {
                             "key": "field_6a33d25b40862",
                             "label": "Title",
@@ -109,76 +112,11 @@
                     ],
                     "min": "",
                     "max": ""
-                },
-                "layout_6a33d28e40864": {
-                    "key": "layout_6a33d28e40864",
-                    "name": "image",
-                    "label": "Image",
-                    "display": "block",
-                    "sub_fields": [
-                        {
-                            "key": "field_6a33d29240866",
-                            "label": "Image",
-                            "name": "image",
-                            "aria-label": "",
-                            "type": "image",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "50",
-                                "class": "",
-                                "id": ""
-                            },
-                            "return_format": "id",
-                            "library": "all",
-                            "min_width": "",
-                            "min_height": "",
-                            "min_size": "",
-                            "max_width": "",
-                            "max_height": "",
-                            "max_size": "",
-                            "mime_types": "",
-                            "allow_in_bindings": 0,
-                            "preview_size": "thumbnail"
-                        },
-                        {
-                            "key": "field_6a33d2a640867",
-                            "label": "Full Bleed",
-                            "name": "full_bleed",
-                            "aria-label": "",
-                            "type": "true_false",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": [
-                                [
-                                    {
-                                        "field": "field_cb_card_grid_columns",
-                                        "operator": "!=",
-                                        "value": "3"
-                                    }
-                                ]
-                            ],
-                            "wrapper": {
-                                "width": "50",
-                                "class": "",
-                                "id": ""
-                            },
-                            "message": "",
-                            "default_value": 0,
-                            "allow_in_bindings": 0,
-                            "ui_on_text": "",
-                            "ui_off_text": "",
-                            "ui": 1
-                        }
-                    ],
-                    "min": "",
-                    "max": ""
                 }
             },
             "min": "",
             "max": "",
-            "button_label": "Add Row"
+            "button_label": "Add Card"
         }
     ],
     "location": [

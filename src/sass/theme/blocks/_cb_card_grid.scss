@@ -1,136 +1,35 @@
 .cb-card-grid {
-  overflow-x: clip;
-  --cb-card-grid-dot-image: url("../img/dot-orange-green-white.svg");
-  --cb-card-grid-dot-size: 1.56rem;
-  --cb-card-grid-title-indent: 2.5rem;
-
-  // Bootstrap container outer widths. Used to calculate how far a full-bleed
-  // image needs to extend from a 50% column to the viewport edge.
-  --cb-card-grid-container-w: 100vw;
-
-  @media (min-width: 576px) {
-    --cb-card-grid-container-w: 540px;
-  }
-
-  @media (min-width: 768px) {
-    --cb-card-grid-container-w: 720px;
-  }
-
-  @media (min-width: 992px) {
-    --cb-card-grid-container-w: 960px;
-  }
-
-  @media (min-width: 1200px) {
-    --cb-card-grid-container-w: 1140px;
-  }
-
-  @media (min-width: 1400px) {
-    --cb-card-grid-container-w: 1320px;
-  }
-
-  &__col {
-    display: flex;
-    align-items: stretch;
-  }
-
-  &__card,
-  &__image {
-    width: 100%;
-  }
-
-  &__card {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    min-height: 100%;
-    padding: clamp(1rem, 4vw, 2rem);
-    background-color: var(--col-green-dark-100);
-    box-shadow: var(--shadow-1);
-    border-top-right-radius: 2rem;
-  }
-
-  &--white-cards &__card {
-    color: var(--bs-body-color);
-    background-color: var(--col-white);
-  }
-
-  &__title {
-    position: relative;
-    margin-bottom: 1rem;
-    padding-inline-start: var(--cb-card-grid-title-indent);
-    font-size: var(--fs-700);
-    line-height: var(--lh-700);
-    font-weight: var(--fw-medium);
-
-    &::before {
-      content: "";
-      position: absolute;
-      top: calc(0.5em - (var(--cb-card-grid-dot-size) / 2));
-      left: 0;
-      width: var(--cb-card-grid-dot-size);
-      height: var(--cb-card-grid-dot-size);
-      background: var(--cb-card-grid-dot-image) center / contain no-repeat;
+    &__col {
+        display: flex;
+        align-items: stretch;
     }
-  }
 
-  &__content {
-    padding-inline-start: var(--cb-card-grid-title-indent);
-
-    > *:last-child {
-      margin-bottom: 0;
-    }
-  }
-
-  &--inv {
-    --cb-card-grid-dot-image: url("../img/dot-orange-green-white.svg");
-  }
-
-  &__image {
-    aspect-ratio: 16 / 9;
-
-    img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      box-shadow: var(--shadow-1);
-    }
-  }
-
-  &__image--full-bleed {
-    @media (min-width: 768px) {
-      position: relative;
-      min-height: 360px;
-      aspect-ratio: auto;
-
-      img {
-        position: absolute;
-        inset: 0;
+    &__card {
         width: 100%;
-        height: 100% !important;
-      }
+        background-color: var(--col-grey-400);
+        border-radius: 1rem;
+        padding: 2rem;
+        text-align: center;
     }
-  }
 
-  &__image--bleed-left {
-    @media (min-width: 768px) {
-      margin-left: calc(((var(--cb-card-grid-container-w) - 100vw) / 2) - var(--bs-gutter-x, 1.5rem) / 2);
-      width: calc(100% + ((100vw - var(--cb-card-grid-container-w)) / 2) + var(--bs-gutter-x, 1.5rem) / 2);
-
-      img {
-        border-radius: 0 9999px 9999px 0;
-      }
+    &__icon {
+        display: block;
+        width: 80px;
+        height: 80px;
+        object-fit: contain;
+        margin-inline: auto;
+        margin-bottom: 1rem;
     }
-  }
 
-  &__image--bleed-right {
-    @media (min-width: 768px) {
-      margin-right: calc(((var(--cb-card-grid-container-w) - 100vw) / 2) - var(--bs-gutter-x, 1.5rem) / 2);
-      width: calc(100% + ((100vw - var(--cb-card-grid-container-w)) / 2) + var(--bs-gutter-x, 1.5rem) / 2);
-
-      img {
-        border-radius: 9999px 0 0 9999px;
-      }
+    &__title {
+        margin-bottom: 1rem;
+        font-size: var(--fs-700);
+        font-weight: var(--fw-medium);
     }
-  }
+
+    &__content {
+        > *:last-child {
+            margin-bottom: 0;
+        }
+    }
 }
