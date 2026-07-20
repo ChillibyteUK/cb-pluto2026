@@ -9,22 +9,19 @@
         background-color: var(--col-grey-400);
         border-radius: 1rem;
         padding: 2rem;
-        text-align: center;
     }
 
     &__icon {
-        display: block;
-        width: 80px;
-        height: 80px;
+        width: 60px;
+        height: 60px;
         object-fit: contain;
-        margin-inline: auto;
-        margin-bottom: 1rem;
+        flex-shrink: 0;
     }
 
     &__title {
-        margin-bottom: 1rem;
         font-size: var(--fs-700);
         font-weight: var(--fw-medium);
+        margin-bottom: 0;
     }
 
     &__content {

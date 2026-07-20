@@ -25387,21 +25387,18 @@ body.cb-team-modal-open {
   background-color: var(--col-grey-400);
   border-radius: 1rem;
   padding: 2rem;
-  text-align: center;
 }
 .cb-card-grid__icon {
-  display: block;
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
   -o-object-fit: contain;
   object-fit: contain;
-  margin-inline: auto;
-  margin-bottom: 1rem;
+  flex-shrink: 0;
 }
 .cb-card-grid__title {
-  margin-bottom: 1rem;
   font-size: var(--fs-700);
   font-weight: var(--fw-medium);
+  margin-bottom: 0;
 }
 .cb-card-grid__content > *:last-child {
   margin-bottom: 0;

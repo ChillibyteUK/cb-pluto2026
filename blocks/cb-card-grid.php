@@ -64,7 +64,7 @@ $classes = trim( implode( ' ', array_filter( $section_classes ) ) );
 			<?php foreach ( $cards as $card ) : ?>
 				<div class="col-lg-6 cb-card-grid__col">
 					<div class="cb-card-grid__card">
-						<div class="d-flex gap-2">
+						<div class="d-flex gap-2 align-items-center">
 							<?php
 							$icon_id = $card['icon'] ?? 0;
 							if ( $icon_id ) {
