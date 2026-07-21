@@ -26,7 +26,8 @@
       },
       "choices": {
         "2": "2 Columns",
-        "3": "3 Columns"
+        "3": "3 Columns",
+        "12": "Full Width"
       },
       "default_value": "2",
       "return_format": "value",
