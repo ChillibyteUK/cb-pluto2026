@@ -259,6 +259,8 @@ document.addEventListener('DOMContentLoaded', function () {
 			});
 		});
 	}
+
+	applyFilters();
 });
 </script>
 <?php endif; ?>
