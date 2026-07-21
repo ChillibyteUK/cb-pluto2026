@@ -64,9 +64,10 @@ $classes = trim( implode( ' ', array_filter( $section_classes ) ) );
 	<div class="container">
 		<div class="row g-4 align-items-stretch">
 			<?php
-			foreach ( $cards as $card ) {
+			foreach ( $cards as $index => $card ) {
+				$aos_delay = ( $index % $columns ) * 100;
 				?>
-			<div class="<?= esc_attr( $column_class ); ?> cb-card-grid__col">
+			<div class="<?= esc_attr( $column_class ); ?> cb-card-grid__col" data-aos="fade-up" data-aos-delay="<?= esc_attr( $aos_delay ); ?>">
 				<div class="cb-card-grid__card">
 					<div class="d-flex gap-4 align-items-center mb-4">
 				<?php
