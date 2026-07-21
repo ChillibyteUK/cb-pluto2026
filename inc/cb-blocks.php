@@ -17,6 +17,7 @@ function acf_blocks() {
 
 		// INSERT NEW BLOCKS HERE.
 
+
 		acf_register_block_type(
 			array(
 				'name'            => 'cb_report_pushthrough',
