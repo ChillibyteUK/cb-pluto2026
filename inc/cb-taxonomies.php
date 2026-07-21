@@ -76,5 +76,34 @@ function cb_register_taxes() {
 		'query_var'          => false,
 	);
 	register_taxonomy( 'portfolio_solution', array( 'portfolio' ), $portfolio_solution_args );
+
+	// Hierarchical markets taxonomy for the shared portfolio CPT.
+	$portfolio_market_args = array(
+		'labels'             => array(
+			'name'              => _x( 'Portfolio Markets', 'taxonomy general name', 'cb-pluto2026' ),
+			'singular_name'     => _x( 'Portfolio Market', 'taxonomy singular name', 'cb-pluto2026' ),
+			'search_items'      => __( 'Search Portfolio Markets', 'cb-pluto2026' ),
+			'all_items'         => __( 'All Portfolio Markets', 'cb-pluto2026' ),
+			'parent_item'       => __( 'Parent Portfolio Market', 'cb-pluto2026' ),
+			'parent_item_colon' => __( 'Parent Portfolio Market:', 'cb-pluto2026' ),
+			'edit_item'         => __( 'Edit Portfolio Market', 'cb-pluto2026' ),
+			'update_item'       => __( 'Update Portfolio Market', 'cb-pluto2026' ),
+			'add_new_item'      => __( 'Add New Portfolio Market', 'cb-pluto2026' ),
+			'new_item_name'     => __( 'New Portfolio Market', 'cb-pluto2026' ),
+			'menu_name'         => __( 'Markets', 'cb-pluto2026' ),
+		),
+		'public'             => false,
+		'publicly_queryable' => false,
+		'hierarchical'       => true,
+		'show_ui'            => true,
+		'show_in_nav_menus'  => false,
+		'show_tagcloud'      => false,
+		'show_in_quick_edit' => true,
+		'show_admin_column'  => true,
+		'show_in_rest'       => true,
+		'rewrite'            => false,
+		'query_var'          => false,
+	);
+	register_taxonomy( 'portfolio_market', array( 'portfolio' ), $portfolio_market_args );
 }
 add_action( 'init', 'cb_register_taxes' );
