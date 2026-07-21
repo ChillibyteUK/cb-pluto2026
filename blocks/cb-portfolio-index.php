@@ -96,7 +96,7 @@ if ( isset( $_GET['market'] ) && is_string( $_GET['market'] ) && '' !== trim( $_
 		</div>
 		<?php endif; ?>
 
-		<div class="row">
+		<div class="row mt-4">
 			<?php
 			while ( $portfolio_query->have_posts() ) {
 				$portfolio_query->the_post();
