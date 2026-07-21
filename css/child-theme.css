@@ -24763,6 +24763,9 @@ body.cb-team-modal-open {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+.cb-portfolio-index__filters:last-child {
   margin-bottom: 2rem;
 }
 .cb-portfolio-index__filter {

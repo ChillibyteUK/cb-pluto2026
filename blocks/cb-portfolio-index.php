@@ -9,19 +9,24 @@ defined( 'ABSPATH' ) || exit;
 
 $context = cb_get_site_context();
 
-if ( 'pf' === $context ) {
-	$cpt_type = 'portfolio';
-	$cpt_tax  = 'portfolio_solution';
-} elseif ( 'inv' === $context ) {
-	$cpt_type = 'portfolio';
-	$cpt_tax  = 'portfolio_solution';
-} else {
+if ( ! in_array( $context, array( 'pf', 'inv' ), true ) ) {
 	return;
 }
 
-$filter_terms = get_terms(
+$cpt_type = 'portfolio';
+
+// Solution filter terms.
+$solution_terms = get_terms(
 	array(
-		'taxonomy'   => $cpt_tax,
+		'taxonomy'   => 'portfolio_solution',
+		'hide_empty' => true,
+	)
+);
+
+// Market filter terms.
+$market_terms = get_terms(
+	array(
+		'taxonomy'   => 'portfolio_market',
 		'hide_empty' => true,
 	)
 );
@@ -39,25 +44,58 @@ if ( ! $portfolio_query->have_posts() ) {
 }
 
 $block_id = $block['anchor'] ?? 'cb-portfolio-index-' . uniqid();
+
+$has_solution_filters = ! empty( $solution_terms ) && ! is_wp_error( $solution_terms );
+$has_market_filters   = ! empty( $market_terms ) && ! is_wp_error( $market_terms );
+
+// URL parameter overrides.
+$active_solution = 'all';
+$active_market   = 'all';
+
+if ( isset( $_GET['solution'] ) && is_string( $_GET['solution'] ) && '' !== trim( $_GET['solution'] ) ) {
+	$url_solution = sanitize_title( $_GET['solution'] );
+	if ( 'all' === $url_solution ) {
+		$active_solution = 'all';
+	} elseif ( $has_solution_filters ) {
+		$solution_slugs = wp_list_pluck( $solution_terms, 'slug' );
+		if ( in_array( $url_solution, $solution_slugs, true ) ) {
+			$active_solution = $url_solution;
+		}
+	}
+}
+
+if ( isset( $_GET['market'] ) && is_string( $_GET['market'] ) && '' !== trim( $_GET['market'] ) ) {
+	$url_market = sanitize_title( $_GET['market'] );
+	if ( 'all' === $url_market ) {
+		$active_market = 'all';
+	} elseif ( $has_market_filters ) {
+		$market_slugs = wp_list_pluck( $market_terms, 'slug' );
+		if ( in_array( $url_market, $market_slugs, true ) ) {
+			$active_market = $url_market;
+		}
+	}
+}
 ?>
 <div id="<?= esc_attr( $block_id ); ?>" class="cb-portfolio-index cb-portfolio-index--<?= esc_attr( $context ); ?>">
 	<div class="container">
-		<?php
-		if ( ! empty( $filter_terms ) && ! is_wp_error( $filter_terms ) ) {
-			?>
-		<div class="cb-portfolio-index__filters">
-			<button class="cb-portfolio-index__filter cb-portfolio-index__filter--active" data-filter="all">All</button>
-			<?php
-			foreach ( $filter_terms as $filter_term ) {
-				?>
-			<button class="cb-portfolio-index__filter" data-filter="<?= esc_attr( $filter_term->slug ); ?>"><?= esc_html( $filter_term->name ); ?></button>
-				<?php
-			}
-			?>
+		<?php if ( $has_solution_filters ) : ?>
+		<div class="cb-portfolio-index__filters cb-portfolio-index__filters--solutions">
+			<button class="cb-portfolio-index__filter<?= 'all' === $active_solution ? ' cb-portfolio-index__filter--active' : ''; ?>" data-filter="all"><?php esc_html_e( 'All', 'cb-pluto2026' ); ?></button>
+			<?php foreach ( $solution_terms as $term ) : ?>
+			<button class="cb-portfolio-index__filter<?= $term->slug === $active_solution ? ' cb-portfolio-index__filter--active' : ''; ?>" data-filter="<?= esc_attr( $term->slug ); ?>"><?= esc_html( $term->name ); ?></button>
+			<?php endforeach; ?>
 		</div>
-			<?php
-		}
-		?>
+		<?php endif; ?>
+
+		<?php if ( $has_market_filters ) : ?>
+		<div class="cb-portfolio-index__filters cb-portfolio-index__filters--markets">
+			<button class="cb-portfolio-index__filter<?= 'all' === $active_market ? ' cb-portfolio-index__filter--active' : ''; ?>" data-filter="all"><?php esc_html_e( 'All Markets', 'cb-pluto2026' ); ?></button>
+			<?php foreach ( $market_terms as $term ) : ?>
+			<button class="cb-portfolio-index__filter<?= $term->slug === $active_market ? ' cb-portfolio-index__filter--active' : ''; ?>" data-filter="<?= esc_attr( $term->slug ); ?>"><?= esc_html( $term->name ); ?></button>
+			<?php endforeach; ?>
+		</div>
+		<?php endif; ?>
+
 		<div class="row">
 			<?php
 			while ( $portfolio_query->have_posts() ) {
@@ -92,17 +130,22 @@ $block_id = $block['anchor'] ?? 'cb-portfolio-index-' . uniqid();
 
 				$should_link = $has_highlights && $has_portfolio_fields;
 
-				$post_terms  = wp_get_post_terms( $the_id, $cpt_tax, array( 'fields' => 'slugs' ) );
-				$filter_attr = ! empty( $post_terms ) && ! is_wp_error( $post_terms ) ? implode( ' ', $post_terms ) : '';
+				$post_solution_terms = wp_get_post_terms( $the_id, 'portfolio_solution', array( 'fields' => 'slugs' ) );
+				$solution_attr       = ! empty( $post_solution_terms ) && ! is_wp_error( $post_solution_terms ) ? implode( ' ', $post_solution_terms ) : '';
 
-				$primary_term_slug = ! empty( $post_terms ) && ! is_wp_error( $post_terms ) ? $post_terms[0] : '';
+				$post_market_terms = wp_get_post_terms( $the_id, 'portfolio_market', array( 'fields' => 'slugs' ) );
+				$market_attr       = ! empty( $post_market_terms ) && ! is_wp_error( $post_market_terms ) ? implode( ' ', $post_market_terms ) : '';
+
+				$primary_term_slug = ! empty( $post_solution_terms ) && ! is_wp_error( $post_solution_terms ) ? $post_solution_terms[0] : '';
 				$primary_term_name = '';
 				if ( $primary_term_slug ) {
-					$primary_term_obj  = get_term_by( 'slug', $primary_term_slug, $cpt_tax );
+					$primary_term_obj  = get_term_by( 'slug', $primary_term_slug, 'portfolio_solution' );
 					$primary_term_name = $primary_term_obj ? $primary_term_obj->name : '';
 				}
 				?>
-			<div class="col-md-6 col-lg-4 mb-4 cb-portfolio-index__col"<?= $filter_attr ? ' data-filter="' . esc_attr( $filter_attr ) . '"' : ''; ?>>
+			<div class="col-md-6 col-lg-4 mb-4 cb-portfolio-index__col"
+				<?= $solution_attr ? ' data-solution="' . esc_attr( $solution_attr ) . '"' : ' data-solution=""'; ?>
+				<?= $market_attr ? ' data-market="' . esc_attr( $market_attr ) . '"' : ' data-market=""'; ?>>
 				<?php
 				if ( $should_link ) {
 					?>
@@ -157,31 +200,65 @@ $block_id = $block['anchor'] ?? 'cb-portfolio-index-' . uniqid();
 		</div>
 	</div>
 </div>
-<?php
-if ( ! empty( $filter_terms ) && ! is_wp_error( $filter_terms ) ) {
-	?>
+
+<?php if ( $has_solution_filters || $has_market_filters ) : ?>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
 	var container = document.getElementById(<?= wp_json_encode( $block_id ); ?>);
 	if (!container) return;
-	var btns = container.querySelectorAll('.cb-portfolio-index__filter');
+
+	var solutionBtns = container.querySelectorAll('.cb-portfolio-index__filters--solutions .cb-portfolio-index__filter');
+	var marketBtns = container.querySelectorAll('.cb-portfolio-index__filters--markets .cb-portfolio-index__filter');
 	var cols = container.querySelectorAll('.cb-portfolio-index__col');
-	btns.forEach(function (btn) {
-		btn.addEventListener('click', function () {
-			var filter = this.getAttribute('data-filter');
-			btns.forEach(function (b) { b.classList.remove('cb-portfolio-index__filter--active'); });
-			this.classList.add('cb-portfolio-index__filter--active');
-			cols.forEach(function (col) {
-				if (filter === 'all') {
-					col.style.display = '';
-				} else {
-					var colFilters = col.getAttribute('data-filter') || '';
-					col.style.display = colFilters.split(' ').indexOf(filter) !== -1 ? '' : 'none';
+
+	var activeSolution = <?= wp_json_encode( $active_solution ); ?>;
+	var activeMarket = <?= wp_json_encode( $active_market ); ?>;
+
+	function applyFilters() {
+		cols.forEach(function (col) {
+			var show = true;
+
+			if (activeSolution !== 'all') {
+				var colSolutions = col.getAttribute('data-solution') || '';
+				if (colSolutions.split(' ').indexOf(activeSolution) === -1) {
+					show = false;
 				}
+			}
+
+			if (activeMarket !== 'all') {
+				var colMarkets = col.getAttribute('data-market') || '';
+				if (colMarkets.split(' ').indexOf(activeMarket) === -1) {
+					show = false;
+				}
+			}
+
+			col.style.display = show ? '' : 'none';
+		});
+	}
+
+	if (solutionBtns.length) {
+		solutionBtns.forEach(function (btn) {
+			btn.addEventListener('click', function () {
+				var filter = this.getAttribute('data-filter');
+				solutionBtns.forEach(function (b) { b.classList.remove('cb-portfolio-index__filter--active'); });
+				this.classList.add('cb-portfolio-index__filter--active');
+				activeSolution = filter;
+				applyFilters();
 			});
 		});
-	});
+	}
+
+	if (marketBtns.length) {
+		marketBtns.forEach(function (btn) {
+			btn.addEventListener('click', function () {
+				var filter = this.getAttribute('data-filter');
+				marketBtns.forEach(function (b) { b.classList.remove('cb-portfolio-index__filter--active'); });
+				this.classList.add('cb-portfolio-index__filter--active');
+				activeMarket = filter;
+				applyFilters();
+			});
+		});
+	}
 });
 </script>
-	<?php
-}
+<?php endif; ?>
