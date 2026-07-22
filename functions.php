@@ -176,7 +176,7 @@ function cb_ajax_search_posts() {
 				?>
 				<div class="col-md-4 insights-item" data-category="<?= esc_attr( $cat_slugs ); ?>" data-year="<?= esc_attr( get_the_date( 'Y', $post_item ) ); ?>">
 					<a href="<?= esc_url( get_permalink( $post_item ) ); ?>" class="cb-insights-index__card cb-news-card">
-						<div class="cb-news-card__image cb-news-card__image--16-9">
+						<div class="cb-news-card__image cb-news-card__image--4-3">
 							<?php if ( has_post_thumbnail( $post_item ) ) : ?>
 								<?= get_the_post_thumbnail( $post_item, 'medium_large' ); ?>
 							<?php else : ?>
