@@ -13,9 +13,13 @@
 
 defined( 'ABSPATH' ) || exit;
 
-$btitle  = (string) get_field( 'title' );
-$address = function_exists( 'get_field' ) ? (string) get_field( 'address', 'option' ) : '';
-$map_url = function_exists( 'get_field' ) ? (string) get_field( 'map_url', 'option' ) : '';
+$btitle    = (string) get_field( 'title' );
+$address   = function_exists( 'get_field' ) ? (string) get_field( 'address', 'option' ) : '';
+$map_url   = function_exists( 'get_field' ) ? (string) get_field( 'map_url', 'option' ) : '';
+$address_2 = function_exists( 'get_field' ) ? (string) get_field( 'address_2', 'option' ) : '';
+$map_url_2 = function_exists( 'get_field' ) ? (string) get_field( 'map_url_2', 'option' ) : '';
+$email     = function_exists( 'get_field' ) ? (string) get_field( 'contact_email', 'option' ) : '';
+$phone     = function_exists( 'get_field' ) ? (string) get_field( 'contact_phone', 'option' ) : '';
 
 // Custom classes (filter wp-generated).
 $custom_classes = '';
@@ -63,27 +67,68 @@ $classes   = trim( implode( ' ', array_filter( array( 'cb-contact-map', $flouris
 	<?= $inline_style ? ' style="' . esc_attr( $inline_style ) . '"' : ''; ?>
 >
 	<div class="container py-5">
-		<?php if ( '' !== trim( $btitle ) ) : ?>
-			<h2 class="cb-contact-map__title text-center"><?= esc_html( $btitle ); ?></h2>
-		<?php endif; ?>
+		<?php
+		if ( '' !== trim( $btitle ) ) {
+			?>
+		<h2 class="cb-contact-map__title text-center"><?= esc_html( $btitle ); ?></h2>
+			<?php
+		}
+		?>
+		<div class="d-flex flex-wrap justify-content-center gap-4 mt-4">
+			<a class="contact-block__detail" href="tel:<?= esc_attr( parse_phone( $phone ) ); ?>">
+				<strong>T:</strong>
+				<?= esc_html( $phone ); ?>
+			</a>
+			<a class="contact-block__detail" href="mailto:<?= esc_attr( antispambot( $email ) ); ?>">
+				<strong>E:</strong>
+				<?= esc_html( antispambot( $email ) ); ?>
+			</a>
+			<a class="contact-block__detail" href="https://www.linkedin.com/..." target="_blank" rel="noopener">
+				Find us on <strong>LinkedIn</strong>
+			</a>
+		</div>
+		<div class="contact-block__offices row mt-5">
+			<article class="contact-block__office contact-block__office--primary col-lg-7 col-md-12">
+				<h3>London</h3>
+				<address><?= esc_html( wp_strip_all_tags( $address ) ); ?></address>
+				<?php
+				if ( '' !== trim( $map_url ) ) {
+					?>
+				<div class="cb-contact-map__map">
+					<iframe
+						src="<?= esc_url( $map_url ); ?>"
+						title="<?php esc_attr_e( 'Office location map', 'cb-pluto2026' ); ?>"
+						loading="lazy"
+						referrerpolicy="no-referrer-when-downgrade"
+						allowfullscreen
+					></iframe>
+				</div>
+					<?php
+				}
+				?>
 
-		<?php if ( '' !== trim( wp_strip_all_tags( $address ) ) ) : ?>
-			<p class="cb-contact-map__intro text-center">
-				<?= esc_html__( 'Our offices are located at', 'cb-pluto2026' ); ?>
-				<span class="cb-contact-map__address"><?= esc_html( wp_strip_all_tags( $address ) ); ?></span>
-			</p>
-		<?php endif; ?>
+			</article>
 
-		<?php if ( '' !== trim( $map_url ) ) : ?>
-			<div class="cb-contact-map__map">
-				<iframe
-					src="<?= esc_url( $map_url ); ?>"
-					title="<?php esc_attr_e( 'Office location map', 'cb-pluto2026' ); ?>"
-					loading="lazy"
-					referrerpolicy="no-referrer-when-downgrade"
-					allowfullscreen
-				></iframe>
-			</div>
-		<?php endif; ?>
+			<article class="contact-block__office col-lg-5 col-md-12">
+				<h3>Edinburgh</h3>
+				<address><?= esc_html( wp_strip_all_tags( $address_2 ) ); ?></address>
+				<?php
+				if ( '' !== trim( $map_url_2 ) ) {
+					?>
+				<div class="cb-contact-map__map">
+					<iframe
+						src="<?= esc_url( $map_url_2 ); ?>"
+						title="<?php esc_attr_e( 'Office location map', 'cb-pluto2026' ); ?>"
+						loading="lazy"
+						referrerpolicy="no-referrer-when-downgrade"
+						allowfullscreen
+					></iframe>
+				</div>
+					<?php
+				}
+				?>
+			</article>
+		</div>
+
 	</div>
 </section>
