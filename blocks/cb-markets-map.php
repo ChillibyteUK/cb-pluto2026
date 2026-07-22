@@ -96,10 +96,10 @@ foreach ( $country_keys as $country_id => $market_key ) {
 		<div class="row gy-4 gx-lg-5 align-items-lg-start">
 			<div class="col-lg-5 cb-markets-map__content">
 				<div class="cb-markets-map__panel">
-					<p class="cb-markets-map__eyebrow"><?= esc_html__( 'Explore our markets', 'cb-pluto2026' ); ?></p>
+					<p class="cb-markets-map__eyebrow" data-cb-markets-eyebrow><i class="fas fa-arrow-left"></i> Explore our markets</p>
 					<h2 class="cb-markets-map__title" data-cb-markets-title><?= esc_html__( 'Explore our markets', 'cb-pluto2026' ); ?></h2>
 					<div class="cb-markets-map__body" data-cb-markets-body>
-						<p><?= esc_html__( 'Select a highlighted market on the map to learn more.', 'cb-pluto2026' ); ?></p>
+						<p><?= wp_kses_post( get_field( 'intro_copy' ) ); ?></p>
 					</div>
 				</div>
 			</div>
@@ -122,7 +122,11 @@ foreach ( $country_keys as $country_id => $market_key ) {
 
 			const title = root.querySelector('[data-cb-markets-title]');
 			const body = root.querySelector('[data-cb-markets-body]');
+			const eyebrow = root.querySelector('[data-cb-markets-eyebrow]');
 			const countries = root.querySelectorAll('.cb-markets-map__country');
+
+			const defaultTitle = title ? title.textContent : '';
+			const defaultBody = body ? body.innerHTML : '';
 
 			const setActive = (key) => {
 				countries.forEach((el) => {
@@ -131,17 +135,30 @@ foreach ( $country_keys as $country_id => $market_key ) {
 			};
 
 			const setMarket = (el) => {
-				if (!title || !body) return;
+				if (!title || !body || !eyebrow) return;
 				title.textContent = el.getAttribute('data-cb-market-title') || '';
-				body.innerHTML = '';
-
-				const b = el.getAttribute('data-cb-market-body');
-				if (b) {
-					body.innerHTML = b;
-				}
-
+				body.innerHTML = el.getAttribute('data-cb-market-body') || '';
+				eyebrow.classList.add('cb-markets-map__eyebrow--visible');
 				setActive(el.getAttribute('data-cb-market'));
 			};
+
+			const resetMarket = () => {
+				if (!title || !body || !eyebrow) return;
+				title.textContent = defaultTitle;
+				body.innerHTML = defaultBody;
+				eyebrow.classList.remove('cb-markets-map__eyebrow--visible');
+				setActive(null);
+			};
+
+			if (eyebrow) {
+				eyebrow.addEventListener('click', resetMarket);
+				eyebrow.addEventListener('keydown', (e) => {
+					if (e.key !== 'Enter' && e.key !== ' ') return;
+					e.preventDefault();
+					resetMarket();
+				});
+				eyebrow.setAttribute('tabindex', '0');
+			}
 
 			countries.forEach((el) => {
 				el.addEventListener('mouseenter', () => {

@@ -1,66 +1,181 @@
 {
-  "key": "group_cb_markets_map",
-  "title": "CB Markets Map",
-  "fields": [
-    {
-      "key": "field_cb_markets_map_header",
-      "label": "Market Content",
-      "name": "",
-      "type": "message",
-      "message": "Enter the title and body text for each clickable market on the map."
-    },
-    {
-      "key": "field_cb_markets_map_markets",
-      "label": "Markets",
-      "name": "markets",
-      "type": "repeater",
-      "layout": "block",
-      "button_label": "Add Market",
-      "sub_fields": [
+    "key": "group_cb_markets_map",
+    "title": "CB Markets Map",
+    "fields": [
         {
-          "key": "field_cb_mm_market_key",
-          "label": "Market Key",
-          "name": "market_key",
-          "type": "select",
-          "required": 1,
-          "choices": {
-            "GB": "United Kingdom",
-            "IE": "Ireland",
-            "DE_NL": "Germany & Netherlands",
-            "ES_PT": "Spain & Portugal"
-          },
-          "allow_null": 0,
-          "multiple": 0
+            "key": "field_6a60ac0a4519d",
+            "label": "Markets Map",
+            "name": "",
+            "aria-label": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "new_lines": "wpautop",
+            "esc_html": 0
         },
         {
-          "key": "field_cb_mm_market_title",
-          "label": "Title",
-          "name": "market_title",
-          "type": "text",
-          "required": 1
+            "key": "field_6a60ac174519e",
+            "label": "Intro Copy",
+            "name": "intro_copy",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "rows": 4,
+            "placeholder": "",
+            "new_lines": "wpautop"
         },
         {
-          "key": "field_cb_mm_market_body",
-          "label": "Body",
-          "name": "market_body",
-          "type": "wysiwyg",
-          "required": 0,
-          "tabs": "all",
-          "media_upload": 0
+            "key": "field_cb_markets_map_header",
+            "label": "Market Content",
+            "name": "",
+            "aria-label": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "Enter the title and body text for each clickable market on the map.",
+            "esc_html": 0,
+            "new_lines": "wpautop"
+        },
+        {
+            "key": "field_cb_markets_map_markets",
+            "label": "Markets",
+            "name": "markets",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Add Market",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_cb_mm_market_key",
+                    "label": "Market Key",
+                    "name": "market_key",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "GB": "United Kingdom",
+                        "IE": "Ireland",
+                        "DE_NL": "Germany & Netherlands",
+                        "ES_PT": "Spain & Portugal"
+                    },
+                    "allow_null": 0,
+                    "multiple": 0,
+                    "default_value": false,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "return_format": "value",
+                    "create_options": 0,
+                    "save_options": 0,
+                    "parent_repeater": "field_cb_markets_map_markets"
+                },
+                {
+                    "key": "field_cb_mm_market_title",
+                    "label": "Title",
+                    "name": "market_title",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_cb_markets_map_markets"
+                },
+                {
+                    "key": "field_cb_mm_market_body",
+                    "label": "Body",
+                    "name": "market_body",
+                    "aria-label": "",
+                    "type": "wysiwyg",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "tabs": "all",
+                    "media_upload": 0,
+                    "toolbar": "full",
+                    "default_value": "",
+                    "delay": 0,
+                    "parent_repeater": "field_cb_markets_map_markets"
+                }
+            ]
         }
-      ]
-    }
-  ],
-  "location": [
-    [
-      {
-        "param": "block",
-        "operator": "==",
-        "value": "acf/cb-markets-map"
-      }
-    ]
-  ],
-  "active": 1,
-  "description": "",
-  "modified": 1784559900 
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/cb-markets-map"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1784720425
 }

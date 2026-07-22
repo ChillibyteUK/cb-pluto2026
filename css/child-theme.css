@@ -25962,12 +25962,17 @@ body.cb-team-modal-open {
   overflow: visible;
 }
 .cb-markets-map__eyebrow {
+  display: none;
   margin-bottom: 0.75rem;
   color: var(--col-green-dark-1000);
   font-size: var(--fs-300);
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  cursor: pointer;
+}
+.cb-markets-map__eyebrow--visible {
+  display: block;
 }
 .cb-markets-map__title {
   margin-bottom: 1rem;

@@ -9,12 +9,18 @@
 	}
 
 	&__eyebrow {
+		display: none;
 		margin-bottom: 0.75rem;
 		color: var(--col-green-dark-1000);
 		font-size: var(--fs-300);
 		font-weight: 600;
 		letter-spacing: 0.08em;
 		text-transform: uppercase;
+		cursor: pointer;
+
+		&--visible {
+			display: block;
+		}
 	}
 
 	&__title {
