@@ -329,10 +329,32 @@ AOS.init({
     window.matchMedia &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  const formatter =
-    typeof Intl !== "undefined" && Intl.NumberFormat
-      ? new Intl.NumberFormat()
-      : { format: (n) => String(n) };
+  const toRoman = (num) => {
+    const lookup = [
+      ["M", 1000], ["CM", 900], ["D", 500], ["CD", 400],
+      ["C", 100], ["XC", 90], ["L", 50], ["XL", 40],
+      ["X", 10], ["IX", 9], ["V", 5], ["IV", 4], ["I", 1],
+    ];
+    let roman = "";
+    for (const [letter, value] of lookup) {
+      while (num >= value) {
+        roman += letter;
+        num -= value;
+      }
+    }
+    return roman;
+  };
+
+  const formatValue = (element, value) => {
+    if (element.classList.contains("cb-ticker-x3__stat-value--roman")) {
+      return toRoman(Math.max(1, value));
+    }
+    const fmt =
+      typeof Intl !== "undefined" && Intl.NumberFormat
+        ? new Intl.NumberFormat()
+        : { format: (n) => String(n) };
+    return fmt.format(value);
+  };
 
   const animateValue = (element) => {
     const target = Number(element.dataset.statTarget || 0);
@@ -342,7 +364,7 @@ AOS.init({
     }
 
     if (prefersReducedMotion || target === 0) {
-      element.textContent = formatter.format(target);
+      element.textContent = formatValue(element, target);
       return;
     }
 
@@ -356,7 +378,12 @@ AOS.init({
       const elapsed = Math.max(0, now - startTime);
       const progress = Math.min(elapsed / duration, 1);
       const eased = 1 - Math.pow(1 - progress, 3);
-      element.textContent = formatter.format(Math.round(target * eased));
+      let current = Math.round(target * eased);
+      // Roman numerals have no zero — start at I
+      if (element.classList.contains("cb-ticker-x3__stat-value--roman")) {
+        current = Math.max(1, current);
+      }
+      element.textContent = formatValue(element, current);
 
       if (progress < 1) {
         window.requestAnimationFrame(tick);

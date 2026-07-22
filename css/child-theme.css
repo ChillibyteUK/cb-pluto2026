@@ -23302,7 +23302,9 @@ span a {
 }
 .cb-ticker-x3__item {
   display: grid;
-  place-content: center;
+  grid-template-rows: 1fr auto 1fr;
+  align-items: center;
+  justify-items: center;
   height: 100%;
   aspect-ratio: 1/1;
   border-radius: 100%;
@@ -23312,38 +23314,36 @@ span a {
 .cb-ticker-x3__title, .cb-ticker-x3__posttitle {
   font-size: var(--fs-400);
   font-weight: var(--fw-regular);
+  width: 100%;
 }
 .cb-ticker-x3__title {
-  margin-bottom: 1.5rem;
+  grid-row: 1;
+  align-self: end;
 }
 .cb-ticker-x3__posttitle {
-  margin-top: 1.5rem;
+  grid-row: 3;
+  align-self: start;
 }
 .cb-ticker-x3__stat {
-  margin-top: auto;
+  grid-row: 2;
   display: flex;
   align-items: baseline;
-  gap: 0.1em;
+  justify-content: center;
+  gap: 0;
   font-weight: var(--fw-medium);
   font-size: var(--fs-1000);
   line-height: 1;
   padding-block: 0.25rem;
 }
-.cb-ticker-x3__stat-value, .cb-ticker-x3__stat-prefix, .cb-ticker-x3__stat-suffix {
+.cb-ticker-x3__stat-value {
   display: inline-block;
 }
-.cb-ticker-x3__stat-prefix {
-  margin-inline-start: auto;
-}
-.cb-ticker-x3__stat-value {
-  margin-inline: auto;
-}
-.cb-ticker-x3__stat-suffix {
-  margin-inline-end: auto;
+.cb-ticker-x3__stat-prefix, .cb-ticker-x3__stat-suffix {
+  display: inline;
 }
 
 .cb-ticker-x3--pf {
-  background: linear-gradient(90deg, var(--col-green-teal-200) 50%, var(--col-green-teal-1000) 50%);
+  background: linear-gradient(90deg, var(--col-green-teal-200) 33%, var(--col-green-teal-500) 66%, var(--col-green-teal-1000) 100%);
 }
 .cb-ticker-x3--pf .row > *:nth-child(1) {
   background-color: var(--col-green-teal-200);
@@ -23352,6 +23352,9 @@ span a {
   background-color: var(--col-green-teal-500);
 }
 .cb-ticker-x3--pf .row > *:nth-child(3) {
+  background-color: var(--col-green-teal-800);
+}
+.cb-ticker-x3--pf .row > *:nth-child(4) {
   background-color: var(--col-green-teal-1000);
 }
 .cb-ticker-x3--pf .cb-ticker-x3__item {
@@ -23363,7 +23366,7 @@ span a {
 }
 
 .cb-ticker-x3--inv {
-  background: linear-gradient(90deg, var(--col-green-teal-200) 50%, var(--col-green-teal-1000) 50%);
+  background: linear-gradient(90deg, var(--col-green-teal-200) 33%, var(--col-green-teal-500) 66%, var(--col-green-teal-1000) 100%);
 }
 .cb-ticker-x3--inv .row > *:nth-child(1) {
   background-color: var(--col-green-teal-200);
@@ -23372,6 +23375,9 @@ span a {
   background-color: var(--col-green-teal-500);
 }
 .cb-ticker-x3--inv .row > *:nth-child(3) {
+  background-color: var(--col-green-teal-800);
+}
+.cb-ticker-x3--inv .row > *:nth-child(4) {
   background-color: var(--col-green-teal-1000);
 }
 .cb-ticker-x3--inv .cb-ticker-x3__item {

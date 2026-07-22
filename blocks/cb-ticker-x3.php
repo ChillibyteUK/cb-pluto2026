@@ -19,7 +19,7 @@ $the_class = '' !== $context ? 'cb-ticker-x3--' . $context : '';
 
 $stats = array();
 
-for ( $index = 1; $index <= 3; $index++ ) {
+for ( $index = 1; $index <= 4; $index++ ) {
 	$stats[] = array(
 		'title'     => get_field( 'title_' . $index ),
 		'prefix'    => get_field( 'prefix_' . $index ),
@@ -29,31 +29,37 @@ for ( $index = 1; $index <= 3; $index++ ) {
 	);
 }
 
-// Bail if nothing has been entered in any stat.
-$has_content = array_reduce(
-	$stats,
-	function ( $carry, $stat ) {
-		return $carry
-			|| '' !== (string) $stat['title']
-			|| '' !== (string) $stat['prefix']
-			|| '' !== (string) $stat['value']
-			|| '' !== (string) $stat['suffix']
-			|| '' !== (string) $stat['posttitle'];
-	},
-	false
+// Remove empty stats.
+$stats = array_values(
+	array_filter(
+		$stats,
+		function ( $stat ) {
+			return '' !== (string) $stat['title']
+				|| '' !== (string) $stat['prefix']
+				|| '' !== (string) $stat['value']
+				|| '' !== (string) $stat['suffix']
+				|| '' !== (string) $stat['posttitle'];
+		}
+	)
 );
 
-if ( ! $has_content ) {
+$stat_count = count( $stats );
+
+if ( 0 === $stat_count ) {
 	return;
 }
+
+$has_roman = 4 === $stat_count;
+$col_class = $has_roman ? 'col-lg-3' : 'col-lg-4';
 ?>
 <section id="<?= esc_attr( $block_id ); ?>" class="cb-ticker-x3 <?= esc_attr( $the_class ); ?>">
 	<div class="container-xl">
 		<div class="row justify-content-center">
 			<?php
 			foreach ( $stats as $stat_index => $stat ) {
+				$is_roman = $has_roman && 3 === $stat_index;
 				?>
-			<div class="col-lg-4 p-5">
+			<div class="<?= esc_attr( $col_class ); ?> p-5">
 				<div class="cb-ticker-x3__item text-center" data-aos="fade" data-aos-delay="<?= esc_attr( $stat_index * 150 ); ?>">
 					<?php
 					if ( '' !== (string) $stat['title'] ) {
@@ -70,7 +76,7 @@ if ( ! $has_content ) {
 							<?php
 						}
 						?>
-						<span class="cb-ticker-x3__stat-value" data-stat-target="<?= esc_attr( is_numeric( $stat['value'] ) ? $stat['value'] : 0 ); ?>">0</span>
+						<span class="cb-ticker-x3__stat-value<?= $is_roman ? ' cb-ticker-x3__stat-value--roman' : ''; ?>" data-stat-target="<?= esc_attr( is_numeric( $stat['value'] ) ? $stat['value'] : 0 ); ?>"><?= $is_roman ? 'I' : '0'; ?></span>
 						<?php
 						if ( '' !== (string) $stat['suffix'] ) {
 							?>
