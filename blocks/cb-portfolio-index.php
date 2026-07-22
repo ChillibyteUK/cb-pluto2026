@@ -75,9 +75,14 @@ if ( isset( $_GET['market'] ) && is_string( $_GET['market'] ) && '' !== trim( $_
 		}
 	}
 }
+
+$search_nonce = wp_create_nonce( 'portfolio_search_nonce' );
+$ajax_url     = admin_url( 'admin-ajax.php' );
 ?>
 <div id="<?= esc_attr( $block_id ); ?>" class="cb-portfolio-index cb-portfolio-index--<?= esc_attr( $context ); ?>">
 	<div class="container">
+		<div class="row">
+			<div class="col-lg-6">
 		<?php if ( $has_solution_filters ) : ?>
 		<div class="cb-portfolio-index__filters cb-portfolio-index__filters--solutions">
 			<button class="cb-portfolio-index__filter<?= 'all' === $active_solution ? ' cb-portfolio-index__filter--active' : ''; ?>" data-filter="all"><?php esc_html_e( 'All', 'cb-pluto2026' ); ?></button>
@@ -95,8 +100,16 @@ if ( isset( $_GET['market'] ) && is_string( $_GET['market'] ) && '' !== trim( $_
 			<?php endforeach; ?>
 		</div>
 		<?php endif; ?>
+			</div>
+			<div class="col-lg-6">
+				<div class="cb-portfolio-index__toolbar">
+					<input type="text" class="cb-portfolio-index__search" placeholder="<?php esc_attr_e( 'Search portfolio...', 'cb-pluto2026' ); ?>" aria-label="<?php esc_attr_e( 'Search portfolio', 'cb-pluto2026' ); ?>">
+					<button type="button" class="cb-portfolio-index__reset" style="display:none"><?php esc_html_e( 'Clear', 'cb-pluto2026' ); ?></button>
+				</div>
+			</div>
+		</div>
 
-		<div class="row mt-4">
+		<div class="row">
 			<?php
 			while ( $portfolio_query->have_posts() ) {
 				$portfolio_query->the_post();
@@ -209,12 +222,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	var solutionBtns = container.querySelectorAll('.cb-portfolio-index__filters--solutions .cb-portfolio-index__filter');
 	var marketBtns = container.querySelectorAll('.cb-portfolio-index__filters--markets .cb-portfolio-index__filter');
-	var cols = container.querySelectorAll('.cb-portfolio-index__col');
+	var searchInput = container.querySelector('.cb-portfolio-index__search');
+	var resetBtn = container.querySelector('.cb-portfolio-index__reset');
+	var resultsRow = container.querySelector('.row:last-child');
 
 	var activeSolution = <?= wp_json_encode( $active_solution ); ?>;
 	var activeMarket = <?= wp_json_encode( $active_market ); ?>;
 
 	function applyFilters() {
+		var cols = container.querySelectorAll('.cb-portfolio-index__col');
 		cols.forEach(function (col) {
 			var show = true;
 
@@ -257,6 +273,63 @@ document.addEventListener('DOMContentLoaded', function () {
 				activeMarket = filter;
 				applyFilters();
 			});
+		});
+	}
+
+	function resetFilters() {
+		solutionBtns.forEach(function (b) { b.classList.remove('cb-portfolio-index__filter--active'); });
+		var allSolution = container.querySelector('.cb-portfolio-index__filters--solutions .cb-portfolio-index__filter[data-filter="all"]');
+		if (allSolution) allSolution.classList.add('cb-portfolio-index__filter--active');
+		activeSolution = 'all';
+
+		marketBtns.forEach(function (b) { b.classList.remove('cb-portfolio-index__filter--active'); });
+		var allMarket = container.querySelector('.cb-portfolio-index__filters--markets .cb-portfolio-index__filter[data-filter="all"]');
+		if (allMarket) allMarket.classList.add('cb-portfolio-index__filter--active');
+		activeMarket = 'all';
+	}
+
+	function doSearch(term) {
+		var data = new FormData();
+		data.append('action', 'search_portfolio');
+		data.append('nonce', <?= wp_json_encode( $search_nonce ); ?>);
+		data.append('search_term', term);
+		data.append('solution', activeSolution);
+		data.append('market', activeMarket);
+
+		fetch(<?= wp_json_encode( $ajax_url ); ?>, {
+			method: 'POST',
+			body: data
+		})
+		.then(function (r) { return r.json(); })
+		.then(function (res) {
+			if (res.success) {
+				resultsRow.innerHTML = res.data.html;
+				resetFilters();
+				applyFilters();
+
+				if (resetBtn) {
+					resetBtn.style.display = term ? '' : 'none';
+				}
+			}
+		});
+	}
+
+	if (searchInput) {
+		var debounceTimer;
+		searchInput.addEventListener('input', function () {
+			clearTimeout(debounceTimer);
+			debounceTimer = setTimeout(function () {
+				doSearch(searchInput.value.trim());
+			}, 300);
+		});
+	}
+
+	if (resetBtn) {
+		resetBtn.addEventListener('click', function () {
+			searchInput.value = '';
+			resetBtn.style.display = 'none';
+			resetFilters();
+			doSearch('');
 		});
 	}
 

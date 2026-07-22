@@ -33,6 +33,45 @@
         }
     }
 
+    &__reset {
+        padding: 0.4rem 1rem;
+        border: 1px solid var(--col-green-dark-600);
+        border-radius: 9999px;
+        background: transparent;
+        color: var(--col-green-dark-1100);
+        font-size: var(--fs-300);
+        cursor: pointer;
+        transition: background var(--transition), color var(--transition);
+
+        &:hover {
+        background: var(--col-green-dark-600);
+        color: var(--col-white);
+        }
+    }
+
+    &__search {
+        width: 100%;
+        max-width: 320px;
+        padding: 0.4rem 1rem;
+        border: 1px solid var(--col-green-dark-600);
+        border-radius: 9999px;
+        background: transparent;
+        color: inherit;
+        font-size: var(--fs-300);
+        outline: none;
+
+        &:focus {
+        border-color: var(--col-green-dark-600) !important;
+        outline: none !important;
+        box-shadow: none !important;
+        border-radius: 9999px !important;
+        }
+
+        &::placeholder {
+        color: var(--col-grey-600);
+        }
+    }
+
     .portfolio__card {
         display: flex;
         flex-direction: column;
