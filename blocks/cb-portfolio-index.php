@@ -104,7 +104,7 @@ $ajax_url     = admin_url( 'admin-ajax.php' );
 			<div class="col-lg-6">
 				<div class="cb-portfolio-index__toolbar">
 					<input type="text" class="cb-portfolio-index__search" placeholder="<?php esc_attr_e( 'Search portfolio...', 'cb-pluto2026' ); ?>" aria-label="<?php esc_attr_e( 'Search portfolio', 'cb-pluto2026' ); ?>">
-					<button type="button" class="cb-portfolio-index__reset" style="display:none"><?php esc_html_e( 'Clear', 'cb-pluto2026' ); ?></button>
+					<button type="button" class="cb-portfolio-index__reset"><?php esc_html_e( 'Clear', 'cb-pluto2026' ); ?></button>
 				</div>
 			</div>
 		</div>
@@ -306,10 +306,6 @@ document.addEventListener('DOMContentLoaded', function () {
 				resultsRow.innerHTML = res.data.html;
 				resetFilters();
 				applyFilters();
-
-				if (resetBtn) {
-					resetBtn.style.display = term ? '' : 'none';
-				}
 			}
 		});
 	}
@@ -327,7 +323,6 @@ document.addEventListener('DOMContentLoaded', function () {
 	if (resetBtn) {
 		resetBtn.addEventListener('click', function () {
 			searchInput.value = '';
-			resetBtn.style.display = 'none';
 			resetFilters();
 			doSearch('');
 		});
