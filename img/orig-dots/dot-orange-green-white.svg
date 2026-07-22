@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33.84 33.84">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #114e25;
+      }
+
+      .cls-2 {
+        fill: #d37d0b;
+      }
+
+      .cls-3 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <g id="Meet_the_People_content" data-name="Meet the People content">
+    <g>
+      <path class="cls-2" d="M0,16.92c0,9.34,7.57,16.92,16.92,16.92s16.92-7.58,16.92-16.92S26.26,0,16.92,0,0,7.58,0,16.92Z"/>
+      <circle class="cls-1" cx="16.92" cy="16.92" r="8.76"/>
+      <path class="cls-3" d="M13.01,16.92c0,2.16,1.75,3.91,3.91,3.91s3.91-1.75,3.91-3.91-1.75-3.91-3.91-3.91-3.91,1.75-3.91,3.91Z"/>
+    </g>
+  </g>
+</svg>

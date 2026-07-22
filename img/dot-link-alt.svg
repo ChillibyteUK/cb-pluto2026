@@ -1,31 +1,246 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 502.55 33.84">
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 502.4773 33.8037">
   <defs>
     <style>
       .cls-1 {
-        fill: #114e25;
+        clip-path: url(#clippath-6);
       }
 
       .cls-2 {
-        fill: #d37d0b;
+        clip-path: url(#clippath-7);
       }
 
       .cls-3 {
-        fill: #fff;
+        clip-path: url(#clippath-17);
       }
 
       .cls-4 {
-        fill: #80bcb4;
+        fill: #114e25;
+      }
+
+      .cls-5 {
+        clip-path: url(#clippath-15);
+      }
+
+      .cls-6 {
+        clip-path: url(#clippath-18);
+      }
+
+      .cls-7 {
+        clip-path: url(#clippath-4);
+      }
+
+      .cls-8 {
+        clip-path: url(#clippath-9);
+      }
+
+      .cls-9 {
+        clip-path: url(#clippath-10);
+      }
+
+      .cls-10 {
+        fill: #e68300;
+      }
+
+      .cls-11 {
+        fill: #008063;
+      }
+
+      .cls-12 {
+        clip-path: url(#clippath-11);
+      }
+
+      .cls-13 {
+        fill: none;
+      }
+
+      .cls-14 {
+        clip-path: url(#clippath-1);
+      }
+
+      .cls-15 {
+        isolation: isolate;
+      }
+
+      .cls-16 {
+        clip-path: url(#clippath-5);
+      }
+
+      .cls-17 {
+        clip-path: url(#clippath-8);
+      }
+
+      .cls-18 {
+        clip-path: url(#clippath-3);
+      }
+
+      .cls-19 {
+        clip-path: url(#clippath-12);
+      }
+
+      .cls-20 {
+        clip-path: url(#clippath-14);
+      }
+
+      .cls-21 {
+        clip-path: url(#clippath-19);
+      }
+
+      .cls-22 {
+        clip-path: url(#clippath-16);
+      }
+
+      .cls-23 {
+        clip-path: url(#clippath-2);
+      }
+
+      .cls-24 {
+        fill: #80c1b9;
+      }
+
+      .cls-25 {
+        clip-path: url(#clippath-13);
+      }
+
+      .cls-26 {
+        fill: #009574;
+      }
+
+      .cls-27 {
+        clip-path: url(#clippath);
+      }
+
+      .cls-28 {
+        fill: #016549;
       }
     </style>
+    <clipPath id="clippath">
+      <path class="cls-13" d="M484.7491,23.1974h0c-1.2444-.1694-2.3775-.699-3.283-1.4826.9055.7837,2.0386,1.3185,3.283,1.4826M481.4661,21.7095s-.0318-.0265-.0424-.0371c.0159.0106.0265.0265.0424.0371M481.4078,21.6618l-.0053-.0053.0053.0053"/>
+    </clipPath>
+    <clipPath id="clippath-1">
+      <rect class="cls-13" x="481.1113" y="21.2435" width="3.9131" height="2.2081"/>
+    </clipPath>
+    <clipPath id="clippath-2">
+      <path class="cls-13" d="M481.3708,24.23c1.0114.5878,2.1551.969,3.3783,1.0908v-2.1234c-1.2655-.1694-2.4093-.7201-3.3254-1.5197l-.0053-.0053-.0053-.0053v2.6l-.0424-.0371Z"/>
+    </clipPath>
+    <clipPath id="clippath-3">
+      <rect class="cls-13" x="481.1113" y="21.2435" width="3.9131" height="4.3527"/>
+    </clipPath>
+    <clipPath id="clippath-4">
+      <path class="cls-13" d="M481.3708,26.5969c1.0484.4607,2.1816.7519,3.3783.8472v-2.1181c-1.2179-.1218-2.3616-.503-3.3783-1.0908v2.3669-.0053Z"/>
+    </clipPath>
+    <clipPath id="clippath-5">
+      <rect class="cls-13" x="481.1113" y="23.9758" width="3.9131" height="3.7702"/>
+    </clipPath>
+    <clipPath id="clippath-6">
+      <path class="cls-13" d="M481.3708,31.0767c1.0802.323,2.2081.5242,3.3783.5878v-2.1128c-1.1755-.0794-2.3087-.3177-3.3783-.6937v2.2187Z"/>
+    </clipPath>
+    <clipPath id="clippath-7">
+      <rect class="cls-13" x="481.1113" y="28.4661" width="3.9131" height="3.5742"/>
+    </clipPath>
+    <clipPath id="clippath-8">
+      <path class="cls-13" d="M481.3708,28.858c1.0696.376,2.2028.6195,3.3783.6937v-2.1181c-1.1914-.0953-2.3299-.3865-3.3783-.8472v2.2716Z"/>
+    </clipPath>
+    <clipPath id="clippath-9">
+      <rect class="cls-13" x="481.1113" y="26.3163" width="3.9131" height="3.5742"/>
+    </clipPath>
+    <clipPath id="clippath-10">
+      <path class="cls-13" d="M484.7491,23.1974h0c-1.2444-.1694-2.3775-.699-3.283-1.4826.9055.7837,2.0386,1.3185,3.283,1.4826M481.4661,21.7095s-.0318-.0265-.0424-.0371c.0159.0106.0265.0265.0424.0371M481.4078,21.6618l-.0053-.0053.0053.0053"/>
+    </clipPath>
+    <clipPath id="clippath-11">
+      <rect class="cls-13" x="481.1113" y="21.2435" width="3.9131" height="2.2081"/>
+    </clipPath>
+    <clipPath id="clippath-12">
+      <path class="cls-13" d="M481.3708,24.23c1.0114.5878,2.1551.969,3.3783,1.0908v-2.1234c-1.2655-.1694-2.4093-.7201-3.3254-1.5197l-.0053-.0053-.0053-.0053v2.6l-.0424-.0371Z"/>
+    </clipPath>
+    <clipPath id="clippath-13">
+      <rect class="cls-13" x="481.1113" y="21.2435" width="3.9131" height="4.3527"/>
+    </clipPath>
+    <clipPath id="clippath-14">
+      <path class="cls-13" d="M481.3708,26.5969c1.0484.4607,2.1816.7519,3.3783.8472v-2.1181c-1.2179-.1218-2.3616-.503-3.3783-1.0908v2.3669-.0053Z"/>
+    </clipPath>
+    <clipPath id="clippath-15">
+      <rect class="cls-13" x="481.1113" y="23.9758" width="3.9131" height="3.7702"/>
+    </clipPath>
+    <clipPath id="clippath-16">
+      <path class="cls-13" d="M481.3708,31.0767c1.0802.323,2.2081.5242,3.3783.5878v-2.1128c-1.1755-.0794-2.3087-.3177-3.3783-.6937v2.2187Z"/>
+    </clipPath>
+    <clipPath id="clippath-17">
+      <rect class="cls-13" x="481.1113" y="28.4661" width="3.9131" height="3.5742"/>
+    </clipPath>
+    <clipPath id="clippath-18">
+      <path class="cls-13" d="M481.3708,28.858c1.0696.376,2.2028.6195,3.3783.6937v-2.1181c-1.1914-.0953-2.3299-.3865-3.3783-.8472v2.2716Z"/>
+    </clipPath>
+    <clipPath id="clippath-19">
+      <rect class="cls-13" x="481.1113" y="26.3163" width="3.9131" height="3.5742"/>
+    </clipPath>
+    <image id="image-7" width="21" height="10" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAICAYAAAAftBSpAAAACXBIWXMAADtcAAA7XAEFfTepAAAAPklEQVQoke3MMRXAIADE0OSYKqNWKhk7eMABjw4sFdCBgT9miNdzzxkpQlEiICQyhAiyGspXr02A8IMz2dkLP4IGDCtOKfsAAAAASUVORK5CYII="/>
+    <image id="image-8" width="21" height="19" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAARCAYAAADZsVyDAAAACXBIWXMAADurAAA7qwFWF2lyAAAASklEQVQ4je3MsQ2AQBADwV1fPXRChxRCdfwTACUghHSbWE5GANZlAmCgChNmBSxIrn+vigmHEsNAShjK09x2w0s13HDDDX8K/68TvOkJHnGmZ68AAAAASUVORK5CYII="/>
+    <image id="image-9" width="21" height="19" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAUCAYAAABroNZJAAAACXBIWXMAADtcAAA7XAEFfTepAAAAQElEQVQ4je3MuQ0AIAwEwfVXHy1QCzE9Q4CgAgcEXul02QijLSLAAtzBHMxA7+uZ3AmvPgVASaiQQgopJAv5pw1WpgMk9d3BOwAAAABJRU5ErkJggg=="/>
+    <image id="image-10" width="21" height="21" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAATCAYAAAB2pebxAAAACXBIWXMAADtcAAA7XAEFfTepAAAATUlEQVQ4je3MQRGAMAxFwffTNGkZ5HDDBF4YvOAWTHDgkBWwOu7zGbkyYhIxyViInkRP3BP3oLWOW0PmSIYkAK5tF4DxgUoqqaSSX3kBkr4EIqnX/ZQAAAAASUVORK5CYII="/>
+    <image id="image-11" width="21" height="19" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAQCAYAAAAS7Y8mAAAACXBIWXMAADurAAA7qwFWF2lyAAAARUlEQVQ4je2MwQmAQBADJ8k2ZTnWYS3Weve4E2zAj+xACCEwAuA8BgA2VEGy2oHsnVq/syOQQa9+uG6Zj2hxi1vc4n8yAZayAxy30eHpAAAAAElFTkSuQmCC"/>
   </defs>
-  <g id="Meet_the_People_content" data-name="Meet the People content">
-    <g>
-      <path class="cls-4" d="M468.71,16.92c0,9.34,7.57,16.92,16.92,16.92s16.92-7.58,16.92-16.92-7.58-16.92-16.92-16.92-16.92,7.58-16.92,16.92Z"/>
-      <circle class="cls-1" cx="485.63" cy="16.92" r="11.51"/>
-      <path class="cls-2" d="M478.1,16.92c0,4.16,3.37,7.53,7.53,7.53s7.53-3.37,7.53-7.53-3.37-7.53-7.53-7.53-7.53,3.37-7.53,7.53Z"/>
-      <path class="cls-3" d="M481.72,16.92c0,2.16,1.75,3.91,3.91,3.91s3.91-1.75,3.91-3.91-1.75-3.91-3.91-3.91-3.91,1.75-3.91,3.91Z"/>
+  <g id="Layer_2-2" data-name="Layer 2">
+    <g id="Meet_the_People_content" data-name="Meet the People content">
+      <rect class="cls-4" width="485.9" height="1"/>
     </g>
-    <rect class="cls-4" width="485.9" height="1"/>
+    <g>
+      <path class="cls-10" d="M485.591,13.5443c1.8639,0,3.3783,1.5144,3.3783,3.3783s-1.5144,3.3783-3.3783,3.3783-3.3783-1.5144-3.3783-3.3783,1.5144-3.3783,3.3783-3.3783M485.591,12.6971c-2.3299,0-4.2203,1.8904-4.2203,4.2203s1.8904,4.2203,4.2203,4.2203,4.2203-1.8904,4.2203-4.2203-1.8904-4.2203-4.2203-4.2203"/>
+      <path class="cls-24" d="M479.2633,30.2718v-13.3491c0-3.4948,2.8329-6.333,6.3277-6.333s6.333,2.8329,6.333,6.333-2.8329,6.333-6.333,6.333c-1.6203,0-3.0977-.6142-4.2203-1.6203v2.5999c1.2391.7201,2.6847,1.1332,4.2203,1.1332,4.6651,0,8.4405-3.7808,8.4405-8.4405s-3.7808-8.4405-8.4405-8.4405-8.4405,3.7808-8.4405,8.4405v14.62c.6778.3918,1.382.736,2.1128,1.0326v-2.3087Z"/>
+      <path class="cls-26" d="M477.1505,23.2504v-6.333c0-4.6651,3.7808-8.4405,8.4405-8.4405s8.4405,3.7808,8.4405,8.4405-3.7808,8.4405-8.4405,8.4405c-1.5356,0-2.9759-.413-4.2203-1.1332v2.3669c1.292.5666,2.7217.879,4.2203.879,5.83,0,10.5533-4.7233,10.5533-10.5533s-4.7233-10.5533-10.5533-10.5533-10.548,4.7286-10.548,10.5586v13.1744c.6672.5348,1.3715,1.0167,2.1128,1.4456v-8.287l-.0053-.0053Z"/>
+      <path class="cls-28" d="M485.591,4.2566c6.9949,0,12.6661,5.6711,12.6661,12.6608s-5.6711,12.6608-12.6661,12.6608c-1.4774,0-2.9018-.2542-4.2203-.7201v2.2187c.2383.0741.4819.1377.7307.1959l.0477.0106c.2277.053.4607.1059.6937.1483.0424.0106.0847.0159.1218.0212.0635.0106.1324.0212.1959.0371.0953.0159.1853.0318.2806.0424.053.0106.1059.0159.1642.0212.0688.0106.1377.0159.2118.0265.0477.0053.09.0106.1377.0159.1059.0106.2171.0212.3283.0318.0371,0,.0794.0053.1165.0106.1006.0106.2012.0159.2965.0212h.0635c.1218.0106.2436.0159.3601.0212h.09c.1271,0,.2489.0106.376.0106,8.1599,0,14.7735-6.6137,14.7735-14.7735s-6.6084-14.7683-14.7683-14.7683-14.7683,6.6137-14.7683,14.7735v8.1758c.5931,1.0749,1.3026,2.0757,2.1128,2.9865v-11.1622h0c0-6.9949,5.6711-12.6661,12.6608-12.6661"/>
+      <path class="cls-11" d="M496.1443,16.9226c0,5.83-4.7233,10.5533-10.5533,10.5533-1.4985,0-2.9282-.3124-4.2203-.879v2.2663c1.3185.466,2.7376.7254,4.2203.7254,6.9949,0,12.6608-5.6711,12.6608-12.6608s-5.6658-12.6714-12.6608-12.6714-12.6608,5.6711-12.6608,12.6661h0v11.1622c.646.7307,1.3503,1.4032,2.1128,2.0122v-13.1744c0-5.83,4.7233-10.5533,10.5533-10.5533s10.5533,4.7233,10.5533,10.5533"/>
+      <g class="cls-27">
+        <g class="cls-14">
+          <use id="image-3" class="cls-15" transform="translate(481.1113 21.3881) scale(.1866)" xlink:href="#image-7"/>
+        </g>
+      </g>
+      <g class="cls-23">
+        <g class="cls-18">
+          <use id="image-5" class="cls-15" transform="translate(481.1113 21.4394) scale(.1866)" xlink:href="#image-10"/>
+        </g>
+      </g>
+      <g class="cls-7">
+        <g class="cls-16">
+          <use id="image-4" class="cls-15" transform="translate(481.1113 24.0645) scale(.1866)" xlink:href="#image-9"/>
+        </g>
+      </g>
+      <g class="cls-1">
+        <g class="cls-2">
+          <use id="image-2" class="cls-15" transform="translate(481.1216 28.4661) scale(.1856)" xlink:href="#image-8"/>
+        </g>
+      </g>
+      <g class="cls-17">
+        <g class="cls-8">
+          <use id="image" class="cls-15" transform="translate(481.1216 26.3163) scale(.1856)" xlink:href="#image-11"/>
+        </g>
+      </g>
+      <path class="cls-4" d="M485.591.0363c-9.3195,0-16.881,7.5615-16.881,16.8863,0,2.9653.7678,5.7559,2.1128,8.1758v-8.1758c0-8.1599,6.6137-14.7735,14.7683-14.7735s14.7735,6.6137,14.7735,14.7735-6.6137,14.7735-14.7735,14.7735c-1.4668,0-2.8806-.2171-4.2203-.6142v-9.4519c1.1226,1.0061,2.5946,1.6203,4.2203,1.6203,3.5001,0,6.333-2.8329,6.333-6.333s-2.8329-6.333-6.333-6.333-6.3277,2.8329-6.3277,6.333v15.6525h0c.4024.1642.8155.3124,1.2285.4448.0688.0212.143.0477.2171.0688l.0688.0212c.1959.0582.3918.1165.5931.1642h0c1.3503.3442,2.7641.5348,4.2203.5348,9.3248,0,16.8863-7.5615,16.8863-16.8863S494.9211.0363,485.591.0363ZM485.591,12.6971c2.3299,0,4.2203,1.8904,4.2203,4.2203s-1.8904,4.2203-4.2203,4.2203-4.2203-1.8904-4.2203-4.2203,1.8904-4.2203,4.2203-4.2203Z"/>
+      <g class="cls-9">
+        <g class="cls-12">
+          <use id="image-3-2" data-name="image-3" class="cls-15" transform="translate(481.1113 21.3881) scale(.1866)" xlink:href="#image-7"/>
+        </g>
+      </g>
+      <g class="cls-19">
+        <g class="cls-25">
+          <use id="image-5-2" data-name="image-5" class="cls-15" transform="translate(481.1113 21.4394) scale(.1866)" xlink:href="#image-10"/>
+        </g>
+      </g>
+      <g class="cls-20">
+        <g class="cls-5">
+          <use id="image-4-2" data-name="image-4" class="cls-15" transform="translate(481.1113 24.0645) scale(.1866)" xlink:href="#image-9"/>
+        </g>
+      </g>
+      <g class="cls-22">
+        <g class="cls-3">
+          <use id="image-2-2" data-name="image-2" class="cls-15" transform="translate(481.1216 28.4661) scale(.1856)" xlink:href="#image-8"/>
+        </g>
+      </g>
+      <g class="cls-6">
+        <g class="cls-21">
+          <use id="image-6" data-name="image" class="cls-15" transform="translate(481.1216 26.3163) scale(.1856)" xlink:href="#image-11"/>
+        </g>
+      </g>
+    </g>
   </g>
 </svg>
