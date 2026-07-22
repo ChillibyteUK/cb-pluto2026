@@ -17,6 +17,7 @@ $map_url_2 = function_exists( 'get_field' ) ? (string) get_field( 'map_url_2', '
 $email = function_exists( 'get_field' ) ? (string) get_field( 'contact_email', 'option' ) : '';
 $phone = function_exists( 'get_field' ) ? (string) get_field( 'contact_phone', 'option' ) : '';
 
+$linkedin = function_exists( 'get_field' ) ? (string) get_field( 'linkedin_url', 'option' ) : '';
 
 $bg = ! empty( $block['backgroundColor'] ) ? 'has-' . $block['backgroundColor'] . '-background-color has-background' : '';
 $fg = ! empty( $block['textColor'] ) ? 'has-' . $block['textColor'] . '-color has-text-color' : '';
@@ -70,7 +71,7 @@ $classes   = trim( implode( ' ', array_filter( array( 'cb-contact-full', $flouri
                 <?= esc_html( antispambot( $email ) ); ?>
             </a>
 
-            <a class="contact-block__detail" href="https://www.linkedin.com/..." target="_blank" rel="noopener">
+            <a class="contact-block__detail" href="<?= esc_url( $linkedin ); ?>" target="_blank" rel="noopener">
                 Find us on <strong>LinkedIn</strong>
             </a>
         </div>

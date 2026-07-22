@@ -20,6 +20,7 @@ $address_2 = function_exists( 'get_field' ) ? (string) get_field( 'address_2', '
 $map_url_2 = function_exists( 'get_field' ) ? (string) get_field( 'map_url_2', 'option' ) : '';
 $email     = function_exists( 'get_field' ) ? (string) get_field( 'contact_email', 'option' ) : '';
 $phone     = function_exists( 'get_field' ) ? (string) get_field( 'contact_phone', 'option' ) : '';
+$linkedin  = function_exists( 'get_field' ) ? (string) get_field( 'linkedin_url', 'option' ) : '';
 
 // Custom classes (filter wp-generated).
 $custom_classes = '';
@@ -83,7 +84,7 @@ $classes   = trim( implode( ' ', array_filter( array( 'cb-contact-map', $flouris
 				<strong>E:</strong>
 				<?= esc_html( antispambot( $email ) ); ?>
 			</a>
-			<a class="contact-block__detail" href="https://www.linkedin.com/..." target="_blank" rel="noopener">
+			<a class="contact-block__detail" href="<?= esc_url( $linkedin ); ?>" target="_blank" rel="noopener">
 				Find us on <strong>LinkedIn</strong>
 			</a>
 		</div>
