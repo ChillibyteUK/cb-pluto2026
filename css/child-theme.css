@@ -26925,7 +26925,7 @@ body.cb-team-modal-open {
 .cb-report-pushthrough__cta::before {
   content: "";
   position: absolute;
-  background-image: url(../img/chevron-right.svg);
+  background-image: url(../img/half-logo.svg);
   top: 1rem;
   left: 0;
   width: 45px;
