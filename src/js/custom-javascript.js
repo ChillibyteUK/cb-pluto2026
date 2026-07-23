@@ -616,7 +616,7 @@ AOS.init({
             trigger: block,
             start: "top top+=" + headerOffset,
             end: function () {
-              return "+=" + items.length * window.innerHeight * 0.6;
+              return "+=" + items.length * window.innerHeight * 0.4; // this changes the speed - 5 x 0.6 = 3 scrolls, lower is faster
             },
             pin: block,
             scrub: 0.5,

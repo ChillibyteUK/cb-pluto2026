@@ -25440,7 +25440,7 @@ body.cb-team-modal-open {
 }
 .cb-card-grid__card--hover:hover {
   box-shadow: var(--shadow-2);
-  background-color: var(--col-green-teal-400);
+  background-color: var(--col-green-teal-200);
 }
 .cb-card-grid__icon {
   width: 80px;
@@ -27191,15 +27191,10 @@ body.cb-team-modal-open {
   gap: 1.5rem;
 }
 .cb-title-scroll-bullets__item {
-  padding: 1.25rem 1.5rem;
-  background-color: var(--col-white);
-  color: var(--col-black);
-  border-radius: 0.5rem;
-  border-left: 4px solid var(--col-orange-1000);
+  color: var(--col-white);
   font-size: var(--fs-600);
   font-weight: var(--fw-medium);
   line-height: 1.5;
-  box-shadow: var(--shadow-1);
   will-change: opacity, transform;
 }
 
@@ -27220,15 +27215,10 @@ body.cb-team-modal-open {
   gap: 1.5rem;
 }
 .cb-title-scroll-bullets__item {
-  padding: 1.25rem 1.5rem;
-  background-color: var(--col-white);
-  color: var(--col-black);
-  border-radius: 0.5rem;
-  border-left: 4px solid var(--col-orange-1000);
+  color: var(--col-white);
   font-size: var(--fs-600);
   font-weight: var(--fw-medium);
   line-height: 1.5;
-  box-shadow: var(--shadow-1);
   will-change: opacity, transform;
 }
 

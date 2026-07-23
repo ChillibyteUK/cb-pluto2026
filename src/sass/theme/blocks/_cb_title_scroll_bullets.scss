@@ -19,15 +19,15 @@
   }
 
   &__item {
-    padding: 1.25rem 1.5rem;
-    background-color: var(--col-white);
-    color: var(--col-black);
-    border-radius: 0.5rem;
-    border-left: 4px solid var(--col-orange-1000);
+    // padding: 1.25rem 1.5rem;
+    // background-color: var(--col-white);
+    color: var(--col-white);
+    // border-radius: 0.5rem;
+    // border-left: 4px solid var(--col-orange-1000);
     font-size: var(--fs-600);
     font-weight: var(--fw-medium);
     line-height: 1.5;
-    box-shadow: var(--shadow-1);
+    // box-shadow: var(--shadow-1);
     will-change: opacity, transform;
   }
 }
