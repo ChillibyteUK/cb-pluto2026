@@ -27187,7 +27187,8 @@ body.cb-team-modal-open {
   color: var(--col-black);
   border-radius: 0.5rem;
   border-left: 4px solid var(--col-orange-1000);
-  font-size: var(--fs-500);
+  font-size: var(--fs-600);
+  font-weight: var(--fw-medium);
   line-height: 1.5;
   box-shadow: var(--shadow-1);
   will-change: opacity, transform;
@@ -27215,7 +27216,8 @@ body.cb-team-modal-open {
   color: var(--col-black);
   border-radius: 0.5rem;
   border-left: 4px solid var(--col-orange-1000);
-  font-size: var(--fs-500);
+  font-size: var(--fs-600);
+  font-weight: var(--fw-medium);
   line-height: 1.5;
   box-shadow: var(--shadow-1);
   will-change: opacity, transform;
