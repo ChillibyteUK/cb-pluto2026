@@ -17,6 +17,8 @@ $block_id = $block['anchor'] ?? ( 'cb-card-grid-' . uniqid() );
 
 $columns         = '3' === (string) get_field( 'columns' ) ? 3 : 2;
 $column_class    = 3 === $columns ? 'col-md-6 col-lg-4' : 'col-lg-6';
+$hover_effect    = (bool) get_field( 'hover_effect' );
+$card_class      = 'cb-card-grid__card' . ( $hover_effect ? ' cb-card-grid__card--hover' : '' );
 $section_classes = array( 'cb-card-grid' );
 $section_style   = '';
 
@@ -68,7 +70,7 @@ $classes = trim( implode( ' ', array_filter( $section_classes ) ) );
 				$aos_delay = ( $index % $columns ) * 100;
 				?>
 			<div class="<?= esc_attr( $column_class ); ?> cb-card-grid__col" data-aos="fade-up" data-aos-delay="<?= esc_attr( $aos_delay ); ?>">
-				<div class="cb-card-grid__card">
+				<div class="<?= esc_attr( $card_class ); ?>">
 					<div class="d-flex gap-4 align-items-center mb-4">
 				<?php
 				$icon_id = $card['icon'] ?? 0;

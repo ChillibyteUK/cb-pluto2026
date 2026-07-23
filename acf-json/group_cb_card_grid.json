@@ -44,6 +44,27 @@
             "layout": "horizontal"
         },
         {
+            "key": "field_cb_card_grid_hover_effect",
+            "label": "Hover effect",
+            "name": "hover_effect",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Adds a shadow-lift and background colour change on hover.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "allow_in_bindings": 0,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "ui": 1
+        },
+        {
             "key": "field_6a33d23d40861",
             "label": "Cards",
             "name": "cards",

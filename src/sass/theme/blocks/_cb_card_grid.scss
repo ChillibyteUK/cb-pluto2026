@@ -11,6 +11,16 @@
         padding: 2rem;
     }
 
+    &__card--hover {
+        box-shadow: var(--shadow-1);
+        transition: box-shadow var(--transition), background-color var(--transition);
+
+        &:hover {
+            box-shadow: var(--shadow-2);
+            background-color: var(--col-green-teal-400);
+        }
+    }
+
     &__icon {
         width: 80px;
         height: 80px;

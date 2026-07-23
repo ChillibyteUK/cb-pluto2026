@@ -25434,6 +25434,14 @@ body.cb-team-modal-open {
   border-radius: 1rem;
   padding: 2rem;
 }
+.cb-card-grid__card--hover {
+  box-shadow: var(--shadow-1);
+  transition: box-shadow var(--transition), background-color var(--transition);
+}
+.cb-card-grid__card--hover:hover {
+  box-shadow: var(--shadow-2);
+  background-color: var(--col-green-teal-400);
+}
 .cb-card-grid__icon {
   width: 80px;
   height: 80px;
@@ -26926,6 +26934,7 @@ body.cb-team-modal-open {
   content: "";
   position: absolute;
   background-image: url(../img/half-logo.svg);
+  background-repeat: no-repeat;
   top: 1rem;
   left: 0;
   width: 45px;
