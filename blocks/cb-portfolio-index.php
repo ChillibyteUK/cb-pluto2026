@@ -129,19 +129,9 @@ $ajax_url     = admin_url( 'admin-ajax.php' );
 					$card_image_id = (int) $gallery_images[0];
 				}
 				$card_highlights = (string) get_field( 'card_highlights', $the_id );
-				$has_highlights  = '' !== trim( wp_strip_all_tags( $card_highlights ) );
 
-				$subtitle             = (string) get_field( 'subtitle', $the_id );
-				$project_description  = (string) get_field( 'project_description', $the_id );
-				$map_image_id         = (int) get_field( 'map', $the_id );
-				$has_portfolio_fields =
-					'' !== trim( wp_strip_all_tags( $subtitle ) ) ||
-					'' !== trim( wp_strip_all_tags( $project_description ) ) ||
-					$map_image_id > 0 ||
-					! empty( $vimeo_id ) ||
-					! empty( $gallery_images );
-
-				$should_link = $has_highlights && $has_portfolio_fields;
+				$project_description = (string) get_field( 'project_description', $the_id );
+				$should_link         = '' !== trim( wp_strip_all_tags( $project_description ) );
 
 				$post_solution_terms = wp_get_post_terms( $the_id, 'portfolio_solution', array( 'fields' => 'slugs' ) );
 				$solution_attr       = ! empty( $post_solution_terms ) && ! is_wp_error( $post_solution_terms ) ? implode( ' ', $post_solution_terms ) : '';
