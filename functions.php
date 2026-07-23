@@ -84,6 +84,20 @@ add_action( 'wp_enqueue_scripts', 'cb_enqueue_theme_js', 20 );
 
 
 /**
+ * Enqueue Chart.js from CDN for the cb-text-chart block.
+ */
+function cb_enqueue_chartjs() {
+	wp_enqueue_script(
+		'chart-js',
+		'https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js',
+		array(),
+		'4.4.7',
+		true
+	);
+}
+add_action( 'wp_enqueue_scripts', 'cb_enqueue_chartjs' );
+
+/**
  * Load the child theme's text domain
  */
 function add_child_theme_textdomain() {

@@ -17,6 +17,26 @@ function acf_blocks() {
 
 		// INSERT NEW BLOCKS HERE.
 
+		acf_register_block_type(
+			array(
+				'name'            => 'cb_text_chart',
+				'title'           => __( 'CB Text Chart' ),
+				'category'        => 'layout',
+				'icon'            => 'chart-pie',
+				'render_template' => 'blocks/cb-text-chart.php',
+				'mode'            => 'edit',
+				'supports'        => array(
+					'mode'      => false,
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+					'color'     => array(
+						'background' => true,
+						'text'       => true,
+					),
+				),
+			)
+		);
 
 		acf_register_block_type(
 			array(
