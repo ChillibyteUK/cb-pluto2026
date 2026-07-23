@@ -134,33 +134,40 @@ document.addEventListener('DOMContentLoaded', function () {
 	data.push(<?= (float) $item['value']; ?>);
 	colors.push('<?= esc_js( $item['colour'] ?: '#000' ); ?>');
 	<?php endforeach; ?>
-	new Chart(ctx, {
-		type: 'doughnut',
-		data: {
-			labels: labels,
-			datasets: [{
-				data: data,
-				backgroundColor: colors,
-				borderWidth: 0
-			}]
-		},
-		options: {
-			responsive: true,
-			cutout: '30%',
-			plugins: {
-				legend: { display: false },
-				tooltip: {
-					callbacks: {
-						label: function (tooltipItem) {
-							var total = tooltipItem.dataset.data.reduce(function (a, b) { return a + b; }, 0);
-							var pct = ((tooltipItem.parsed / total) * 100).toFixed(1);
-							return tooltipItem.label + ': ' + pct + '%';
+	var observer = new IntersectionObserver(function (entries) {
+		entries.forEach(function (entry) {
+			if (!entry.isIntersecting) return;
+			new Chart(ctx, {
+				type: 'doughnut',
+				data: {
+					labels: labels,
+					datasets: [{
+						data: data,
+						backgroundColor: colors,
+						borderWidth: 0
+					}]
+				},
+				options: {
+					responsive: true,
+					cutout: '40%',
+					plugins: {
+						legend: { display: false },
+						tooltip: {
+							callbacks: {
+								label: function (tooltipItem) {
+									var total = tooltipItem.dataset.data.reduce(function (a, b) { return a + b; }, 0);
+									var pct = ((tooltipItem.parsed / total) * 100).toFixed(1);
+									return tooltipItem.label + ': ' + pct + '%';
+								}
+							}
 						}
 					}
 				}
-			}
-		}
-	});
+			});
+			observer.unobserve(ctx);
+		});
+	}, { threshold: 0.3 });
+	observer.observe(ctx);
 });
 </script>
 	<?php
