@@ -1,0 +1,130 @@
+.cb-text-video__video-btn {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.cb-text-video__video-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.cb-text-video__video-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0);
+  transition: background-color 0.2s ease;
+
+  .cb-text-video__video-btn:hover &,
+  .cb-text-video__video-btn:focus-visible & {
+    background-color: rgba(0, 0, 0, 0.15);
+  }
+}
+
+.cb-text-video__video-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 50%;
+  background-color: var(--col-white);
+  box-shadow: var(--shadow-1);
+}
+
+.cb-text-video__video-chevron {
+  width: 3rem;
+  height: 3rem;
+  margin-left: 0.5rem;
+  transition: transform 0.2s ease;
+
+  .cb-text-video__video-btn:hover &,
+  .cb-text-video__video-btn:focus-visible & {
+    transform: scale(1.15);
+  }
+}
+
+/* --------------------------------------------------
+   Hoisted out of `.cb-text-video` so the modal can be portaled
+   to <body> at runtime — see the JS in cb-text-video.php.
+   -------------------------------------------------- */
+.cb-text-video__modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1080;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+
+  &[hidden] {
+    display: none !important;
+  }
+}
+
+.cb-text-video__modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  cursor: pointer;
+}
+
+.cb-text-video__modal-dialog {
+  position: relative;
+  width: 100%;
+  max-width: min(1200px, 95vw);
+  max-height: calc(100vh - 2rem);
+}
+
+.cb-text-video__modal-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--col-white);
+  z-index: 1;
+
+  &:hover,
+  &:focus-visible {
+    background: rgba(0, 0, 0, 0.85);
+  }
+}
+
+.cb-text-video__modal-body {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: var(--col-black);
+
+  iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+}
+
+body.cb-text-video-modal-open {
+  overflow: hidden;
+}
