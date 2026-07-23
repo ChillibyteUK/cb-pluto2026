@@ -49,13 +49,6 @@ if ( isset( $block['className'] ) ) {
 
 $classes = trim( 'cb-accordion-tabs ' . $custom_classes );
 
-// $context = cb_get_site_context();
-// if ( 'pf' === $context ) {
-// 	$classes .= ' cb-accordion-tabs--pf';
-// } elseif ( 'inv' === $context ) {
-// 	$classes .= ' cb-accordion-tabs--inv';
-// }
-
 $render_panel = static function ( $item, $panel_id, $title_id ) {
 	$title   = isset( $item['title'] ) ? $item['title'] : '';
 	$content = isset( $item['content'] ) ? $item['content'] : '';
@@ -80,7 +73,8 @@ $render_panel = static function ( $item, $panel_id, $title_id ) {
 			<div class="row g-4 align-items-start">
 				<div class="col-xl-4">
 					<div class="cb-accordion-tabs__tablist" role="tablist" aria-label="Accordion tabs">
-						<?php foreach ( $items as $index => $item ) :
+						<?php
+						foreach ( $items as $index => $item ) :
 							$tab_id   = $block_uid . '-desktop-tab-' . $index;
 							$panel_id = $block_uid . '-desktop-panel-' . $index;
 							$active   = 0 === $index;
@@ -94,7 +88,8 @@ $render_panel = static function ( $item, $panel_id, $title_id ) {
 				</div>
 				<div class="col-xl-8">
 					<div class="cb-accordion-tabs__stage">
-						<?php foreach ( $items as $index => $item ) :
+						<?php
+						foreach ( $items as $index => $item ) :
 							$tab_id   = $block_uid . '-desktop-tab-' . $index;
 							$panel_id = $block_uid . '-desktop-panel-' . $index;
 							$active   = 0 === $index;
@@ -107,7 +102,8 @@ $render_panel = static function ( $item, $panel_id, $title_id ) {
 		</div>
 
 		<div class="cb-accordion-tabs__mobile d-xl-none" data-cb-accordion-tabs="accordion">
-			<?php foreach ( $items as $index => $item ) :
+			<?php
+			foreach ( $items as $index => $item ) :
 				$tab_id   = $block_uid . '-mobile-tab-' . $index;
 				$panel_id = $block_uid . '-mobile-panel-' . $index;
 				$active   = 0 === $index;

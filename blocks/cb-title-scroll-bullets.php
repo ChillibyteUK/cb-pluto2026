@@ -7,10 +7,10 @@
 
 defined( 'ABSPATH' ) || exit;
 
-$title   = get_field( 'title' );
+$btitle  = get_field( 'title' );
 $bullets = get_field( 'bullets' );
 
-if ( empty( $title ) && empty( $bullets ) ) {
+if ( empty( $btitle ) && empty( $bullets ) ) {
 	return;
 }
 
@@ -43,8 +43,8 @@ $classes = $custom_classes ? $custom_classes : '';
 		<div class="row gx-5">
 			<div class="col-lg-6 cb-title-scroll-bullets__title-col">
 				<div class="cb-title-scroll-bullets__title-inner">
-					<?php if ( $title ) : ?>
-					<h2 class="cb-title-scroll-bullets__title"><?= wp_kses_post( $title ); ?></h2>
+					<?php if ( $btitle ) : ?>
+					<h2 class="cb-title-scroll-bullets__title"><?= wp_kses_post( $btitle ); ?></h2>
 					<?php endif; ?>
 				</div>
 			</div>

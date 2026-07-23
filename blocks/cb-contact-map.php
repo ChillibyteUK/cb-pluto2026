@@ -52,12 +52,6 @@ if ( ! empty( $block['style']['color']['text'] ) ) {
 // Determine the flourish colour variant from the URL, mirroring cb-text-image.
 $context          = cb_get_site_context();
 $flourish_classes = '';
-// $flourish_classes = 'full-flourish';
-// if ( 'pf' === $context ) {
-// 	$flourish_classes .= ' full-flourish--lending full-flourish--flip';
-// } elseif ( 'inv' === $context ) {
-// 	$flourish_classes .= ' full-flourish--investors full-flourish--flip';
-// }
 
 $block_uid = 'cb-contact-map-' . uniqid();
 $classes   = trim( implode( ' ', array_filter( array( 'cb-contact-map', $flourish_classes, $bg, $fg, $custom_classes ) ) ) );

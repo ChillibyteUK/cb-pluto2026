@@ -7,10 +7,10 @@
 
 defined( 'ABSPATH' ) || exit;
 
-$title   = get_field( 'title' );
+$btitle  = get_field( 'title' );
 $content = get_field( 'content' );
 
-if ( ! $title ) {
+if ( ! $btitle ) {
 	return;
 }
 
@@ -36,7 +36,7 @@ $classes   = trim( implode( ' ', array_filter( array( 'cb-collapse', $bg, $fg, $
 	<div class="container">
 		<div class="cb-collapse__item">
 			<button class="cb-collapse__toggle collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#<?= esc_attr( $block_uid ); ?>-body" aria-expanded="false" aria-controls="<?= esc_attr( $block_uid ); ?>-body">
-				<?= esc_html( $title ); ?>
+				<?= esc_html( $btitle ); ?>
 			</button>
 			<div class="collapse" id="<?= esc_attr( $block_uid ); ?>-body">
 				<div class="cb-collapse__body">

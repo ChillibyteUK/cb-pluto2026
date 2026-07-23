@@ -25,12 +25,6 @@ $fg = ! empty( $block['textColor'] ) ? 'has-' . $block['textColor'] . '-color ha
 // Determine the flourish colour variant from the URL, mirroring cb-text-image.
 $context          = cb_get_site_context();
 $flourish_classes = '';
-// $flourish_classes = 'full-flourish';
-// if ( 'pf' === $context ) {
-// $flourish_classes .= ' full-flourish--lending full-flourish--flip';
-// } elseif ( 'inv' === $context ) {
-// $flourish_classes .= ' full-flourish--investors full-flourish--flip';
-// }
 
 $custom_classes = 'pb-5';
 // Custom classes (filter wp-generated).
@@ -53,33 +47,33 @@ $classes   = trim( implode( ' ', array_filter( array( 'cb-contact-full', $flouri
 	class="<?= esc_attr( $classes ); ?>"
 	<?= $inline_style ? ' style="' . esc_attr( $inline_style ) . '"' : ''; ?>
 >
-    <div class="container">
+	<div class="container">
 
-        <div class="contact-block__intro">
-            <h2>Contact</h2>
-            <p>For enquiries, appointments or further information, contact us using the details below.</p>
-        </div>
+		<div class="contact-block__intro">
+			<h2>Contact</h2>
+			<p>For enquiries, appointments or further information, contact us using the details below.</p>
+		</div>
 
-        <div class="contact-block__details d-flex flex-column justify-content-center gap-3 mt-4">
-            <a class="contact-block__detail" href="tel:<?= esc_attr( parse_phone( $phone ) ); ?>">
-                <strong>T:</strong>
-                <?= esc_html( $phone ); ?>
-            </a>
+		<div class="contact-block__details d-flex flex-column justify-content-center gap-3 mt-4">
+			<a class="contact-block__detail" href="tel:<?= esc_attr( parse_phone( $phone ) ); ?>">
+				<strong>T:</strong>
+				<?= esc_html( $phone ); ?>
+			</a>
 
-            <a class="contact-block__detail" href="mailto:<?= esc_attr( antispambot( $email ) ); ?>">
-                <strong>E:</strong>
-                <?= esc_html( antispambot( $email ) ); ?>
-            </a>
+			<a class="contact-block__detail" href="mailto:<?= esc_attr( antispambot( $email ) ); ?>">
+				<strong>E:</strong>
+				<?= esc_html( antispambot( $email ) ); ?>
+			</a>
 
-            <a class="contact-block__detail" href="<?= esc_url( $linkedin ); ?>" target="_blank" rel="noopener">
-                Find us on <strong>LinkedIn</strong>
-            </a>
-        </div>
+			<a class="contact-block__detail" href="<?= esc_url( $linkedin ); ?>" target="_blank" rel="noopener">
+				Find us on <strong>LinkedIn</strong>
+			</a>
+		</div>
 
-        <div class="contact-block__offices row mt-5">
-            <article class="contact-block__office contact-block__office--primary col-lg-7 col-md-12">
-                <h3>London</h3>
-                <address><?= esc_html( wp_strip_all_tags( $address ) ); ?></address>
+		<div class="contact-block__offices row mt-5">
+			<article class="contact-block__office contact-block__office--primary col-lg-7 col-md-12">
+				<h3>London</h3>
+				<address><?= esc_html( wp_strip_all_tags( $address ) ); ?></address>
 				<?php
 				if ( '' !== trim( $map_url ) ) {
 					?>
@@ -96,11 +90,11 @@ $classes   = trim( implode( ' ', array_filter( array( 'cb-contact-full', $flouri
 				}
 				?>
 
-            </article>
+			</article>
 
-            <article class="contact-block__office col-lg-5 col-md-12">
-                <h3>Edinburgh</h3>
-                <address><?= esc_html( wp_strip_all_tags( $address_2 ) ); ?></address>
+			<article class="contact-block__office col-lg-5 col-md-12">
+				<h3>Edinburgh</h3>
+				<address><?= esc_html( wp_strip_all_tags( $address_2 ) ); ?></address>
 				<?php
 				if ( '' !== trim( $map_url_2 ) ) {
 					?>
@@ -116,8 +110,8 @@ $classes   = trim( implode( ' ', array_filter( array( 'cb-contact-full', $flouri
 					<?php
 				}
 				?>
-            </article>
-        </div>
+			</article>
+		</div>
 
-    </div>
+	</div>
 </section>

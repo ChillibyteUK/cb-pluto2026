@@ -21,11 +21,11 @@ if ( ! empty( $block['textColor'] ) ) {
 $custom_bg = $block['style']['color']['background'] ?? '';
 $custom_fg = $block['style']['color']['text'] ?? '';
 if ( $custom_bg ) {
-	$section_style .= 'background-color:' . $custom_bg . ';';
+	$section_style    .= 'background-color:' . $custom_bg . ';';
 	$section_classes[] = 'has-background';
 }
 if ( $custom_fg ) {
-	$section_style .= 'color:' . $custom_fg . ';';
+	$section_style    .= 'color:' . $custom_fg . ';';
 	$section_classes[] = 'has-text-color';
 }
 if ( ! empty( $block['className'] ) ) {
@@ -44,10 +44,10 @@ if ( ! empty( $block['className'] ) ) {
 					'content' => get_sub_field( 'content' ),
 				);
 			}
-			$half   = (int) ceil( count( $rows ) / 2 );
-			$cols   = array_chunk( $rows, $half );
+			$half        = (int) ceil( count( $rows ) / 2 );
+			$cols        = array_chunk( $rows, $half );
 			$render_item = function ( $item ) {
-			?>
+				?>
 			<div class="cb-two-col-checklist__item">
 				<i class="fa-regular fa-circle-check cb-two-col-checklist__icon" aria-hidden="true"></i>
 				<?php if ( $item['title'] ) { ?>
@@ -57,15 +57,23 @@ if ( ! empty( $block['className'] ) ) {
 				<div class="cb-two-col-checklist__content"><?= wp_kses_post( $item['content'] ); ?></div>
 				<?php } ?>
 			</div>
-			<?php
+				<?php
 			};
 			?>
 		<div class="cb-two-col-checklist__grid">
 			<div class="cb-two-col-checklist__col">
-				<?php foreach ( $cols[0] as $item ) { $render_item( $item ); } ?>
+				<?php
+				foreach ( $cols[0] as $item ) {
+					$render_item( $item ); }
+				?>
 			</div>
 			<div class="cb-two-col-checklist__col">
-				<?php if ( isset( $cols[1] ) ) { foreach ( $cols[1] as $item ) { $render_item( $item ); } } ?>
+				<?php
+				if ( isset( $cols[1] ) ) {
+					foreach ( $cols[1] as $item ) {
+						$render_item( $item ); }
+				}
+				?>
 			</div>
 		</div>
 		<?php } ?>

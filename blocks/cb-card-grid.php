@@ -15,8 +15,8 @@ if ( empty( $cards ) || ! is_array( $cards ) ) {
 
 $block_id = $block['anchor'] ?? ( 'cb-card-grid-' . uniqid() );
 
-$columns        = '3' === (string) get_field( 'columns' ) ? 3 : 2;
-$column_class   = 3 === $columns ? 'col-md-6 col-lg-4' : 'col-lg-6';
+$columns         = '3' === (string) get_field( 'columns' ) ? 3 : 2;
+$column_class    = 3 === $columns ? 'col-md-6 col-lg-4' : 'col-lg-6';
 $section_classes = array( 'cb-card-grid' );
 $section_style   = '';
 

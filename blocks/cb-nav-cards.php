@@ -11,9 +11,9 @@ defined( 'ABSPATH' ) || exit;
 $context = cb_get_site_context();
 
 if ( 'pf' === $context ) {
-	$preset           = 'cb-nav-cards--property-finance';
+	$preset = 'cb-nav-cards--property-finance';
 } elseif ( 'inv' === $context ) {
-	$preset           = 'cb-nav-cards--investors';
+	$preset = 'cb-nav-cards--investors';
 } else {
 	// Block is only meaningful inside a silo; render nothing elsewhere.
 	return;

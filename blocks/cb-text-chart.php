@@ -107,7 +107,7 @@ $render_text = function () use ( $chart_key_label, $chart_items, $chart_uid ) {
 			<ul class="cb-text-chart__key-list">
 				<?php foreach ( $chart_items as $item ) : ?>
 				<li>
-					<span class="cb-text-chart__key-swatch" style="background-color: <?= esc_attr( $item['colour'] ?: '#000' ); ?>"></span>
+					<span class="cb-text-chart__key-swatch" style="background-color: <?= esc_attr( $item['colour'] ? $item['colour'] : '#000' ); ?>"></span>
 					<?= esc_html( $item['title'] ); ?>
 				</li>
 				<?php endforeach; ?>
@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	<?php foreach ( $chart_items as $item ) : ?>
 	labels.push('<?= esc_js( $item['title'] ); ?>');
 	data.push(<?= (float) $item['value']; ?>);
-	colors.push('<?= esc_js( $item['colour'] ?: '#000' ); ?>');
+	colors.push('<?= esc_js( $item['colour'] ? $item['colour'] : '#000' ); ?>');
 	<?php endforeach; ?>
 	var observer = new IntersectionObserver(function (entries) {
 		entries.forEach(function (entry) {

@@ -117,6 +117,27 @@
             "preview_size": "thumbnail"
         },
         {
+            "key": "field_6a6220c2ab955",
+            "label": "Vimeo ID",
+            "name": "vimeo_id",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_69f36e18e88c2",
             "label": "Card Highlights",
             "name": "card_highlights",
@@ -159,5 +180,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1784807785
+    "modified": 1784815823
 }

@@ -27,11 +27,11 @@ $markets     = array();
 if ( ! empty( $acf_markets ) && is_array( $acf_markets ) ) {
 	foreach ( $acf_markets as $item ) {
 		$key             = $item['market_key'] ?? '';
-		$title           = $item['market_title'] ?? '';
+		$mtitle          = $item['market_title'] ?? '';
 		$body            = $item['market_body'] ?? '';
 		$markets[ $key ] = array(
-			'label' => $title,
-			'title' => $title,
+			'label' => $mtitle,
+			'title' => $mtitle,
 			'body'  => $body,
 		);
 	}

@@ -86,8 +86,8 @@ $ajax_url     = admin_url( 'admin-ajax.php' );
 		<?php if ( $has_solution_filters ) : ?>
 		<div class="cb-portfolio-index__filters cb-portfolio-index__filters--solutions">
 			<button class="cb-portfolio-index__filter<?= 'all' === $active_solution ? ' cb-portfolio-index__filter--active' : ''; ?>" data-filter="all"><?php esc_html_e( 'All', 'cb-pluto2026' ); ?></button>
-			<?php foreach ( $solution_terms as $term ) : ?>
-			<button class="cb-portfolio-index__filter<?= $term->slug === $active_solution ? ' cb-portfolio-index__filter--active' : ''; ?>" data-filter="<?= esc_attr( $term->slug ); ?>"><?= esc_html( $term->name ); ?></button>
+			<?php foreach ( $solution_terms as $sterm ) : ?>
+			<button class="cb-portfolio-index__filter<?= $sterm->slug === $active_solution ? ' cb-portfolio-index__filter--active' : ''; ?>" data-filter="<?= esc_attr( $sterm->slug ); ?>"><?= esc_html( $sterm->name ); ?></button>
 			<?php endforeach; ?>
 		</div>
 		<?php endif; ?>
@@ -95,8 +95,8 @@ $ajax_url     = admin_url( 'admin-ajax.php' );
 		<?php if ( $has_market_filters ) : ?>
 		<div class="cb-portfolio-index__filters cb-portfolio-index__filters--markets">
 			<button class="cb-portfolio-index__filter<?= 'all' === $active_market ? ' cb-portfolio-index__filter--active' : ''; ?>" data-filter="all"><?php esc_html_e( 'All Markets', 'cb-pluto2026' ); ?></button>
-			<?php foreach ( $market_terms as $term ) : ?>
-			<button class="cb-portfolio-index__filter<?= $term->slug === $active_market ? ' cb-portfolio-index__filter--active' : ''; ?>" data-filter="<?= esc_attr( $term->slug ); ?>"><?= esc_html( $term->name ); ?></button>
+			<?php foreach ( $market_terms as $mterm ) : ?>
+			<button class="cb-portfolio-index__filter<?= $mterm->slug === $active_market ? ' cb-portfolio-index__filter--active' : ''; ?>" data-filter="<?= esc_attr( $mterm->slug ); ?>"><?= esc_html( $mterm->name ); ?></button>
 			<?php endforeach; ?>
 		</div>
 		<?php endif; ?>

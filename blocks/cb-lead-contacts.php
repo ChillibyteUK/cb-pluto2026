@@ -88,7 +88,7 @@ if ( $custom_classes ) {
 				}
 
 				$name        = get_the_title( $person_id );
-				$title       = (string) ( $contact['title'] ?? '' );
+				$prole       = (string) ( $contact['title'] ?? '' );
 				$email       = (string) get_field( 'email', $person_id );
 				$phone       = (string) get_field( 'phone', $person_id );
 				$linkedin    = (string) get_field( 'linkedin_url', $person_id );
@@ -103,8 +103,8 @@ if ( $custom_classes ) {
 							<img src="<?= esc_url( $img_url ); ?>" alt="<?= esc_attr( $name ); ?>" loading="lazy">
 						</div>
 						<div class="cb-lead-contacts__body">
-							<?php if ( '' !== trim( $title ) ) : ?>
-								<p class="cb-lead-contacts__title"><?= esc_html( $title ); ?></p>
+							<?php if ( '' !== trim( $prole ) ) : ?>
+								<p class="cb-lead-contacts__title"><?= esc_html( $prole ); ?></p>
 							<?php endif; ?>
 							<h3 class="cb-lead-contacts__name"><?= esc_html( $name ); ?></h3>
 							<?php if ( $email || $phone || $linkedin ) : ?>
