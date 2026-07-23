@@ -18,6 +18,8 @@ if ( ! empty( $vimeo_id ) ) {
 	$vimeo_thumbnail_url = get_vimeo_data_from_id( $vimeo_id, 'thumbnail_url' );
 }
 
+$thumbnail_id = (int) get_field( 'thumbnail' );
+
 
 $col_order = get_field( 'order' ) ? get_field( 'order' ) : 'Text Video';
 
@@ -61,7 +63,11 @@ $video_col_order = ( 'Video Text' === $col_order ) ? 'order-1 order-md-1' : 'ord
 			<div class="col-md-6 cb-text-video-col <?= esc_attr( $video_col_order ); ?>" data-aos="<?= esc_attr( $video_aos ); ?>">
 				<?php if ( ! empty( $vimeo_id ) ) : ?>
 				<button type="button" class="cb-text-video__video-btn" data-cb-text-video-open="<?= esc_attr( $block_id ); ?>-modal" aria-label="<?php esc_attr_e( 'Play video', 'cb-pluto2026' ); ?>">
+					<?php if ( $thumbnail_id > 0 ) : ?>
+					<?= wp_get_attachment_image( $thumbnail_id, 'large', false, array( 'class' => 'cb-text-video__video-image' ) ); ?>
+					<?php else : ?>
 					<img src="<?= esc_url( $vimeo_thumbnail_url ); ?>" class="cb-text-video__video-image" alt="">
+					<?php endif; ?>
 					<span class="cb-text-video__video-overlay">
 						<span class="cb-text-video__video-circle">
 							<img src="<?= esc_url( get_stylesheet_directory_uri() . '/img/chevron-right.svg' ); ?>" class="cb-text-video__video-chevron" alt="">
