@@ -13,9 +13,51 @@
  * category, icon, render template, and supports various features.
  */
 function acf_blocks() {
-    if ( function_exists( 'acf_register_block_type' ) ) {
+	if ( function_exists( 'acf_register_block_type' ) ) {
 
 		// INSERT NEW BLOCKS HERE.
+
+		acf_register_block_type(
+			array(
+				'name'            => 'cb_title_scroll_bullets',
+				'title'           => __( 'CB Title Scroll Bullets' ),
+				'category'        => 'layout',
+				'icon'            => 'cover-image',
+				'render_template' => 'blocks/cb-title-scroll-bullets.php',
+				'mode'            => 'edit',
+				'supports'        => array(
+					'mode'      => false,
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+					'color'     => array(
+						'background' => true,
+						'text'       => true,
+					),
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'cb_title_scroll_bullets',
+				'title'           => __( 'CB Title Scroll Bullets' ),
+				'category'        => 'layout',
+				'icon'            => 'editor-ul',
+				'render_template' => 'blocks/cb-title-scroll-bullets.php',
+				'mode'            => 'edit',
+				'supports'        => array(
+					'mode'      => false,
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+					'color'     => array(
+						'background' => true,
+						'text'       => false,
+					),
+				),
+			)
+		);
 
 		acf_register_block_type(
 			array(
@@ -51,7 +93,7 @@ function acf_blocks() {
 					'anchor'    => true,
 					'className' => true,
 					'align'     => true,
-          
+
 				),
 			)
 		);
@@ -69,7 +111,7 @@ function acf_blocks() {
 					'anchor'    => true,
 					'className' => true,
 					'align'     => true,
-          
+
 				),
 			)
 		);
@@ -87,7 +129,7 @@ function acf_blocks() {
 					'anchor'    => true,
 					'className' => true,
 					'align'     => true,
-          
+
 				),
 			)
 		);
@@ -146,7 +188,7 @@ function acf_blocks() {
 					'anchor'    => true,
 					'className' => true,
 					'align'     => true,
-           
+
 				),
 			)
 		);
@@ -164,7 +206,7 @@ function acf_blocks() {
 					'anchor'    => true,
 					'className' => true,
 					'align'     => true,
-           
+
 				),
 			)
 		);
@@ -182,7 +224,7 @@ function acf_blocks() {
 					'anchor'    => true,
 					'className' => true,
 					'align'     => true,
-           
+
 				),
 			)
 		);
@@ -678,7 +720,7 @@ function acf_blocks() {
 			)
 		);
 
-    }
+	}
 }
 add_action( 'acf/init', 'acf_blocks' );
 
@@ -721,7 +763,7 @@ function core_block_type_args( $args, $name ) {
 		$args['render_callback'] = 'modify_core_add_container';
 	}
 
-    return $args;
+	return $args;
 }
 add_filter( 'register_block_type_args', 'core_block_type_args', 10, 3 );
 
@@ -731,13 +773,13 @@ add_filter( 'register_block_type_args', 'core_block_type_args', 10, 3 );
  * @return bool True if footer.php is being rendered, false otherwise.
  */
 function is_footer_rendering() {
-    $backtrace = debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_debug_backtrace
-    foreach ( $backtrace as $trace ) {
-        if ( isset( $trace['file'] ) && basename( $trace['file'] ) === 'footer.php' ) {
-            return true;
-        }
-    }
-    return false;
+	$backtrace = debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_debug_backtrace
+	foreach ( $backtrace as $trace ) {
+		if ( isset( $trace['file'] ) && basename( $trace['file'] ) === 'footer.php' ) {
+			return true;
+		}
+	}
+	return false;
 }
 
 /**
@@ -748,16 +790,16 @@ function is_footer_rendering() {
  * @return string The modified block content wrapped in a container div.
  */
 function modify_core_add_container( $attributes, $content ) {
-    if ( is_footer_rendering() ) {
-        return $content;
-    }
+	if ( is_footer_rendering() ) {
+		return $content;
+	}
 
-    ob_start();
-    ?>
-    <div class="container">
-        <?= wp_kses_post( $content ); ?>
-    </div>
+	ob_start();
+	?>
+	<div class="container">
+		<?= wp_kses_post( $content ); ?>
+	</div>
 	<?php
 	$content = ob_get_clean();
-    return $content;
+	return $content;
 }
