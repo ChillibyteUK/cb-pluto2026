@@ -71,19 +71,22 @@ $context = cb_get_site_context();
 	<div class="footer__colophon py-4">
 		<div class="container">
 			<div class="row g-5">
-				<div class="col-12 col-md-3">
-					&copy; <?= esc_html( gmdate( 'Y' ) ); ?> Pluto Finance (UK) LLP.<br>
+				<div class="col-12 col-md-6">
+					&copy; <?= esc_html( gmdate( 'Y' ) ); ?> Pluto Finance (UK) LLP.
+				</div>
+				<div class="col-12 col-md-6 text-md-end">
+					<a href="/privacy-policy/" class="footer__colophon-link">Privacy</a> | <a href="/cookie-policy/" class="footer__colophon-link">Cookies</a> | <a href="/terms-of-use/" class="footer__colophon-link">Terms</a>
 				</div>
 				<?php
 				if ( 'pf' === $context ) {
 					?>
-				<div class="col-12 col-md-9">
+				<div class="col-12">
 					<?= wp_kses_post( get_field( 'colophon', 'option' ) ); ?>
 				</div>
 					<?php
 				} elseif ( 'inv' === $context ) {
 					?>
-				<div class="col-12 col-md-9">
+				<div class="col-12">
 					<?= wp_kses_post( get_field( 'colophon_investors', 'option' ) ); ?>
 				</div>
 					<?php
