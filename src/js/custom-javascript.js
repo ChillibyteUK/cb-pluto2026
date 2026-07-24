@@ -609,11 +609,13 @@ AOS.init({
         var firstItem = items[0];
         var restItems = items.slice(1);
 
-        // Reveal the first bullet on normal scroll-into-view, well before
-        // the pin engages, so the section never just sits there empty.
+        // Reveal the first bullet once the block is ~25-33% into the
+        // viewport (i.e. its top has reached ~70% down), well before the
+        // pin engages — so the title gets a moment on its own first, then
+        // the section never just sits there empty for long.
         ScrollTrigger.create({
           trigger: block,
-          start: "top 85%",
+          start: "top 70%",
           once: true,
           onEnter: function () {
             gsap.to(firstItem, {
