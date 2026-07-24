@@ -86,6 +86,8 @@
     h1 {
       font-weight: var(--fw-medium);
       margin-bottom: 1.5rem;
+      max-width: 22ch;
+      text-wrap: pretty;
     }
     .home-page__intro {
       font-size: var(--fs-500);

@@ -27425,6 +27425,8 @@ body.cb-text-video-modal-open {
 .home-page__hero h1, .home-page__hero .h1 {
   font-weight: var(--fw-medium);
   margin-bottom: 1.5rem;
+  max-width: 22ch;
+  text-wrap: pretty;
 }
 .home-page__hero .home-page__intro {
   font-size: var(--fs-500);
