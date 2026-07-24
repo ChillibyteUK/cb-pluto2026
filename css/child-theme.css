@@ -22297,12 +22297,13 @@ body.homepage header .navbar-toggler {
   padding-block-start: 0;
 }
 
-header:has(.navbar-collapse.collapse.show) .navbar-bottom,
-header:has(.navbar-collapse.collapsing) .navbar-bottom {
-  background-color: var(--col-green-dark-1000) !important;
-  transition: none !important;
+@media (max-width: 991px) {
+  header:has(.navbar-collapse.collapse.show) .navbar-bottom,
+  header:has(.navbar-collapse.collapsing) .navbar-bottom {
+    background-color: var(--col-green-dark-1000) !important;
+    transition: none !important;
+  }
 }
-
 .footer {
   position: relative;
   color: var(--col-white);
