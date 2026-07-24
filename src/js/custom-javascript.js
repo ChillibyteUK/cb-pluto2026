@@ -568,10 +568,15 @@ AOS.init({
 
 // Pin + scrub reveal for cb-title-scroll-bullets blocks.
 //
-// Desktop (>=992px): the title is pinned in place at its natural height
-// while the bullets scrub in beside it. Below that, no pin — bullets just
-// fade in one at a time as they're scrolled to, same as the other reveal
-// patterns above.
+// Desktop (>=992px): the first bullet fades in as soon as the block scrolls
+// into view normally (same trigger the mobile version uses below) — so
+// there's visible movement immediately instead of a long static wait. The
+// title then pins at its natural height once the block reaches "top 25%",
+// and the *remaining* bullets scrub in beside it. Keeping the first bullet
+// out of that pinned timeline entirely means its already-revealed state is
+// never touched/reset when the pin's scrub timeline initializes. Below
+// 992px, no pin — bullets just fade in one at a time as they're scrolled
+// to, same as the other reveal patterns above.
 (function () {
   if (!window.gsap || !window.ScrollTrigger) return;
 
@@ -601,6 +606,27 @@ AOS.init({
 
         gsap.set(items, { autoAlpha: 0, x: 60 });
 
+        var firstItem = items[0];
+        var restItems = items.slice(1);
+
+        // Reveal the first bullet on normal scroll-into-view, well before
+        // the pin engages, so the section never just sits there empty.
+        ScrollTrigger.create({
+          trigger: block,
+          start: "top 85%",
+          once: true,
+          onEnter: function () {
+            gsap.to(firstItem, {
+              autoAlpha: 1,
+              x: 0,
+              duration: 0.6,
+              ease: "power2.out",
+            });
+          },
+        });
+
+        if (!restItems.length) return;
+
         // start: "top 25%" — pin/animation kicks in once the block is
         // scrolled ~25% into the viewport.
         var tl = gsap.timeline({
@@ -608,7 +634,7 @@ AOS.init({
             trigger: block,
             start: "top 25%",
             end: function () {
-              return "+=" + items.length * window.innerHeight * 0.2; // this changes the speed - lower is faster
+              return "+=" + restItems.length * window.innerHeight * 0.2; // this changes the speed - lower is faster
             },
             pin: block,
             scrub: 0.5,
@@ -616,7 +642,7 @@ AOS.init({
           },
         });
 
-        items.forEach(function (item, i) {
+        restItems.forEach(function (item, i) {
           tl.to(item, { autoAlpha: 1, x: 0, duration: 1 }, i);
         });
       });
