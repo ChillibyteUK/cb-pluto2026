@@ -26993,8 +26993,8 @@ body.cb-team-modal-open {
 }
 
 .cb-text-chart__chart-col canvas {
-  max-width: 300px;
-  max-height: 300px;
+  max-width: 400px;
+  max-height: 400px;
   width: 100%;
   height: auto;
   aspect-ratio: 1/1;

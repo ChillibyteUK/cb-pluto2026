@@ -141,7 +141,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			</div>
 			<div class="col-lg-6 <?= esc_attr( $chart_col_order ); ?> cb-text-chart__chart-col text-center" data-aos="<?= esc_attr( $chart_aos ); ?>">
 				<?php if ( ! empty( $chart_items ) ) : ?>
-				<canvas id="<?= esc_attr( $chart_uid ); ?>" class="mx-auto" width="500" height="500"></canvas>
+				<canvas id="<?= esc_attr( $chart_uid ); ?>" class="mx-auto" width="400" height="400"></canvas>
 				<?php endif; ?>
 			</div>
 		</div>
