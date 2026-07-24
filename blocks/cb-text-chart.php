@@ -94,37 +94,65 @@ document.addEventListener('DOMContentLoaded', function () {
 	data.push(<?= (float) $item['value']; ?>);
 	colors.push('<?= esc_js( $item['colour'] ? $item['colour'] : '#000' ); ?>');
 	<?php endforeach; ?>
-	var observer = new IntersectionObserver(function (entries) {
-		entries.forEach(function (entry) {
-			if (!entry.isIntersecting) return;
-			new Chart(ctx, {
-				type: 'doughnut',
-				data: {
-					labels: labels,
-					datasets: [{
-						data: data,
-						backgroundColor: colors,
-						borderWidth: 0
-					}]
+	var zeroData = data.map(function () { return 0; });
+
+	function chartConfig(initialData) {
+		return {
+			type: 'doughnut',
+			data: {
+				labels: labels,
+				datasets: [{
+					data: initialData,
+					backgroundColor: colors,
+					borderWidth: 0
+				}]
+			},
+			options: {
+				responsive: true,
+				cutout: '50%',
+				animation: {
+					duration: 2000,
+					animateRotate: false,
+					animateScale: true,
+					delay: function (context) {
+						return context.type === 'data' ? context.dataIndex * 200 : 0;
+					}
 				},
-				options: {
-					responsive: true,
-					cutout: '40%',
-					plugins: {
-						legend: { display: false },
-						tooltip: {
-							callbacks: {
-								label: function (tooltipItem) {
-									var total = tooltipItem.dataset.data.reduce(function (a, b) { return a + b; }, 0);
-									var pct = ((tooltipItem.parsed / total) * 100).toFixed(1);
-									return tooltipItem.label + ': ' + pct + '%';
-								}
+				plugins: {
+					legend: { display: false },
+					tooltip: {
+						callbacks: {
+							label: function (tooltipItem) {
+								var total = tooltipItem.dataset.data.reduce(function (a, b) { return a + b; }, 0);
+								var pct = ((tooltipItem.parsed / total) * 100).toFixed(1);
+								return tooltipItem.label + ': ' + pct + '%';
 							}
 						}
 					}
 				}
-			});
-			observer.unobserve(ctx);
+			}
+		};
+	}
+
+	// Chart starts at zero so there's nothing to see until it's scrolled
+	// into view.
+	var chart = new Chart(ctx, chartConfig(zeroData));
+
+	var observer = new IntersectionObserver(function (entries) {
+		entries.forEach(function (entry) {
+			if (entry.isIntersecting) {
+				// animateRotate/animateScale/delay only run as a true
+				// from-scratch entrance animation on chart construction — a
+				// plain update(), and even update('reset'), don't reliably
+				// replay them (the latter left arcs stuck at radius 0 in
+				// testing). Destroying and recreating the chart guarantees
+				// the grow-from-center reveal replays every time.
+				chart.destroy();
+				chart = new Chart(ctx, chartConfig(data));
+			} else {
+				chart.data.datasets[0].data = zeroData;
+				chart.update();
+			}
 		});
 	}, { threshold: 0.3 });
 	observer.observe(ctx);
