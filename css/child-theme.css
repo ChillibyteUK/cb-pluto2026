@@ -24577,6 +24577,7 @@ body.cb-team-modal-open {
   overflow: hidden;
   margin: 0 auto 1rem;
   position: relative;
+  background-color: var(--col-green-teal-100);
 }
 .cb-news-card__image img {
   width: 100%;
