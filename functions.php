@@ -338,7 +338,6 @@ function cb_ajax_search_portfolio() {
 				</div>
 				<div class="portfolio__card-inner">
 					<h2 class="portfolio__card-title"><?= esc_html( get_the_title() ); ?></h2>
-					<?= wp_kses_post( $card_highlights ); ?>
 				</div>
 			<?php if ( $should_link ) : ?>
 			</a>
