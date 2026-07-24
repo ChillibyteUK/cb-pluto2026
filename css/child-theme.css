@@ -22487,7 +22487,7 @@ header:has(.navbar-collapse.collapsing) .navbar-bottom {
 }
 .cb-post__hero {
   width: 100%;
-  aspect-ratio: 16/9;
+  aspect-ratio: 4/3;
   overflow: hidden;
   margin-bottom: 1.5rem;
 }
