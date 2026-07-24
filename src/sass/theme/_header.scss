@@ -214,6 +214,15 @@ header {
       color: var(--col-white);
     }
 
+    // Bootstrap's own `.show > .nav-link` / `.nav-link.active` rule falls
+    // back to --bs-navbar-active-color, which defaults to the light-theme
+    // (dark) value since this nav never sets .navbar-light/.navbar-dark —
+    // that's what was rendering an open dropdown's toggle link in black.
+    .show > .nav-link,
+    .nav-link.active {
+      color: var(--col-white);
+    }
+
     .nav-link,
     .dropdown-item {
       font-size: var(--fs-500);

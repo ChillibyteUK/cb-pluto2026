@@ -22269,6 +22269,10 @@ body.homepage header .navbar-toggler {
   header .nav-link {
     color: var(--col-white);
   }
+  header .show > .nav-link,
+  header .nav-link.active {
+    color: var(--col-white);
+  }
   header .nav-link,
   header .dropdown-item {
     font-size: var(--fs-500);
