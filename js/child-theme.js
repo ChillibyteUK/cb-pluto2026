@@ -7339,21 +7339,16 @@
 
 		// Pin + scrub reveal for cb-title-scroll-bullets blocks.
 		//
-		// Desktop (>=992px): the title is pinned in place while the block scrolls;
-		// each bullet fades/slides in as a segment of that scroll range (scrubbed,
-		// not staggered on enter). Below that, no pin — bullets just fade in one at
-		// a time as they're scrolled to, same as the other reveal patterns above.
+		// Desktop (>=992px): the title is pinned in place at its natural height
+		// while the bullets scrub in beside it. Below that, no pin — bullets just
+		// fade in one at a time as they're scrolled to, same as the other reveal
+		// patterns above.
 		(function () {
 		  if (!window.gsap || !window.ScrollTrigger) return;
 		  var blocks = Array.prototype.slice.call(document.querySelectorAll(".cb-title-scroll-bullets"));
 		  if (!blocks.length) return;
 		  gsap.registerPlugin(ScrollTrigger);
 		  var prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-		  // Measured from the live fixed header rather than --h-top-desktop, since
-		  // that var doesn't account for the wp-admin toolbar when logged in.
-		  var headerEl = document.getElementById("wrapper-navbar");
-		  var headerOffset = headerEl ? headerEl.getBoundingClientRect().bottom : 90;
 		  ScrollTrigger.matchMedia({
 		    "(min-width: 992px)": function () {
 		      blocks.forEach(function (block) {
@@ -7371,15 +7366,14 @@
 		          x: 60
 		        });
 
-		        // Pin the whole block (title + bullets), not just the title: the
-		        // bullets need to stay put on screen while they're scrubbed in, not
-		        // scroll past underneath a pinned title.
+		        // start: "top 25%" — pin/animation kicks in once the block is
+		        // scrolled ~25% into the viewport.
 		        var tl = gsap.timeline({
 		          scrollTrigger: {
 		            trigger: block,
-		            start: "top top+=" + headerOffset,
+		            start: "top 25%",
 		            end: function () {
-		              return "+=" + items.length * window.innerHeight * 0.2; // this changes the speed - 5 x 0.6 = 3 scrolls, lower is faster
+		              return "+=" + items.length * window.innerHeight * 0.2; // this changes the speed - lower is faster
 		            },
 		            pin: block,
 		            scrub: 0.5,

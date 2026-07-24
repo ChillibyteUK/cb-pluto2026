@@ -38,7 +38,7 @@ if ( isset( $block['className'] ) ) {
 }
 $classes = $custom_classes ? $custom_classes : '';
 ?>
-<section id="<?= esc_attr( $block_uid ); ?>" class="<?= esc_attr( trim( 'cb-title-scroll-bullets py-5 ' . $bg . ' ' . $fg . ' ' . $classes ) ); ?>">
+<section id="<?= esc_attr( $block_uid ); ?>" class="<?= esc_attr( trim( 'cb-title-scroll-bullets py-6 ' . $bg . ' ' . $fg . ' ' . $classes ) ); ?>">
 	<div class="container">
 		<div class="row gx-5">
 			<div class="col-lg-6 cb-title-scroll-bullets__title-col">
