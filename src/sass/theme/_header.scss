@@ -212,16 +212,27 @@ header {
 
     .nav-link {
       color: var(--col-white);
+
+      // The base .nav-link:hover/:focus/:focus-visible rule above sets
+      // --col-grey-900 unconditionally (no media guard), which is fine on
+      // desktop's light nav but renders as near-black over this dark mobile
+      // nav — most visibly once a dropdown toggle is tapped and left
+      // :focus'd. Same specificity as that rule, but this comes later in
+      // the source, so it wins the tie at this breakpoint.
+      &:hover,
+      &:focus,
+      &:focus-visible {
+        color: var(--col-white);
+      }
     }
 
-    // Bootstrap's own `.show > .nav-link` / `.nav-link.active` rule falls
-    // back to --bs-navbar-active-color, which defaults to the light-theme
-    // (dark) value since this nav never sets .navbar-light/.navbar-dark —
-    // that's what was rendering an open dropdown's toggle link in black.
-    .show > .nav-link,
-    .nav-link.active {
-      color: var(--col-white);
-    }
+    // Bootstrap's own `.navbar-nav .show > .nav-link` / `.nav-link.active`
+    // rule (3 class selectors) reads --bs-navbar-active-color, which
+    // defaults to the light-theme (dark) value since this nav never sets
+    // .navbar-light/.navbar-dark — that's what was rendering an open
+    // dropdown's toggle link in black. Overriding the variable itself
+    // avoids having to out-specificity Bootstrap's own selector.
+    --bs-navbar-active-color: var(--col-white);
 
     .nav-link,
     .dropdown-item {
