@@ -167,9 +167,15 @@ $recipient_field_id = $contact_field_ids && ! empty( $contact_field_ids['recipie
 							<?php if ( '' !== trim( $urole ) ) : ?>
 								<p class="cb-team-simple__role"><?= esc_html( $urole ); ?></p>
 							<?php endif; ?>
-							<?php if ( ! empty( $team_names ) ) : ?>
+							<?php
+							if ( ! empty( $team_names ) ) {
+								/*
+								?>
 								<p class="cb-team-simple__team"><?= esc_html( implode( ', ', $team_names ) ); ?></p>
-							<?php endif; ?>
+								<?php
+								*/
+							}
+							?>
 							<?php if ( $email || $phone || $linkedin ) : ?>
 								<ul class="cb-team-simple__contacts" aria-label="<?php esc_attr_e( 'Contact', 'cb-pluto2026' ); ?>">
 									<?php if ( $has_contact ) : ?>
