@@ -71,6 +71,22 @@ $country_keys = array(
 	'PT' => 'ES_PT',
 );
 
+// Secondary markets: one shared title/body covers all of these countries —
+// clicking any one of them shows the same content and highlights the rest.
+$acf_secondary_markets = get_field( 'secondary_markets' );
+$secondary_market       = array(
+	'title' => __( 'Secondary Markets', 'cb-pluto2026' ),
+	'body'  => __( 'Add secondary market copy here.', 'cb-pluto2026' ),
+);
+if ( is_array( $acf_secondary_markets ) && ! empty( $acf_secondary_markets[0] ) ) {
+	$secondary_market = array(
+		'title' => $acf_secondary_markets[0]['title'] ?? $secondary_market['title'],
+		'body'  => $acf_secondary_markets[0]['body'] ?? $secondary_market['body'],
+	);
+}
+
+$secondary_country_ids = array( 'FR', 'IT', 'BE', 'AT', 'PL', 'CZ', 'DK', 'SE', 'NO', 'FI' );
+
 $map_svg  = '';
 $map_path = get_theme_file_path( 'img/map.svg' );
 if ( file_exists( $map_path ) ) {
@@ -82,10 +98,23 @@ if ( file_exists( $map_path ) ) {
 }
 
 foreach ( $country_keys as $country_id => $market_key ) {
-	$market  = $markets[ $market_key ];
+	$market = $markets[ $market_key ] ?? array(
+		'title' => '',
+		'body'  => '',
+	);
 	$map_svg = str_replace(
 		'id="' . $country_id . '" class="cls-1"',
 		'id="' . $country_id . '" class="cb-markets-map__country" data-cb-market="' . esc_attr( $market_key ) . '" data-cb-market-title="' . esc_attr( $market['title'] ) . '" data-cb-market-body="' . esc_attr( $market['body'] ) . '"',
+		$map_svg
+	);
+}
+
+// Secondary market countries render with the generic "other country" class
+// (cls-2) rather than cls-1, since they're not part of the primary set.
+foreach ( $secondary_country_ids as $country_id ) {
+	$map_svg = str_replace(
+		'id="' . $country_id . '" class="cls-2"',
+		'id="' . $country_id . '" class="cb-markets-map__country cb-markets-map__country--secondary" data-cb-market="SECONDARY" data-cb-market-title="' . esc_attr( $secondary_market['title'] ) . '" data-cb-market-body="' . esc_attr( $secondary_market['body'] ) . '"',
 		$map_svg
 	);
 }

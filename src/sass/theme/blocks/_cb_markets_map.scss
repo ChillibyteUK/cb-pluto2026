@@ -80,8 +80,11 @@
 		stroke-width: 3px;
 	}
 
+	// Colour scale, lightest to darkest: base #d4e2e2 (non-market
+	// countries, set on .cls-2 above) < secondary unhovered < primary
+	// unhovered < secondary clicked < primary clicked.
 	&__country {
-		fill: #80bcb4;
+		fill: var(--col-green-dark-500);
 		stroke: #fff;
 		stroke-linecap: round;
 		stroke-linejoin: round;
@@ -95,6 +98,24 @@
 		&.is-active {
 			fill: var(--col-green-dark-1000);
 			outline: none;
+		}
+	}
+
+	// Secondary markets get their own idle/hover/active colours instead
+	// of the primary set's. Same class, just this modifier added —
+	// specificity naturally wins over the base &__country rule above
+	// since it's two classes rather than one.
+	&__country--secondary {
+		fill: var(--col-green-dark-300);
+
+		&:hover,
+		&:focus,
+		&.is-hovered {
+			fill: #b2d7ce;
+		}
+
+		&.is-active {
+			fill: var(--col-green-dark-800);
 		}
 	}
 

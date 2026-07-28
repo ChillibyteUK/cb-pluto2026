@@ -154,6 +154,89 @@
                     "parent_repeater": "field_cb_markets_map_markets"
                 }
             ]
+        },
+        {
+            "key": "field_cb_mm_secondary_header",
+            "label": "Secondary Markets Content",
+            "name": "",
+            "aria-label": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "One shared title/body shown for all of the secondary market countries (FR, IT, BE, AT, PL, CZ, DK, SE, NO, FI) — clicking any of them displays the same content.",
+            "esc_html": 0,
+            "new_lines": "wpautop"
+        },
+        {
+            "key": "field_cb_mm_secondary_markets",
+            "label": "Secondary Markets",
+            "name": "secondary_markets",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Add Secondary Markets Content",
+            "min": 0,
+            "max": 1,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_cb_mm_secondary_title",
+                    "label": "Title",
+                    "name": "title",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_cb_mm_secondary_markets"
+                },
+                {
+                    "key": "field_cb_mm_secondary_body",
+                    "label": "Body",
+                    "name": "body",
+                    "aria-label": "",
+                    "type": "wysiwyg",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "tabs": "all",
+                    "media_upload": 0,
+                    "toolbar": "full",
+                    "default_value": "",
+                    "delay": 0,
+                    "parent_repeater": "field_cb_mm_secondary_markets"
+                }
+            ]
         }
     ],
     "location": [
