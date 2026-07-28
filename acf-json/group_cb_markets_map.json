@@ -174,69 +174,44 @@
             "new_lines": "wpautop"
         },
         {
-            "key": "field_cb_mm_secondary_markets",
-            "label": "Secondary Markets",
-            "name": "secondary_markets",
+            "key": "field_cb_mm_secondary_title",
+            "label": "Secondary Markets Title",
+            "name": "secondary_markets_title",
             "aria-label": "",
-            "type": "repeater",
+            "type": "text",
             "instructions": "",
-            "required": false,
+            "required": 0,
             "conditional_logic": false,
             "wrapper": {
                 "width": "",
                 "class": "",
                 "id": ""
             },
-            "layout": "block",
-            "button_label": "Add Secondary Markets Content",
-            "min": 0,
-            "max": 1,
-            "rows_per_page": 20,
-            "collapsed": "",
-            "sub_fields": [
-                {
-                    "key": "field_cb_mm_secondary_title",
-                    "label": "Title",
-                    "name": "title",
-                    "aria-label": "",
-                    "type": "text",
-                    "instructions": "",
-                    "required": 1,
-                    "conditional_logic": false,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "maxlength": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "parent_repeater": "field_cb_mm_secondary_markets"
-                },
-                {
-                    "key": "field_cb_mm_secondary_body",
-                    "label": "Body",
-                    "name": "body",
-                    "aria-label": "",
-                    "type": "wysiwyg",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": false,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "tabs": "all",
-                    "media_upload": 0,
-                    "toolbar": "full",
-                    "default_value": "",
-                    "delay": 0,
-                    "parent_repeater": "field_cb_mm_secondary_markets"
-                }
-            ]
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_cb_mm_secondary_body",
+            "label": "Secondary Markets Body",
+            "name": "secondary_markets_body",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "tabs": "all",
+            "media_upload": 0,
+            "toolbar": "full",
+            "default_value": "",
+            "delay": 0
         }
     ],
     "location": [
@@ -260,5 +235,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1784720425
+    "modified": 1785237750
 }

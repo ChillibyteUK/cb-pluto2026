@@ -73,17 +73,10 @@ $country_keys = array(
 
 // Secondary markets: one shared title/body covers all of these countries —
 // clicking any one of them shows the same content and highlights the rest.
-$acf_secondary_markets = get_field( 'secondary_markets' );
-$secondary_market       = array(
-	'title' => __( 'Secondary Markets', 'cb-pluto2026' ),
-	'body'  => __( 'Add secondary market copy here.', 'cb-pluto2026' ),
+$secondary_market = array(
+	'title' => get_field( 'secondary_markets_title' ) ?: __( 'Secondary Markets', 'cb-pluto2026' ),
+	'body'  => get_field( 'secondary_markets_body' ) ?: __( 'Add secondary market copy here.', 'cb-pluto2026' ),
 );
-if ( is_array( $acf_secondary_markets ) && ! empty( $acf_secondary_markets[0] ) ) {
-	$secondary_market = array(
-		'title' => $acf_secondary_markets[0]['title'] ?? $secondary_market['title'],
-		'body'  => $acf_secondary_markets[0]['body'] ?? $secondary_market['body'],
-	);
-}
 
 $secondary_country_ids = array( 'FR', 'IT', 'BE', 'AT', 'PL', 'CZ', 'DK', 'SE', 'NO', 'FI' );
 
