@@ -9,6 +9,7 @@ defined( 'ABSPATH' ) || exit;
 
 $cards   = get_field( 'cards' );
 $columns = (int) get_field( 'columns' );
+$is_open = 'open' === get_field( 'default_state' );
 
 if ( empty( $cards ) || ! is_array( $cards ) ) {
 	return;
@@ -18,6 +19,10 @@ $block_id        = $block['anchor'] ?? wp_unique_id( 'cb-show-hide-cards-' );
 $columns         = in_array( $columns, array( 2, 3, 12 ), true ) ? $columns : 2;
 $column_class    = 12 === $columns ? 'col-12' : ( 3 === $columns ? 'col-lg-4' : 'col-lg-6' );
 $section_classes = array( 'cb-show-hide-cards' );
+
+if ( $is_open ) {
+	$section_classes[] = 'cb-show-hide-cards--open';
+}
 
 $custom_classes = 'py-5';
 if ( isset( $block['className'] ) ) {
@@ -63,21 +68,30 @@ if ( ! empty( $block['backgroundColor'] ) ) {
 				<div class="<?= esc_attr( $column_class ); ?> cb-show-hide-cards__col" data-aos="fade-up" data-aos-delay="<?= esc_attr( $aos_delay ); ?>">
 					<div class="cb-show-hide-cards__card">
 						<?php if ( '' !== trim( $card_title ) ) { ?>
-							<button type="button"
-								class="cb-show-hide-cards__toggle"
-								data-bs-toggle="collapse"
-								data-bs-target="#<?= esc_attr( $collapse_id ); ?>"
-								aria-expanded="false"
-								aria-controls="<?= esc_attr( $collapse_id ); ?>">
-								<?php if ( $card_image ) { ?>
-									<img class="cb-show-hide-cards__toggle-image" src="<?= esc_url( $card_image ); ?>" alt="" loading="lazy">
-								<?php } else { ?>
-									<span class="cb-show-hide-cards__toggle-icon" aria-hidden="true"></span>
-								<?php } ?>
-								<?= esc_html( $card_title ); ?>
-							</button>
+							<?php if ( $is_open ) { ?>
+								<div class="cb-show-hide-cards__toggle cb-show-hide-cards__toggle--static">
+									<?php if ( $card_image ) { ?>
+										<img class="cb-show-hide-cards__toggle-image" src="<?= esc_url( $card_image ); ?>" alt="" loading="lazy">
+									<?php } ?>
+									<?= esc_html( $card_title ); ?>
+								</div>
+							<?php } else { ?>
+								<button type="button"
+									class="cb-show-hide-cards__toggle"
+									data-bs-toggle="collapse"
+									data-bs-target="#<?= esc_attr( $collapse_id ); ?>"
+									aria-expanded="false"
+									aria-controls="<?= esc_attr( $collapse_id ); ?>">
+									<?php if ( $card_image ) { ?>
+										<img class="cb-show-hide-cards__toggle-image" src="<?= esc_url( $card_image ); ?>" alt="" loading="lazy">
+									<?php } else { ?>
+										<span class="cb-show-hide-cards__toggle-icon" aria-hidden="true"></span>
+									<?php } ?>
+									<?= esc_html( $card_title ); ?>
+								</button>
+							<?php } ?>
 						<?php } ?>
-						<div class="collapse cb-show-hide-cards__collapse" id="<?= esc_attr( $collapse_id ); ?>">
+						<div class="collapse <?= $is_open ? 'show' : ''; ?> cb-show-hide-cards__collapse" id="<?= esc_attr( $collapse_id ); ?>">
 							<div class="cb-show-hide-cards__collapse-inner">
 								<div class="cb-show-hide-cards__body">
 									<?php

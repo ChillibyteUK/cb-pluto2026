@@ -49,6 +49,17 @@
     }
   }
 
+  // "Open" default state: title renders as a plain, non-interactive div
+  // (not a button), since there's nothing to expand/collapse.
+  &__toggle--static {
+    cursor: default;
+
+    &:hover,
+    &:focus-visible {
+      color: var(--col-green-dark-1000);
+    }
+  }
+
   &__toggle-icon {
     flex: 0 0 var(--cb-sh-dot-size);
     width: var(--cb-sh-dot-size);

@@ -26195,6 +26195,12 @@ body.cb-team-modal-open {
 .cb-show-hide-cards__toggle[aria-expanded=true] .cb-show-hide-cards__toggle-icon {
   transform: rotate(45deg);
 }
+.cb-show-hide-cards__toggle--static {
+  cursor: default;
+}
+.cb-show-hide-cards__toggle--static:hover, .cb-show-hide-cards__toggle--static:focus-visible {
+  color: var(--col-green-dark-1000);
+}
 .cb-show-hide-cards__toggle-icon {
   flex: 0 0 var(--cb-sh-dot-size);
   width: var(--cb-sh-dot-size);

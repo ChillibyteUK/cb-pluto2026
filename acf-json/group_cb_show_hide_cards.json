@@ -1,177 +1,232 @@
 {
-  "key": "group_cb_show_hide_cards",
-  "title": "CB Show Hide Cards",
-  "fields": [
-    {
-      "key": "field_cb_show_hide_cards_intro",
-      "label": "CB Show Hide Cards",
-      "name": "",
-      "type": "message",
-      "message": "Toggle-able card grid with expandable content.",
-      "new_lines": "wpautop",
-      "esc_html": 0
-    },
-    {
-      "key": "field_cb_show_hide_cards_columns",
-      "label": "Columns",
-      "name": "columns",
-      "type": "button_group",
-      "instructions": "",
-      "required": 0,
-      "conditional_logic": 0,
-      "wrapper": {
-        "width": "",
-        "class": "",
-        "id": ""
-      },
-      "choices": {
-        "2": "2 Columns",
-        "3": "3 Columns",
-        "12": "Full Width"
-      },
-      "default_value": "2",
-      "return_format": "value",
-      "allow_null": 0,
-      "layout": "horizontal"
-    },
-    {
-      "key": "field_cb_show_hide_cards_cards",
-      "label": "Cards",
-      "name": "cards",
-      "type": "repeater",
-      "instructions": "",
-      "required": 0,
-      "conditional_logic": 0,
-      "wrapper": {
-        "width": "",
-        "class": "",
-        "id": ""
-      },
-      "layout": "block",
-      "button_label": "Add Card",
-      "sub_fields": [
+    "key": "group_cb_show_hide_cards",
+    "title": "CB Show Hide Cards",
+    "fields": [
         {
-          "key": "field_cb_show_hide_cards_card_title",
-          "label": "Title",
-          "name": "card_title",
-          "type": "text",
-          "instructions": "",
-          "required": 0,
-          "conditional_logic": 0,
-          "wrapper": {
-            "width": "",
-            "class": "",
-            "id": ""
-          },
-          "default_value": "",
-          "placeholder": "",
-          "maxlength": ""
+            "key": "field_cb_show_hide_cards_intro",
+            "label": "CB Show Hide Cards",
+            "name": "",
+            "aria-label": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "Toggle-able card grid with expandable content.",
+            "new_lines": "wpautop",
+            "esc_html": 0
         },
         {
-          "key": "field_cb_show_hide_cards_card_image",
-          "label": "Image",
-          "name": "card_image",
-          "aria-label": "",
-          "type": "image",
-          "instructions": "",
-          "required": 0,
-          "conditional_logic": 0,
-          "wrapper": {
-            "width": "50",
-            "class": "",
-            "id": ""
-          },
-          "return_format": "url",
-          "library": "all",
-          "min_width": "",
-          "min_height": "",
-          "min_size": "",
-          "max_width": "",
-          "max_height": "",
-          "max_size": "",
-          "mime_types": "",
-          "allow_in_bindings": 0,
-          "preview_size": "thumbnail"
+            "key": "field_cb_show_hide_cards_columns",
+            "label": "Columns",
+            "name": "columns",
+            "aria-label": "",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "2": "2 Columns",
+                "3": "3 Columns",
+                "12": "Full Width"
+            },
+            "default_value": 2,
+            "return_format": "value",
+            "allow_null": 0,
+            "allow_in_bindings": 1,
+            "layout": "horizontal"
         },
         {
-          "key": "field_cb_show_hide_cards_card_content",
-          "label": "Content",
-          "name": "card_content",
-          "type": "textarea",
-          "instructions": "One item per line. Blank lines separate paragraphs.",
-          "required": 0,
-          "conditional_logic": 0,
-          "wrapper": {
-            "width": "",
-            "class": "",
-            "id": ""
-          },
-          "default_value": "",
-          "placeholder": "",
-          "maxlength": "",
-          "rows": 4,
-          "new_lines": "wpautop"
+            "key": "field_cb_show_hide_cards_default_state",
+            "label": "Default State",
+            "name": "default_state",
+            "aria-label": "",
+            "type": "button_group",
+            "instructions": "Collapsed: cards use the current click-to-expand behaviour. Open: the show\/hide interaction is removed and every card is shown fully expanded.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "collapsed": "Collapsed",
+                "open": "Open"
+            },
+            "default_value": "collapsed",
+            "return_format": "value",
+            "allow_null": 0,
+            "allow_in_bindings": 1,
+            "layout": "horizontal"
         },
         {
-          "key": "field_cb_show_hide_cards_card_content_type",
-          "label": "Content Type",
-          "name": "card_content_type",
-          "type": "button_group",
-          "instructions": "Plain renders as paragraphs. Bullets renders each line as a list item with custom bullet.",
-          "required": 0,
-          "conditional_logic": 0,
-          "wrapper": {
-            "width": "",
-            "class": "",
-            "id": ""
-          },
-          "choices": {
-            "plain": "Plain",
-            "bullets": "Bullets"
-          },
-          "default_value": "plain",
-          "return_format": "value",
-          "allow_null": 0,
-          "layout": "horizontal"
-        },
-        {
-          "key": "field_cb_show_hide_cards_card_small_print",
-          "label": "Small Print",
-          "name": "card_small_print",
-          "type": "textarea",
-          "instructions": "Small print displayed below the card body when expanded.",
-          "required": 0,
-          "conditional_logic": 0,
-          "wrapper": {
-            "width": "",
-            "class": "",
-            "id": ""
-          },
-          "default_value": "",
-          "placeholder": "",
-          "maxlength": "",
-          "rows": 2,
-          "new_lines": "wpautop"
+            "key": "field_cb_show_hide_cards_cards",
+            "label": "Cards",
+            "name": "cards",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Add Card",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_cb_show_hide_cards_card_title",
+                    "label": "Title",
+                    "name": "card_title",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "maxlength": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_cb_show_hide_cards_cards"
+                },
+                {
+                    "key": "field_cb_show_hide_cards_card_image",
+                    "label": "Image",
+                    "name": "card_image",
+                    "aria-label": "",
+                    "type": "image",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "url",
+                    "library": "all",
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": "",
+                    "mime_types": "",
+                    "allow_in_bindings": 0,
+                    "preview_size": "thumbnail",
+                    "parent_repeater": "field_cb_show_hide_cards_cards"
+                },
+                {
+                    "key": "field_cb_show_hide_cards_card_content",
+                    "label": "Content",
+                    "name": "card_content",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "One item per line. Blank lines separate paragraphs.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "maxlength": "",
+                    "rows": 4,
+                    "new_lines": "wpautop",
+                    "parent_repeater": "field_cb_show_hide_cards_cards"
+                },
+                {
+                    "key": "field_cb_show_hide_cards_card_content_type",
+                    "label": "Content Type",
+                    "name": "card_content_type",
+                    "aria-label": "",
+                    "type": "button_group",
+                    "instructions": "Plain renders as paragraphs. Bullets renders each line as a list item with custom bullet.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "plain": "Plain",
+                        "bullets": "Bullets"
+                    },
+                    "default_value": "plain",
+                    "return_format": "value",
+                    "allow_null": 0,
+                    "layout": "horizontal",
+                    "parent_repeater": "field_cb_show_hide_cards_cards"
+                },
+                {
+                    "key": "field_cb_show_hide_cards_card_small_print",
+                    "label": "Small Print",
+                    "name": "card_small_print",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "Small print displayed below the card body when expanded.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "maxlength": "",
+                    "rows": 2,
+                    "new_lines": "wpautop",
+                    "parent_repeater": "field_cb_show_hide_cards_cards"
+                }
+            ]
         }
-      ]
-    }
-  ],
-  "location": [
-    [
-      {
-        "param": "block",
-        "operator": "==",
-        "value": "acf/cb-show-hide-cards"
-      }
-    ]
-  ],
-  "menu_order": 0,
-  "position": "normal",
-  "style": "default",
-  "label_placement": "top",
-  "instruction_placement": "label",
-  "hide_on_screen": "",
-  "active": true,
-  "description": "",
-  "show_in_rest": 0
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/cb-show-hide-cards"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1785236386
 }
