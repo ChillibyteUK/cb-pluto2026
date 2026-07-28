@@ -376,6 +376,52 @@
             "placeholder": "",
             "prepend": "",
             "append": "loans"
+        },
+        {
+            "key": "field_cb_number_of_homes",
+            "label": "Number of Homes",
+            "name": "number_of_homes",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "Value used in the [number_of_homes] shortcode.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "min": 0,
+            "max": "",
+            "step": 1,
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_cb_track_record",
+            "label": "Track Record",
+            "name": "track_record",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "Value used in the [track_record] shortcode.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "min": 0,
+            "max": "",
+            "step": 1,
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         }
     ],
     "location": [

@@ -127,6 +127,32 @@ add_shortcode(
 	}
 );
 
+add_shortcode(
+	'number_of_homes',
+	function () {
+		$number_of_homes = get_field( 'number_of_homes', 'option' );
+
+		if ( '' === (string) $number_of_homes ) {
+			return '';
+		}
+
+		return esc_html( is_numeric( $number_of_homes ) ? number_format_i18n( (int) $number_of_homes ) : (string) $number_of_homes );
+	}
+);
+
+add_shortcode(
+	'track_record',
+	function () {
+		$track_record = get_field( 'track_record', 'option' );
+
+		if ( '' === (string) $track_record ) {
+			return '';
+		}
+
+		return esc_html( is_numeric( $track_record ) ? number_format_i18n( (int) $track_record ) : (string) $track_record );
+	}
+);
+
 /**
  * Generates a social icon shortcode based on the provided type.
  *
