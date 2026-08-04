@@ -237,7 +237,16 @@ $recipient_field_id = $contact_field_ids && ! empty( $contact_field_ids['recipie
 	</div>
 </section>
 
-<?php if ( $contact_form_id && $recipient_field_id ) : ?>
+<?php
+/*
+ * Single shared contact modal — guarded so a second placement of this block
+ * on the same page can't emit a duplicate #cb-team-simple-contact-modal id
+ * / duplicate Gravity Forms instance for the same form.
+ */
+static $cb_team_simple_contact_modal_emitted = false;
+?>
+<?php if ( ! $cb_team_simple_contact_modal_emitted && $contact_form_id && $recipient_field_id ) : ?>
+	<?php $cb_team_simple_contact_modal_emitted = true; ?>
 	<div class="cb-team-simple__modal cb-team-simple__modal--contact" id="cb-team-simple-contact-modal" role="dialog" aria-modal="true" aria-labelledby="cb-team-simple-contact-modal-title" data-cb-team-simple-recipient-field="<?= esc_attr( $recipient_field_id ); ?>" data-cb-team-simple-form-id="<?= esc_attr( $contact_form_id ); ?>" hidden>
 		<div class="cb-team-simple__modal-overlay" data-cb-team-simple-close></div>
 		<div class="cb-team-simple__modal-dialog" role="document">
@@ -271,6 +280,20 @@ document.addEventListener('DOMContentLoaded', function () {
 	var buttons = block.querySelectorAll('[data-team-filter]');
 	var items = block.querySelectorAll('.cb-team-simple__col');
 	var lastFocus = null;
+
+	// Snapshot of the contact modal's pristine (unsubmitted) markup — see
+	// the matching comment in cb-team.php for why this is needed: Gravity
+	// Forms' AJAX submission replaces this content with a confirmation
+	// message in place, so without resetting it, reopening the modal for
+	// the same or another person just shows the previous confirmation.
+	var contactModalContent = null;
+	var contactModalPristineHTML = null;
+	(function () {
+		var contactModal = document.getElementById('cb-team-simple-contact-modal');
+		if (!contactModal) return;
+		contactModalContent = contactModal.querySelector('.cb-team-simple__modal-content');
+		if (contactModalContent) contactModalPristineHTML = contactModalContent.innerHTML;
+	})();
 
 	function applyFilters() {
 		var activeFilters = [];
@@ -321,6 +344,11 @@ document.addEventListener('DOMContentLoaded', function () {
 		if (!modal) return;
 
 		lastFocus = document.activeElement;
+		// Move to the end of <body> so this modal stacks above any other
+		// already-open modal, regardless of where it landed at initial
+		// portal time — DOM order breaks ties between elements sharing the
+		// same z-index.
+		document.body.appendChild(modal);
 		modal.hidden = false;
 		document.body.classList.add('cb-team-simple-modal-open');
 
@@ -348,6 +376,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
 			var contactModal = document.getElementById('cb-team-simple-contact-modal');
 			if (!contactModal) return;
+
+			// Reset to the pristine, unsubmitted form markup every time —
+			// discards any leftover confirmation/validation state from a
+			// previous contact attempt (for this person or another one).
+			if (contactModalContent && contactModalPristineHTML !== null) {
+				contactModalContent.innerHTML = contactModalPristineHTML;
+			}
 
 			var pid = contactBtn.getAttribute('data-cb-team-simple-pid') || '';
 			var name = contactBtn.getAttribute('data-cb-team-simple-name') || '';

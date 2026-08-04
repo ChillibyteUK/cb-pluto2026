@@ -410,6 +410,22 @@ if ( ! $cb_team_assets_emitted ) {
 
 	var lastFocus = null;
 
+	// Snapshot of the contact modal's pristine (unsubmitted) markup, so it
+	// can be restored each time it's opened. Gravity Forms' AJAX submission
+	// replaces this content with a confirmation message in place — since
+	// there's only one shared form instance (rendering it per-card would
+	// collide on form/wrapper/iframe IDs), without resetting it, reopening
+	// the modal for a different person just shows the previous submission's
+	// confirmation instead of a fresh form.
+	var contactModalContent = null;
+	var contactModalPristineHTML = null;
+	(function () {
+		var contactModal = document.getElementById('cb-team-contact-modal');
+		if (!contactModal) return;
+		contactModalContent = contactModal.querySelector('.cb-team__modal-content');
+		if (contactModalContent) contactModalPristineHTML = contactModalContent.innerHTML;
+	})();
+
 	// Portal all .cb-team__modal nodes to <body> so they escape any ancestor
 	// stacking context (e.g. `.full-flourish { isolation: isolate }`). Without
 	// this, the fixed-top header (z-index: 1030) renders above the modal even
@@ -432,6 +448,11 @@ if ( ! $cb_team_assets_emitted ) {
 		var modal = document.getElementById(id);
 		if (!modal) return;
 		lastFocus = document.activeElement;
+		// Move to the end of <body> so this modal stacks above any other
+		// already-open modal (e.g. opening "Contact" from within a bio modal)
+		// regardless of where it landed at initial portal time — DOM order
+		// is what breaks ties between elements sharing the same z-index.
+		document.body.appendChild(modal);
 		modal.hidden = false;
 		document.body.classList.add('cb-team-modal-open');
 		// focus the close button for a11y.
@@ -461,6 +482,12 @@ if ( ! $cb_team_assets_emitted ) {
 			e.preventDefault();
 			var modal = document.getElementById('cb-team-contact-modal');
 			if (!modal) return;
+			// Reset to the pristine, unsubmitted form markup every time —
+			// discards any leftover confirmation/validation state from a
+			// previous contact attempt (for this person or another one).
+			if (contactModalContent && contactModalPristineHTML !== null) {
+				contactModalContent.innerHTML = contactModalPristineHTML;
+			}
 			var pid = contactBtn.getAttribute('data-cb-team-pid') || '';
 			var name = contactBtn.getAttribute('data-cb-team-name') || '';
 			var fieldId = modal.getAttribute('data-cb-team-recipient-field') || '';

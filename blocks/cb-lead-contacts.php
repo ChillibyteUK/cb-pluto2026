@@ -161,11 +161,40 @@ document.addEventListener('DOMContentLoaded', function () {
 	var contactModalId = <?= wp_json_encode( $contact_modal_id ); ?>;
 	var lastFocus = null;
 
+	// Portal the modal to <body> so it escapes any ancestor stacking context
+	// (this block sets `isolation: isolate` on itself for its background
+	// image layering, which would otherwise trap the modal below the fixed
+	// site header regardless of its own z-index).
+	document.querySelectorAll('.cb-lead-contacts__modal').forEach(function (modal) {
+		if (modal.parentNode !== document.body) {
+			document.body.appendChild(modal);
+		}
+	});
+
+	// Snapshot of the contact modal's pristine (unsubmitted) markup — see
+	// the matching comment in cb-team.php for why this is needed: Gravity
+	// Forms' AJAX submission replaces this content with a confirmation
+	// message in place, so without resetting it, reopening the modal for
+	// the same or another contact just shows the previous confirmation.
+	var contactModalContent = null;
+	var contactModalPristineHTML = null;
+	(function () {
+		var contactModal = document.getElementById(contactModalId);
+		if (!contactModal) return;
+		contactModalContent = contactModal.querySelector('.cb-lead-contacts__modal-content');
+		if (contactModalContent) contactModalPristineHTML = contactModalContent.innerHTML;
+	})();
+
 	function openModal(id) {
 		var modal = document.getElementById(id);
 		if (!modal) return;
 
 		lastFocus = document.activeElement;
+		// Move to the end of <body> so this modal stacks above any other
+		// already-open modal, regardless of where it landed at initial
+		// portal time — DOM order breaks ties between elements sharing the
+		// same z-index.
+		document.body.appendChild(modal);
 		modal.hidden = false;
 		document.body.classList.add('cb-lead-contacts-modal-open');
 
@@ -193,6 +222,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
 			var contactModal = document.getElementById(contactModalId);
 			if (!contactModal) return;
+
+			// Reset to the pristine, unsubmitted form markup every time —
+			// discards any leftover confirmation/validation state from a
+			// previous contact attempt.
+			if (contactModalContent && contactModalPristineHTML !== null) {
+				contactModalContent.innerHTML = contactModalPristineHTML;
+			}
 
 			var pid = contactBtn.getAttribute('data-cb-lead-contacts-pid') || '';
 			var name = contactBtn.getAttribute('data-cb-lead-contacts-name') || '';

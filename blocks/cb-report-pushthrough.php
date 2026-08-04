@@ -91,6 +91,18 @@ document.addEventListener('DOMContentLoaded', function () {
 	var modal = document.getElementById(modalId);
 	if (!modal) return;
 
+	// Portal to <body> so it escapes any ancestor stacking context, and
+	// snapshot its pristine (unsubmitted) markup so it can be restored on
+	// every open — Gravity Forms' AJAX submission replaces this content
+	// with a confirmation message in place, so without resetting it,
+	// reopening the modal after a submission just shows that confirmation
+	// instead of a fresh form.
+	if (modal.parentNode !== document.body) {
+		document.body.appendChild(modal);
+	}
+	var modalDialog = modal.querySelector('.cb-report-pushthrough__modal-dialog');
+	var modalPristineHTML = modalDialog ? modalDialog.innerHTML : null;
+
 	function closeModal() {
 		modal.hidden = true;
 		document.body.classList.remove('cb-report-pushthrough-modal-open');
@@ -100,6 +112,13 @@ document.addEventListener('DOMContentLoaded', function () {
 		var trigger = e.target.closest('[data-cb-report-pushthrough-open]');
 		if (trigger && trigger.getAttribute('data-cb-report-pushthrough-open') === modalId) {
 			e.preventDefault();
+			if (modalDialog && modalPristineHTML !== null) {
+				modalDialog.innerHTML = modalPristineHTML;
+			}
+			// Move to the end of <body> so this modal stacks above any
+			// other already-open modal, regardless of where it landed at
+			// initial portal time.
+			document.body.appendChild(modal);
 			modal.hidden = false;
 			document.body.classList.add('cb-report-pushthrough-modal-open');
 			return;
