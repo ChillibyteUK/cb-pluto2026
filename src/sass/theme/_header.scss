@@ -71,11 +71,13 @@ header {
   }
 
   &.navbar-pf .navbar-top {
+    background-image: none;
     @media (min-width:992px) {
       background-image: url("../img/nav-flourish.svg");
     }
   }
   &.navbar-inv .navbar-top {
+    background-image: none;
     @media (min-width:992px) {
       background-image: url("../img/nav-flourish.svg");
     }

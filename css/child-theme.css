@@ -22164,10 +22164,16 @@ header .site-context-toggle__divider {
     height: 0.75rem;
   }
 }
+header.navbar-pf .navbar-top {
+  background-image: none;
+}
 @media (min-width: 992px) {
   header.navbar-pf .navbar-top {
     background-image: url("../img/nav-flourish.svg");
   }
+}
+header.navbar-inv .navbar-top {
+  background-image: none;
 }
 @media (min-width: 992px) {
   header.navbar-inv .navbar-top {
