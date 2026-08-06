@@ -22121,11 +22121,7 @@ header .navbar-top {
   background-repeat: no-repeat;
   background-position: right center;
   background-size: auto 100%;
-}
-@media (min-width: 992px) {
-  header .navbar-top {
-    background-image: url("../img/nav-flourish.svg");
-  }
+  background-image: url("../img/nav-flourish.svg");
 }
 header .site-context-toggle {
   display: flex;
@@ -22168,11 +22164,15 @@ header .site-context-toggle__divider {
     height: 0.75rem;
   }
 }
-header.navbar-pf .navbar-top {
-  background-image: url("../img/nav-flourish.svg");
+@media (min-width: 992px) {
+  header.navbar-pf .navbar-top {
+    background-image: url("../img/nav-flourish.svg");
+  }
 }
-header.navbar-inv .navbar-top {
-  background-image: url("../img/nav-flourish.svg");
+@media (min-width: 992px) {
+  header.navbar-inv .navbar-top {
+    background-image: url("../img/nav-flourish.svg");
+  }
 }
 header .navbar-bottom {
   background-color: transparent;

@@ -18,9 +18,7 @@ header {
     background-repeat: no-repeat;
     background-position: right center;
     background-size: auto 100%;
-    @media (min-width:992px) {
-      background-image: url("../img/nav-flourish.svg");
-    }
+    background-image: url("../img/nav-flourish.svg");
   }
 
   /* Context toggle */
@@ -73,10 +71,14 @@ header {
   }
 
   &.navbar-pf .navbar-top {
-    background-image: url("../img/nav-flourish.svg");
+    @media (min-width:992px) {
+      background-image: url("../img/nav-flourish.svg");
+    }
   }
   &.navbar-inv .navbar-top {
-    background-image: url("../img/nav-flourish.svg");
+    @media (min-width:992px) {
+      background-image: url("../img/nav-flourish.svg");
+    }
   }
 
   /* Bottom row: menu. Translucent; tinted per-side via body classes elsewhere. */
