@@ -22121,7 +22121,11 @@ header .navbar-top {
   background-repeat: no-repeat;
   background-position: right center;
   background-size: auto 100%;
-  background-image: url("../img/nav-flourish.svg");
+}
+@media (min-width: 992px) {
+  header .navbar-top {
+    background-image: url("../img/nav-flourish.svg");
+  }
 }
 header .site-context-toggle {
   display: flex;
