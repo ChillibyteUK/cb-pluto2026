@@ -382,6 +382,11 @@ document.addEventListener('DOMContentLoaded', function () {
 			// previous contact attempt (for this person or another one).
 			if (contactModalContent && contactModalPristineHTML !== null) {
 				contactModalContent.innerHTML = contactModalPristineHTML;
+				contactModalContent.querySelectorAll('script').forEach(function (oldScript) {
+					var newScript = document.createElement('script');
+					newScript.textContent = oldScript.textContent;
+					oldScript.replaceWith(newScript);
+				});
 			}
 
 			var pid = contactBtn.getAttribute('data-cb-team-simple-pid') || '';

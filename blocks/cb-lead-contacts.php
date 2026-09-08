@@ -226,8 +226,21 @@ document.addEventListener('DOMContentLoaded', function () {
 			// Reset to the pristine, unsubmitted form markup every time —
 			// discards any leftover confirmation/validation state from a
 			// previous contact attempt.
+			//
+			// innerHTML replacement recreates the form/iframe as brand new DOM
+			// nodes, so Gravity Forms' own inline script tag (which binds the
+			// AJAX iframe's load handler and clears its submission lock) has
+			// to be re-executed against them — assigning innerHTML alone
+			// inserts script elements inertly and never runs them, leaving
+			// the AJAX iframe permanently unbound and every later submit
+			// rejected client-side as "already in progress".
 			if (contactModalContent && contactModalPristineHTML !== null) {
 				contactModalContent.innerHTML = contactModalPristineHTML;
+				contactModalContent.querySelectorAll('script').forEach(function (oldScript) {
+					var newScript = document.createElement('script');
+					newScript.textContent = oldScript.textContent;
+					oldScript.replaceWith(newScript);
+				});
 			}
 
 			var pid = contactBtn.getAttribute('data-cb-lead-contacts-pid') || '';

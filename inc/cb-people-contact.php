@@ -160,8 +160,34 @@ function cb_team_register_gf_hooks() {
 	}
 	add_filter( "gform_pre_submission_filter_{$form_id}", 'cb_team_validate_recipient' );
 	add_filter( "gform_notification_{$form_id}", 'cb_team_route_notification', 10, 3 );
+
+	$ids = cb_team_resolve_form_fields( $form_id );
+	if ( $ids && ! empty( $ids['recipient'] ) ) {
+		add_filter( "gform_get_input_value_{$form_id}_{$ids['recipient']}", 'cb_team_display_recipient_name', 10, 2 );
+	}
 }
 add_action( 'init', 'cb_team_register_gf_hooks' );
+
+/**
+ * Displays the recipient person's name (instead of their raw post ID) wherever
+ * the hidden recipient field's value is shown — entry list/detail, exports,
+ * and notification emails via the {all_fields} merge tag.
+ *
+ * @param mixed $value The raw field value (a person post ID).
+ * @param array $entry GF entry.
+ * @return mixed
+ */
+function cb_team_display_recipient_name( $value, $entry ) {
+	$pid = (int) $value;
+	if ( $pid <= 0 ) {
+		return $value;
+	}
+	$post = get_post( $pid );
+	if ( ! $post || 'person' !== $post->post_type ) {
+		return $value;
+	}
+	return get_the_title( $pid );
+}
 
 /**
  * Validate the submitted recipient_pid points to a real `person` with email.
