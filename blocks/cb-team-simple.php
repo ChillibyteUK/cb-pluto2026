@@ -39,8 +39,10 @@ $people_args = array(
 	'posts_per_page' => -1,
 	'post_status'    => 'publish',
 	'no_found_rows'  => true,
-	'orderby'        => 'title',
-	'order'          => 'ASC',
+	'orderby'        => array(
+		'menu_order' => 'ASC',
+		'title'      => 'ASC',
+	),
 );
 
 // Investor side: only FCA regulated people are shown, with no team filters.
