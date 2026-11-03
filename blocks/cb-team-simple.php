@@ -34,16 +34,26 @@ if ( isset( $block['className'] ) ) {
 
 $initial_team_filter = get_field( 'initial_team_filter' );
 
-$people = get_posts(
-	array(
-		'post_type'      => 'person',
-		'posts_per_page' => -1,
-		'post_status'    => 'publish',
-		'no_found_rows'  => true,
-		'orderby'        => 'title',
-		'order'          => 'ASC',
-	)
+$people_args = array(
+	'post_type'      => 'person',
+	'posts_per_page' => -1,
+	'post_status'    => 'publish',
+	'no_found_rows'  => true,
+	'orderby'        => 'title',
+	'order'          => 'ASC',
 );
+
+// Investor side: only FCA regulated people are shown, with no team filters.
+if ( 'inv' === $context ) {
+	$people_args['meta_query'] = array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
+		array(
+			'key'   => 'fca_regulated',
+			'value' => '1',
+		),
+	);
+}
+
+$people = get_posts( $people_args );
 
 if ( empty( $people ) ) {
 	return;
@@ -105,7 +115,7 @@ $recipient_field_id = $contact_field_ids && ! empty( $contact_field_ids['recipie
 ?>
 <section id="<?= esc_attr( $block_id ); ?>" class="cb-team-simple <?= esc_attr( trim( $bg . ' ' . $fg . ' ' . $custom_classes ) ); ?>">
 	<div class="container py-5">
-		<?php if ( ! empty( $teams ) ) : ?>
+		<?php if ( ! empty( $teams ) && 'inv' !== $context ) : ?>
 			<div class="cb-team-simple__filters" aria-label="<?php esc_attr_e( 'Filter team', 'cb-pluto2026' ); ?>">
 				<button class="cb-team-simple__filter<?= empty( $initial_team_slugs ) ? ' cb-team-simple__filter--active' : ''; ?>" type="button" data-team-filter="all"><?php esc_html_e( 'All', 'cb-pluto2026' ); ?></button>
 				<?php foreach ( $teams as $team ) : ?>

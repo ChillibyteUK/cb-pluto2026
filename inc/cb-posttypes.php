@@ -272,3 +272,28 @@ function cb_disable_block_editor_for_portfolio( $use_block_editor, $post_type ) 
 	return $use_block_editor;
 }
 add_filter( 'use_block_editor_for_post_type', 'cb_disable_block_editor_for_portfolio', 10, 2 );
+
+/**
+ * Add an "FCA Regulated" column to the Person list table.
+ *
+ * @param array $columns Existing columns.
+ * @return array
+ */
+function cb_person_fca_column( $columns ) {
+	$columns['fca_regulated'] = __( 'FCA Regulated', 'cb-pluto2026' );
+	return $columns;
+}
+add_filter( 'manage_person_posts_columns', 'cb_person_fca_column' );
+
+/**
+ * Render the "FCA Regulated" column.
+ *
+ * @param string $column  Column key.
+ * @param int    $post_id Post ID.
+ */
+function cb_person_fca_column_content( $column, $post_id ) {
+	if ( 'fca_regulated' === $column ) {
+		echo get_post_meta( $post_id, 'fca_regulated', true ) ? '<span class="dashicons dashicons-yes-alt" style="color:#00a32a" title="Yes"></span>' : '&mdash;'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	}
+}
+add_action( 'manage_person_posts_custom_column', 'cb_person_fca_column_content', 10, 2 );

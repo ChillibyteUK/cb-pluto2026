@@ -80,8 +80,7 @@ if ( is_wp_error( $ordered_terms ) ) {
 $seen_ids = array();
 $groups   = array();
 foreach ( $ordered_terms as $team_term ) {
-	$q = new WP_Query(
-		array(
+	$q_args = array(
 			'post_type'      => 'person',
 			'posts_per_page' => -1,
 			'post_status'    => 'publish',
@@ -97,8 +96,19 @@ foreach ( $ordered_terms as $team_term ) {
 				),
 			),
 			'no_found_rows'  => true,
-		)
 	);
+
+	// Investor side: only FCA regulated people are shown.
+	if ( 'inv' === $context ) {
+		$q_args['meta_query'] = array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
+			array(
+				'key'   => 'fca_regulated',
+				'value' => '1',
+			),
+		);
+	}
+
+	$q = new WP_Query( $q_args );
 
 	$members = array();
 	if ( $q->posts ) {
