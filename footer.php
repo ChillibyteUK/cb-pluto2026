@@ -85,7 +85,7 @@ $context = cb_get_site_context();
 					?>
 				</div>
 				<div class="col-12 col-md-6 text-md-end">
-					<a href="/privacy-policy/" class="footer__colophon-link">Privacy</a> | <a href="/cookie-policy/" class="footer__colophon-link">Cookies</a> | <a href="/terms-of-use/" class="footer__colophon-link">Terms</a>
+					<a href="/privacy-policy/" class="footer__colophon-link">Privacy</a> | <a href="/terms-of-use/" class="footer__colophon-link">Terms</a>
 				</div>
 				<?php
 				if ( 'pf' === $context ) {
