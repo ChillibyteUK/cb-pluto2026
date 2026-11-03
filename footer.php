@@ -72,7 +72,17 @@ $context = cb_get_site_context();
 		<div class="container">
 			<div class="row g-5">
 				<div class="col-12 col-md-6">
+					<?php
+					if ( 'pf' === $context ) {
+						?>
 					&copy; <?= esc_html( gmdate( 'Y' ) ); ?> Pluto Finance (UK) LLP.
+						<?php
+					} elseif ( 'inv' === $context ) {
+						?>
+					&copy; <?= esc_html( gmdate( 'Y' ) ); ?> Pluto Capital Advisors.
+						<?php
+					}
+					?>
 				</div>
 				<div class="col-12 col-md-6 text-md-end">
 					<a href="/privacy-policy/" class="footer__colophon-link">Privacy</a> | <a href="/cookie-policy/" class="footer__colophon-link">Cookies</a> | <a href="/terms-of-use/" class="footer__colophon-link">Terms</a>
