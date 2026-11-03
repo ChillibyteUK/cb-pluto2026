@@ -129,7 +129,17 @@ if ( session_status() === PHP_SESSION_NONE ) {
 			<div class="container py-4">
 				<div class="d-flex justify-content-between align-items-center gap-3">
 					<a href="<?= esc_url( $home_url ? $home_url : '/' ); ?>" class="site-logo" aria-label="Pluto Finance Homepage">
+						<?php
+						if ( 'pf' === $context ) {
+							?>
 						<img src="<?= esc_url( get_stylesheet_directory_uri() . '/img/pluto-logo-colour.svg' ); ?>" alt="Pluto Finance logo" height="45">
+							<?php
+						} elseif ( 'inv' === $context ) {
+							?>
+						<img src="<?= esc_url( get_stylesheet_directory_uri() . '/img/pluto-invest-logo-colour.svg' ); ?>" alt="Pluto Capital Advisors logo" height="45">
+							<?php
+						}
+						?>
 					</a>
 					<div class="d-flex align-items-center gap-3 ms-auto">
 						<?php if ( '' !== $context ) { ?>

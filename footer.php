@@ -23,7 +23,17 @@ $context = cb_get_site_context();
 		<div class="container">
 			<div class="row pb-4 g-4">
 				<div class="col-12">
+					<?php
+					if ( 'pf' === $context ) {
+						?>
 					<img src="<?= esc_url( get_stylesheet_directory_uri() . '/img/pluto-logo-wo.svg' ); ?>" alt="Pluto Finance logo" class="footer__logo">
+						<?php
+					} elseif ( 'inv' === $context ) {
+						?>
+					<img src="<?= esc_url( get_stylesheet_directory_uri() . '/img/pluto-invest-logo-wo.svg' ); ?>" alt="Pluto Capital Advisors logo" class="footer__logo">
+						<?php
+					}
+					?>
 				</div>
 				<div class="col-12 col-md-6">
 					<div class="footer__title">Contact</div>
