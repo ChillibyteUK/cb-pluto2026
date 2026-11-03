@@ -39,14 +39,16 @@ $people_args = array(
 	'posts_per_page' => -1,
 	'post_status'    => 'publish',
 	'no_found_rows'  => true,
-	'orderby'        => array(
-		'menu_order' => 'ASC',
-		'title'      => 'ASC',
-	),
+	'orderby'        => 'title',
+	'order'          => 'ASC',
 );
 
-// Investor side: only FCA regulated people are shown, with no team filters.
+// Investor side: only FCA regulated people are shown, in menu order, with no team filters.
 if ( 'inv' === $context ) {
+	$people_args['orderby']    = array(
+		'menu_order' => 'ASC',
+		'title'      => 'ASC',
+	);
 	$people_args['meta_query'] = array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
 		array(
 			'key'   => 'fca_regulated',
